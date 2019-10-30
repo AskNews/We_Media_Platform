@@ -5,7 +5,7 @@
 <body>
     <a href="Content_Creator/index.php">Content Creator</a><br>
     <a href="Ad_Creator/index.php">Ad Creator</a><br>
-    <a href="Super_Admin/index.php">Super Admin</a>
+    <a href="Super_Admin/index.php">Super Admin</a><br>
     
 </body>
 <<<<<<< HEAD
