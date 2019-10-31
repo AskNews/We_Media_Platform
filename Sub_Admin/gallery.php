@@ -1,4 +1,5 @@
 <?php
+$type="gallery";
 include "Includes/header.php";
 ?>
 		<!-- MAIN -->
@@ -9,11 +10,19 @@ include "Includes/header.php";
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title">Weekly Overview<?php echo $_SESSION['new-Operator-Login'];?></h3>
+							<h3 class="panel-title"><?php echo ucfirst($type);?></h3>
 							<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
 						</div>
 						<div class="panel-body">
+						<?php
+						if(isset($_POST['create'])){
+							echo "<script>alert('hi');</script>";
+							include "Manager/$type/form.php";
 							
+							}else{
+						include "Manager/$type/tbl.php";
+							}
+						?>	
 						</div>
 					</div>
 					<!-- END OVERVIEW -->

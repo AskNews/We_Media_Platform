@@ -29,16 +29,7 @@ include "engine/engine.php";
 						
 						
 						<div class="tabbable">
-<!--
-						<ul class="nav nav-tabs">
-						  <li class="active">
-						    <a href="?c_user" data-toggle="tab">Create User</a>
-						  </li>
-						  <li class="active">
-						  <a href="?m_user" data-toggle="tab">JS Controls</a></li>
-						</ul>
-						-->
-						<br>
+
 						
 						<div class="tab-content">
                             <?php

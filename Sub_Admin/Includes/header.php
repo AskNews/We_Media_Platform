@@ -7,13 +7,13 @@ include "../Super_Admin/includes/dbconfig.php";
     else{
         header ("location: login.php");
     }
-    
+	include "engine/engine.php";
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Welcome to Ask News Sub Admin Panel</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -45,12 +45,7 @@ include "../Super_Admin/includes/dbconfig.php";
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
 				</div>
-				<form class="navbar-form navbar-left">
-					<div class="input-group">
-						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-					</div>
-				</form>
+				
 				<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 				</div>
@@ -101,7 +96,13 @@ include "../Super_Admin/includes/dbconfig.php";
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+					<li><a href="index.php" <?php echo $type == "index"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+					<li><a href="c_creator.php" <?php echo $type == "c_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Content Creator</span></a></li>
+					<li><a href="ad_creator.php" <?php echo $type == "ad_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Ad Creator</span></a></li>
+					<li><a href="gallery.php" <?php echo $type == "gallery"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Gallery</span></a></li>
+					<li><a href="picture.php" <?php echo $type == "picture"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Picture</span></a></li>
+					<li><a href="slideshow.php" <?php echo $type == "slideshow"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Slideshow</span></a></li>
+					<li><a href="categories.php" <?php echo $type == "categories"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Categories</span></a></li>
 						
                         <li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

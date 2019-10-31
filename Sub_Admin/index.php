@@ -1,4 +1,5 @@
 <?php
+$type="index";
 include "Includes/header.php";
 ?>
 		<!-- MAIN -->

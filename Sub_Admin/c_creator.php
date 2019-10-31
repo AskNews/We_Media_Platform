@@ -1,5 +1,7 @@
 <?php
+$type="c_creator";
 include "Includes/header.php";
+
 ?>
 		<!-- MAIN -->
 		<div class="main">
@@ -9,7 +11,7 @@ include "Includes/header.php";
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title">Weekly Overview<?php echo $_SESSION['new-Operator-Login'];?></h3>
+							<h3 class="panel-title">Weekly Overview C creator<?php echo $_SESSION['newSub-AdminLogin'];?></h3>
 							<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
 						</div>
 						<div class="panel-body">
