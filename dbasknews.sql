@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2019 at 02:37 PM
+-- Generation Time: Nov 01, 2019 at 03:08 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -21,6 +21,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbasknews`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_catagories`
+--
+
+CREATE TABLE `tbl_catagories` (
+  `id` int(5) NOT NULL,
+  `super_admin_id` int(5) DEFAULT NULL,
+  `title` varchar(40) DEFAULT NULL,
+  `url` varchar(40) DEFAULT NULL,
+  `seo_title` varchar(255) DEFAULT NULL,
+  `seo_desc` varchar(255) DEFAULT NULL,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -56,20 +73,38 @@ INSERT INTO `tbl_content_creator` (`creator_id`, `username`, `email`, `mobile`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_gallery`
+--
+
+CREATE TABLE `tbl_gallery` (
+  `id` int(5) NOT NULL,
+  `sub_admin_id` varchar(200) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `url` varchar(200) DEFAULT NULL,
+  `seo_title` varchar(200) DEFAULT NULL,
+  `seo_desc` varchar(200) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_module_user`
 --
 
 CREATE TABLE `tbl_module_user` (
   `id` int(5) NOT NULL,
-  `user_name` varchar(30) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` text NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `ip` text NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `role` tinyint(1) NOT NULL DEFAULT '1',
+  `user_name` varchar(30) DEFAULT NULL,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `password` text,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ip` text,
+  `status` tinyint(1) DEFAULT '1',
+  `role` tinyint(1) DEFAULT '1',
   `sub_role` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -80,7 +115,23 @@ CREATE TABLE `tbl_module_user` (
 INSERT INTO `tbl_module_user` (`id`, `user_name`, `first_name`, `last_name`, `email`, `password`, `date`, `ip`, `status`, `role`, `sub_role`) VALUES
 (1, 'asdf', 'asdffg', 'asdffg', 'asdffg', '912ec803b2ce49e4a541068d495ab570', '2019-10-30 14:47:17', '::1', 1, 0, 1),
 (2, 'AviWeb', 'Avinash', 'Mishra', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2019-10-30 14:47:51', '::1', 1, 0, 1),
-(3, 'Kishan', 'Kishan', 'mishra', 'kishan12@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2019-10-31 12:41:26', '::1', 1, 1, 1);
+(3, 'Kishan', 'Kishan', 'mishra', 'kishan12@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2019-10-30 15:15:18', '::1', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_picture`
+--
+
+CREATE TABLE `tbl_picture` (
+  `id` int(5) NOT NULL,
+  `sub_admin_id` int(5) NOT NULL,
+  `gallery_id` int(5) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `caption` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -112,15 +163,27 @@ INSERT INTO `tbl_super_admin` (`id`, `first_name`, `last_name`, `user_name`, `em
 --
 
 --
--- Indexes for table `tbl_content_creator`
+-- Indexes for table `tbl_catagories`
 --
-ALTER TABLE `tbl_content_creator`
-  ADD PRIMARY KEY (`creator_id`);
+ALTER TABLE `tbl_catagories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_gallery`
+--
+ALTER TABLE `tbl_gallery`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_module_user`
 --
 ALTER TABLE `tbl_module_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_picture`
+--
+ALTER TABLE `tbl_picture`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -134,15 +197,25 @@ ALTER TABLE `tbl_super_admin`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_content_creator`
+-- AUTO_INCREMENT for table `tbl_catagories`
 --
-ALTER TABLE `tbl_content_creator`
-  MODIFY `creator_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `tbl_catagories`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tbl_gallery`
+--
+ALTER TABLE `tbl_gallery`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_module_user`
 --
 ALTER TABLE `tbl_module_user`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tbl_picture`
+--
+ALTER TABLE `tbl_picture`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_super_admin`
 --

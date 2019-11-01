@@ -11,12 +11,10 @@ if(isset($_SESSION['newAccount-AdminLogin'])){
 include "includes/dbconfig.php";
 //check for login
 if(isset($_POST['login'])){
-	$code=$_SESSION['cap_code'];
 	
 
 		$username = mysqli_real_escape_string($con,$_POST['username']);
-		$password = mysqli_real_escape_string($con,$_POST['password']);
-		$ms="Avinash";
+		$ms = mysqli_real_escape_string($con,$_POST['password']);
 		//login from database
 		$sql="SELECT * from tbl_super_admin WHERE user_name='$username' AND password=md5('$ms') AND status = '1'";
 		$query=mysqli_query($con,$sql);

@@ -12,8 +12,8 @@ include "engine/engine.php";
 	<div class="main-inner">
 
 	    <div class="container">
-	
-	      <div class="row">
+	 
+	      <div class="row"> 
 	      	
 	      	<div class="span12">      		
 	      		
