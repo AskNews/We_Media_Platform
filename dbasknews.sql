@@ -2,8 +2,8 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Oct 30, 2019 at 04:27 PM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 01, 2019 at 02:37 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -21,6 +21,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbasknews`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_content_creator`
+--
+
+CREATE TABLE `tbl_content_creator` (
+  `creator_id` int(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `mobile` bigint(10) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `ChannelName` varchar(20) NOT NULL,
+  `ChannelDescription` varchar(200) NOT NULL,
+  `IP` varchar(20) NOT NULL,
+  `AccountApproval` tinyint(1) NOT NULL DEFAULT '0',
+  `Status` tinyint(1) NOT NULL DEFAULT '1',
+  `channel_logo` varchar(20) NOT NULL,
+  `DateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_content_creator`
+--
+
+INSERT INTO `tbl_content_creator` (`creator_id`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `IP`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`) VALUES
+(1, 'shabnam', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42'),
+(9, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42'),
+(10, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, '', '2019-11-01 09:45:42'),
+(15, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '::1', 0, 1, 'default.jpg', '2019-11-01 12:49:46');
 
 -- --------------------------------------------------------
 
@@ -49,7 +80,7 @@ CREATE TABLE `tbl_module_user` (
 INSERT INTO `tbl_module_user` (`id`, `user_name`, `first_name`, `last_name`, `email`, `password`, `date`, `ip`, `status`, `role`, `sub_role`) VALUES
 (1, 'asdf', 'asdffg', 'asdffg', 'asdffg', '912ec803b2ce49e4a541068d495ab570', '2019-10-30 14:47:17', '::1', 1, 0, 1),
 (2, 'AviWeb', 'Avinash', 'Mishra', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2019-10-30 14:47:51', '::1', 1, 0, 1),
-(3, 'Kishan', 'Kishan', 'mishra', 'kishan12@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2019-10-30 15:15:18', '::1', 1, 1, 1);
+(3, 'Kishan', 'Kishan', 'mishra', 'kishan12@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2019-10-31 12:41:26', '::1', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -81,6 +112,12 @@ INSERT INTO `tbl_super_admin` (`id`, `first_name`, `last_name`, `user_name`, `em
 --
 
 --
+-- Indexes for table `tbl_content_creator`
+--
+ALTER TABLE `tbl_content_creator`
+  ADD PRIMARY KEY (`creator_id`);
+
+--
 -- Indexes for table `tbl_module_user`
 --
 ALTER TABLE `tbl_module_user`
@@ -96,6 +133,11 @@ ALTER TABLE `tbl_super_admin`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `tbl_content_creator`
+--
+ALTER TABLE `tbl_content_creator`
+  MODIFY `creator_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `tbl_module_user`
 --

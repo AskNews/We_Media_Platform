@@ -42,7 +42,7 @@ if(isset($_GET['status'])){
 	
 	if ($con->query($sql) === TRUE) {
        
-        $success="User created success";
+        $success="User Detail Updated success";
         @$qry=mysqli_query($con,"select * from $type where id between $s and $e order by id desc");
 
         } else {

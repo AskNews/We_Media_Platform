@@ -5,13 +5,14 @@ if(isset($error)){
 <div class="alert">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
  <strong>Warning!</strong> <?php echo $error; ?>
- </div>
-                                            
+</div>
+                                        
  <?php
 }else if(isset($success)){
 ?>       
 <div class="alert alert-success">
  <button type="button" class="close" data-dismiss="alert">&times;</button>
+
  <strong>Success!</strong> <?php echo $success; ?>
 </div>
                                             
