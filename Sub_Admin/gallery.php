@@ -20,7 +20,10 @@ include_once "engine/engine.php";
 						</div>
 						<div class="panel-body">
 						<?php
-						if(isset($_POST['create']) || isset($p) ){
+						include "Includes/msg.php"
+						?>
+						<?php
+						if(isset($_POST['create']) || isset($p) || isset($_GET['edit'])){
 							
 							include "Manager/$type/form.php";
 							
