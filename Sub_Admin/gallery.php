@@ -1,7 +1,12 @@
 <?php
 $type="gallery";
+$t="";
 include "Includes/header.php";
+include_once "engine/engine.php";
+
+
 ?>
+
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -15,8 +20,8 @@ include "Includes/header.php";
 						</div>
 						<div class="panel-body">
 						<?php
-						if(isset($_POST['create'])){
-							echo "<script>alert('hi');</script>";
+						if(isset($_POST['create']) || isset($p) ){
+							
 							include "Manager/$type/form.php";
 							
 							}else{

@@ -14,6 +14,12 @@ include "Includes/header.php";
 							<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
 						</div>
 						<div class="panel-body">
+						<p class="demo-button">
+								<button type="button" class="btn btn-primary btn-toastr" data-context="info" data-message="This is general theme info" data-position="top-right">General Info</button>
+								<button type="button" class="btn btn-success btn-toastr" data-context="success" data-message="This is success info" data-position="top-right">Success Info</button>
+								<button type="button" class="btn btn-warning btn-toastr" data-context="warning" data-message="This is warning info" data-position="top-right">Warning Info</button>
+								<button type="button" class="btn btn-danger btn-toastr" data-context="error" data-message="This is error info" data-position="top-right">Error Info</button>
+							</p>
 							
 						</div>
 					</div>

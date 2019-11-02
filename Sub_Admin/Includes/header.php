@@ -21,7 +21,8 @@ include "../Super_Admin/includes/dbconfig.php";
 	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
-	<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">
+	<!--<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">-->
+	<link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -31,6 +32,38 @@ include "../Super_Admin/includes/dbconfig.php";
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
+	
+	<script type="text/javascript">
+		function convertToSlug( str ) {
+	
+  //replace all special characters | symbols with a space
+  str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	
+  // trim spaces at start and end of string
+  str = str.replace(/^\s+|\s+$/gm,'');
+	
+  // replace space with dash/hyphen
+  str = str.replace(/\s+/g, '-');	
+  
+  document.getElementById("url").value= str;
+  
+  //return str;
+}
+function convertToComa( str1 ) {
+	
+	//replace all special characters | symbols with a space
+	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	  
+	// trim spaces at start and end of string
+	str1 = str1.replace(/^\s+|\s+$/gm,'');
+	  
+	// replace space with dash/hyphen
+	str1 = str1.replace(/\s+/g, ', ');	
+	
+	document.getElementById("seo_title").value= str1;
+  //return str;
+  }
+	</script>
 </head>
 
 <body>
