@@ -2,20 +2,28 @@
 
 session_start();
 $channel_setup_status=0;
+$channel_name="";
+$channel_des="";
 include "../Super_Admin/includes/dbconfig.php";
-	if(isset($_SESSION['content_creator_uname'])){
-        $sql="select ChannelName,ChannelDescription from tbl_content_creator where username=$_SESSION[content_creator_uname]";
+    if(isset($_SESSION['content_creator_uname']))
+    {
+        $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
         $query=mysqli_query($con,$sql);
-        @$data=mysqli_fetch_assoc($query);
-        
-        if(strlen($data["ChannelName"])>0 and strlen($data["ChannelDescription"])>0 )
-        {
-            $channel_setup_status=1;
-        }
-        else
-        {
-            $channel_setup_status=0;
-        }
+        while($data=mysqli_fetch_assoc($query))
+		{
+            if(strlen($data["ChannelName"])>0 && strlen($data["ChannelDescription"])>0 ) 
+            {
+                $channel_name=$data["ChannelName"];   
+                $channel_des=$data["ChannelDescription"];
+                $channel_setup_status=1;
+                // echo $data["ChannelName"];
+                // echo $data["ChannelDescription"];
+            }
+            else
+            {
+                $channel_setup_status=0;
+            }
+		}
     }
     else{
         header ("location: login.php");
@@ -63,6 +71,41 @@ include "../Super_Admin/includes/dbconfig.php";
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="css/themes/all-themes.css" rel="stylesheet" />
+
+<!-- scrpt for replacement of whitespace with - and , -->
+
+
+<script type="text/javascript">
+		function convertToSlug( str ) {
+	
+  //replace all special characters | symbols with a space
+  str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	
+  // trim spaces at start and end of string
+  str = str.replace(/^\s+|\s+$/gm,'');
+	
+  // replace space with dash/hyphen
+  str = str.replace(/\s+/g, '-');	
+  
+  document.getElementById("url").value= str;
+  
+  //return str;
+}
+function convertToComa( str1 ) {
+	
+	//replace all special characters | symbols with a space
+	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	  
+	// trim spaces at start and end of string
+	str1 = str1.replace(/^\s+|\s+$/gm,'');
+	  
+	// replace space with dash/hyphen
+	str1 = str1.replace(/\s+/g, ', ');	
+	
+	document.getElementById("seotitle").value= str1;
+  //return str;
+  }
+	</script>
 </head>
 <body class="theme-red">
 <nav class="navbar">
@@ -147,11 +190,17 @@ include "../Super_Admin/includes/dbconfig.php";
                     
                     
                     <li <?php echo $type == "profile"?'class="active"':'';?>>
-                        <?php <a href='profile.php?update_profile'>
+                        <a href='profile.php?update_profile'>
                             <i class="material-icons">account_circle</i>
                             <span>profile</span>
                         </a>
                         
+                    </li>
+                    <li <?php echo $type == "channel"?'class="active"':'';?>>
+                        <a href="channel_setup.php?channelSetup">
+                            <i class="material-icons">build</i>
+                            <span>Channel Setup</span>
+                        </a>
                     </li>    
                     <li <?php echo $type == "news"?'class="active"':'';?>>
                         <a href="javascript:void(0);" class="menu-toggle">
