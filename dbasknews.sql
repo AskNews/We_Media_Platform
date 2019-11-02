@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 02, 2019 at 01:35 PM
+-- Generation Time: Nov 02, 2019 at 03:40 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -25,20 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_catagories`
+-- Table structure for table `tbl_categories`
 --
 
-CREATE TABLE `tbl_catagories` (
+CREATE TABLE `tbl_categories` (
   `id` int(5) NOT NULL,
-  `super_admin_id` int(5) DEFAULT NULL,
+  `sub_admin_id` int(5) DEFAULT NULL,
   `title` varchar(40) DEFAULT NULL,
   `url` varchar(40) DEFAULT NULL,
   `seo_title` varchar(255) DEFAULT NULL,
   `seo_desc` varchar(255) DEFAULT NULL,
+  `c_date` date NOT NULL,
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) DEFAULT NULL,
   `deletion` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_categories`
+--
+
+INSERT INTO `tbl_categories` (`id`, `sub_admin_id`, `title`, `url`, `seo_title`, `seo_desc`, `c_date`, `date`, `status`, `deletion`) VALUES
+(1, 2, 'sdfsdffgdfgh', 'sdfsdffgdfgh', 'sdfsdffgdfgh', 'sdf', '2019-11-19', '2019-11-02 13:48:39', 0, 1),
+(2, 2, 'aa', 'aa', 'aa', 'aa', '2019-11-20', '2019-11-02 13:41:15', 0, 0),
+(3, 2, 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', '2019-11-14', '2019-11-02 13:49:53', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -183,24 +193,45 @@ INSERT INTO `tbl_picture` (`id`, `sub_admin_id`, `gallery_id`, `caption`, `image
 (32, 2, 1, 'erth', '1572696543.jpg', '2019-11-19', '2019-11-02 12:09:02', 1, 1),
 (33, 2, 10, 'aa', '1572696646.jpg', '2019-11-26', '2019-11-02 12:10:45', 1, 1),
 (34, 2, 1, 'fggh', '1572696724.jpg', '2019-11-19', '2019-11-02 12:12:03', 1, 1),
-(35, 2, 1, 'fggh', '1572696724.jpg', '2019-11-19', '2019-11-02 12:12:03', 1, 1);
+(35, 2, 1, 'fggh', '1572696724.jpg', '2019-11-19', '2019-11-02 12:12:03', 1, 1),
+(36, 2, 1, 'hh', 'Screenshot (6).png', '2019-11-19', '2019-11-02 14:35:11', 1, 1),
+(37, 2, 1, 'hh', 'Screenshot (38).png', '2019-11-19', '2019-11-02 14:35:40', 1, 1),
+(38, 2, 1, 'hh', '1572703510.png', '2019-11-19', '2019-11-02 14:05:09', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_slibeshow`
+-- Table structure for table `tbl_slideshow`
 --
 
-CREATE TABLE `tbl_slibeshow` (
+CREATE TABLE `tbl_slideshow` (
   `id` int(5) NOT NULL,
   `sub_admin_id` int(5) NOT NULL,
   `image` varchar(100) NOT NULL,
   `caption` varchar(255) NOT NULL,
   `orderby` int(3) NOT NULL,
-  `c_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `c_date` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `deletion` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_slideshow`
+--
+
+INSERT INTO `tbl_slideshow` (`id`, `sub_admin_id`, `image`, `caption`, `orderby`, `c_date`, `date`, `status`, `deletion`) VALUES
+(1, 2, '1572703936.png', 'First Announcement', 0, '0000-00-00', '2019-11-02 14:15:58', 1, 1),
+(2, 2, '1572704037.png', 'First Announcement', 0, '0000-00-00', '2019-11-02 14:15:58', 1, 1),
+(3, 2, '1572704166.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:16:06', 1, 1),
+(4, 2, '1572704283.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:18:03', 1, 1),
+(5, 2, '1572704292.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:18:11', 1, 1),
+(6, 2, '1572704366.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:25', 1, 1),
+(7, 2, '1572704371.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:30', 1, 1),
+(8, 2, '1572704395.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:54', 1, 1),
+(9, 2, '1572704413.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:20:13', 1, 1),
+(10, 2, '1572704417.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:20:16', 1, 1),
+(11, 2, '1572704437.png', 'aaaa', 0, '2019-11-06', '2019-11-02 14:20:36', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -232,6 +263,12 @@ INSERT INTO `tbl_super_admin` (`id`, `first_name`, `last_name`, `user_name`, `em
 --
 
 --
+-- Indexes for table `tbl_categories`
+--
+ALTER TABLE `tbl_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_gallery`
 --
 ALTER TABLE `tbl_gallery`
@@ -250,9 +287,9 @@ ALTER TABLE `tbl_picture`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_slibeshow`
+-- Indexes for table `tbl_slideshow`
 --
-ALTER TABLE `tbl_slibeshow`
+ALTER TABLE `tbl_slideshow`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -265,6 +302,11 @@ ALTER TABLE `tbl_super_admin`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `tbl_categories`
+--
+ALTER TABLE `tbl_categories`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_gallery`
 --
@@ -279,12 +321,12 @@ ALTER TABLE `tbl_module_user`
 -- AUTO_INCREMENT for table `tbl_picture`
 --
 ALTER TABLE `tbl_picture`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
--- AUTO_INCREMENT for table `tbl_slibeshow`
+-- AUTO_INCREMENT for table `tbl_slideshow`
 --
-ALTER TABLE `tbl_slibeshow`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_slideshow`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tbl_super_admin`
 --
