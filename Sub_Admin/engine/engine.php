@@ -1,5 +1,5 @@
 <?php
-
+$query="";
   
   $User_email=$_SESSION['newSub-AdminLogin'];
   $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
@@ -28,5 +28,12 @@ if(isset($_POST['c_gallery'])){
     
      }
 }
-
+if(isset($_POST['m_gallery'])){
+  $sql="SELECT * FROM `tbl_$type`";
+ 
+}else{
+  $sql="SELECT * FROM `tbl_$type`";
+ 
+}
+$query=mysqli_query($con,$sql);
 ?>

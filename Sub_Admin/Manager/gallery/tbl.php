@@ -8,31 +8,31 @@
                 		<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>#</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Username</th>
+											<th>Id</th>
+											<th>Title</th>
+											<th>Description</th>
+											<th>Date</th>
+											
+										
 											</tr>
 										</thead>
 										<tbody>
+										<?php
+      $sn=1;
+	  while($row=mysqli_fetch_array($query)):
+		  
+	  ?>
 											<tr>
-												<td>1</td>
-												<td>Steve</td>
-												<td>Jobs</td>
-												<td>@steve</td>
+											<td><?php echo $row['id']; ?></td>
+											<td><?php echo $row['title']; ?></td>
+											<td><?php echo $row['seo_desc']; ?></td>
+											<td><?php echo $row['c_date']; ?></td>
+											
+        
 											</tr>
-											<tr>
-												<td>2</td>
-												<td>Simon</td>
-												<td>Philips</td>
-												<td>@simon</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Jane</td>
-												<td>Doe</td>
-												<td>@jane</td>
-											</tr>
+											<?php
+											endwhile;
+											?>
 										</tbody>
 									</table>
 						</form>

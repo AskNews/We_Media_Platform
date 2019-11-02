@@ -24,9 +24,14 @@ include_once "engine/engine.php";
 							
 							include "Manager/$type/form.php";
 							
-							}else{
-						include "Manager/$type/tbl.php";
-							}
+							}else
+							{
+									if(isset($_POST['m_table'])){
+									include "Manager/$type/tbl.php";
+									}
+									include "Manager/$type/tbl.php";
+									
+								}
 						?>	
 						</div>
 					</div>
