@@ -98,8 +98,8 @@ if(isset($_POST['submit']))
             $password=md5($_POST["password"]);
             $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
             values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
-            echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
-            values('$_POST[username]','$_POST[email]',$_POST[mobile],'$password','$filename','$ipaddress')";
+            //echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
+            //values('$_POST[username]','$_POST[email]',$_POST[mobile],'$password','$filename','$ipaddress')";
             if(mysqli_query($con,$query))
             {
                 header("location:login.php");

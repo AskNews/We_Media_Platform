@@ -1,20 +1,24 @@
 <?php
 $type="news";
-include "includes/header.php"
+include "includes/header.php";
+ include "engine/engine.php";
+ 
+$imgPath = "img/";
 ?>
 <section class="content"> 
   <div class="container-fluid">
   <div class="row clearfix">
+  
                <?php
               if($channel_setup_status==1)
               {
                   if(isset($_GET['c_news']))
                 {
-                    include "manager/news/add_news.php";
+                    include "manager/news/form.php";
                 }
                 elseif(isset($_GET['m_news']))
                 {
-                  include "manager/news/manager_manage_news.php";
+                  include "manager/news/.php";
                 }
               }
               else

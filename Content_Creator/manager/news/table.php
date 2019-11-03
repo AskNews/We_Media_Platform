@@ -8,6 +8,7 @@
                             
                         </div>
                         <div class="body">
+                        
                             <div class="table-responsive">
                                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                 <div class="rowclearfix">

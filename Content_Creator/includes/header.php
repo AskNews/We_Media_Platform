@@ -4,6 +4,10 @@ session_start();
 $channel_setup_status=0;
 $channel_name="";
 $channel_des="";
+$creatorid=0;
+$info=null;
+$warning=null;
+$success=null;
 include "../Super_Admin/includes/dbconfig.php";
     if(isset($_SESSION['content_creator_uname']))
     {
@@ -16,6 +20,7 @@ include "../Super_Admin/includes/dbconfig.php";
                 $channel_name=$data["ChannelName"];   
                 $channel_des=$data["ChannelDescription"];
                 $channel_setup_status=1;
+                $creatorid=$data["CreatorID"];
                 // echo $data["ChannelName"];
                 // echo $data["ChannelDescription"];
             }
@@ -28,6 +33,7 @@ include "../Super_Admin/includes/dbconfig.php";
     else{
         header ("location: login.php");
     }
+    include "engine/engine.php";
 ?>
 <html>
 <head>
@@ -74,7 +80,9 @@ include "../Super_Admin/includes/dbconfig.php";
 
 <!-- scrpt for replacement of whitespace with - and , -->
 
-
+<style>
+    .error{color:red;}
+    </style>
 <script type="text/javascript">
 		function convertToSlug( str ) {
 	
