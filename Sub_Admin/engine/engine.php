@@ -1,100 +1,63 @@
 <?php
 $query="";
 $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
-
-
-  $User_email=$_SESSION['newSub-AdminLogin'];
-  $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
-  $qry=mysqli_query($con,$sql);
-  $data=mysqli_fetch_array($qry);
-  $user_id=$data['id'];
-if(isset($_POST['c_'.$type.''])){
-    
-    @$title=$_POST['title'];
-    @$url=$_POST['url'];
-    @$seo_title=$_POST['seo_title'];
-    @$desc=$_POST['seo_desc'];
-    @$location=$_POST['location'];
-    @$date=$_POST['dat'];
-   @$status=$_POST['status'];
-   if($type=="gallery"){
-   @$sql="INSERT INTO `tbl_$type` (`sub_admin_id`, `title`, `url`, `seo_title`, `seo_desc`, `location`, `c_date`,`status`)
-     VALUES ('$user_id', '$title', '$url', '$seo_title', '$desc', '$location', '$date', '$status')";
-   }
-   if($type=="picture"){
-    @$gallery_id=$_POST['gallery_id'];
-	
-    @$caption=$_POST['caption'];
-    @$status=$_POST['status'];
-    //check existing folder and create new one
-    if(!is_dir($imgPath.$gallery_id)){
-      mkdir($imgPath.$gallery_id);
-      }
-    //working for image
-    $image=$_FILES['image'];
-    
-    $imageName='';
-    if(isset($image['name'])&&!empty($image['name'])){
-      //to copy or move from temp to a destination
-      $temp = explode(".", $_FILES["image"]["name"]);
+//changing name
+@$temp = explode(".", $_FILES["image"]["name"]);
                
-      $extension = end($temp);
-                $fileName = $temp[0] . "." . $temp[1];
-                $temp[0] = rand(0, 3000); //Set to random number
-                $temp = explode(".", $_FILES["image"]["name"]);
-                $newfilename = round(microtime(true)) . '.' . $extension;
-              // Compress image
-        function compressImage($source, $destination, $quality) {
+@ $extension = end($temp);
+          @ $fileName = $temp[0] . "." . $temp[1];
+          @ $temp[0] = rand(0, 3000); //Set to random number
+         @  $temp = explode(".", $_FILES["image"]["name"]);
+          @ $newfilename = round(microtime(true)) . '.' . $extension;
+          @$image=$_FILES['image'];
+          @	$imageName=$_POST['oldImage'];
+        
+//##############COMPRESS ENGINE########################
+function compressImage($source, $destination, $quality) {
 
-          $info = getimagesize($source);
+  $info = getimagesize($source);
 
-          if ($info['mime'] == 'image/jpeg') {
-              $image = imagecreatefromjpeg($source);
-          }
-          elseif ($info['mime'] == 'image/gif'){ 
-              $image = imagecreatefromgif($source);
-          }
-          elseif ($info['mime'] == 'image/png'){ 
-              $image = imagecreatefrompng($source);
-          }
-          imagejpeg($image, $destination, $quality);
-      
-      }
-      compressImage($_FILES['image']['tmp_name'],$imgPath.$gallery_id."/".$newfilename,60);
-      //copy or move_uploaded_file function
-      //to move the uploaded file to the required destination
-      //$move=move_uploaded_file($image['tmp_name'],$imgPath.$gallery_id."/".$newfilename);
-     // $move=move_uploaded_file($_FILES["image"]["tmp_name"],$imgPath.$gallery_id."/".$newfilename);
-      
-      
-      }
-    
-    
-    $sql="INSERT INTO `tbl_picture` ( `sub_admin_id`,`gallery_id`, `caption`, `image`, `c_date`, `status`) 
-    VALUES 
-    ('$user_id','$gallery_id', '$caption', '$newfilename', '$date', '$status')";
-    
-   }
-     $qry=mysqli_query($con,$sql);
-     if($qry){
+  if ($info['mime'] == 'image/jpeg') {
+      $image = imagecreatefromjpeg($source);
+  }
+  elseif ($info['mime'] == 'image/gif'){ 
+      $image = imagecreatefromgif($source);
+  }
+  elseif ($info['mime'] == 'image/png'){ 
+      $image = imagecreatefrompng($source);
+  }
+  imagejpeg($image, $destination, $quality);
+
+}
+//##############INSERT ENGINE######################## 
+@$a;
+function insert($b){
+global $a,$type,$con,$success,$error;
+$c=$b-1;
+$p="INSERT INTO tbl_".$type." (";
+for($i=0;$i<$b;$i++){	
+$p=$p."`".$a[$i][0]."`";
+if($i==$c){}else{$p=$p.",";}
+}
+$p=$p.") VALUES (";
+for($i=0;$i<$b;$i++){	
+$p=$p."'".$a[$i][1]."'";
+if($i==$c){}else{$p=$p.",";}
+}
+$sql= $p.");";
+$qry=mysqli_query($con,$sql);
+		if($qry){
       $success=ucfirst($type). " Created Success";
       
-    //$p="c_".$type;
-     }else{
-        $error=ucfirst($type). " Not Created".mysqli_error($con);
-        $sql=$select;
-     }
+		}else{
+      $error=ucfirst($type). " Not Created".mysqli_error($con);
+      $sql=$select;	
+		}
+		return 0;	
 }
-  
-if(isset($_POST["m_'.$type.'"])){
-  $sql=$select;
- 
-}else{
-  $sql=$select;
- 
-}
-//delete
-if(isset($_GET['del'])){
+//##############DELETE ENGINE###################################
+function del(){
+  global $con,$error,$select,$type,$info;
 	$id1=$_GET['del'];
 	$sql="update `tbl_$type` set deletion=!deletion WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
@@ -108,11 +71,10 @@ if(isset($_GET['del'])){
   $sql=$select;
   }
 }
-//status
-
-//to change the status of a record
-if(isset($_GET['status'])){
-	$id1=$_GET['status'];
+//###################STATUS ENGINE############################
+function status(){
+  global $con,$error,$select,$type,$success;
+  $id1=$_GET['status'];
 	$sql="update tbl_$type set status=!status WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
 	if($query){
@@ -123,7 +85,137 @@ if(isset($_GET['status'])){
     $error=ucfirst($type) ." is not changed". Mysqli_error($con);
     $sql=$select;
     }
+
+}
+//####################UPDATE ENGINE#############################
+function update($b){
+  global $con,$error,$select,$type,$success,$id,$a;
+  $c=$b-1;
+  $p="UPDATE tbl_".$type." SET ";
+  for($i=0;$i<$b;$i++){	
+  $p=$p."`".$a[$i][0]."`='".$a[$i][1]."'";
+  if($i==$c){}else{$p=$p.",";}
   }
+  $p=$p." WHERE `tbl_".$type."`.`id`='".@$id."' ";
+  
+  $sql= $p.";";
+  $qry=mysqli_query($con,$sql);
+  if($qry){
+    $success=ucfirst($type). " Details Updated Success";
+    
+    $sql=$select;
+
+ //$p="c_".$type;
+  }else{
+     $error=ucfirst($type). " Details Not Updated".mysqli_error($con);
+     $sql=$select;
+  }
+      return 0;
+  }
+  
+  $User_email=$_SESSION['newSub-AdminLogin'];
+  $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
+  $qry=mysqli_query($con,$sql);
+  $data=mysqli_fetch_array($qry);
+  
+if(isset($_POST['c_'.$type.''])){
+    
+    @$image=$_FILES['image'];
+    
+    @$imageName='';
+    @$temp = explode(".", $_FILES["image"]["name"]);
+               
+     @ $extension = end($temp);
+               @ $fileName = $temp[0] . "." . $temp[1];
+               @ $temp[0] = rand(0, 3000); //Set to random number
+              @  $temp = explode(".", $_FILES["image"]["name"]);
+               @ $newfilename = round(microtime(true)) . '.' . $extension;
+      
+   if($type=="gallery"){
+
+     $a=array(
+       array('sub_admin_id',$data['id']),
+       array('title',$_POST['title']),
+       array('url',$_POST['url']),
+       array('seo_title',$_POST['seo_title']),
+       array('seo_desc',$_POST['seo_desc']),
+       array('location',$_POST['location']),
+       array('c_date',$_POST['dat']),
+       array('status',$_POST['status']));
+       insert(8);
+      }
+   
+   if($type=="categories"){
+    
+   $a=array(
+    array('sub_admin_id',$data['id']),
+    array('title',$_POST['title']),
+    array('url',$_POST['url']),
+    array('seo_title',$_POST['seo_title']),
+    array('seo_desc',$_POST['seo_desc']),
+    array('c_date',$_POST['dat']),
+    array('status',$_POST['status']));
+     insert(7);
+   
+  }
+   if($type=="picture"){
+    
+    //check existing folder and create new one
+    if(!is_dir($imgPath.$_POST['gallery_id'])){
+      mkdir($imgPath.$_POST['gallery_id']);
+      }
+    //working for image
+    
+    if(isset($image['name'])&&!empty($image['name'])){
+      //to copy or move from temp to a destination
+              // Compress image
+      compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gallery_id']."/".$newfilename,60);
+      }
+     $a=array(
+      array('sub_admin_id',$data['id']),
+      array('gallery_id',$_POST['gallery_id']),
+      array('caption',$_POST['caption']),
+      array('image',$newfilename),
+      array('c_date',$_POST['dat']),
+      array('status',$_POST['status']));
+       insert(6);
+   }
+  
+   if($type=="slideshow"){
+    //working for image
+    
+    if(isset($image['name'])&&!empty($image['name'])){
+      //to copy or move from temp to a destination
+              // Compress image
+      compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
+      }
+     $a=array(
+      array('sub_admin_id',$data['id']),
+      array('caption',$_POST['caption']),
+      array('orderby',$_POST['orderby']),
+      array('image',$newfilename),
+      array('c_date',$_POST['dat']),
+      array('status',$_POST['status']));
+       insert(6);
+   }
+}
+  
+if(isset($_POST["m_'.$type.'"])){
+  $sql=$select;
+ 
+}else{
+  $sql=$select;
+ 
+}
+if(isset($_GET['del'])){
+del();
+}
+//status
+
+//to change the status of a record
+if(isset($_GET['status'])){
+status();
+}
 //to editable  record
 if(isset($_GET['edit'])){
 	$id1=$_GET['edit'];
@@ -135,56 +227,87 @@ if(isset($_GET['edit'])){
   //update query
   if(isset($_POST['u_'.$type.''])){
   @$id=$_POST['id'];
-  @$title=$_POST['title'];
-
-  
-  @$url=$_POST['url'];
-  @$seo_title=$_POST['seo_title'];
-  @$desc=$_POST['seo_desc'];
-  @$location=$_POST['location'];
-  @$date=$_POST['dat'];
- @$status=$_POST['status'];
  //for picture
- @$gallery_id=$_POST['gallery_id'];
-	@$caption=$_POST['caption'];
+ 
+  @$orderby=$_POST['orderby'];
+  
+
 	//check existing folder and create new one
-	if(!is_dir($imgPath.$gallery_id)){
-		mkdir($imgPath.$gallery_id);
-		}
+  if($type=="picture"){
+  if(!is_dir($imgPath.$_POST['gallery_id'])){
+    
+		@mkdir(@$imgPath.$_POST['gallery_id']);
+    }
+  
 	//working for image
-	@$image=$_FILES['image'];
-@	$imageName=$_POST['oldImage'];
 	if(isset($image['name'])&&!empty($image['name'])){
-		//to copy or move from temp to a destination
-		//copy or move_uploaded_file function
-		//to move the uploaded file to the required destination
-		$move=move_uploaded_file($image['tmp_name'],$imgPath.$gallery_id."/".$image['name']);
-		if($move){
+		
+    compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gallery_id']."/".$newfilename,60);
+    
+		if($imageName!=""){
 			//to remove old image from directory
 			@unlink($imgPath.$gallery_id."/".$imageName);
-		$imageName = $image['name'];
-		}
-  }
-  if($type=="gallery"){
- $sql="UPDATE `tbl_$type` SET `title` = '$title', `url` = '$url', `seo_title` = '$seo_title', `seo_desc` = '$desc', `location` = '$location', `c_date`='$date',`status`='$status'
-  WHERE `tbl_gallery`.`id` = '$id'";
-  }
-  if($type=="picture"){
-    $sql="UPDATE `tbl_picture` SET 
-    `gallery_id` = '$gallery_id', `caption` = '$caption',`image`='$imageName', `c_date` = '$date', `status` = '$status'
-     WHERE `tbl_picture`.`id` = '$id'";
-  }
-  $qry=mysqli_query($con,$sql);
-   if($qry){
-     $success=ucfirst($type). " Details Updated Success";
      
-     $sql=$select;
+    }  
+  }
+ $a=array(
+      array('gallery_id',$_POST['gallery_id']),
+      array('caption',$_POST['caption']),
+      array('image',$newfilename),
+      array('c_date',$_POST['dat']),
+      array('status',$_POST['status']));
+     update(5);
+    
+  }
 
-  //$p="c_".$type;
-   }else{
-      $error=ucfirst($type). " Details Not Updated".mysqli_error($con);
-      $sql=$select;
-   }
+  if($type=="gallery"){
+   $a=array(
+    array('title',$_POST['title']),
+    array('url',$_POST['url']),
+    array('seo_title',$_POST['seo_title']),
+    array('seo_desc',$_POST['seo_desc']),
+    array('location',$_POST['location']),
+    array('c_date',$_POST['dat']),
+    array('status',$_POST['status']));
+    update(7);
+ 
+  }
+  if($type=="categories"){
+     $a=array(
+     array('title',$_POST['title']),
+     array('url',$_POST['url']),
+     array('seo_title',$_POST['seo_title']),
+     array('seo_desc',$_POST['seo_desc']),
+     array('c_date',$_POST['dat']),
+     array('status',$_POST['status']));
+      update(6);
+    
+     }
+  
+  if($type=="slideshow"){
+    //working for image
+	if(isset($image['name'])&&!empty($image['name'])){
+		
+    compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
+    
+		if($imageName!=""){
+			//to remove old image from directory
+			@unlink($imgPath.$imageName);
+      
+    }  
+  }
+      $a=array(
+      array('caption',$_POST['caption']),
+      array('orderby',$_POST['orderby']),
+      
+      array('image',$newfilename),
+        array('c_date',$_POST['dat']),
+        array('status',$_POST['status']));
+         update(5);
+     
+  }
+  
+  
 }
 //to search records
 if(isset($_POST['search'])){
