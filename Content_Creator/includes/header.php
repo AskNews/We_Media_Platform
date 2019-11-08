@@ -9,31 +9,31 @@ $info=null;
 $warning=null;
 $success=null;
 include "../Super_Admin/includes/dbconfig.php";
-    if(isset($_SESSION['content_creator_uname']))
+if(isset($_SESSION['content_creator_uname']))
+{
+    $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
+    $query=mysqli_query($con,$sql);
+    while($data=mysqli_fetch_assoc($query))
     {
-        $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
-        $query=mysqli_query($con,$sql);
-        while($data=mysqli_fetch_assoc($query))
-		{
-            if(strlen($data["ChannelName"])>0 && strlen($data["ChannelDescription"])>0 ) 
-            {
-                $channel_name=$data["ChannelName"];   
-                $channel_des=$data["ChannelDescription"];
-                $channel_setup_status=1;
-                $creatorid=$data["CreatorID"];
-                // echo $data["ChannelName"];
-                // echo $data["ChannelDescription"];
-            }
-            else
-            {
-                $channel_setup_status=0;
-            }
-		}
+        if(strlen($data["ChannelName"])>0 && strlen($data["ChannelDescription"])>0 ) 
+        {
+            $channel_name=$data["ChannelName"];   
+            $channel_des=$data["ChannelDescription"];
+            $channel_setup_status=1;
+            $creatorid=$data["CreatorID"];
+            // echo $data["ChannelName"];
+            // echo $data["ChannelDescription"];
+        }
+        else
+        {
+            $channel_setup_status=0;
+        }
     }
-    else{
-        header ("location: login.php");
-    }
-    include "engine/engine.php";
+}
+else{
+    header ("location: login.php");
+}
+include "engine/engine.php";
 ?>
 <html>
 <head>
@@ -84,7 +84,15 @@ include "../Super_Admin/includes/dbconfig.php";
     .error{color:red;}
     </style>
 <script type="text/javascript">
-		function convertToSlug( str ) {
+function status(id){
+    //alert(id);
+    var newsid=id;
+  var phpcall=<?php UpdateStatus('newsid');?>;
+  //alert(phpcall);
+ }
+ </script>
+ <script type="text/javascript">
+function convertToSlug( str ) {
 	
   //replace all special characters | symbols with a space
   str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
@@ -99,6 +107,20 @@ include "../Super_Admin/includes/dbconfig.php";
   
   //return str;
 }
+function convertToComa1( str2 ) {
+	
+	//replace all special characters | symbols with a space
+	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	  
+	// trim spaces at start and end of string
+	str1 = str1.replace(/^\s+|\s+$/gm,'');
+	  
+	// replace space with dash/hyphen
+	str1 = str1.replace(/\s+/g, ', ');	
+	
+	document.getElementById("seodes").value= str2;
+  //return str;
+  }
 function convertToComa( str1 ) {
 	
 	//replace all special characters | symbols with a space
@@ -113,7 +135,11 @@ function convertToComa( str1 ) {
 	document.getElementById("seotitle").value= str1;
   //return str;
   }
+  
 	</script>
+    <script>
+
+</script>
 </head>
 <body class="theme-red">
 <nav class="navbar">
@@ -204,12 +230,14 @@ function convertToComa( str1 ) {
                         </a>
                         
                     </li>
+                    <?php if($data["channel_logo"] && $data["ChannelDescription"]==" "){?>
                     <li <?php echo $type == "channel"?'class="active"':'';?>>
                         <a href="channel_setup.php?channelSetup">
                             <i class="material-icons">build</i>
                             <span>Channel Setup</span>
                         </a>
                     </li>    
+                    <?php } ?>
                     <li <?php echo $type == "news"?'class="active"':'';?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">receipt</i>
@@ -221,7 +249,7 @@ function convertToComa( str1 ) {
                                 <a href="news.php?c_news">Add News</a>
                             </li>
                             <li>
-                                <a href="news.php?m_news">Manage News</a>
+                                <a href="news.php">Manage News</a>
                             </li>
                             
                         </ul>

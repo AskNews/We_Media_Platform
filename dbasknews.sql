@@ -2,8 +2,8 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Nov 03, 2019 at 01:37 PM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 08, 2019 at 04:56 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -46,11 +46,9 @@ CREATE TABLE `tbl_categories` (
 --
 
 INSERT INTO `tbl_categories` (`id`, `sub_admin_id`, `title`, `url`, `seo_title`, `seo_desc`, `c_date`, `date`, `status`, `deletion`) VALUES
-(1, 2, 'sdfsdffgdfgh array', 'sdfsdffgdfgh-array', 'sdfsdffgdfgh, array', 'sdf array', '2019-11-19', '2019-11-03 10:09:44', 1, 1),
-(2, 2, 'aa', 'aa', 'aa', 'aa', '2019-11-20', '2019-11-02 13:41:15', 0, 0),
-(3, 2, 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', '2019-11-14', '2019-11-02 13:49:53', 1, 1),
-(4, 2, 'array test', 'array test', 'array, test', 'array test', '2019-11-21', '2019-11-03 08:25:21', 1, 1),
-(5, 2, 'final array', 'final-array', 'final, array', 'final array', '2019-11-19', '2019-11-03 08:29:48', 1, 1);
+(1, 2, 'sdfsdffgdfgh', 'sdfsdffgdfgh', 'sdfsdffgdfgh', 'sdf', '2019-11-19', '2019-11-05 16:14:23', 1, 1),
+(2, 2, 'aa', 'aa', 'aa', 'aa', '2019-11-20', '2019-11-05 16:14:17', 1, 0),
+(3, 2, 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', '2019-11-14', '2019-11-02 13:49:53', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +57,7 @@ INSERT INTO `tbl_categories` (`id`, `sub_admin_id`, `title`, `url`, `seo_title`,
 --
 
 CREATE TABLE `tbl_content_creator` (
-  `creator_id` int(10) NOT NULL,
+  `CreatorID` int(10) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `mobile` bigint(10) NOT NULL,
@@ -71,18 +69,27 @@ CREATE TABLE `tbl_content_creator` (
   `Status` tinyint(1) NOT NULL DEFAULT '1',
   `channel_logo` varchar(20) NOT NULL,
   `DateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deletion` tinyint(1) NOT NULL DEFAULT '1'
+  `deletion` tinyint(1) NOT NULL DEFAULT '1',
+  `Monetization` tinyint(4) NOT NULL DEFAULT '0',
+  `join_date` varchar(10) NOT NULL,
+  `privacy` tinyint(1) NOT NULL,
+  `bank_name` varchar(20) NOT NULL,
+  `account_holder_name` varchar(30) NOT NULL,
+  `bank_account_number` varchar(20) NOT NULL,
+  `ifsc_code` varchar(11) NOT NULL,
+  `earnings` decimal(12,2) NOT NULL,
+  `life_time_withdraw_amt` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_content_creator`
 --
 
-INSERT INTO `tbl_content_creator` (`creator_id`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `IP`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`, `deletion`) VALUES
-(1, 'shabnam', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1),
-(9, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1),
-(10, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, '', '2019-11-01 09:45:42', 1),
-(15, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '::1', 0, 1, 'default.jpg', '2019-11-01 12:49:46', 1);
+INSERT INTO `tbl_content_creator` (`CreatorID`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `IP`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`, `deletion`, `Monetization`, `join_date`, `privacy`, `bank_name`, `account_holder_name`, `bank_account_number`, `ifsc_code`, `earnings`, `life_time_withdraw_amt`) VALUES
+(1, 'shabnam1999', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(9, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(10, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, '', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(15, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', 'dhb', 'fdvgbhnj', '::1', 0, 1, 'default.jpg', '2019-11-01 12:49:46', 1, 0, '', 0, '', '', '', '', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -110,21 +117,12 @@ CREATE TABLE `tbl_gallery` (
 
 INSERT INTO `tbl_gallery` (`id`, `sub_admin_id`, `title`, `url`, `seo_title`, `seo_desc`, `location`, `c_date`, `date`, `status`, `deletion`) VALUES
 (1, '2', 'First Gallery', 'first-gallery', 'first-gallery', 'To First gallery trail', 'India', '2019-11-13', '2019-11-02 11:11:06', 0, 0),
-(2, '2', '$titlesfsdffgsdffgdfghfggh array', 'titlesfsdffgsdffgdfghfggh-array', 'titlesfsdffgsdffgdfghfggh, array', '$seo_descfdghdfghdffgh', '$locationdffggh', '2019-11-19', '2019-11-03 09:11:27', 1, 1),
-(4, '2', 'dsfhdfj', 'dsfhdfj', 'dsfhdfj', 'dfggh', 'dffggh', '2019-11-26', '2019-11-02 08:45:04', 0, 1),
+(2, '2', '$title', '$url', '$seo_title', '$seo_desc', '$location', '2019-11-19', '2019-11-02 08:22:26', 1, 1),
+(4, '2', 'dsfhdfj', 'dsfhdfj', 'dsfhdfj', 'dfggh', 'dffggh', '2019-11-26', '2019-11-03 13:14:40', 1, 1),
 (7, '2', 'sdffg', 'sdffg', 'sdffg', 'sdffg', 'sdffg', '2019-11-25', '2019-11-02 08:11:25', 0, 1),
 (8, '2', 'sdfgaaaaaa', 'sdfgaaaaaa', 'sdfgaaaaaa', 'sdffg', 'sdfg', '2019-11-27', '2019-11-02 08:44:45', 0, 1),
 (9, '2', 'rtgyhrtty', 'rtgyhrtty', 'rtgyhrtty', 'dfgh', 'dfgh', '2019-11-18', '2019-11-02 11:08:28', 1, 1),
-(10, '2', 'final', 'final', 'final', 'final', 'final', '2019-11-13', '2019-11-02 11:21:05', 1, 1),
-(11, '2', 'arra', 'arra', 'arra', 'array', 'array', '2019-11-21', '2019-11-03 08:18:31', 1, 1),
-(12, '2', 'avinash', 'avinash', 'avinash', 'avinash', 'avi', '2019-11-20', '2019-11-03 08:21:38', 1, 1),
-(13, '2', 'avinash', 'avinash', 'avinash', 'avinash', 'avi', '2019-11-20', '2019-11-03 08:22:31', 1, 1),
-(14, '2', 'final array', 'final-array', 'final, array', 'final array', 'final array', '2019-11-14', '2019-11-03 08:30:16', 1, 1),
-(15, '2', 'ff', 'ff', 'ff', 'ff', 'ff', '2019-11-28', '2019-11-03 08:31:52', 1, 1),
-(16, NULL, '$title array', 'title-array', 'title, array', '$seo_desc array', '$location array', '2019-11-23', '2019-11-03 09:07:40', 0, 1),
-(17, NULL, '$title array', 'title-array', 'title, array', '$seo_desc array', '$location array', '2019-11-23', '2019-11-03 09:08:51', 0, 1),
-(18, NULL, '$title array', 'title-array', 'title, array', '$seo_desc array', '$location array', '2019-11-23', '2019-11-03 09:09:00', 0, 1),
-(19, NULL, '$titlesfsdffgsdffgdfghfggh', 'titlesfsdffgsdffgdfghfggh', 'titlesfsdffgsdffgdfghfggh', '$seo_descfdghdfghdffgh', '$locationdffggh', '2019-11-19', '2019-11-03 09:09:13', 0, 1);
+(10, '2', 'final', 'final', 'final', 'final', 'final', '2019-11-13', '2019-11-02 11:21:05', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -175,33 +173,31 @@ CREATE TABLE `tbl_news` (
   `Summary` text NOT NULL,
   `Details` text NOT NULL,
   `Views` int(10) NOT NULL,
-  `PostDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(1) NOT NULL DEFAULT '1',
+  `ModifyDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Status` int(1) NOT NULL DEFAULT '1',
   `Approved` tinyint(1) NOT NULL DEFAULT '0',
   `PublishDate` date NOT NULL,
-  `RejectionMsg` varchar(50) NOT NULL,
+  `RejectionMsg` varchar(255) NOT NULL,
   `Offline` tinyint(1) NOT NULL DEFAULT '0',
-  `Deletation` tinyint(1) NOT NULL DEFAULT '0'
+  `Deletation` tinyint(1) NOT NULL DEFAULT '0',
+  `Rejected` int(1) NOT NULL DEFAULT '1',
+  `PostDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_news`
 --
 
-INSERT INTO `tbl_news` (`NewsID`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, `Url`, `SeoTitle`, `SeoDescription`, `FileAttach`, `Summary`, `Details`, `Views`, `PostDate`, `Status`, `Approved`, `PublishDate`, `RejectionMsg`, `Offline`, `Deletation`) VALUES
-(1, 3, 1, 0, 'fvgbhjnkm vgbhjnm,', 'fvgbhjnkm-vgbhjnm', 'fvgbhjnkm, vgbhjnm', 'dfvgbhnjm,', '', 'hghbjn', '\r\ncfvgb n', 0, '2019-11-03 14:21:12', 0, 0, '0000-00-00', '', 0, 0),
-(2, 3, 1, 0, 'fvgbhjnkm  vgbhjnm,', 'fvgbhjnkm-vgbhjnm', 'fvgbhjnkm, vgbhjnm', 'dfvgbhnjm,', '', 'hghbjn', '<p>cfvgb n</p>\r\n', 0, '2019-11-03 14:22:40', 0, 0, '0000-00-00', '', 0, 0),
-(3, 3, 1, 0, 'fvgbhjnkm  vgbhjnm,', 'fvgbhjnkm-vgbhjnm', 'fvgbhjnkm, vgbhjnm', 'dfvgbhnjm,', '', 'hghbjn', '<p>cfvgb n</p>\r\n', 0, '2019-11-03 14:23:13', 0, 0, '0000-00-00', '', 0, 0),
-(4, 3, 1, 0, 'qwerdfghjkm, wedfghjnkm ', 'qwerdfghjkm-wedfghjnkm', 'qwerdfghjkm, wedfghjnkm', 'edfghbjnkml', '', 'erdfghjkl', '<p>sdfcgvhbjnm,</p>\r\n', 0, '2019-11-03 14:24:03', 1, 0, '0000-00-00', '', 0, 0),
-(5, 3, 1, 0, 'qwerdfghjkm, wedfghjnkm ', 'qwerdfghjkm-wedfghjnkm', 'qwerdfghjkm, wedfghjnkm', 'edfghbjnkml', '', 'erdfghjkl', '<p>sdfcgvhbjnm,</p>\r\n', 0, '2019-11-03 14:31:00', 1, 0, '0000-00-00', '', 0, 0),
-(6, 3, 1, 0, 'dfghy wdfgh dfghj', 'dfghy-wdfgh-dfghj', 'dfghy, wdfgh, dfghj', 'wsedrtyu', '', 'dfghy', '<p>eghj wdfgh&nbsp;</p>\r\n', 0, '2019-11-03 14:40:24', 1, 0, '0000-00-00', '', 0, 0),
-(7, 3, 1, 0, 'dfghy wdfgh dfghj', 'dfghy-wdfgh-dfghj', 'dfghy, wdfgh, dfghj', 'wsedrtyu', '', 'dfghy', '<p>eghj wdfgh&nbsp;</p>\r\n', 0, '2019-11-03 14:41:32', 1, 0, '0000-00-00', '', 0, 0),
-(8, 3, 1, 0, 'dfghy wdfgh dfghj', 'dfghy-wdfgh-dfghj', 'dfghy, wdfgh, dfghj', 'wsedrtyu', '', 'dfghy', '<p>eghj wdfgh&nbsp;</p>\r\n', 0, '2019-11-03 14:41:58', 1, 0, '0000-00-00', '', 0, 0),
-(9, 3, 1, 0, 'fvgbhn ffvgbhnjm', 'fvgbhn-ffvgbhnjm', 'fvgbhn, ffvgbhnjm', 'vbn m', '', 'fvgbhnjm,', '<p>fcvgbhnjm</p>\r\n', 0, '2019-11-03 15:28:38', 1, 0, '0000-00-00', '', 0, 0),
-(10, 3, 1, 0, 'fvgbhn ffvgbhnjm', 'fvgbhn-ffvgbhnjm', 'fvgbhn, ffvgbhnjm', 'vbn m', '', 'fvgbhnjm,', '<p>fcvgbhnjm</p>\r\n', 0, '2019-11-03 15:31:34', 1, 0, '0000-00-00', '', 0, 0),
-(11, 3, 1, 0, 'fvgbhn ffvgbhnjm', 'fvgbhn-ffvgbhnjm', 'fvgbhn, ffvgbhnjm', 'vbn m', '', 'fvgbhnjm,', '<p>fcvgbhnjm</p>\r\n', 0, '2019-11-03 15:31:37', 1, 0, '0000-00-00', '', 0, 0),
-(12, 3, 1, 0, 'fvgbhn ffvgbhnjm', 'fvgbhn-ffvgbhnjm', 'fvgbhn, ffvgbhnjm', 'vbn m', '', 'fvgbhnjm,', '<p>fcvgbhnjm</p>\r\n', 0, '2019-11-03 15:31:38', 1, 0, '0000-00-00', '', 0, 0),
-(13, 3, 1, 0, 'cfvgbhnjm', 'cfvgbhnjm', 'cfvgbhnjm', 'fghnjmk,', '1572766335.png', 'drfghbnjmkl,', '<p>fvgb nmgvbhnm<strong>vgbhnm</strong></p>\r\n\r\n<p><strong><em>b nmbhjn m,shabnam</em></strong></p>\r\n', 0, '2019-11-03 15:32:15', 1, 0, '0000-00-00', '', 0, 0);
+INSERT INTO `tbl_news` (`NewsID`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, `Url`, `SeoTitle`, `SeoDescription`, `FileAttach`, `Summary`, `Details`, `Views`, `ModifyDate`, `Status`, `Approved`, `PublishDate`, `RejectionMsg`, `Offline`, `Deletation`, `Rejected`, `PostDate`) VALUES
+(17, 3, 1, 0, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.png', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2019-11-08 15:25:41', 0, 1, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(21, 3, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', 'shabbu ', '1572801289.jpg', 'shabbu', '<p><em>shabnam mom pic uploaded...:)</em></p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(23, 3, 1, 0, 'avinash updated', 'avinash-updated', 'avinash, updated', '', '1573221709.JPG', 'avinash', '<p><strong>avinash updated</strong></p>\r\n\r\n<p><strong>h</strong>ello from editor&nbsp;</p>\r\n\r\n<ol>\r\n	<li>hello edited news</li>\r\n</ol>\r\n\r\n<ul>\r\n	<li>helloe edited news&nbsp;</li>\r\n</ul>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', 'unfollow the rules of platform', 0, 0, 2, '0000-00-00'),
+(25, 0, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', 'unfollow the rules of platform', 1, 0, 3, '0000-00-00'),
+(27, 2, 1, 0, 'category selected', 'category-selected', 'category, selected', '', '1572972155.jpg', 'hello from category 2', '<p>hello from category 2 this is basic details of news</p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(29, 1, 1, 0, 'category 1 selected', 'category-1-selected', 'category, 1, selected', '', '1572973197.png', 'category1', '<p>selection of category 1 that is ssshjfh</p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(30, 1, 1, 0, 'shabnam', 'shabnam', 'shabnam', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(35, 2, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', '', '1573220432.JPG', 'shabnam', '<p>shabnam editor</p>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(37, 1, 1, 0, 'maha cyclone', 'maha-cyclone', 'maha, cyclone', '', '1573220727.JPG', 'maha cyclone', '<p>maha cyclone in south gujrat</p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -228,10 +224,10 @@ CREATE TABLE `tbl_picture` (
 INSERT INTO `tbl_picture` (`id`, `sub_admin_id`, `gallery_id`, `caption`, `image`, `c_date`, `date`, `status`, `deletion`) VALUES
 (1, 0, 1, '$caption', '$img', '2019-11-05', '2019-11-07 08:00:00', 1, 0),
 (6, 0, 1, '', 'a.jpg', '2019-11-27', '2019-11-02 09:48:41', 1, 0),
-(7, 0, 4, 'hihh', '1572775967.png', '2019-11-26', '2019-11-03 10:12:47', 1, 1),
-(8, 0, 1, 'hhh1', '1572773499.png', '2018-11-01', '2019-11-03 09:31:38', 1, 1),
+(7, 0, 4, 'hi', 'a.jpg', '2019-11-26', '2019-11-02 09:36:20', 1, 1),
+(8, 0, 1, 'hhh1', 'images.jpg', '2018-11-01', '2019-11-02 10:23:41', 1, 1),
 (9, 2, 8, 'dd', 'e65b0a2cf39c905c2c3fb8debb2f5e95.jpg', '2019-11-11', '2019-11-02 09:36:20', 1, 1),
-(10, 2, 8, 'dd', 'e65b0a2cf39c905c2c3fb8debb2f5e95.jpg', '2019-11-11', '2019-11-02 09:36:26', 1, 1),
+(10, 2, 8, 'dd', 'e65b0a2cf39c905c2c3fb8debb2f5e95.jpg', '2019-11-07', '2019-11-02 14:48:08', 1, 1),
 (14, 2, 1, 'sdffg', '1572691395.', '2019-11-19', '2019-11-02 10:43:14', 1, 1),
 (15, 2, 1, 'sdffg', '1572691488.', '2019-11-19', '2019-11-02 10:44:48', 1, 1),
 (16, 2, 1, 'sdffg', '1572691555.', '2019-11-19', '2019-11-02 10:45:54', 1, 1),
@@ -243,7 +239,7 @@ INSERT INTO `tbl_picture` (`id`, `sub_admin_id`, `gallery_id`, `caption`, `image
 (24, 2, 1, 'sdffg', '1572692267.jpg', '2019-11-19', '2019-11-02 10:57:46', 1, 1),
 (25, 2, 1, 'sdffg', '1572692271.jpg', '2019-11-19', '2019-11-02 10:57:51', 1, 1),
 (26, 2, 1, 'final', '1572693685.jpg', '2019-11-13', '2019-11-02 11:21:25', 1, 1),
-(27, 2, 1, 'compress', '', '2019-11-20', '2019-11-03 08:49:45', 0, 1),
+(27, 2, 1, 'compress', '', '2019-11-20', '2019-11-02 11:59:24', 1, 1),
 (28, 2, 1, 'compressing', '', '2019-11-12', '2019-11-02 12:02:56', 1, 1),
 (29, 2, 1, 'comp', '', '2019-11-19', '2019-11-02 12:05:26', 1, 1),
 (30, 2, 1, 'comp', '1572696358.jpg', '2019-11-19', '2019-11-02 12:05:58', 1, 1),
@@ -254,12 +250,10 @@ INSERT INTO `tbl_picture` (`id`, `sub_admin_id`, `gallery_id`, `caption`, `image
 (35, 2, 1, 'fggh', '1572696724.jpg', '2019-11-19', '2019-11-02 12:12:03', 1, 1),
 (36, 2, 1, 'hh', 'Screenshot (6).png', '2019-11-19', '2019-11-02 14:35:11', 1, 1),
 (37, 2, 1, 'hh', 'Screenshot (38).png', '2019-11-19', '2019-11-02 14:35:40', 1, 1),
-(38, 2, 1, 'hh', '1572706957.png', '2019-11-19', '2019-11-02 15:02:36', 1, 1),
-(39, 2, 15, 'array try', '1572770169.png', '2019-11-21', '2019-11-03 08:36:09', 1, 1),
-(40, 2, 15, 'array try', '1572770231.png', '2019-11-21', '2019-11-03 08:37:10', 1, 1),
-(41, 2, 15, 'array try', '1572770283.png', '2019-11-21', '2019-11-03 08:38:03', 1, 1),
-(42, 2, 15, 'array try', '1572770288.png', '2019-11-21', '2019-11-03 08:38:08', 1, 1),
-(43, 2, 1, 'short', '1572773543.png', '2019-11-19', '2019-11-03 09:32:22', 1, 1);
+(38, 2, 1, 'hh', '1572703510.png', '2019-11-19', '2019-11-02 14:05:09', 1, 1),
+(39, 2, 1, 'shabu', '1572763809.png', '2019-11-08', '2019-11-03 06:50:09', 1, 1),
+(40, 2, 7, 'demo', '1572766994.png', '2019-10-30', '2019-11-03 07:43:13', 1, 1),
+(41, 2, 10, 'defghbnjm', '1572767421.png', '2019-11-21', '2019-11-03 07:50:21', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -284,19 +278,17 @@ CREATE TABLE `tbl_slideshow` (
 --
 
 INSERT INTO `tbl_slideshow` (`id`, `sub_admin_id`, `image`, `caption`, `orderby`, `c_date`, `date`, `status`, `deletion`) VALUES
-(1, 2, '1572776184.', 'First Announcement1', 1, '2019-11-21', '2019-11-03 10:16:24', 0, 1),
-(2, 2, '', 'First Announcement1', 0, '2019-11-20', '2019-11-03 09:38:01', 0, 1),
+(1, 2, '1572703936.png', 'First Announcement', 0, '0000-00-00', '2019-11-02 14:15:58', 1, 1),
+(2, 2, '1572704037.png', 'First Announcement', 0, '0000-00-00', '2019-11-02 14:15:58', 1, 1),
 (3, 2, '1572704166.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:16:06', 1, 1),
 (4, 2, '1572704283.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:18:03', 1, 1),
 (5, 2, '1572704292.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:18:11', 1, 1),
 (6, 2, '1572704366.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:25', 1, 1),
 (7, 2, '1572704371.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:30', 1, 1),
-(8, 2, '1572704395.png', 'First Announcement', 0, '2019-11-20', '2019-11-03 08:47:37', 1, 0),
+(8, 2, '1572704395.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:54', 1, 1),
 (9, 2, '1572704413.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:20:13', 1, 1),
 (10, 2, '1572704417.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:20:16', 1, 1),
-(11, 2, '1572704437.png', 'aaaa', 0, '2019-11-06', '2019-11-03 08:49:39', 0, 1),
-(12, 2, '1572770458.png', 'array', 0, '2019-11-21', '2019-11-03 08:44:58', 1, 0),
-(13, 2, '1572774373.png', 'array', 0, '2019-11-12', '2019-11-03 09:46:13', 1, 1);
+(11, 2, '1572704437.png', 'aaaa', 0, '2019-11-06', '2019-11-02 14:20:36', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -345,9 +337,12 @@ CREATE TABLE `tbl_viewer` (
 --
 
 INSERT INTO `tbl_viewer` (`id`, `user_name`, `email`, `password`, `ip`, `status`, `c_date`, `u_date`) VALUES
-(1, '', '', 'd41d8cd98f00b204e9800998ecf8427e', '::1', 1, '0000-00-00', '2019-11-03 11:41:47'),
-(2, 'avinash', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '::1', 1, '0000-00-00', '2019-11-03 11:43:40'),
-(3, 'avinash', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '::1', 1, '0000-00-00', '2019-11-03 11:45:00');
+(1, '', '', 'd41d8cd98f00b204e9800998ecf8427e', '::1', 1, '0000-00-00', '2019-11-03 06:11:47'),
+(2, 'avinash', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '::1', 1, '0000-00-00', '2019-11-03 06:13:40'),
+(3, 'avinash', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '::1', 1, '0000-00-00', '2019-11-03 06:15:00'),
+(1, '', '', 'd41d8cd98f00b204e9800998ecf8427e', '::1', 1, '0000-00-00', '2019-11-03 06:11:47'),
+(2, 'avinash', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '::1', 1, '0000-00-00', '2019-11-03 06:13:40'),
+(3, 'avinash', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '::1', 1, '0000-00-00', '2019-11-03 06:15:00');
 
 --
 -- Indexes for dumped tables
@@ -372,6 +367,12 @@ ALTER TABLE `tbl_module_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_news`
+--
+ALTER TABLE `tbl_news`
+  ADD PRIMARY KEY (`NewsID`);
+
+--
 -- Indexes for table `tbl_picture`
 --
 ALTER TABLE `tbl_picture`
@@ -390,12 +391,6 @@ ALTER TABLE `tbl_super_admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_viewer`
---
-ALTER TABLE `tbl_viewer`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -403,37 +398,37 @@ ALTER TABLE `tbl_viewer`
 -- AUTO_INCREMENT for table `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_gallery`
 --
 ALTER TABLE `tbl_gallery`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tbl_module_user`
 --
 ALTER TABLE `tbl_module_user`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `tbl_news`
+--
+ALTER TABLE `tbl_news`
+  MODIFY `NewsID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+--
 -- AUTO_INCREMENT for table `tbl_picture`
 --
 ALTER TABLE `tbl_picture`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `tbl_slideshow`
 --
 ALTER TABLE `tbl_slideshow`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tbl_super_admin`
 --
 ALTER TABLE `tbl_super_admin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_viewer`
---
-ALTER TABLE `tbl_viewer`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
