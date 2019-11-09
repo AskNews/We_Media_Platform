@@ -10,7 +10,7 @@
                         <div class="profile-header">&nbsp;</div>
                         <div class="profile-body">
                             <div class="image-area">
-                                <img src=<?php echo "img/".$row["channel_logo"]; ?> alt="AdminBSB - Profile Image" />
+                                <img src=<?php echo "img/".$row["channel_logo"]; ?> alt="AdminBSB - Profile Image" height="150px" width="150px" />
                             </div>
                             <div class="content-area">
                                 <h3><?php echo $row["username"]; ?></h3>
@@ -90,7 +90,7 @@
                                 //}
                                     ?>
                                     <div role="tabpanel" class="tab-pane fade in active" id="profile_settings">
-                                        <form class="form-horizontal" method="POST" >
+                                        <form class="form-horizontal" method="POST" enctype="multipart/form-data" >
                                             <div class="form-group">
                                                 <label for="uname" class="col-sm-2 control-label">User Name</label>
                                                 <div class="col-sm-10">
@@ -121,11 +121,23 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="file" class="col-sm-2 control-label">Profile</label>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="file" class="form-control"  name="file">
+                                                    </div>
+                                                    <span class="error"><?php echo @$errorForFile; ?></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <?php if(@$row["Monetization"]==1){?>
+                                            <div class="form-group">
                                                 <label for="In	putSkills" class="col-sm-2 control-label">Bank Name</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" pattern="[a-zA-Z]+" id="txtbname"  <?php if($row["Monetization"]==0){ echo "disabled";} ?> name="txtbname" placeholder="Bank Name">
+                                                        <input type="text" class="form-control" pattern="[a-zA-Z]+" id="txtbname"   name="txtbname" placeholder="Bank Name">
                                                     </div>
                                                     <span class="error"><?php echo @$error_bname; ?></span>
                                                 </div>
@@ -136,7 +148,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="[a-zA-Z]+" class="form-control" id="txtaccountHname" <?php if($row["Monetization"]==0){ echo "disabled";} ?> name="txtaccountHname" placeholder="Account Holder Name">
+                                                        <input type="text" pattern="[a-zA-Z]+" class="form-control" id="txtaccountHname"  name="txtaccountHname" placeholder="Account Holder Name">
                                                     </div>
                                                     <span class="error"><?php echo @$error_holderName; ?></span>
                                                 </div>
@@ -148,7 +160,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" <?php if($row["Monetization"]==0){ echo "disabled";} ?> id="txtaccountno" name="txtaccountno" placeholder="Account Number">
+                                                        <input type="text" class="form-control"  id="txtaccountno" name="txtaccountno" placeholder="Account Number">
                                                     </div>
                                                     <span class="error"><?php echo @$error_accountNum; ?></span>
                                                 </div>
@@ -158,7 +170,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$" class="form-control" <?php if($row["Monetization"]==0){ echo "disabled";} ?> id="txtIfsc" name="txtIfsc" placeholder="IFSC Code">
+                                                        <input type="text" pattern="^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$" class="form-control"  id="txtIfsc" name="txtIfsc" placeholder="IFSC Code">
                                                     </div>
                                                     <span class="error"><?php echo @$error_ifsc; ?></span>
                                                 </div>
@@ -166,6 +178,7 @@
                                             
                                             
                                             <div class="form-group">
+                                            <?php }?>
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" name="update_profile" class="btn btn-danger">UPDATE</button>
                                                 </div>

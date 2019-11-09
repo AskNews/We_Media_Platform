@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2019 at 04:56 PM
+-- Generation Time: Nov 09, 2019 at 05:00 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -86,7 +86,7 @@ CREATE TABLE `tbl_content_creator` (
 --
 
 INSERT INTO `tbl_content_creator` (`CreatorID`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `IP`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`, `deletion`, `Monetization`, `join_date`, `privacy`, `bank_name`, `account_holder_name`, `bank_account_number`, `ifsc_code`, `earnings`, `life_time_withdraw_amt`) VALUES
-(1, 'shabnam1999', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(1, 'shabnam20', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, '1573281867.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
 (9, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
 (10, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, '', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
 (15, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', 'dhb', 'fdvgbhnj', '::1', 0, 1, 'default.jpg', '2019-11-01 12:49:46', 1, 0, '', 0, '', '', '', '', '0.00', '0.00');
@@ -189,15 +189,15 @@ CREATE TABLE `tbl_news` (
 --
 
 INSERT INTO `tbl_news` (`NewsID`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, `Url`, `SeoTitle`, `SeoDescription`, `FileAttach`, `Summary`, `Details`, `Views`, `ModifyDate`, `Status`, `Approved`, `PublishDate`, `RejectionMsg`, `Offline`, `Deletation`, `Rejected`, `PostDate`) VALUES
-(17, 3, 1, 0, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.png', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2019-11-08 15:25:41', 0, 1, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(21, 3, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', 'shabbu ', '1572801289.jpg', 'shabbu', '<p><em>shabnam mom pic uploaded...:)</em></p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(23, 3, 1, 0, 'avinash updated', 'avinash-updated', 'avinash, updated', '', '1573221709.JPG', 'avinash', '<p><strong>avinash updated</strong></p>\r\n\r\n<p><strong>h</strong>ello from editor&nbsp;</p>\r\n\r\n<ol>\r\n	<li>hello edited news</li>\r\n</ol>\r\n\r\n<ul>\r\n	<li>helloe edited news&nbsp;</li>\r\n</ul>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', 'unfollow the rules of platform', 0, 0, 2, '0000-00-00'),
-(25, 0, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', 'unfollow the rules of platform', 1, 0, 3, '0000-00-00'),
-(27, 2, 1, 0, 'category selected', 'category-selected', 'category, selected', '', '1572972155.jpg', 'hello from category 2', '<p>hello from category 2 this is basic details of news</p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(29, 1, 1, 0, 'category 1 selected', 'category-1-selected', 'category, 1, selected', '', '1572973197.png', 'category1', '<p>selection of category 1 that is ssshjfh</p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(30, 1, 1, 0, 'shabnam', 'shabnam', 'shabnam', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(35, 2, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', '', '1573220432.JPG', 'shabnam', '<p>shabnam editor</p>\r\n', 0, '2019-11-08 15:25:41', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(37, 1, 1, 0, 'maha cyclone', 'maha-cyclone', 'maha, cyclone', '', '1573220727.JPG', 'maha cyclone', '<p>maha cyclone in south gujrat</p>\r\n', 0, '2019-11-08 15:25:41', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00');
+(17, 3, 1, 0, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.png', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2019-11-09 15:30:57', 1, 1, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(21, 3, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', 'shabbu ', '1572801289.jpg', 'shabbu', '<p><em>shabnam mom pic uploaded...:)</em></p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(23, 3, 1, 0, 'avinash updated', 'avinash-updated', 'avinash, updated', '', '1573221709.JPG', 'avinash', '<p><strong>avinash updated</strong></p>\r\n\r\n<p><strong>h</strong>ello from editor&nbsp;</p>\r\n\r\n<ol>\r\n	<li>hello edited news</li>\r\n</ol>\r\n\r\n<ul>\r\n	<li>helloe edited news&nbsp;</li>\r\n</ul>\r\n', 0, '2019-11-09 15:30:57', 0, 0, '0000-00-00', 'unfollow the rules of platform', 0, 0, 2, '0000-00-00'),
+(25, 0, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2019-11-09 15:30:57', 0, 0, '0000-00-00', 'unfollow the rules of platform', 1, 0, 3, '0000-00-00'),
+(27, 2, 1, 0, 'category selected', 'category-selected', 'category, selected', '', '1572972155.jpg', 'hello from category 2', '<p>hello from category 2 this is basic details of news</p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(29, 1, 1, 0, 'category 1 selected', 'category-1-selected', 'category, 1, selected', '', '1572973197.png', 'category1', '<p>selection of category 1 that is ssshjfh</p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(30, 1, 1, 0, 'shabnam', 'shabnam', 'shabnam', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2019-11-09 15:30:57', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(35, 2, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', '', '1573220432.JPG', 'shabnam', '<p>shabnam editor</p>\r\n', 0, '2019-11-09 15:30:57', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(37, 1, 1, 0, 'maha cyclone', 'maha-cyclone', 'maha, cyclone', '', '1573220727.JPG', 'maha cyclone', '<p>maha cyclone in south gujrat</p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00');
 
 -- --------------------------------------------------------
 

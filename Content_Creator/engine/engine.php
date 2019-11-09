@@ -1,7 +1,20 @@
 <?php
 $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=null;
-$select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0";
+@$page=$_GET["page"];
+if($page=="" || $page==1)
+{
+    @$page1=0;
+}
+else
+{
+    @$page1=($page*5)-5;
+}
+$select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
+$sql1=mysqli_query($con,"select * from tbl_$type");
+@$total_rec=mysqli_num_rows($sql1);
+$total_pages=ceil($total_rec/5);  
+$last=$total_pages-1;                      
 @$cat=$_POST["category"];
 @$headLine=$_POST["newsheadline"];
 @$url=$_POST["url"];
@@ -14,7 +27,8 @@ $result_news=mysqli_query($con,$select_news);
 @$attachFileName='';
 @$flag=true;
 @$date=date('m/d/Y ', time());
-//_________________________________insert news_______________________
+@$viewStateFile=$_FILES["file"]["name"];
+//_______________________________insert news___________________________
 if(isset($_POST['add_'.$type.'']))
 {
   if(empty($_POST["newsheadline"]))
@@ -75,7 +89,7 @@ if(isset($_POST['add_'.$type.'']))
     }
      
 }
-//____________________________update profile_________________________
+//____________________________update profile___________________________
 if(isset($_POST["update_profile"]))
 {
   @$username=$_POST["txtuname"];
@@ -85,19 +99,60 @@ if(isset($_POST["update_profile"]))
   @$holdername=$_POST["txtaccountHname"];
   @$account=$_POST["txtaccountno"];
   @$ifsc=$_POST["txtIfsc"];
-  $sql="update tbl_content_creator set username='$username',email='$email',mobile='$mobile',bank_name='$bankname',account_holder_name='$holdername',bank_account_number='$account',ifsc_code='$ifsc' where CreatorID=$creatorid";
+  $sql="";
+    $ipaddress = $_SERVER['REMOTE_ADDR'];   
+    @$name=$_FILES["file"]["name"];
+    $filename=null;
+    if(isset($_FILES))
+    {
+        if($name==null)
+        {
+          $filename="default.jpg";
+          $sql="update tbl_content_creator set username='$username',email='$email',mobile='$mobile',bank_name='$bankname',account_holder_name='$holdername',bank_account_number='$account',ifsc_code='$ifsc' where CreatorID=$creatorid";
+          //echo "...................................$sql";
+        }
+        else
+        {
+          //echo "...........................................................$name";
+          if((@$_FILES["file"]["type"]=="image/png") || (@$_FILES["file"]["type"]=="image/jpg") || (@$_FILES["file"]["type"]=="image/jpeg"))
+          {
+              $temp = explode(".", $_FILES["file"]["name"]);
+              $extension = end($temp);
+              $fileName = $temp[0] . "." . $temp[1];
+              $temp[0] = rand(0, 3000); //Set to random number
+              /*if (file_exists("img/" . $_FILES["file"]["name"])) 
+              {
+                  $errorForFile= $_FILES["file"]["name"] . " already exists. ";
+              }*/
+              //else 
+              //{
+                  $temp = explode(".", $_FILES["file"]["name"]);
+                  $newfilename = round(microtime(true)) . '.' . end($temp);
+                  move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
+                  $filename=$newfilename;
+              //}
+              $sql="update tbl_content_creator set username='$username',email='$email',mobile='$mobile',bank_name='$bankname',account_holder_name='$holdername',bank_account_number='$account',ifsc_code='$ifsc',channel_logo='$filename' where CreatorID=$creatorid";
+              //echo "...................................$sql";
+          }
+          else
+          {
+              $errorForFile="only jpg,png,jpeg are allow";
+          }
+        }
+    }
+
   $query=mysqli_query($con,$sql);
   if($query)
   {
     $success=ucfirst($type). " Created Success";
-    move_uploaded_file($_FILES['file']['tmp_name'],$imgPath."/".$newfilename);
+    //move_uploaded_file($file,"img/"."/".$file);
     cleardata();
-  }
+  } 
   else
   {
     $warning=ucfirst($type). " Not Created".mysqli_error($con);
     //$sql=$select;
-  }
+  } 
 }
 //__________________________change password______________________
 if(isset($_POST["change_pass"]))
@@ -255,7 +310,7 @@ if(isset($_GET['newsid']))
 if(isset($_POST["btn_filter"]))
 {
   @$a=$_POST["newsType"];
-  echo "<script>alert('hello');</script>";
+  //echo "<script>alert($a);</script>";
   if($a==0)
   {
     $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 and Approved=0";

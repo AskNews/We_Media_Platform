@@ -9,6 +9,9 @@ $info=null;
 $warning=null;
 $success=null;
 include "../Super_Admin/includes/dbconfig.php";
+$sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
+    $query=mysqli_query($con,$sql);
+
 if(isset($_SESSION['content_creator_uname']))
 {
     $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
@@ -83,14 +86,6 @@ include "engine/engine.php";
 <style>
     .error{color:red;}
     </style>
-<script type="text/javascript">
-function status(id){
-    //alert(id);
-    var newsid=id;
-  var phpcall=<?php UpdateStatus('newsid');?>;
-  //alert(phpcall);
- }
- </script>
  <script type="text/javascript">
 function convertToSlug( str ) {
 	
@@ -202,7 +197,7 @@ function convertToComa( str1 ) {
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<?php echo "img/".$_SESSION['content_creator_profile']; ?>" width="48" height="48" alt="User" />
+                    <img src="<?php echo "img/".$_SESSION['content_creator_profile']; ?>" width="60" height="60" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['content_creator_uname'];?></div>
@@ -238,28 +233,21 @@ function convertToComa( str1 ) {
                         </a>
                     </li>    
                     <?php } ?>
-                    <li <?php echo $type == "news"?'class="active"':'';?>>
+                    <li <?php echo $type == "news"?'class="active"':'';?> >
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">receipt</i>
                             <span>News</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-							
                                 <a href="news.php?c_news">Add News</a>
                             </li>
                             <li>
                                 <a href="news.php">Manage News</a>
                             </li>
-                            
                         </ul>
                     </li>
-                    <li <?php echo $type == "post"?'class="active"':'';?>>
-                        <a href="post.php?all_post">
-                            <i class="material-icons">library_books</i>
-                            <span>Post</span>
-                        </a>
-                    </li>
+                    <?php while(@$row=mysqli_fetch_assoc($query)){if($row["Monetization"]==1){?> 
                     <li <?php echo $type == "income"?'class="active"':'';?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>
@@ -276,6 +264,7 @@ function convertToComa( str1 ) {
                             
                         </ul>
                     </li>
+                         <?php }} ?>
                     <li <?php echo $type == "comment"?'class="active"':'';?>>
                         <a href="comment.php?comment">
                             <i class="material-icons">comment</i>
@@ -288,35 +277,20 @@ function convertToComa( str1 ) {
                             <span>Notification</span>
                         </a>
                     </li>
-                    <!--<li>
-                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">attach_money</i>
-                            <span>Transaction</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-							
-                                <a href="pages/ui/alerts.html">Make transaction</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/animations.html">Histroy</a>
-                            </li>
-                            
-                        </ul>
-                    </li>-->
                     <li>
-                        <a href="pages/typography.html">
-                            <i class="material-icons">edit</i>
-                            <span>Feedback</span>
+                        <a href="feedback.php">
+                            <i class="material-icons">input</i>
+                            <span>FeedBack</span>
                         </a>
                     </li>
-                      <li>
+                   
+                    <li>
                         <a href="logout.php">
                             <i class="material-icons">input</i>
                             <span>Logout</span>
                         </a>
                     </li>
-                    
+                   
                 </ul>
             </div>
             <!-- #Menu -->

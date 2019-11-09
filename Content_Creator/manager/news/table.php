@@ -30,9 +30,9 @@
 								</div>
                                 <form name="f1" action="news.php" method="post">
                                 <div class="col-sm-5">
-								<div class="dataTables_length" name="newsType" id="DataTables_Table_0_length">
+								<div class="dataTables_length" name="" id="DataTables_Table_0_length">
 								<label>Show 
-								<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control show-tick">
+								<select name="newsType" aria-controls="DataTables_Table_0" class="form-control show-tick">
 								<option value="">--Select--</option>
                                 <option value="0">Pending</option>
 								<option value="1">Offline</option>
@@ -93,7 +93,8 @@
                                             
                                             </a>        
                                             </td>
-                                            <td><small><a role="button" href="?newsid=<?php echo $row["NewsID"]; ?>"><button class="btn btn-primary waves-effect">click to view news</button></a></small>
+                                            <!--<td><small><a role="button" href="?newsid=<?php //echo $row["NewsID"]; ?>"><button class="btn btn-primary waves-effect">click to view news</button></a></small>--->
+                                            <td><small><a role="button" data-toggle="tooltip" data-placement="bottom" title="click to view news" href="?newsid=<?php echo $row["NewsID"]; ?>"><i class="material-icons"><big>remove_red_eye</big></a></i></a></small>
                                            </td>
                                            </tr>    
                             <?php   }//while
@@ -102,20 +103,35 @@
                                     </tbody>
                                 </table>
                             </div></div>
+                            
                             <div class="row">
                                 <div class="col-sm-5">
-                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                <!--<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing <?php echo $page1;?> to 5 of <?php echo $total_rec;?> entries</div>-->
                                 </div>
                                 <div class="col-sm-7">  
                                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
-                                    <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                    <li class="paginate_button active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_button next" id="DataTables_Table_0_next">
-                                    <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0">Next</a></li>
+                                    <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="news.php?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
+                                    <?php
+                                    for($i=1;$i<=$total_pages;$i++)
+                                    {
+                                        
+                                        ?>
+                                        <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="news.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
+                                        <!--echo "<a href='news.php?page=$i' style='text-decoration:none'>$i </a>";-->
+                                        &nbsp;
+                                    <?php }
+
+                                    ?>
+                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="news.php?page=<?php echo $total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                                    
                                     </ul>
-                                    </div></div></div></div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
