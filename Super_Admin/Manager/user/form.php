@@ -1,6 +1,6 @@
 
 							<div class="tab-pane active" id="formcontrols">
-								<form id="edit-profile" class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+								<form id="edit-profile" class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
 									<fieldset>
                                     <div class="control-group">
 												
@@ -9,9 +9,28 @@
                                                 ?>
                                             		 </div>
 										<div class="control-group">											
+											<label class="control-label" for="image">Profile Image</label>
+											<div class="controls">
+												<input type="file" class="span6" id="image" name="image">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<?php
+        if(isset($editData)){
+			if(file_exists($imgPath.$editData['image']) && !empty($editData['image'])){
+				?>
+				<img src="<?php echo $imgPath.$editData['image']; ?>" width="100"/>
+				<?php
+				}else echo "No Image found.";
+				?>
+                <input type="hidden" name="oldImage" value="<?php echo $editData['image'];?>" />
+                <?php
+			}
+		?>
+
+										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="uname">
+												<input type="text" class="span6" id="firstname" name="uname" value="<?php echo isset($editData)?$editData['user_name']:"";?>">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -19,7 +38,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="fname">
+												<input type="text" class="span6" id="firstname" name="fname" value="<?php echo isset($editData)?$editData['first_name']:"";?>">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -27,7 +46,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="lname">
+												<input type="text" class="span6" id="lastname" name="lname" value="<?php echo isset($editData)?$editData['last_name']:"";?>">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -35,7 +54,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="text" class="span4" id="email" name="email">
+												<input type="text" class="span4" id="email" name="email" value="<?php echo isset($editData)?$editData['email']:"";?>">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -44,7 +63,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password1" name="pwd">
+												<input type="password" class="span4" id="password1" name="pwd" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -52,7 +71,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password2" >
+												<input type="password" class="span4" id="password2">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 												
@@ -61,15 +80,27 @@
                                         
                                         <div class="control-group">											
 											<label class="control-label">Role</label>
-											
+											<?php
+        $sub='';
+		$operator='';
+		if(isset($editData)){
+			if($editData['status']==0){
+				 $operator='checked';
+		
+				}else{
+					$sub='checked';
+				}
+			}
+		?>
+	
                                             
                                             <div class="controls">
                                             <label class="radio inline">
-                                              <input type="radio"  name="role" value="0"> Sub Admin
+                                              <input type="radio"  name="role" value="0" <?php echo $sub;?>> Sub Admin
                                             </label>
                                             
                                             <label class="radio inline">
-                                              <input type="radio" name="role" value="1"> Operator
+                                              <input type="radio" name="role" value="1" <?php echo $operator; ?>> Operator
                                             </label>
                                           </div>	<!-- /controls -->			
 										</div> <!-- /control-group -->
@@ -80,9 +111,21 @@
 										
 											
 										<div class="form-actions">
-											<button type="submit" class="btn btn-primary" name="btnsmt">Save</button> 
-											<button class="btn">Cancel</button>
-										</div> <!-- /form-actions -->
+										<?php
+    if(isset($editData)){
+	?>
+	<button type="submit" class="btn btn-warning" name="u_<?php echo $type;?>"><i class="fa fa-plus-square"> Update &nbsp;<?php echo ucfirst($type);?> &nbsp;Details</i></button>
+										
+      <input type="hidden" name="id" value="<?php echo $editData['id'];?>" />
+      <?php
+	}else{
+	  ?>
+<button type="submit" class="btn btn-success" name="c_<?php echo $type;?>"> Create <?php echo ucfirst($type);?></button>
+<?php
+	}
+	  ?>							
+
+											</div> <!-- /form-actions -->
 									</fieldset>
 								</form>
 								</div>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 $query="";
 $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
 //changing name
@@ -12,7 +12,8 @@ $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
           @$image=$_FILES['image'];
           @	$imageName=$_POST['oldImage'];
         
-//##############COMPRESS ENGINE########################
+          
+//###################COMPRESS ENGINE########################
 function compressImage($source, $destination, $quality) {
 
   $info = getimagesize($source);
@@ -29,7 +30,7 @@ function compressImage($source, $destination, $quality) {
   imagejpeg($image, $destination, $quality);
 
 }
-//##############INSERT ENGINE######################## 
+//#####################INSERT ENGINE######################## 
 @$a;
 function insert($b){
 global $a,$type,$con,$success,$error;

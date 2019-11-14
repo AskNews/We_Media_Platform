@@ -120,5 +120,21 @@ if($data){
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
   }
   }
-
+  $sql="select * from tbl_categories where status='1'";
+  $query=mysqli_query($con,$sql);
+  $url="";
+  $data1;
+  if(isset($_GET['cat'])){
+    global $url,$data;
+    $url=$_GET['cat'];
+	$sql="select * from tbl_$type where status='1' and url='$url'";
+	$query1=mysqli_query($con,$sql);
+	$data=mysqli_fetch_array($query1);
+	if($data){
+		$title=$data['seo_title'];
+		$description=$data['seo_desc'];
+		$data1=$data['id'];
+		}
+	}
+	
 ?>

@@ -5,7 +5,9 @@
                                                 ?>
 								<form id="edit-profile" class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 									<fieldset>
-                                                                        
+                  <div class="form-actions">
+											<button class="btn btn-success" name="create">Create new <?php echo ucfirst($type);?></button>
+											</div>                                 
 											 <!-- /widget -->
          								 <div class="widget widget-table action-table">
             								<div class="widget-header"> <i class="icon-th-list"></i>
@@ -37,7 +39,7 @@
                     <td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
 		<?php echo $row['status']?'Active':'in-active'; ?></td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td class="td-actions"><a href="?edit=<?php echo $row['id']; ?>" class="btn btn-small btn-success"><i class="btn-icon-only icon-pencil"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                 <?php
                 }

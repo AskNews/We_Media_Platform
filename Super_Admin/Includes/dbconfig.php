@@ -8,7 +8,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1:3307' || $_SERVER['REMOTE_ADDR'] == '::
 	@define("database","dbasknews");
 	
 	}else{-
-		@define("hostname","127.0.0.1:3306");
+		@define("hostname","127.0.0.1:3307");
 	@define("username","root");
 	@define("password","");
 	@define("database","dbasknews");

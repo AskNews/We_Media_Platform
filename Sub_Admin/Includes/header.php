@@ -130,7 +130,7 @@ function convertToComa( str1 ) {
 				<nav>
 					<ul class="nav">
 					<li><a href="index.php" <?php echo $type == "index"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-					<li><a href="c_creator.php" <?php echo $type == "c_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Content Creator</span></a></li>
+					<li><a href="content_creator.php" <?php echo $type == "c_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Content Creator</span></a></li>
 					<li><a href="ad_creator.php" <?php echo $type == "ad_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Ad Creator</span></a></li>
 					<li><a href="gallery.php" <?php echo $type == "gallery"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Gallery</span></a></li>
 					<li><a href="picture.php" <?php echo $type == "picture"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Picture</span></a></li>
