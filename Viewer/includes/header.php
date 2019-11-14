@@ -1,13 +1,16 @@
 <?php
 include "session.php";
 include "../Super_Admin/includes/dbconfig.php";
-	
-	include "engine/engine.php";
+
+$title="Welcome to Ask News";
+$description="The News Sharing Platform";	
+  include "engine/engine.php";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>NewsFeed</title>
+<title><?php echo $title;?></title>
+<meta name="description" content="<?php echo $description;?>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,15 +67,15 @@ include "../Super_Admin/includes/dbconfig.php";
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          <li <?php echo $type == "Index"?'class="active"':'';?>><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <?php
-     $sql="select * from tbl_categories where status='1'";
-	 $query=mysqli_query($con,$sql);
+     
 	 while($row=mysqli_fetch_array($query)){
 	 ?>
-      <li <?php echo (isset($url) && $url==$row['url'])?'class="active"':'';?>><a href="category.php?cat=<?php echo $row['url'];?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
+      <li <?php echo (@$url==$row['url'])?'class="active"':'';?>><a href="category.php?cat=<?php echo $row['url'];?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
       <?php
-	 }
+   }
+   $row_t=mysqli_fetch_array($query);
 	  ?> 
          </ul>
       </div>
@@ -83,15 +86,20 @@ include "../Super_Admin/includes/dbconfig.php";
       <div class="col-lg-12 col-md-12">
         <div class="latest_newsarea"> <span>Latest News</span>
           <ul id="ticker01" class="news_sticker">
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My First News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Second News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Third News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Four News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Five News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Six News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Seven News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt="">My Eight News Item</a></li>
-            <li><a href="#"><img src="images/news_thumbnail2.jpg" alt="">My Nine News Item</a></li>
+          <?php
+
+               $cid=$data1;
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and CategoryID='$cid' and Approved='0'";
+                $query=mysqli_query($con,$sql);
+                $index = 0; 
+                while($row1 = mysqli_fetch_array($query)){
+              
+                ?>
+               
+            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt=""><?php echo $row1['HeadLine'];?></a></li>
+            <?php
+            }
+            ?>
           </ul>
           <div class="social_area">
             <ul class="social_nav">

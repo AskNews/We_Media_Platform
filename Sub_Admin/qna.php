@@ -1,5 +1,5 @@
 <?php
-$type="ad_creator";
+$type="qna";
 $t="";
 include "Includes/header.php";
 include_once "engine/engine.php";
