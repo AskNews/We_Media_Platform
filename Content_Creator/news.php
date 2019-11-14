@@ -1,9 +1,10 @@
 <?php
+$imgPath = "img/";
 $type="news";
 include "includes/header.php";
- include "engine/engine.php";
+include_once "engine/engine.php";
  
-$imgPath = "img/";
+
 ?>
 <section class="content"> 
   <div class="container-fluid">
@@ -12,14 +13,19 @@ $imgPath = "img/";
                <?php
               if($channel_setup_status==1)
               {
-                  if(isset($_GET['c_news']))
+                  if(isset($_GET['c_news'])||isset($_GET['newsid']) ||isset($_GET['newsidModify']))
                 {
-                    include "manager/news/form.php";
+                    include "manager/$type/form.php";
                 }
-                elseif(isset($_GET['m_news']))
+                elseif(isset($_GET['m_news'])||isset($_POST["btn_search"]) || isset($_POST["btn_filter"]))
                 {
-                  include "manager/news/.php";
+                  include "manager/$type/table.php";
                 }
+                else
+                {
+                  include "manager/$type/table.php";
+                }
+                
               }
               else
               {

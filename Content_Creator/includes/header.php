@@ -9,31 +9,34 @@ $info=null;
 $warning=null;
 $success=null;
 include "../Super_Admin/includes/dbconfig.php";
-    if(isset($_SESSION['content_creator_uname']))
+$sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
+    $query=mysqli_query($con,$sql);
+
+if(isset($_SESSION['content_creator_uname']))
+{
+    $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
+    $query=mysqli_query($con,$sql);
+    while($data=mysqli_fetch_assoc($query))
     {
-        $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
-        $query=mysqli_query($con,$sql);
-        while($data=mysqli_fetch_assoc($query))
-		{
-            if(strlen($data["ChannelName"])>0 && strlen($data["ChannelDescription"])>0 ) 
-            {
-                $channel_name=$data["ChannelName"];   
-                $channel_des=$data["ChannelDescription"];
-                $channel_setup_status=1;
-                $creatorid=$data["CreatorID"];
-                // echo $data["ChannelName"];
-                // echo $data["ChannelDescription"];
-            }
-            else
-            {
-                $channel_setup_status=0;
-            }
-		}
+        if(strlen($data["ChannelName"])>0 && strlen($data["ChannelDescription"])>0 ) 
+        {
+            $channel_name=$data["ChannelName"];   
+            $channel_des=$data["ChannelDescription"];
+            $channel_setup_status=1;
+            $creatorid=$data["CreatorID"];
+            // echo $data["ChannelName"];
+            // echo $data["ChannelDescription"];
+        }
+        else
+        {
+            $channel_setup_status=0;
+        }
     }
-    else{
-        header ("location: login.php");
-    }
-    include "engine/engine.php";
+}
+else{
+    header ("location: login.php");
+}
+include "engine/engine.php";
 ?>
 <html>
 <head>
@@ -83,8 +86,8 @@ include "../Super_Admin/includes/dbconfig.php";
 <style>
     .error{color:red;}
     </style>
-<script type="text/javascript">
-		function convertToSlug( str ) {
+ <script type="text/javascript">
+function convertToSlug( str ) {
 	
   //replace all special characters | symbols with a space
   str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
@@ -99,6 +102,20 @@ include "../Super_Admin/includes/dbconfig.php";
   
   //return str;
 }
+function convertToComa1( str2 ) {
+	
+	//replace all special characters | symbols with a space
+	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	  
+	// trim spaces at start and end of string
+	str1 = str1.replace(/^\s+|\s+$/gm,'');
+	  
+	// replace space with dash/hyphen
+	str1 = str1.replace(/\s+/g, ', ');	
+	
+	document.getElementById("seodes").value= str2;
+  //return str;
+  }
 function convertToComa( str1 ) {
 	
 	//replace all special characters | symbols with a space
@@ -113,7 +130,11 @@ function convertToComa( str1 ) {
 	document.getElementById("seotitle").value= str1;
   //return str;
   }
+  
 	</script>
+    <script>
+
+</script>
 </head>
 <body class="theme-red">
 <nav class="navbar">
@@ -176,7 +197,7 @@ function convertToComa( str1 ) {
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<?php echo "img/".$_SESSION['content_creator_profile']; ?>" width="48" height="48" alt="User" />
+                    <img src="<?php echo "img/".$_SESSION['content_creator_profile']; ?>" width="60" height="60" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['content_creator_uname'];?></div>
@@ -204,34 +225,29 @@ function convertToComa( str1 ) {
                         </a>
                         
                     </li>
+                    <?php if($data["channel_logo"] && $data["ChannelDescription"]==" "){?>
                     <li <?php echo $type == "channel"?'class="active"':'';?>>
                         <a href="channel_setup.php?channelSetup">
                             <i class="material-icons">build</i>
                             <span>Channel Setup</span>
                         </a>
                     </li>    
-                    <li <?php echo $type == "news"?'class="active"':'';?>>
+                    <?php } ?>
+                    <li <?php echo $type == "news"?'class="active"':'';?> >
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">receipt</i>
                             <span>News</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-							
                                 <a href="news.php?c_news">Add News</a>
                             </li>
                             <li>
-                                <a href="news.php?m_news">Manage News</a>
+                                <a href="news.php">Manage News</a>
                             </li>
-                            
                         </ul>
                     </li>
-                    <li <?php echo $type == "post"?'class="active"':'';?>>
-                        <a href="post.php?all_post">
-                            <i class="material-icons">library_books</i>
-                            <span>Post</span>
-                        </a>
-                    </li>
+                    <?php while(@$row=mysqli_fetch_assoc($query)){if($row["Monetization"]==1){?> 
                     <li <?php echo $type == "income"?'class="active"':'';?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>
@@ -248,6 +264,7 @@ function convertToComa( str1 ) {
                             
                         </ul>
                     </li>
+                         <?php }} ?>
                     <li <?php echo $type == "comment"?'class="active"':'';?>>
                         <a href="comment.php?comment">
                             <i class="material-icons">comment</i>
@@ -260,35 +277,20 @@ function convertToComa( str1 ) {
                             <span>Notification</span>
                         </a>
                     </li>
-                    <!--<li>
-                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">attach_money</i>
-                            <span>Transaction</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-							
-                                <a href="pages/ui/alerts.html">Make transaction</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/animations.html">Histroy</a>
-                            </li>
-                            
-                        </ul>
-                    </li>-->
                     <li>
-                        <a href="pages/typography.html">
-                            <i class="material-icons">edit</i>
-                            <span>Feedback</span>
+                        <a href="feedback.php">
+                            <i class="material-icons">input</i>
+                            <span>FeedBack</span>
                         </a>
                     </li>
-                      <li>
+                   
+                    <li>
                         <a href="logout.php">
                             <i class="material-icons">input</i>
                             <span>Logout</span>
                         </a>
                     </li>
-                    
+                   
                 </ul>
             </div>
             <!-- #Menu -->

@@ -96,8 +96,9 @@ if(isset($_POST['submit']))
         else
         {
             $password=md5($_POST["password"]);
-            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
-            values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
+            $joindate=date('m/d/Y ', time());
+            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP,JoinDate)
+            values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress','$joindate')";
             //echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
             //values('$_POST[username]','$_POST[email]',$_POST[mobile],'$password','$filename','$ipaddress')";
             if(mysqli_query($con,$query))

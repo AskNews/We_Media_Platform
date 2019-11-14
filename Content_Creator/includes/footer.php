@@ -1,3 +1,4 @@
+
  <script src="plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
@@ -52,6 +53,8 @@
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
+<!-- Bootstrap Notify Plugin Js -->
+<script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
@@ -71,4 +74,5 @@
 
     <script src="js/pages/forms/basic-form-elements.js"></script>
  </body>
- </html>
+     <script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+     <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script></html>
