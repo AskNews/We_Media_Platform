@@ -9,19 +9,14 @@ include_once "engine/engine.php";
     <?php 
     if($channel_setup_status==1)
     {
-        if(isset($_GET['sendFeed']))
+      if(isset($_GET["feedback"]))
       {
-          include "manager/$type/form.php";
+        include "manager/$type/form.php";
       }
-      elseif(isset($_GET['myFeed']))
-      {
-        include "manager/$type/table.php";
-      }
-      else
+      if(isset($_GET['showfeed']))
       {
         include "manager/$type/table.php";
       }
-      
     }
     else
     {

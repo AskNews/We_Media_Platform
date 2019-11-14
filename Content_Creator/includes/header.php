@@ -277,13 +277,26 @@ function convertToComa( str1 ) {
                             <span>Notification</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="feedback.php">
-                            <i class="material-icons">input</i>
+                    <li <?php echo $type == "feedback"?'class="active"':'';?> >
+                        <a href="feedback.php?feedback">
+                            <i class="material-icons">edit</i>
                             <span>FeedBack</span>
                         </a>
                     </li>
-                   
+                    <!--<li >
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">edit</i>
+                            <span>Feedback</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="feedback.php?c_feed">Add News</a>
+                            </li>
+                            <li>
+                                <a href="feedback.php?m_feed">Manage News</a>
+                            </li>
+                        </ul>
+                    </li>-->
                     <li>
                         <a href="logout.php">
                             <i class="material-icons">input</i>

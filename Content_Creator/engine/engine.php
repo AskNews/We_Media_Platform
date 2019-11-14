@@ -14,8 +14,13 @@ $result_news=mysqli_query($con,$select_news);
 $sql1=mysqli_query($con,"select * from tbl_$type");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
-$last=$total_pages-1;                      
-@$cat=$_POST["category"];
+$last=$total_pages-1;    
+$select_comment="select headLine,c.* from tbl_news,tbl_comment as c where c.news_id=NewsID and c.status=0 and deletion=0 and CreatorID=$creatorid";
+$result_comment=mysqli_query($con,$select_comment);
+$select_approve_comment="select headLine,c.* from tbl_news,tbl_comment as c where c.news_id=NewsID and c.status=1  and deletion=0 and CreatorID=$creatorid";
+$approve_comment=mysqli_query($con,$select_approve_comment);
+$select_spam_comment="select headLine,c.* from tbl_news,tbl_comment as c where c.news_id=NewsID and c.status=2 and deletion=0 and CreatorID=$creatorid";
+$spam_comment=mysqli_query($con,$select_spam_comment);
 @$headLine=$_POST["newsheadline"];
 @$url=$_POST["url"];
 @$seoTitle=$_POST["seotitle"];
@@ -279,6 +284,42 @@ function DeleteNews($id)
     cleardata();
   }
 }
+//_________________Approve comment__________________________
+function CommentApprove($id)
+{
+  global $con,$type;
+  $sql="update tbl_".$type." set status=1 where comment_id=$id";
+  $query=mysqli_query($con,$sql);
+  if($query)
+  {
+   echo "<script>alert('Comment Approved..:)');</script>";
+   cleardata();
+  }
+  else
+  {
+    echo "<script>alert('Comment not Approved..:)');</script>";
+    cleardata();
+  }
+}
+//____________________Spam comment_________________________
+function CommentSpam($id)
+{
+  global $con,$type;
+  $sql="update tbl_".$type." set status=2 where comment_id=$id";
+  $query=mysqli_query($con,$sql);
+  if($query)
+  {
+   echo "<script>alert('Comment spam..:)');</script>";
+   cleardata();
+  }
+  else
+  {
+    echo "<script>alert('Comment not Approved..:)');</script>";
+    cleardata();
+  }
+}
+
+
 //---------------queryString set-----------------
 if(isset($_GET["status"]))
 {
@@ -289,6 +330,32 @@ if(isset($_GET["delete"]))
 {
   $id=$_GET["delete"];
   DeleteNews($id);
+}
+if(isset($_GET['approve']))
+{
+  $commentid=$_GET['approve'];
+  CommentApprove($commentid);
+}
+if(isset($_GET['spam']))
+{
+  $commentid=$_GET['spam'];
+  CommentSpam($commentid);
+}
+if(isset($_GET['deleteComment']))
+{
+  $id=$_GET['delete'];
+  $sql="update tbl_$type set deletion=!deletion where comment_id=$id";
+  $query=mysqli_query($con,$sql);
+  if($query)
+  {
+   echo "<script>alert('Comment deleted..:)');</script>";
+   cleardata();
+  }
+  else
+  {
+    echo "<script>alert('Comment not deleted..:)');</script>";
+    cleardata();
+  }
 }
 //_______________________________________search____________________________________
 if(isset($_POST["btn_search"]))
@@ -335,7 +402,10 @@ if(isset($_POST["btn_filter"]))
   $result_news=mysqli_query($con,$select_news);
 }
 
+if(isset($_POST['btn_show']))
+{
 
+}
 /*FUNCTION hello(){
   $a="hello";
   echo $a;

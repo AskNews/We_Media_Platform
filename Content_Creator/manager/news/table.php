@@ -15,19 +15,7 @@
                         
                             <div class="table-responsive">
                                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                <div class="rowclearfix">
-								<div class="col-sm-3">
-								<div class="dataTables_length"  id="DataTables_Table_0_length">
-								<label>Show 
-								<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control show-tick">
-								<option value="10">10</option>
-								<option value="25">25</option>
-								<option value="50">50</option>
-								<option value="100">100</option>
-								</select> 
-                                </label>
-								</div>
-								</div>
+                                
                                 <form name="f1" action="news.php" method="post">
                                 <div class="col-sm-5">
 								<div class="dataTables_length" name="" id="DataTables_Table_0_length">
@@ -44,11 +32,9 @@
 								</div>
 								</div>
 
-                                <div class="col-sm-3">
-                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                              
+                                <div class="col-sm-5">
+                                <div id="DataTables_Table_0_filter" class="dataTables_filter">  
                                 <label>Search:<input type="search" class="form-control input-sm" name="keyword" placeholder="" aria-controls="DataTables_Table_0">
-                               
                                 <button class="btn btn-primary waves-effect"  name="btn_search" id="submit" type="submit">SEARCH</button>
                                </form>
                                 </label>

@@ -12,7 +12,6 @@
 		$password = mysqli_real_escape_string($con,$_POST['password']);
 		$sql="SELECT * from tbl_content_creator WHERE username='$username' AND password=md5('$password') and Status=1";
         $query=mysqli_query($con,$sql);
-        
 		// $data=mysqli_fetch_assoc($query);
 		// if($data)
 		// {
@@ -50,7 +49,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta content="width=device-width, in itial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Sign In</title>
     <!-- Favicon-->
     <link rel="icon" href="icon.png" type="image/x-icon">
