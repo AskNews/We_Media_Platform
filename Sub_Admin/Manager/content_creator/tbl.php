@@ -23,15 +23,15 @@
 		  
 	  ?>
 											<tr>
-											<td><?php echo $row['id']; ?></td>
-											<td><?php echo $row['title']; ?></td>
-											<td><?php echo $row['seo_desc']; ?></td>
-											<td><?php echo $row['c_date']; ?></td>
+											<td><?php echo $row['creator_id']; ?></td>
+											<td><?php echo $row['username']; ?></td>
+											<td><?php echo $row['email']; ?></td>
+											<td><?php echo $row['ChannelName']; ?></td>
 											<td>
-		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
-		<?php echo $row['status']?'Active':'in-active'; ?></td>
-        <td><a href="?del=<?php echo $row['id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
-        <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Edit</a></td>
+		<a href="?status=<?php echo $row['creator_id']; ?>" style="color:<?php echo $row['Status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
+		<?php echo $row['Status']?'Active':'in-active'; ?></td>
+        <td><a href="?del=<?php echo $row['creator_id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
+        <a href="?edit=<?php echo $row['creator_id']; ?>" class="ico edit">Edit</a></td>
       
         
 											</tr>

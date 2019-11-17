@@ -10,12 +10,12 @@
           @ $newfilename = round(microtime(true)) . '.' . $extension;
           @$image=$_FILES['image'];
           @	$imageName=$_POST['oldImage'];
-//##############LOG ENGINE############
-
+//##############LOG ENGINE(Not tested)############
+$l="";
 function log_engine($c){
-    global $a,$type,$con,$success,$error,$select;
+    global $l,$type,$con,$success,$error,$select;
     $c=$b-1;
-    $p="INSERT INTO tbl_module_".$type." (";
+    $p="INSERT INTO tbl_log (";
     for($i=0;$i<$b;$i++){	
     $p=$p."`".$a[$i][0]."`";
     if($i==$c){}else{$p=$p.",";}
@@ -26,14 +26,7 @@ function log_engine($c){
     if($i==$c){}else{$p=$p.",";}
     }
     $sql= $p.");";
-            if ($con->query($sql) === TRUE) {
-           
-                $success="User created success";
-                $qry=$select;
-                } else {
-                $error="Error: " . $sql . "<br>" . $con->error;
-                }$con->close();
-        
+    mysqli_query($con,$sql);
             return 0;	
     
 }
@@ -158,6 +151,7 @@ if(isset($_GET['status'])){
         $error="Error: " . $sql . "<br>" . $con->error;
         }$con->close();
     }
+
 if(isset($_POST['u_'.$type])){
     $id=$_POST['id'];
   

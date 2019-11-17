@@ -11,7 +11,27 @@ $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
           @ $newfilename = round(microtime(true)) . '.' . $extension;
           @$image=$_FILES['image'];
           @	$imageName=$_POST['oldImage'];
-        
+        //##############LOG ENGINE############
+$a;
+function log_engine($b){
+    global $l,$type,$con,$success,$error,$select;
+    $c=$b-1;
+    $p="INSERT INTO tbl_log (";
+    for($i=0;$i<$b;$i++){	
+    $p=$p."`".$a[$i][0]."`";
+    if($i==$c){}else{$p=$p.",";}
+    }
+    $p=$p.") VALUES (";
+    for($i=0;$i<$b;$i++){	
+    $p=$p."'".$a[$i][1]."'";
+    if($i==$c){}else{$p=$p.",";}
+    }
+    $sql= $p.");";
+    mysqli_query($con,$sql);
+            return 0;	
+    
+}
+
           
 //###################COMPRESS ENGINE########################
 function compressImage($source, $destination, $quality) {
@@ -147,7 +167,7 @@ if(isset($_POST['c_'.$type.''])){
       }
    
    if($type=="categories"){
-    
+     
    $a=array(
     array('sub_admin_id',$data['id']),
     array('title',$_POST['title']),
@@ -157,7 +177,11 @@ if(isset($_POST['c_'.$type.''])){
     array('c_date',$_POST['dat']),
     array('status',$_POST['status']));
      insert(7);
-   
+   $a=array(
+     array('log',$type.' inserted')
+
+   );
+   log_engine(1);
   }
    if($type=="picture"){
     
