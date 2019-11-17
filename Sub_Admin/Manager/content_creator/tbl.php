@@ -9,9 +9,11 @@
 										<thead>
 											<tr>
 											<th>Id</th>
-											<th>Title</th>
-											<th>Description</th>
-											<th>Date</th>
+											<th>User Name</th>
+											<th>Email</th>
+											<th>Channel Name</th>
+											<th>Account Approval</th>
+											
 											<th>Status</th>
 											<th>Operation</th>
 											</tr>
@@ -23,15 +25,18 @@
 		  
 	  ?>
 											<tr>
-											<td><?php echo $row['creator_id']; ?></td>
+											<td><?php echo $row['id']; ?></td>
 											<td><?php echo $row['username']; ?></td>
 											<td><?php echo $row['email']; ?></td>
 											<td><?php echo $row['ChannelName']; ?></td>
 											<td>
-		<a href="?status=<?php echo $row['creator_id']; ?>" style="color:<?php echo $row['Status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
+		<a href="?AccountApproval=<?php echo $row['id']; ?>" style="color:<?php echo $row['AccountApproval']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
+		<?php echo $row['AccountApproval']?'Approved':'Pendding'; ?></td>
+											<td>
+		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['Status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
 		<?php echo $row['Status']?'Active':'in-active'; ?></td>
-        <td><a href="?del=<?php echo $row['creator_id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
-        <a href="?edit=<?php echo $row['creator_id']; ?>" class="ico edit">Edit</a></td>
+        <td><a href="?del=<?php echo $row['id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
+        <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Review</a></td>
       
         
 											</tr>
@@ -40,4 +45,26 @@
 											?>
 										</tbody>
 									</table>
+									 
+                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <ul class="pagination">
+                                    <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
+                                    <?php
+                                    for($i=1;$i<=$total_pages;$i++)
+                                    {
+                                        
+                                        ?>
+                                        <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
+                                        <!--echo "<a href='news.php?page=$i' style='text-decoration:none'>$i </a>";-->
+                                        &nbsp;
+                                    <?php }
+
+                                    ?>
+                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="?page=<?php echo $total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                                    
+                                    </ul>
+                                </div>
+                                
 						</form>

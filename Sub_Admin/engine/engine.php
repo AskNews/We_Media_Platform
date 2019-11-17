@@ -1,6 +1,22 @@
 <?php 
 $query="";
-$select="SELECT * FROM `tbl_$type` where `deletion`='1'";
+//##################PAGINATION ##############################
+@$page=$_GET["page"];
+  if($page=="" || $page==1)
+  {
+      @$page1=0;
+  }
+  else
+  {
+      @$page1=($page*5)-5;
+  }
+  $select="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,5";
+$result_news=mysqli_query($con,$select);
+$sql1=mysqli_query($con,"select * from tbl_$type");
+@$total_rec=mysqli_num_rows($sql1);
+$total_pages=ceil($total_rec/5);  
+$last=$total_pages-1;    
+
 //changing name
 @$temp = explode(".", $_FILES["image"]["name"]);
                
@@ -12,21 +28,23 @@ $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
           @$image=$_FILES['image'];
           @	$imageName=$_POST['oldImage'];
         //##############LOG ENGINE############
-$a;
+$log;
 function log_engine($b){
-    global $l,$type,$con,$success,$error,$select;
+    global $log,$type,$con,$success,$error,$select;
     $c=$b-1;
     $p="INSERT INTO tbl_log (";
     for($i=0;$i<$b;$i++){	
-    $p=$p."`".$a[$i][0]."`";
+    $p=$p."`".$log[$i][0]."`";
     if($i==$c){}else{$p=$p.",";}
     }
     $p=$p.") VALUES (";
     for($i=0;$i<$b;$i++){	
-    $p=$p."'".$a[$i][1]."'";
+    $p=$p."'".$log[$i][1]."'";
     if($i==$c){}else{$p=$p.",";}
     }
+    
     $sql= $p.");";
+   // $success=$sql;
     mysqli_query($con,$sql);
             return 0;	
     
@@ -108,6 +126,7 @@ function status(){
     }
 
 }
+
 //####################UPDATE ENGINE#############################
 function update($b){
   global $con,$error,$select,$type,$success,$id,$a;
@@ -133,7 +152,24 @@ function update($b){
   }
       return 0;
   }
-  
+//###################APPROVE ENGINE############################
+function approve(){
+  global $con,$error,$select,$type,$success;
+  $id1=$_GET['AccountApproval'];
+	$sql="update tbl_$type set AccountApproval=!AccountApproval WHERE Creatorid='$id1'";
+	$query=mysqli_query($con,$sql);
+	if($query){
+  $success=ucfirst($type)." Account has been Approved successfully.";
+  $sql=$select;
+	}
+  else{
+    $error=ucfirst($type) ." is not Approved". Mysqli_error($con);
+    $sql=$select;
+    }
+
+}  
+
+
   $User_email=$_SESSION['newSub-AdminLogin'];
   $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
   $qry=mysqli_query($con,$sql);
@@ -164,6 +200,11 @@ if(isset($_POST['c_'.$type.''])){
        array('c_date',$_POST['dat']),
        array('status',$_POST['status']));
        insert(8);
+       $log=array(
+        array('log','The '.$type.' '.$_POST['title'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
+      );
+      log_engine(1);
+     
       }
    
    if($type=="categories"){
@@ -177,12 +218,28 @@ if(isset($_POST['c_'.$type.''])){
     array('c_date',$_POST['dat']),
     array('status',$_POST['status']));
      insert(7);
-   $a=array(
-     array('log',$type.' inserted')
-
+   $log=array(
+     array('log','The '.$type.' '.$_POST['title'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
    );
    log_engine(1);
   }
+  if($type=="qna"){
+     
+    $a=array(
+     array('module_user_id',$data['id']),
+     
+     array('question',$_POST['question']),
+     array('answer',$_POST['ans']),
+     array('c_date',$_POST['dat']),
+     array('status',$_POST['status']),
+      array('role',$data['role'])
+    );
+      insert(6);
+    $log=array(
+      array('log','The '.$type.' '.$_POST['question'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
+    );
+    log_engine(1);
+   }
    if($type=="picture"){
     
     //check existing folder and create new one
@@ -204,7 +261,12 @@ if(isset($_POST['c_'.$type.''])){
       array('c_date',$_POST['dat']),
       array('status',$_POST['status']));
        insert(6);
-   }
+       $log=array(
+        array('log','The '.$type.' '.$_POST['caption'].' Has Been Created in gallery '.$_POST['gallery_id'].' By '.$data['id'].'  on '.$_POST['dat'])
+      );
+      log_engine(1);
+       
+      }
   
    if($type=="slideshow"){
     //working for image
@@ -222,7 +284,13 @@ if(isset($_POST['c_'.$type.''])){
       array('c_date',$_POST['dat']),
       array('status',$_POST['status']));
        insert(6);
+       $log=array(
+        array('log','The '.$type.' '.$_POST['caption'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
+      );
+      log_engine(1);
+     
    }
+   
 }
   
 if(isset($_POST["m_'.$type.'"])){
@@ -241,6 +309,12 @@ del();
 if(isset($_GET['status'])){
 status();
 }
+
+//apprvoe the account
+if(isset($_GET['AccountApproval'])){
+  approve();
+  }
+  
 //to editable  record
 if(isset($_GET['edit'])){
 	$id1=$_GET['edit'];
@@ -308,7 +382,14 @@ if(isset($_GET['edit'])){
       update(6);
     
      }
-  
+     if($type=="feedback"){
+      $a=array(
+        array('module_user_id',$data['id']),
+      array('reply',$_POST['reply']));
+       update(2);
+     
+      }
+   
   if($type=="slideshow"){
     //working for image
 	if(isset($image['name'])&&!empty($image['name'])){
@@ -343,13 +424,19 @@ if(isset($_POST['search'])){
   }
 else{
   $searchkey = $_POST['keyword'];
-  if($type=="picture"){
+  if($type=="picture" || $type=="slideshow"){
     $sql="select * from tbl_$type where caption like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
     }
-    if($type=="gallery"){
+    if($type=="gallery" || $type=="categories"){
       $sql="select * from tbl_$type where title like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
       }
-        
+      if($type=="qna"){
+        $sql="select * from tbl_$type where question like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
+        }
+        if($type=="feedbcak"){
+          $sql="select * from tbl_$type where subject like '%$searchkey%' or message like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
+          }
+            
 }
 }else{
   $sql=$select;

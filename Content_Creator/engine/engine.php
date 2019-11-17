@@ -8,7 +8,7 @@ if($page=="" || $page==1)
 else
 {
     @$page1=($page*5)-5;
-}
+} 
 $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
 $sql1=mysqli_query($con,"select * from tbl_$type");

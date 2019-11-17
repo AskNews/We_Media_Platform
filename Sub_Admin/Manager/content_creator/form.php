@@ -1,22 +1,53 @@
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <div class="panel-heading">
-	<h3 class="panel-title">Title</h3>
-	<input type="text" class="form-control" id="title" name="title" placeholder="Text field" onkeyup="convertToSlug(this.value);convertToComa(this.value);" value="<?php echo isset($editData)?$editData['title']:"";?>" required>
+	<h3 class="panel-title">User Name</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['username']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Email</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['email']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Mobile</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['mobile']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Channel Name</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['ChannelName']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Channel Description</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['ChannelDescription']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Device IP</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['IP']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Channel Logo</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['channel_logo']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Join Date</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['join_date']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Bank Name</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['bank_name']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Account Holder Name</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['account_holder_name']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">User Name</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['account_holder_number']:"";?>" disabled>
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">User Name</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['ifsc_code']:"";?>" disabled>
+</div>
 
-</div>
-
-<div class="panel-heading">
-	<h3 class="panel-title">URL</h3>
-	<input type="text" class="form-control" id="url" name="url" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['url']:"";?>">
-</div>
-<div class="panel-heading">
-	<h3 class="panel-title">SEO Title</h3>
-	<input type="text" class="form-control" id="seo_title" name="seo_title" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['seo_title']:"";?>">
-</div>
-<div class="panel-heading">
-	<h3 class="panel-title">Seo Description</h3>
-	<input type="text" class="form-control" id="slug-text" name="seo_desc" placeholder="Text field" value="<?php echo isset($editData)?$editData['seo_desc']:"";?>"> 
-</div>
 
 <div class="panel-heading">
 	<h3 class="panel-title">Date</h3>

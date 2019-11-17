@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2019 at 06:15 AM
+-- Generation Time: Nov 17, 2019 at 01:12 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -48,7 +48,14 @@ CREATE TABLE `tbl_categories` (
 INSERT INTO `tbl_categories` (`id`, `sub_admin_id`, `title`, `url`, `seo_title`, `seo_desc`, `c_date`, `date`, `status`, `deletion`) VALUES
 (1, 2, 'sdfsdffgdfgh', 'sdfsdffgdfgh', 'sdfsdffgdfgh', 'sdf', '2019-11-19', '2019-11-05 16:14:23', 1, 1),
 (2, 2, 'aa', 'aa', 'aa', 'aa', '2019-11-20', '2019-11-05 16:14:17', 1, 0),
-(3, 2, 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', '2019-11-14', '2019-11-02 13:49:53', 1, 1);
+(3, 2, 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', 'dfghhhhhhh', '2019-11-14', '2019-11-02 13:49:53', 1, 1),
+(4, 2, 'logggg', 'logggg', 'logggg', 'log', '2019-11-19', '2019-11-17 08:52:22', 1, 1),
+(5, 2, 'aaa', 'aaa', 'aaa', 'aaa', '2019-11-20', '2019-11-17 09:11:07', 1, 1),
+(6, 2, 'aaa', 'aaa', 'aaa', 'aaa', '2019-11-20', '2019-11-17 09:12:49', 1, 1),
+(7, 2, 'aaa', 'aaa', 'aaa', 'aaa', '2019-11-20', '2019-11-17 09:13:28', 1, 1),
+(8, 2, 'aaa', 'aaa', 'aaa', 'aaa', '2019-11-20', '2019-11-17 09:13:37', 1, 1),
+(9, 2, 'aaa', 'aaa', 'aaa', 'aaa', '2019-11-20', '2019-11-17 09:14:41', 1, 1),
+(10, 2, 'aaa', 'aaa', 'aaa', 'aaa', '2019-11-20', '2019-11-17 09:16:33', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -86,7 +93,7 @@ INSERT INTO `tbl_comment` (`comment_id`, `news_id`, `user_name`, `comment`, `pos
 --
 
 CREATE TABLE `tbl_content_creator` (
-  `CreatorID` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `mobile` bigint(10) NOT NULL,
@@ -114,15 +121,11 @@ CREATE TABLE `tbl_content_creator` (
 -- Dumping data for table `tbl_content_creator`
 --
 
-INSERT INTO `tbl_content_creator` (`CreatorID`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `IP`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`, `deletion`, `Monetization`, `join_date`, `privacy`, `bank_name`, `account_holder_name`, `bank_account_number`, `ifsc_code`, `earnings`, `life_time_withdraw_amt`) VALUES
-(1, 'shabnam20', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, '1573281867.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(9, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(10, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, '', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(15, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', 'dhb', 'fdvgbhnj', '::1', 0, 1, 'default.jpg', '2019-11-01 12:49:46', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(1, 'shabnam20', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 0, 1, '1573281867.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(9, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(10, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 0, 1, '', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
-(15, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', 'dhb', 'fdvgbhnj', '::1', 0, 1, 'default.jpg', '2019-11-01 12:49:46', 1, 0, '', 0, '', '', '', '', '0.00', '0.00');
+INSERT INTO `tbl_content_creator` (`id`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `IP`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`, `deletion`, `Monetization`, `join_date`, `privacy`, `bank_name`, `account_holder_name`, `bank_account_number`, `ifsc_code`, `earnings`, `life_time_withdraw_amt`) VALUES
+(1, 'shabnam20', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', '', 1, 1, '1573281867.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(2, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 1, 1, 'default.jpg', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(3, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', '', 1, 1, '', '2019-11-01 09:45:42', 1, 0, '', 0, '', '', '', '', '0.00', '0.00'),
+(4, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', 'dhb', 'fdvgbhnj', '::1', 1, 1, 'default.jpg', '2019-11-01 12:49:46', 1, 0, '', 0, '', '', '', '', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -133,14 +136,24 @@ INSERT INTO `tbl_content_creator` (`CreatorID`, `username`, `email`, `mobile`, `
 CREATE TABLE `tbl_feedback` (
   `id` int(10) NOT NULL,
   `user_id` int(7) NOT NULL,
+  `module_user_id` int(3) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `message` varchar(300) NOT NULL,
+  `reply` text NOT NULL,
+  `role` int(1) NOT NULL,
   `c_date` date NOT NULL,
   `u_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `deletion` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_feedback`
+--
+
+INSERT INTO `tbl_feedback` (`id`, `user_id`, `module_user_id`, `subject`, `message`, `reply`, `role`, `c_date`, `u_date`, `ip`, `status`, `deletion`) VALUES
+(1, 3, 2, 'account audition problem', 'please approve my account', 'ok sure please wait', 1, '2019-11-12', '2019-11-17 11:35:04', '::1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -173,7 +186,8 @@ INSERT INTO `tbl_gallery` (`id`, `sub_admin_id`, `title`, `url`, `seo_title`, `s
 (7, '2', 'sdffg', 'sdffg', 'sdffg', 'sdffg', 'sdffg', '2019-11-25', '2019-11-02 08:11:25', 0, 1),
 (8, '2', 'sdfgaaaaaa', 'sdfgaaaaaa', 'sdfgaaaaaa', 'sdffg', 'sdfg', '2019-11-27', '2019-11-02 08:44:45', 0, 1),
 (9, '2', 'rtgyhrtty', 'rtgyhrtty', 'rtgyhrtty', 'dfgh', 'dfgh', '2019-11-18', '2019-11-02 11:08:28', 1, 1),
-(10, '2', 'final', 'final', 'final', 'final', 'final', '2019-11-13', '2019-11-02 11:21:05', 1, 1);
+(10, '2', 'final', 'final', 'final', 'final', 'final', '2019-11-13', '2019-11-02 11:21:05', 1, 1),
+(11, '2', 'log test', 'log-test', 'log, test', 'log test', 'log test', '2019-11-27', '2019-11-17 09:18:45', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +200,20 @@ CREATE TABLE `tbl_log` (
   `log` text NOT NULL,
   `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_log`
+--
+
+INSERT INTO `tbl_log` (`id`, `log`, `dt`) VALUES
+(1, 'The categories aaa Has Been Created on 2019-11-20', '2019-11-17 09:14:41'),
+(2, 'The categories aaa Has Been Created By 2  on 2019-11-20', '2019-11-17 09:16:33'),
+(3, 'The gallery log test Has Been Created By 2  on 2019-11-27', '2019-11-17 09:18:45'),
+(4, 'The picture try log Has Been Created By 2  on 2019-11-28', '2019-11-17 09:20:53'),
+(5, 'The picture try log Has Been Created in gallery 1 By 2  on 2019-11-28', '2019-11-17 09:22:52'),
+(6, 'The slideshow log test Has Been Created By 2  on 2019-01-07', '2019-11-17 09:23:35'),
+(7, 'The qna How can i create Ads? Has Been Created By 2  on 2019-11-26', '2019-11-17 11:01:52'),
+(8, 'The qna How can i create Ads? Has Been Created By 2  on 2019-11-26', '2019-11-17 11:02:36');
 
 -- --------------------------------------------------------
 
@@ -260,7 +288,8 @@ INSERT INTO `tbl_news` (`NewsID`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLin
 (29, 1, 1, 0, 'category 1 selected', 'category-1-selected', 'category, 1, selected', '', '1572973197.png', 'category1', '<p>selection of category 1 that is ssshjfh</p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
 (30, 1, 1, 0, 'shabnam', 'shabnam', 'shabnam', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2019-11-09 15:30:57', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
 (35, 2, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', '', '1573220432.JPG', 'shabnam', '<p>shabnam editor</p>\r\n', 0, '2019-11-09 15:30:57', 0, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
-(37, 1, 1, 0, 'maha cyclone', 'maha-cyclone', 'maha, cyclone', '', '1573220727.JPG', 'maha cyclone', '<p>maha cyclone in south gujrat</p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00');
+(37, 1, 1, 0, 'maha cyclone', 'maha-cyclone', 'maha, cyclone', '', '1573220727.JPG', 'maha cyclone', '<p>maha cyclone in south gujrat</p>\r\n', 0, '2019-11-09 15:30:57', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00'),
+(38, 0, 0, 0, 'avinash', 'avinash', 'avinash', '', '1573985652.png', 'avinash', '<p>avinash</p>\r\n', 0, '2019-11-17 10:14:12', 1, 0, '0000-00-00', '', 0, 0, 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -316,7 +345,9 @@ INSERT INTO `tbl_picture` (`id`, `sub_admin_id`, `gallery_id`, `caption`, `image
 (38, 2, 1, 'hh', '1572703510.png', '2019-11-19', '2019-11-02 14:05:09', 1, 1),
 (39, 2, 1, 'shabu', '1572763809.png', '2019-11-08', '2019-11-03 06:50:09', 1, 1),
 (40, 2, 7, 'demo', '1572766994.png', '2019-10-30', '2019-11-03 07:43:13', 1, 1),
-(41, 2, 10, 'defghbnjm', '1572767421.png', '2019-11-21', '2019-11-03 07:50:21', 1, 1);
+(41, 2, 10, 'defghbnjm', '1572767421.png', '2019-11-21', '2019-11-03 07:50:21', 1, 1),
+(42, 2, 1, 'try log', '1573982453.png', '2019-11-28', '2019-11-17 09:20:53', 1, 1),
+(43, 2, 1, 'try log', '1573982573.png', '2019-11-28', '2019-11-17 09:22:52', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -331,9 +362,18 @@ CREATE TABLE `tbl_qna` (
   `answer` varchar(200) NOT NULL,
   `c_date` date NOT NULL,
   `u_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `role` int(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `deletion` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_qna`
+--
+
+INSERT INTO `tbl_qna` (`id`, `module_user_id`, `question`, `answer`, `c_date`, `u_date`, `role`, `status`, `deletion`) VALUES
+(1, 2, 'How Can I earn money ?', 'By Writing News you can earn money from our platform', '2019-11-13', '2019-11-17 10:53:41', 0, 1, 1),
+(2, 2, 'How can i create Ads?', 'you should join our we media program', '2019-11-26', '2019-11-17 11:02:53', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -373,7 +413,7 @@ CREATE TABLE `tbl_slideshow` (
 --
 
 INSERT INTO `tbl_slideshow` (`id`, `sub_admin_id`, `image`, `caption`, `orderby`, `c_date`, `date`, `status`, `deletion`) VALUES
-(1, 2, '1572703936.png', 'First Announcement', 0, '0000-00-00', '2019-11-02 14:15:58', 1, 1),
+(1, 2, '1572703936.png', 'First Announcement', 0, '0000-00-00', '2019-11-17 10:15:48', 1, 1),
 (2, 2, '1572704037.png', 'First Announcement', 0, '0000-00-00', '2019-11-02 14:15:58', 1, 1),
 (3, 2, '1572704166.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:16:06', 1, 1),
 (4, 2, '1572704283.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:18:03', 1, 1),
@@ -383,7 +423,8 @@ INSERT INTO `tbl_slideshow` (`id`, `sub_admin_id`, `image`, `caption`, `orderby`
 (8, 2, '1572704395.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:19:54', 1, 1),
 (9, 2, '1572704413.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:20:13', 1, 1),
 (10, 2, '1572704417.png', 'First Announcement', 0, '2019-11-20', '2019-11-02 14:20:16', 1, 1),
-(11, 2, '1572704437.png', 'aaaa', 0, '2019-11-06', '2019-11-02 14:20:36', 1, 1);
+(11, 2, '1572704437.png', 'aaaa', 0, '2019-11-06', '2019-11-02 14:20:36', 1, 1),
+(12, 2, '1573982615.png', 'log test', 1, '2019-01-07', '2019-11-17 09:23:35', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -456,6 +497,12 @@ ALTER TABLE `tbl_categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_content_creator`
+--
+ALTER TABLE `tbl_content_creator`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_feedback`
 --
 ALTER TABLE `tbl_feedback`
@@ -523,22 +570,27 @@ ALTER TABLE `tbl_super_admin`
 -- AUTO_INCREMENT for table `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `tbl_content_creator`
+--
+ALTER TABLE `tbl_content_creator`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tbl_feedback`
 --
 ALTER TABLE `tbl_feedback`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_gallery`
 --
 ALTER TABLE `tbl_gallery`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tbl_log`
 --
 ALTER TABLE `tbl_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tbl_module_user`
 --
@@ -548,22 +600,22 @@ ALTER TABLE `tbl_module_user`
 -- AUTO_INCREMENT for table `tbl_news`
 --
 ALTER TABLE `tbl_news`
-  MODIFY `NewsID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `NewsID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `tbl_picture`
 --
 ALTER TABLE `tbl_picture`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `tbl_qna`
 --
 ALTER TABLE `tbl_qna`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_slideshow`
 --
 ALTER TABLE `tbl_slideshow`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tbl_super_admin`
 --
