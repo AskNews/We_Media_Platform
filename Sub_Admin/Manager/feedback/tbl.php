@@ -8,45 +8,46 @@
                 		<table class="table table-striped">
 										<thead>
 											<tr>
-											<th>Id</th>
-											<th>User Name</th>
-											<th>Email</th>
-											<th>Channel Name</th>
-											<th>Account Approval</th>
-											
+											<th>No</th>
+											<th>User Id</th>
+											<th>Subject</th>
+											<th>Message</th>
+											<th>Reply</th>
+											<th>Role</th>
+											<th>Date</th>
 											<th>Status</th>
 											<th>Operation</th>
 											</tr>
 										</thead>
 										<tbody>
 										<?php
-      $sn=1;
+      $sn=0;
 	  while($row=mysqli_fetch_array($query)):
-		   
+		  
 	  ?>
 											<tr>
-											<td><?php echo $row['id']; ?></td>
-											<td><?php echo $row['username']; ?></td>
-											<td><?php echo $row['email']; ?></td>
-											<td><?php echo $row['ChannelName']; ?></td>
+											<td><?php echo $sn+1;?></td>
+											<td><?php echo $row['user_id']; ?></td>
+											<td><?php echo $row['subject']; ?></td>
+											<td><?php echo $row['message']; ?></td>
+											<td><?php echo $row['reply']; ?></td>
+											<td><?php echo $row['role']; ?></td>
+											
+											<td><?php echo $row['c_date']; ?></td>
 											<td>
-		<a href="?AccountApproval=<?php echo $row['id']; ?>" style="color:<?php echo $row['AccountApproval']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
-		<?php echo $row['AccountApproval']?'Approved':'Pendding'; ?></td>
-											<td>
-		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['Status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
-		<?php echo $row['Status']?'Active':'in-active'; ?></td>
+		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
+		<?php echo $row['status']?'Active':'in-active'; ?></td>
         <td><a href="?del=<?php echo $row['id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
-        <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Review</a></td>
+        <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Reply</a></td>
       
-        
+         
 											</tr>
 											<?php
 											endwhile;
 											?>
 										</tbody>
 									</table>
-									 
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+									<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
                                     <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>

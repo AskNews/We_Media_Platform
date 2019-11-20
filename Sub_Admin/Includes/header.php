@@ -108,12 +108,12 @@ function convertToComa( str1 ) {
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><?php echo $_SESSION['newSub-AdminLogin'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="logout.php"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 						<!-- <li>
@@ -136,6 +136,8 @@ function convertToComa( str1 ) {
 					<li><a href="picture.php" <?php echo $type == "picture"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Picture</span></a></li>
 					<li><a href="slideshow.php" <?php echo $type == "slideshow"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Slideshow</span></a></li>
 					<li><a href="categories.php" <?php echo $type == "categories"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Categories</span></a></li>
+					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Feedback</span></a></li>
+					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>QNA</span></a></li>
 						
                         <li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

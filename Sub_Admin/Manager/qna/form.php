@@ -1,21 +1,12 @@
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <div class="panel-heading">
-	<h3 class="panel-title">Title</h3>
-	<input type="text" class="form-control" id="title" name="title" placeholder="Text field" onkeyup="convertToSlug(this.value);convertToComa(this.value);" value="<?php echo isset($editData)?$editData['title']:"";?>" required>
+	<h3 class="panel-title">Question</h3>
+	<input type="text" class="form-control" id="title" name="question" placeholder="Text field" value="<?php echo isset($editData)?$editData['title']:"";?>" required>
 
 </div>
-
 <div class="panel-heading">
-	<h3 class="panel-title">URL</h3>
-	<input type="text" class="form-control" id="url" name="url" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['url']:"";?>">
-</div>
-<div class="panel-heading">
-	<h3 class="panel-title">SEO Title</h3>
-	<input type="text" class="form-control" id="seo_title" name="seo_title" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['seo_title']:"";?>">
-</div>
-<div class="panel-heading">
-	<h3 class="panel-title">Seo Description</h3>
-	<input type="text" class="form-control" id="slug-text" name="seo_desc" placeholder="Text field" value="<?php echo isset($editData)?$editData['seo_desc']:"";?>"> 
+	<h3 class="panel-title">Answer</h3>
+	<input type="text" class="form-control" id="slug-text" name="ans" placeholder="Text field" value="<?php echo isset($editData)?$editData['seo_desc']:"";?>"> 
 </div>
 
 <div class="panel-heading">
