@@ -80,7 +80,7 @@
                                             </a>        
                                             </td>
                                             <!--<td><small><a role="button" href="?newsid=<?php //echo $row["NewsID"]; ?>"><button class="btn btn-primary waves-effect">click to view news</button></a></small>--->
-                                            <td><small><a role="button" data-toggle="tooltip" data-placement="bottom" title="click to view news" href="?newsid=<?php echo $row["NewsID"]; ?>"><i class="material-icons"><big>remove_red_eye</big></a></i></a></small>
+                                            <td><small><a role="button" data-toggle="tooltip" data-placement="bottom" title="click to view news" href="?newsid=<?php echo $row["id"]; ?>"><i class="material-icons"><big>remove_red_eye</big></a></i></a></small>
                                            </td>
                                            </tr>    
                             <?php   }//while

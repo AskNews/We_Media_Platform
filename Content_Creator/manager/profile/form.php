@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row clearfix">
             <div class="col-xs-12 col-sm-3">
-            <?php  $data="select * from tbl_content_creator where CreatorID=".$creatorid;
+            <?php  $data="select * from tbl_content_creator where id=".$creatorid;
             $result=mysqli_query($con,$data);
             while($row=mysqli_fetch_assoc($result)){ ?>
                     <div class="card profile-card">
@@ -109,7 +109,7 @@
                                                     </div>
                                                     <span class="error"><?php echo @$error_email; ?></span>
                                                 </div>
-                                            </div>
+                                            </div> 
                                             <div class="form-group">
                                                 <label for="Mobile" class="col-sm-2 control-label">Mobile</label>
 
