@@ -22,7 +22,6 @@
 										<?php
       $sn=1;
 	  while($row=mysqli_fetch_array($query)):
-		   
 	  ?>
 											<tr>
 											<td><?php echo $row['id']; ?></td>
