@@ -73,6 +73,6 @@
     <script src="js/pages/forms/form-validation.js"></script>
 
     <script src="js/pages/forms/basic-form-elements.js"></script>
- </body>
-     <script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
-     <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script></html>
+ 
+     </body>
+     </html>

@@ -23,9 +23,7 @@ if(isset($_SESSION['content_creator_uname']))
             $channel_name=$data["ChannelName"];   
             $channel_des=$data["ChannelDescription"];
             $channel_setup_status=1;
-            $creatorid=$data["CreatorID"];
-            // echo $data["ChannelName"];
-            // echo $data["ChannelDescription"];
+            $creatorid=$data["id"];
         }
         else
         {
@@ -105,13 +103,13 @@ function convertToSlug( str ) {
 function convertToComa1( str2 ) {
 	
 	//replace all special characters | symbols with a space
-	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	str2 = str2.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
 	  
 	// trim spaces at start and end of string
-	str1 = str1.replace(/^\s+|\s+$/gm,'');
+	str2 = str2.replace(/^\s+|\s+$/gm,'');
 	  
 	// replace space with dash/hyphen
-	str1 = str1.replace(/\s+/g, ', ');	
+	str2 = str2.replace(/\s+/g, ', ');	
 	
 	document.getElementById("seodes").value= str2;
   //return str;
@@ -277,26 +275,12 @@ function convertToComa( str1 ) {
                             <span>Notification</span>
                         </a>
                     </li>
-                    <li <?php echo $type == "feedback"?'class="active"':'';?> >
+                    <li <?php echo $type == "feedback"?'class="active"':'';?>>
                         <a href="feedback.php?feedback">
                             <i class="material-icons">edit</i>
                             <span>FeedBack</span>
                         </a>
                     </li>
-                    <!--<li >
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">edit</i>
-                            <span>Feedback</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="feedback.php?c_feed">Add News</a>
-                            </li>
-                            <li>
-                                <a href="feedback.php?m_feed">Manage News</a>
-                            </li>
-                        </ul>
-                    </li>-->
                     <li>
                         <a href="logout.php">
                             <i class="material-icons">input</i>

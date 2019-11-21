@@ -26,3 +26,4 @@ include_once "engine/engine.php";
   </div>
   </div>
 </section>
+<?php include "includes/footer.php"; ?>

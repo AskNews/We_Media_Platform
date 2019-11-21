@@ -3,7 +3,7 @@ $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$detail
 @$page=$_GET["page"];
 if($page=="" || $page==1)
 {
-    @$page1=0;
+  @$page1=0;
 }
 else
 {
@@ -11,16 +11,18 @@ else
 } 
 $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
+$select_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=0 and deletion=0 and n.CreatorID=$creatorid limit $page1,5";
+$result_comment=mysqli_query($con,$select_comment);
+$select_approve_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=1  and deletion=0 and n.CreatorID=$creatorid limit $page1,5";
+$approve_comment=mysqli_query($con,$select_approve_comment);
+$select_spam_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=2 and deletion=0 and n.CreatorID=$creatorid limit $page1,5";
+$spam_comment=mysqli_query($con,$select_spam_comment);
+$select_feedback="select * from tbl_feedback where role=1 and deletion=0";
+$result_feedback=mysqli_query($con,$select_feedback);
 $sql1=mysqli_query($con,"select * from tbl_$type");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;    
-$select_comment="select headLine,c.* from tbl_news,tbl_comment as c where c.news_id=NewsID and c.status=0 and deletion=0 and CreatorID=$creatorid";
-$result_comment=mysqli_query($con,$select_comment);
-$select_approve_comment="select headLine,c.* from tbl_news,tbl_comment as c where c.news_id=NewsID and c.status=1  and deletion=0 and CreatorID=$creatorid";
-$approve_comment=mysqli_query($con,$select_approve_comment);
-$select_spam_comment="select headLine,c.* from tbl_news,tbl_comment as c where c.news_id=NewsID and c.status=2 and deletion=0 and CreatorID=$creatorid";
-$spam_comment=mysqli_query($con,$select_spam_comment);
 @$headLine=$_POST["newsheadline"];
 @$url=$_POST["url"];
 @$seoTitle=$_POST["seotitle"];
@@ -33,6 +35,7 @@ $spam_comment=mysqli_query($con,$select_spam_comment);
 @$flag=true;
 @$date=date('m/d/Y ', time());
 @$viewStateFile=$_FILES["file"]["name"];
+$ipaddress = $_SERVER['REMOTE_ADDR'];
 //_______________________________insert news___________________________
 if(isset($_POST['add_'.$type.'']))
 {
@@ -82,7 +85,7 @@ if(isset($_POST['add_'.$type.'']))
     {
       $sql="insert into tbl_$type(CategoryID,CreatorID,HeadLine,Url,SeoTitle,SeoDescription,FileAttach,Summary,Details,Status,PostDate) values('$cat','$creatorid','$headLine','$url','$seoTitle','$seoDes','$newfilename','$summary','$details','$status','$date')";
       $qry=mysqli_query($con,$sql);
-      echo $sql;
+      //echo $sql;
       if($qry){
         $success=ucfirst($type). " Created Success";
       move_uploaded_file($_FILES['file']['tmp_name'],$imgPath."/".$newfilename);
@@ -137,7 +140,7 @@ if(isset($_POST["update_profile"]))
                   $filename=$newfilename;
               //}
               $sql="update tbl_content_creator set username='$username',email='$email',mobile='$mobile',bank_name='$bankname',account_holder_name='$holdername',bank_account_number='$account',ifsc_code='$ifsc',channel_logo='$filename' where CreatorID=$creatorid";
-              //echo "...................................$sql";
+              
           }
           else
           {
@@ -231,7 +234,7 @@ if(isset($_POST["add_u"]))
     }
     if($flag==true)
     {
-      $sql="update tbl_$type set CategoryID='$cat', CreatorID='$creatorid',HeadLine='$headLine',Url='$url',SeoTitle='$seoTitle',SeoDescription='$seoDes',FileAttach='$newfilename',Summary='$summary',Status='$status',Details='$details',PostDate='$date' where NewsID=".$_GET["newsid"];
+      $sql="update tbl_$type set CategoryID='$cat', CreatorID='$creatorid',HeadLine='$headLine',Url='$url',SeoTitle='$seoTitle',SeoDescription='$seoDes',FileAttach='$newfilename',Summary='$summary',Status='$status',Details='$details',PostDate='$date' where id=".$_GET["newsid"];
       $qry=mysqli_query($con,$sql);
       echo $sql;
       if($qry){
@@ -248,13 +251,13 @@ if(isset($_POST["add_u"]))
 //_____________________cleardata_________________________________________
 function cleardata()
 {
-  $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=$_GET['status']=null;
+  $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=$_GET['status']=$_GET['feedid']=null;
 }
-//_______________s__________change status____________________________
+//_________________________change status____________________________
 function Updatestatus($id)
 {
   global $con,$type;
-  $sql="update tbl_".$type." set Status=!Status where NewsID=".$id;
+  $sql="update tbl_".$type." set Status=!Status where id=".$id;
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -271,7 +274,7 @@ function Updatestatus($id)
 function DeleteNews($id)
 {
   global $con,$type;
-  $sql="update tbl_".$type." set Deletation=!Deletation where NewsID=".$id;
+  $sql="update tbl_".$type." set Deletation=!Deletation where id=".$id;
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -288,7 +291,7 @@ function DeleteNews($id)
 function CommentApprove($id)
 {
   global $con,$type;
-  $sql="update tbl_".$type." set status=1 where comment_id=$id";
+  $sql="update tbl_".$type." set status=1 where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -305,7 +308,7 @@ function CommentApprove($id)
 function CommentSpam($id)
 {
   global $con,$type;
-  $sql="update tbl_".$type." set status=2 where comment_id=$id";
+  $sql="update tbl_".$type." set status=2 where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -318,8 +321,6 @@ function CommentSpam($id)
     cleardata();
   }
 }
-
-
 //---------------queryString set-----------------
 if(isset($_GET["status"]))
 {
@@ -344,7 +345,7 @@ if(isset($_GET['spam']))
 if(isset($_GET['deleteComment']))
 {
   $id=$_GET['delete'];
-  $sql="update tbl_$type set deletion=!deletion where comment_id=$id";
+  $sql="update tbl_$type set deletion=!deletion where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -354,6 +355,24 @@ if(isset($_GET['deleteComment']))
   else
   {
     echo "<script>alert('Comment not deleted..:)');</script>";
+    cleardata();
+  }
+}
+if(isset($_GET['feedid']))
+{
+  $id=$_GET['feedid'];
+  $sql="update tbl_$type set deletion=!deletion where id=$id";
+  $query=mysqli_query($con,$sql);
+  if($query)
+  {
+   echo "<script>alert('Feedback deleted..:)');</script>";
+   //cleardata();
+   //$_GET['feedid']=null;
+   header("location:feedback.php?showfeed");
+  }
+  else
+  {
+    echo "<script>alert('Feedback not deleted..:)');</script>";
     cleardata();
   }
 }
@@ -369,7 +388,7 @@ if(isset($_GET['newsid']))
 {
   $id=$_GET['newsid'];
   //echo "<script>alert($id);</script>";
-  $sql="select * from tbl_news where NewsID=".$id;
+  $sql="select * from tbl_news where id=".$id;
   $query=mysqli_query($con,$sql);
   $update=mysqli_fetch_assoc($query);
 }
@@ -401,11 +420,50 @@ if(isset($_POST["btn_filter"]))
   }
   $result_news=mysqli_query($con,$select_news);
 }
-
-if(isset($_POST['btn_show']))
+//__________________________________insert feedback__________________________________
+if(isset($_POST['btn_send']))
 {
-
+  $newfilename;
+  if(isset($_FILES['file']['name'])&&!empty($_FILES['file']['name']))
+    {
+        //to copy or move from temp to a destination
+        $temp = explode(".", $_FILES["file"]["name"]);           
+        $extension = end($temp);
+        $fileName = $temp[0] . "." . $temp[1];
+        $temp[0] = rand(0, 3000); //Set to random number
+        $temp = explode(".", $_FILES["file"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . $extension;
+        // Compress image
+        function compressImage($source, $destination, $quality) 
+        {
+          $info = getimagesize($source);
+          if ($info['mime'] == 'image/jpeg') {
+            $attachFile = imagecreatefromjpeg($source);
+          }
+          elseif ($info['mime'] == 'image/gif'){ 
+              $attachFile = imagecreatefromgif($source);
+          }
+          elseif ($info['mime'] == 'image/png'){ 
+              $attachFile = imagecreatefrompng($source);
+          }
+          imagejpeg($attachFile, $destination, $quality);
+        }
+        compressImage($_FILES['file']['tmp_name'],"img"."/".$newfilename,60);
+    }
+    $topic=$_POST['category'];
+    $message=$_POST['message'];
+    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file,ip) values('$creatorid','$topic','$message','$date',1,'$newfilename','$ipaddress')";
+    //echo $sql;
+    $qry=mysqli_query($con,$sql);
+    if($qry){
+      $success=ucfirst($type). " Created Success";
+    //move_uploaded_file($_FILES['file']['tmp_name'],"img"."/".$newfilename);
+    cleardata();
+    }else{
+        $warning=ucfirst($type). " Not Created".mysqli_error($con);
+    }
 }
+
 /*FUNCTION hello(){
   $a="hello";
   echo $a;

@@ -9,7 +9,7 @@ include_once "engine/engine.php";
 <?php
 if($channel_setup_status==1)
 {
-if(isset($_GET['comment']) || isset($_GET['approve']) || isset($_GET['spam'])|| isset($_GET['deleteComment']))
+if(isset($_GET['comment']) || isset($_GET['approve']) || isset($_GET['spam'])|| isset($_GET['deleteComment']) || isset($_GET['page']) )
 {
 include 'manager/comment/table.php';
 }
