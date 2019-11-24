@@ -71,7 +71,7 @@ function compressImage($source, $destination, $quality) {
 //#####################INSERT ENGINE######################## 
 @$a;
 function insert($b){
-global $a,$type,$con,$success,$error;
+global $a,$type,$con,$success,$error,$select;
 $c=$b-1;
 $p="INSERT INTO tbl_".$type." (";
 for($i=0;$i<$b;$i++){	
@@ -90,6 +90,7 @@ $qry=mysqli_query($con,$sql);
       
 		}else{
       $error=ucfirst($type). " Not Created".mysqli_error($con);
+      $error=$sql;
       $sql=$select;	
 		}
 		return 0;	
@@ -170,12 +171,12 @@ function approve(){
 }  
 
 
-  $User_email=$_SESSION['newSub-AdminLogin'];
-  $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
+  $User_email=$_SESSION['new-AdCreator-Login'];
+  $sql="SELECT * FROM `tbl_ad_creator` WHERE `email`='$User_email' ";
   $qry=mysqli_query($con,$sql);
   $data=mysqli_fetch_array($qry);
-  
-if(isset($_POST['c_'.$type.''])){
+  $dat=date('m/d/Y ', time());
+if(isset($_POST['send'])){
     
     @$image=$_FILES['image'];
     
@@ -187,109 +188,39 @@ if(isset($_POST['c_'.$type.''])){
                @ $temp[0] = rand(0, 3000); //Set to random number
               @  $temp = explode(".", $_FILES["image"]["name"]);
                @ $newfilename = round(microtime(true)) . '.' . $extension;
+      if($type=="feedback"){
+        compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
       
-   if($type=="gallery"){
-
-    $a=array(
-       array('sub_admin_id',$data['id']),
-       array('title',$_POST['title']),
-       array('url',$_POST['url']),
-       array('seo_title',$_POST['seo_title']),
-       array('seo_desc',$_POST['seo_desc']),
-       array('location',$_POST['location']),
-       array('c_date',$_POST['dat']),
-       array('status',$_POST['status']));
-       insert(8);
-       $log=array(
-        array('log','The '.$type.' '.$_POST['title'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
+        $a=array(
+          array('user_id',$data['id']),
+          array('subject',$_POST['topic']),
+          array('message',$_POST['msg']),
+          array('image',$newfilename),
+          array('c_date',$dat),
+          array('role','1')
+          
+        );
+        insert(6);
+      }
+      if($type=="ads"){
+       compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
+     $a= array(
+        array('creator_id',$data['id']),
+        array('category_id',$_POST['cat']),
+        array('name',$_POST['name']),
+        array('title',$_POST['title']),
+        array('url',$_POST['url']),
+        array('amount',$_POST['amt']),
+        array('cpc',$_POST['cpc']),
+        array('image',$newfilename),
+        array('status',$_POST['status']),
+        array('c_date',$dat)
+        
       );
-      log_engine(1);
-     
-      }
-   
-   if($type=="categories"){
-     
-   $a=array(
-    array('sub_admin_id',$data['id']),
-    array('title',$_POST['title']),
-    array('url',$_POST['url']),
-    array('seo_title',$_POST['seo_title']),
-    array('seo_desc',$_POST['seo_desc']),
-    array('c_date',$_POST['dat']),
-    array('status',$_POST['status']));
-     insert(7);
-   $log=array(
-     array('log','The '.$type.' '.$_POST['title'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-   );
-   log_engine(1);
-  }
-  if($type=="qna"){
-     
-    $a=array(
-     array('module_user_id',$data['id']),
-     
-     array('question',$_POST['question']),
-     array('answer',$_POST['ans']),
-     array('c_date',$_POST['dat']),
-     array('status',$_POST['status']),
-      array('role',$data['role'])
-    );
-      insert(6);
-    $log=array(
-      array('log','The '.$type.' '.$_POST['question'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-    );
-    log_engine(1);
-   }
-   if($type=="picture"){
-    
-    //check existing folder and create new one
-    if(!is_dir($imgPath.$_POST['gallery_id'])){
-      mkdir($imgPath.$_POST['gallery_id']);
-      }
-    //working for image
-    
-    if(isset($image['name'])&&!empty($image['name'])){
-      //to copy or move from temp to a destination
-              // Compress image
-      compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gallery_id']."/".$newfilename,60);
-      }
-     $a=array(
-      array('sub_admin_id',$data['id']),
-      array('gallery_id',$_POST['gallery_id']),
-      array('caption',$_POST['caption']),
-      array('image',$newfilename),
-      array('c_date',$_POST['dat']),
-      array('status',$_POST['status']));
-       insert(6);
-       $log=array(
-        array('log','The '.$type.' '.$_POST['caption'].' Has Been Created in gallery '.$_POST['gallery_id'].' By '.$data['id'].'  on '.$_POST['dat'])
-      );
-      log_engine(1);
+        insert(10);
        
       }
-  
-   if($type=="slideshow"){
-    //working for image
-    
-    if(isset($image['name'])&&!empty($image['name'])){
-      //to copy or move from temp to a destination
-              // Compress image
-      compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
-      }
-     $a=array(
-      array('sub_admin_id',$data['id']),
-      array('caption',$_POST['caption']),
-      array('orderby',$_POST['orderby']),
-      array('image',$newfilename),
-      array('c_date',$_POST['dat']),
-      array('status',$_POST['status']));
-       insert(6);
-       $log=array(
-        array('log','The '.$type.' '.$_POST['caption'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-      );
-      log_engine(1);
-     
-   }
+   
    
 }
   
@@ -329,89 +260,6 @@ if(isset($_GET['edit'])){
  //for picture
  
   @$orderby=$_POST['orderby'];
-  
-
-	//check existing folder and create new one
-  if($type=="picture"){
-  if(!is_dir($imgPath.$_POST['gallery_id'])){
-    
-		@mkdir(@$imgPath.$_POST['gallery_id']);
-    }
-  
-	//working for image
-	if(isset($image['name'])&&!empty($image['name'])){
-		
-    compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gallery_id']."/".$newfilename,60);
-    
-		if($imageName!=""){
-			//to remove old image from directory
-			@unlink($imgPath.$gallery_id."/".$imageName);
-     
-    }  
-  }
- $a=array(
-      array('gallery_id',$_POST['gallery_id']),
-      array('caption',$_POST['caption']),
-      array('image',$newfilename),
-      array('c_date',$_POST['dat']),
-      array('status',$_POST['status']));
-     update(5);
-    
-  }
-
-  if($type=="gallery"){
-   $a=array(
-    array('title',$_POST['title']),
-    array('url',$_POST['url']),
-    array('seo_title',$_POST['seo_title']),
-    array('seo_desc',$_POST['seo_desc']),
-    array('location',$_POST['location']),
-    array('c_date',$_POST['dat']),
-    array('status',$_POST['status']));
-    update(7);
- 
-  }
-  if($type=="categories"){
-     $a=array(
-     array('title',$_POST['title']),
-     array('url',$_POST['url']),
-     array('seo_title',$_POST['seo_title']),
-     array('seo_desc',$_POST['seo_desc']),
-     array('c_date',$_POST['dat']),
-     array('status',$_POST['status']));
-      update(6);
-    
-     }
-     if($type=="feedback"){
-      $a=array(
-        array('module_user_id',$data['id']),
-      array('reply',$_POST['reply']));
-       update(2);
-     
-      }
-   
-  if($type=="slideshow"){
-    //working for image
-	if(isset($image['name'])&&!empty($image['name'])){
-		
-    compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
-    
-		if($imageName!=""){
-			//to remove old image from directory
-			@unlink($imgPath.$imageName);
-      
-    }  
-  }
-      $a=array(
-      array('caption',$_POST['caption']),
-      array('orderby',$_POST['orderby']),
-      
-      array('image',$newfilename),
-        array('c_date',$_POST['dat']),
-        array('status',$_POST['status']));
-         update(5);
-     
-  }
   
   
 }
