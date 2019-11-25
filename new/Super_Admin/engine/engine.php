@@ -10,9 +10,9 @@ $query="";
   {
       @$page1=($page*5)-5;
   }
-  $select="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,5";
+  $select="SELECT * FROM `tbl_module_$type` where `deletion`='1' limit $page1,5";
 $result_news=mysqli_query($con,$select);
-$sql1=mysqli_query($con,"select * from tbl_$type");
+$sql1=mysqli_query($con,"select * from tbl_module_$type");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;    
@@ -73,7 +73,7 @@ function compressImage($source, $destination, $quality) {
 function insert($b){
 global $a,$type,$con,$success,$error;
 $c=$b-1;
-$p="INSERT INTO tbl_".$type." (";
+$p="INSERT INTO tbl_module_".$type." (";
 for($i=0;$i<$b;$i++){	
 $p=$p."`".$a[$i][0]."`";
 if($i==$c){}else{$p=$p.",";}
@@ -103,7 +103,7 @@ function del(){
 	if($query){
     $info=ucfirst($type) . "Deleted Success";
   $sql=$select;
-  
+   
   }
   else{
   $error=ucfirst($type) ." is not deleted". Mysqli_error($con);
@@ -114,7 +114,7 @@ function del(){
 function status(){
   global $con,$error,$select,$type,$success;
   $id1=$_GET['status'];
-	$sql="update tbl_$type set status=!status WHERE id='$id1'";
+	$sql="update tbl_module_$type set status=!status WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
 	if($query){
   $success=ucfirst($type)." status has been successfully changed.";
@@ -131,7 +131,7 @@ function status(){
 function update($b){
   global $con,$error,$select,$type,$success,$id,$a;
   $c=$b-1;
-  $p="UPDATE tbl_".$type." SET ";
+  $p="UPDATE tbl_module_".$type." SET ";
   for($i=0;$i<$b;$i++){	
   $p=$p."`".$a[$i][0]."`='".$a[$i][1]."'";
   if($i==$c){}else{$p=$p.",";}
@@ -174,7 +174,35 @@ function approve(){
   $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
   $qry=mysqli_query($con,$sql);
   $data=mysqli_fetch_array($qry);
+    
+if(isset($_POST['c_'.$type])){
+  @$image=$_FILES['image'];
   
+  @$imageName='';
+  @$temp = explode(".", $_FILES["image"]["name"]);
+             
+   @ $extension = end($temp);
+             @ $fileName = $temp[0] . "." . $temp[1];
+             @ $temp[0] = rand(0, 3000); //Set to random number
+            @  $temp = explode(".", $_FILES["image"]["name"]);
+             @ $newfilename = round(microtime(true)) . '.' . $extension;
+
+ $a=array(
+  array('image',$newfilename),   
+  array('user_name',$_POST["uname"]),
+  array('first_name',$_POST["fname"]),
+  array('last_name',$_POST["lname"]),
+  array('email',$_POST["email"]),
+  array('password',md5($_POST["pwd"])),
+  array('ip',$_SERVER['REMOTE_ADDR']),
+  array('role',$_POST['role'])); 
+  insert(8);
+
+      compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
+      
+   }
+
+   /*
 if(isset($_POST['c_'.$type.''])){
     
     @$image=$_FILES['image'];
@@ -291,7 +319,7 @@ if(isset($_POST['c_'.$type.''])){
      
    }
    
-}
+}*/
   
 if(isset($_POST["m_'.$type.'"])){
   $sql=$select;
@@ -318,7 +346,7 @@ if(isset($_GET['AccountApproval'])){
 //to editable  record
 if(isset($_GET['edit'])){
 	$id1=$_GET['edit'];
-	$sql="SELECT * FROM tbl_$type WHERE id='$id1'";
+	$sql="SELECT * FROM tbl_module_$type WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
   $editData=mysqli_fetch_assoc($query);
   

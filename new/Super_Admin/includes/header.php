@@ -10,7 +10,7 @@ else{
 ?>
 <!DOCTYPE html>
 <html>
-<title>Ask News Operator Panel</title>
+<title>Ask News Super Admin Panel</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
@@ -42,7 +42,7 @@ else{
   <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
   <a href="#" class="w3-bar-item w3-button">Link 1</a>
   <a href="index.php" class="w3-bar-item w3-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
-<a href="gallery.php" class="w3-bar-item w3-button <?php echo $type == "gallery"?'active':'';?>">Gallery</a>
+<a href="user.php" class="w3-bar-item w3-button <?php echo $type == "user"?'active':'';?>">User</a>
 <a href="logout.php" class="w3-bar-item w3-button">Logout</a>
 </div>
 

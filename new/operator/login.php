@@ -64,7 +64,7 @@ if(isset($_POST['login'])){
 <header class="w3-container w3-theme w3-padding" id="myHeader">
  <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> -->
   <div class="w3-center">
-  <h4>Ask News Sub Admin Panel</h4>
+  <h4>Ask News Operator Panel</h4>
   </div>
   
 <div class="w3-container">
@@ -91,7 +91,7 @@ if(isset($_POST['login'])){
 <div class="w3-half">
 	<br><br>
 <form class="w3-container w3-card-4" method="post" action="login.php">
-  <h2>Input Form</h2>
+  <h2>Login </h2>
   <div class="w3-section">      
   <label>Email</label>	
   <input class="w3-input" type="email" name="email" required>
@@ -114,6 +114,13 @@ if(isset($_POST['login'])){
   </div>
   <br>
 </form>
+</div>
+</div>
+
+<div class="w3-row-padding">
+
+<div class="w3-half">
+<img src="../../logo.png" class="w3-round" alt="Norway"> 
 </div>
 </div>
 <br><br>

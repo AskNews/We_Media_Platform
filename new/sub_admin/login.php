@@ -93,7 +93,7 @@ if(isset($_POST['login'])){
 <div class="w3-half">
 	<br><br>
 <form class="w3-container w3-card-4" method="post" action="login.php">
-  <h2>Input Form</h2>
+  <h2>Login</h2>
   <div class="w3-section">      
   <label>Email</label>	
   <input class="w3-input" type="email" name="email" required>
