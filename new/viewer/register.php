@@ -1,12 +1,13 @@
 <?php
-
+$typ="register";
+$type="viewer";
 //session starting
 session_start();
 include "../../Super_Admin/includes/dbconfig.php";
-$type="viewer";
+
 include "engine/engine.php";
 //check where the key exists or not
-if(isset($_SESSION['newViewerLogin'])){
+if(isset($_SESSION['new-viewer-Login'])){
 	header("location: index.php");//content type defer function, where we redirect the page to the login page
 	}
 
@@ -38,7 +39,7 @@ if(isset($_SESSION['newViewerLogin'])){
    $row_t=mysqli_fetch_array($query);
 	  ?> 
 <a href="login.php" class="w3-bar-item w3-button <?php echo $type == "Index"?'w3-green':'';?>">Login</a>
-<a href="register.php" class="w3-bar-item w3-button <?php echo $type == "Index"?'w3-green':'';?>">Register</a>
+<a href="register.php" class="w3-bar-item w3-button <?php echo $typ == "register"?'w3-green':'';?>">Register</a>
 
       <div class="w3-dropdown-hover">
       <a href="#" class="w3-bar-item w3-button <?php echo $type == "account"?'w3-green':'';?> w3-right"><i class="fa fa-user fa-2x"></i></a>
@@ -51,7 +52,7 @@ if(isset($_SESSION['newViewerLogin'])){
     </div>
 </div>
 
-<br><br><br>
+<br><br><br><br><br><br>
 <div class="w3-container">
   <div class="w3-card-4" style="width:100%;">
     <header class="w3-container w3-blue">

@@ -1,6 +1,22 @@
 <?php
 $query="";
-$select="SELECT * FROM `tbl_$type` where `deletion`='1'";
+@$select="SELECT * FROM `tbl_$type` where `deletion`='1'";
+//##################PAGINATION ##############################
+@$page=$_GET["page"];
+  if($page=="" || $page==1)
+  {
+      @$page1=0;
+  }
+  else
+  {
+      @$page1=($page*5)-5;
+  }
+  $select1="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,4";
+$result_news=mysqli_query($con,$select1);
+$sql1=mysqli_query($con,"select * from tbl_$type where `deletion`='1' limit $page1,5");
+@$total_rec=mysqli_num_rows($sql1);
+$total_pages=ceil($total_rec/5);  
+$last=$total_pages-1;    
 
 //##############INSERT ENGINE######################## 
 @$a;
@@ -86,9 +102,9 @@ function update($b){
   }
   //########################LOGIN ENGINE#####################
   
-  $User_email=$_SESSION['newSub-AdminLogin'];
+  @$User_email=$_SESSION['new-viewer-Login'];
   
-  if(isset($_POST['register'])){
+  if(isset($_POST['reg'])){
 	
     $user_name = mysqli_real_escape_string($con,$_POST['user_name']);
 	
@@ -127,7 +143,7 @@ if($data){
   if(isset($_GET['cat'])){
     global $url,$data;
     $url=$_GET['cat'];
-	$sql="select * from tbl_$type where status='1' and url='$url'";
+	@$sql="select * from tbl_news where status='1' and url='$url'";
 	$query1=mysqli_query($con,$sql);
 	$data=mysqli_fetch_array($query1);
 	if($data){

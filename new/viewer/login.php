@@ -1,7 +1,7 @@
 <?php
 //session starting
 session_start();
-
+$typ="login";
 
 
 //check where the key exists or not
@@ -18,7 +18,7 @@ if(isset($_POST['login'])){
 	@$ms = mysqli_real_escape_string($con,$_POST['password']);
 	
 	//login from database
-	$sql="SELECT * from tbl_ad_creator WHERE email='$email' AND password=md5('$ms') AND status = '1' ";
+	$sql="SELECT * from tbl_viewer WHERE email='$email' AND password=md5('$ms') AND status = '1' ";
 	$query=mysqli_query($con,$sql);
 	$data=mysqli_fetch_assoc($query);
     
@@ -27,9 +27,9 @@ if(isset($_POST['login'])){
 		//for rember me
 		if(isset($_POST['rem'])){
 			$time = time()+60*60; // for one hour
-			setcookie("new-AdCreator-Login",$email,$time);
+			setcookie("new-viewer-Login",$email,$time);
 			}
-		$_SESSION['new-AdCreator-Login']=$email;
+		$_SESSION['new-viewer-Login']=$email;
             $success="Success";
 		header ("location: index.php");
 		}else
@@ -64,7 +64,7 @@ if(isset($_POST['login'])){
    }
    $row_t=mysqli_fetch_array($query);
 	  ?> 
-<a href="login.php" class="w3-bar-item w3-button <?php echo $type == "Index"?'w3-green':'';?>">Login</a>
+<a href="login.php" class="w3-bar-item w3-button <?php echo $typ == "login"?'w3-green':'';?>">Login</a>
 <a href="register.php" class="w3-bar-item w3-button <?php echo $type == "Index"?'w3-green':'';?>">Register</a>
 
       <div class="w3-dropdown-hover">
@@ -78,7 +78,7 @@ if(isset($_POST['login'])){
     </div>
 </div>
 
-<br><br><br>
+<br><br><br><br><br><br>
 
 <div class="w3-container">
   <div class="w3-card-4" style="width:100%;">

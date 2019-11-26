@@ -2,7 +2,7 @@
 $type="Index";
 include 'includes/header.php';
 ?>
-
+<br><br><br>
 <div class="w3-container  w3-twothird ">
 
 <div class="w3-content" style="max-width:400px">
@@ -47,23 +47,23 @@ function carousel() {
   
   <div class="w3-panel w3-card ">
   
-    <p>w3-card</p>
+    <p>Sport News</p>
     <div class="w3-panel w3-card w3-third">
         <br>
         <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:30%">
 
-        <p>w3-card</p>
+      <br><br>
         </div>
         <div class="w3-panel w3-card w3-third">
         <br>
         <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:30%">
 
-        <p>w3-card</p>
+      <br><br>
         </div>
         <div class="w3-panel w3-card w3-third">
         <br>
         <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:30%">
-        <p>w3-card</p>
+        <br><br>
   </div>
   
   </div>
@@ -78,19 +78,56 @@ function carousel() {
   </div>
   
   <div id="London" class="w3-container w3-pink w3-border city">
-    <h2>Top</h2>
-    <p>London is the capital city of England.</p>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
   </div>
 
   <div id="Paris" class="w3-container w3-border city" style="display:none">
-    <h2>Paris</h2>
-    <p>Paris is the capital of France.</p> 
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
   </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div></div>
 
   <div id="Tokyo" class="w3-container w3-border city" style="display:none">
-    <h2>Tokyo</h2>
-    <p>Tokyo is the capital of Japan.</p>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
   </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div></div>
 </div>
 
 <script>
