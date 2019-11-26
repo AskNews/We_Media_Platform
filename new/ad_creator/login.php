@@ -40,88 +40,42 @@ if(isset($_POST['login'])){
 
 ?><!DOCTYPE html>
 <html>
-<title>Ad Creator</title>
+<title>Welcome to AskNews</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
-
+<link rel="icon" href="../../icon.png" type="image/x-icon">
+<link rel="stylesheet" href="css/style_color.css">
+<head>
 <style>
-.pagination {
-  display: inline-block;
+.login-card{width:50%;margin: 12% auto;}
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
 }
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
-<body>
-
-<div id="main">
-<div class="w3-teal">
-  <div class="w3-container">
-    <h1>Ad Creator</h1>
-  </div>
+</head>
+<body class="login-card">
+<div> 
+<div class="w3-card-4">
+<div class="w3-container w3-blue">
+  <h2>Login Ask News Ad Creator</h2>
 </div>
-<div class="w3-container">
-  <div class="w3-card-4" style="width:100%;">
-    <header class="w3-container w3-blue">
-      <h1>Login</h1>
-    </header>
+<form class="w3-container" method="post" ><br/>
 
-    <div class="w3-container">
-    <?php
-    include "includes/msg.php";
-    ?>
-    <form class="w3-container" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" >
-    <br>
-<label>Email</label>
-<input class="w3-input" type="email" name="email" required>
-<br>
+ <input type="text" class="w3-input" name="email" placeholder="Email" required autofocus><br/>
 
-<label>Password</label>
-<input class="w3-input" type="password" name="password" required>
-<br>
-
-    <button class="w3-button w3-purple" type="submit" name="login" >Login</button>
-    <a href="register.php">Don't Have a account</a>
-   <br><br>
-    </form>
-      </div>
-
-    <footer class="w3-container w3-blue">
-      <h5>Footer</h5>
-    </footer>
-  </div>
-  </div>
-
-  <script>
-    function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-
-function w3_open() {
-  document.getElementById("main").style.marginLeft = "15%";
-  document.getElementById("mySidebar").style.width = "15%";
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("openNav").style.display = 'none';
-}
-function w3_close() {
-  document.getElementById("main").style.marginLeft = "0%";
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("openNav").style.display = "inline-block";
-}
-</script>
+<input type="password" class="w3-input" name="password" placeholder="Password" required><br>
+<div style="float:left" >
+<label><input type="checkbox" name="rem" id="rememberme">
+Remember Me</label>
+</div>
+<button class="w3-button w3-green" name="login" style="float: right;">Submit</button><br/><br/><br/>
+<a  href="register.php" style="float:left">Register Now!</a>
+<a href="forgot-password.html" style="float:right">Forgot Password?</a><br/><br/>
+</form>
+</div>
+</div>
 </body>
 </html>
+

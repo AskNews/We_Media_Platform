@@ -1,119 +1,129 @@
 <?php
-$typ="register";
-$type="viewer";
-//session starting
-session_start();
-include "../../Super_Admin/includes/dbconfig.php";
+include "../../Super_Admin/Includes/dbconfig.php";
+$viewstateName=null;
+$viewstateEmail=null;
 
-include "engine/engine.php";
-//check where the key exists or not
-if(isset($_SESSION['new-viewer-Login'])){
-	header("location: index.php");//content type defer function, where we redirect the page to the login page
-	}
+$viewstatePassword=null;
+$viewstateConfirm=null;
 
-//check for login
 
+if(array_key_exists("viewstateName",$_POST))
+{	
+	$viewstateName=$_POST["username"];	
+}
+else
+{
+	$viewstateName=null;
+}
+
+if(array_key_exists("viewstateEmail",$_POST))
+{	
+	$viewstateEmail=$_POST["email"];	
+}
+else
+{
+	$viewstateEmail=null;
+}
+if(array_key_exists("viewstatePassword",$_POST))
+{	
+	$viewstatePassword=$_POST["password"];	
+}
+else
+{
+	$viewstatePassword=null;
+}
+if(array_key_exists("viewstateConfirm",$_POST))
+{	
+	$viewstateConfirm=$_POST["confirm"];	
+}
+else
+{
+	$viewstateConfirm=null;
+}
+
+if(isset($_POST['submit']))
+{ 
+    $ipaddress = $_SERVER['REMOTE_ADDR'];   
+    $name=$viewstateUserProfile;
+    //echo "name= $name";
+    if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0)
+    {
+        if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $_POST['password']))
+        {
+            $error_pass="Password must be 6 character long and have alphanumeric and have one special character";
+        }
+        else if($_POST["password"]!=$_POST["confirm"])
+        {
+            $error="password not confirmed";
+        }
+        else
+        {
+            $password=md5($_POST["password"]);
+            $joindate=date('m/d/Y ', time());
+            $query="insert into tbl_viewer(user_name,email,password,ip,c_date)
+            values('$_POST[username]','$_POST[email]','$password','$ipaddress','$joindate')";
+            /*echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
+            values('$_POST[username]','$_POST[email]',$_POST[mobile],'$password','$filename','$ipaddress')";*/
+            if(mysqli_query($con,$query))
+            {
+                header("location:login.php");
+            }
+            else{
+                echo "<script>alert('enter details again')</script>";
+            }
+        }
+    }
+    else
+    {
+        echo "<script>alert('Please fill all the details')</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Welcome to AskNews</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
-
-<body>
-
-<div class="w3-top">
-
-  <div class="w3-bar w3-blue">
-  <img src="../../logo.png" class="w3-bar-item"  height='100px' width='100px'>
-<br><br>
-<a href="index.php" class="w3-bar-item w3-button <?php echo $type == "Index"?'w3-green':'';?>"><i class="fa fa-home fa-2x"></i></a>
-<?php
-	 while($row=mysqli_fetch_array($query)){
-	 ?>
- <a href="category.php?cat=<?php echo $row['url'];?>" class="w3-bar-item w3-button <?php echo (@$url==$row['url'])?'w3-green':'';?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a>
-      <?php
-   }
-   $row_t=mysqli_fetch_array($query);
-	  ?> 
-<a href="login.php" class="w3-bar-item w3-button <?php echo $type == "Index"?'w3-green':'';?>">Login</a>
-<a href="register.php" class="w3-bar-item w3-button <?php echo $typ == "register"?'w3-green':'';?>">Register</a>
-
-      <div class="w3-dropdown-hover">
-      <a href="#" class="w3-bar-item w3-button <?php echo $type == "account"?'w3-green':'';?> w3-right"><i class="fa fa-user fa-2x"></i></a>
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">
-      <a href="#" class="w3-bar-item w3-button">Liked News</a>
-      <a href="#" class="w3-bar-item w3-button">History</a>
-      <a href="#" class="w3-bar-item w3-button">Logout</a>
-    </div>
-  </div>
-    </div>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="../../icon.png" type="image/x-icon">
+<link rel="stylesheet" href="css/style_color.css">
+<head>
+<style>
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
+}
+.reg-card{width:50%;margin: 5% auto;}
+.error{color:red;}
+</style>
+</head>
+<body class="reg-card">
+<div> 
+<div class="w3-card-4">
+<div class="w3-container w3-blue">
+  <h2>Sign Up AskNews</h2>
 </div>
+<form id="sign_up" method="POST" class="w3-container" enctype="multipart/form-data" ><br/>
 
-<br><br><br><br><br><br>
-<div class="w3-container">
-  <div class="w3-card-4" style="width:100%;">
-    <header class="w3-container w3-blue">
-      <h1>Ragister</h1>
-    </header>
+<input type="text" class="w3-input" name="username" value="<?php if(isset($viewstateName)){ echo $viewstateName;}?>" pattern="[a-zA-Z0-9]+" id="username" placeholder="User name">
+<input type="hidden"  name="viewstateName" /><br/>
 
-    <div class="w3-container">
-    <?php
-    include "includes/msg.php";
-    ?>
-    <form class="w3-container" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
-    <br>
-    <label>User Name</label>
-<input class="w3-input" type="text" name="uname" required>
-<br>
+<input type="email" class="w3-input" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email Address" >
+<input type="hidden"  name="viewstateEmail" ><br>
 
-<label>Email</label>
-<input class="w3-input" type="email" name="email" required>
-<br>
+<input type="password" class="w3-input" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password"  placeholder="Password">
+<input type="hidden"  name="viewstatePassword" /><br/>
 
-<label>Password</label>
-<input class="w3-input" type="password" name="pwd" required>
-<br>
-
-<label>Confirm Password</label>
-<input class="w3-input" type="password" name="cpwd" required>
-<br>
-
-    <button class="w3-button w3-purple" type="submit" name="reg" >Register</button>
-    <a href="login.php">Already Have a account</a>
-   <br><br>
-    </form>
-      </div>
-
-    <footer class="w3-container w3-blue">
-      <h5>Made By Avinash</h5>
-    </footer>
-  </div>
-  </div>
-
-  <script>
-    function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-
-function w3_open() {
-  document.getElementById("main").style.marginLeft = "15%";
-  document.getElementById("mySidebar").style.width = "15%";
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("openNav").style.display = 'none';
-}
-function w3_close() {
-  document.getElementById("main").style.marginLeft = "0%";
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("openNav").style.display = "inline-block";
-}
-</script>
+<input type="password" class="w3-input" name="confirm" id="confirm" value="<?php if(isset($viewstateConfirm)){ echo $viewstateConfirm;}?>" placeholder="Confirm Password">
+<input type="hidden"  name="viewstateConfirm" />
+<span id="confirm-error" class="error" ><?php if(isset($error)){ echo $error;}?></span><br/>
+<span id="file-error" class="error" ><?php if(isset($errorForFile)){ echo $errorForFile;}?></span>
+<br/>
+<input type="submit" class="w3-button w3-green" name="submit" value="Register"><br/><br/><br/>
+<a  href="login.php" style="float:left">already have account</a>
+<br/><br/>
+</form>
+</div>
+</div>
 </body>
 </html>

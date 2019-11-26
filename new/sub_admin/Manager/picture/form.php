@@ -1,8 +1,6 @@
 <?php
 include "includes/msg.php";
 ?>
-<div class="w3-row-padding">
-<div class="w3-half">
 <form class="w3-container w3-card-4" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
 <?php
 if(isset($_GET['edit'])){
@@ -104,7 +102,7 @@ if(isset($_GET['edit'])){
 
 </form>
 </div>
-</div>
+
 
 
 

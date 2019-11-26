@@ -1,8 +1,17 @@
 <?php
 include "includes/msg.php";
 ?>
-<div class="w3-row-padding">
-<div class="w3-half">
+
+<style>
+.form-card{width:70%;margin: 3% auto;}
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
+}
+</style>
+
+<div class="form-card">
 <form class="w3-container w3-card-4" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
 <?php
 if(isset($_GET['edit'])){
@@ -13,7 +22,7 @@ if(isset($_GET['edit'])){
 }else{
 ?>
 <h2>Create New <?php echo ucfirst($type);?></h2>
-
+  
 <?php
 }
 ?>
@@ -104,7 +113,7 @@ if(isset($_GET['edit'])){
 
 </form>
 </div>
-</div>
+
 
 
 

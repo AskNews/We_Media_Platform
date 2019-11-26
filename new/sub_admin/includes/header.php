@@ -64,3 +64,14 @@ include "../../Super_Admin/includes/dbconfig.php";
   </div>-->
 
 </header>
+
+<style>
+.form-card{width:70%;margin: 3% auto;}
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
+}
+</style>
+
+<div class="form-card">

@@ -60,63 +60,60 @@ if(isset($_POST['login'])){
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
   <a href="#" class="w3-bar-item w3-button">Link 4</a>
 </nav>-->
+
+<!DOCTYPE html>
+<html>
+<title>Welcome to AskNews </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="../../icon.png" type="image/x-icon">
+<link rel="stylesheet" href="css/style_color.css">
+<head>
+<style>
+.login-card{width:50%;margin: 12% auto;}
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
+}
+</style>
+</head>
+<body class="login-card">
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
  <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> -->
   <div class="w3-center">
   <h4>Ask News Super Admin Panel</h4>
   </div>
-  
+  <style>
+.login-card{width:50%;margin: 12% auto;}
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
+}
+</style>
 <div class="w3-container">
-
-
-  <!--
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-padding-16">
-      Dropdown <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button">Link 1</a>
-      <a href="#" class="w3-bar-item w3-button">Link 2</a>
-      <a href="#" class="w3-bar-item w3-button">Link 3</a>
-    </div>
-  </div>-->
 
 </header>
 
+<div> 
+<div class="w3-card-4">
+
+<form class="w3-container" method="post" ><br/>
+
+ <input type="text" class="w3-input" name="uname" placeholder="Username" required autofocus><br/>
+
+<input type="password" class="w3-input" name="password" placeholder="Password" required><br>
+<div style="float:left" >
+<label><input type="checkbox" name="rem" id="rememberme">
+Remember Me</label>
 </div>
-
-<div class="w3-row-padding">
-
-<div class="w3-half">
-	<br><br>
-<form class="w3-container w3-card-4" method="post" action="login.php">
-  <h2>Login </h2>
-  <div class="w3-section">      
-  <label>User Name</label>	
-  <input class="w3-input" type="text" name="uname" required>
-    
-  </div>
-  <div class="w3-section">      
-  <label>Password</label>
-  	
-  <input class="w3-input" type="password" name="password" required>
-    </div>
-
-  <div class="w3-row">
-  <div class="w3-half">
-    <input id="milk" class="w3-check" type="checkbox" name="rem">
-    <label>Remember Me</label>
-    <br>
-  </div>
-  <input type="submit" name="login" value="Login" class="w3-button w3-theme">
-  
-  </div>
-  <br>
+<button class="w3-button w3-green" name="login" type="submit" style="float: right;">Login</button><br/><br/><br/>
+<a href="forgot-password.html" style="float:right">Forgot Password?</a><br/><br/>
 </form>
 </div>
 </div>
-<br><br>
-<?php
-        include "includes/footer.php";
-        ?>
+</body>
+</html>
+

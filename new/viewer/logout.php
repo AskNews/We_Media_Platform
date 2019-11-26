@@ -1,6 +1,7 @@
 <?php
 session_start();
-session_destroy();
+sesion_destroy();
+$_SESSION['new-viewer-Login']=NULL;
 setcookie("new-viewer-Login",NULL, time() -1);
-header("location: login.php");
+header("location: index.php");
 ?>

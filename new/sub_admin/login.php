@@ -41,84 +41,42 @@ if(isset($_POST['login'])){
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-<title>Ask News Sub Admin Panel</title>
-<meta charset="UTF-8">
+<title>Welcome to AskNews Sub Admin Panel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="../../icon.png" type="image/x-icon">
 <link rel="stylesheet" href="css/style_color.css">
-<link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
-	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<head>
+<style>
+.login-card{width:50%;margin: 12% auto;}
+a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #00BCD4;
+}
+</style>
 </head>
-<body>
-
-<!-- Side Navigation 
-<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
-  <h1 class="w3-xxxlarge w3-text-theme">Side Navigation</h1>
-  <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button">Link 4</a>
-</nav>-->
-<!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
- <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> -->
-  <div class="w3-center">
-  <h4>Ask News Sub Admin Panel</h4>
-  </div>
-  
-<div class="w3-container">
-
-
-  <!--
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-padding-16">
-      Dropdown <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button">Link 1</a>
-      <a href="#" class="w3-bar-item w3-button">Link 2</a>
-      <a href="#" class="w3-bar-item w3-button">Link 3</a>
-    </div>
-  </div>-->
-
-</header>
-
+<body class="login-card">
+<div> 
+<div class="w3-card-4">
+<div class="w3-container w3-yellow">
+  <h2>Login AskNews Sub Admin</h2>
 </div>
+<form class="w3-container" method="post" ><br/>
 
-<div class="w3-row-padding">
+ <input type="email" class="w3-input" name="email" placeholder="Username" required autofocus><br/>
 
-<div class="w3-half">
-	<br><br>
-<form class="w3-container w3-card-4" method="post" action="login.php">
-  <h2>Login</h2>
-  <div class="w3-section">      
-  <label>Email</label>	
-  <input class="w3-input" type="email" name="email" required>
-    
-  </div>
-  <div class="w3-section">      
-  <label>Password</label>
-  	
-  <input class="w3-input" type="password" name="password" required>
-    </div>
-
-  <div class="w3-row">
-  <div class="w3-half">
-    <input id="milk" class="w3-check" type="checkbox" name="rem">
-    <label>Remember Me</label>
-    <br>
-  </div>
-  <input type="submit" name="login" value="Login" class="w3-button w3-theme">
-  
-  </div>
-  <br>
+<input type="password" class="w3-input" name="password" placeholder="Password" required><br>
+<div style="float:left" >
+<label><input type="checkbox" name="rem" id="rememberme">
+Remember Me</label>
+</div>
+<button class="w3-button w3-green" name="login" style="float: right;">Secure Login</button><br/><br/><br/>
+<a  href="../operator/login.php" style="float:left">Login as Operator!</a>
+<a href="forgot-password.html" style="float:right">Forgot Password?</a><br/><br/>
 </form>
 </div>
 </div>
-<br><br>
-<?php
-        include "includes/footer.php";
-        ?>
+</body>
+</html>
+
