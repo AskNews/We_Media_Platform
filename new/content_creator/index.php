@@ -7,7 +7,7 @@
   </div>
 </div>
 <img src="img_car.jpg" alt="Car" style="width:100%"> -->
-<!--<div class="w3-container">
+<div class="w3-container">
 <p>In this example, the sidebar is hidden (style="display:none")</p>
 
 <div class="w3-light-grey w3-section">
@@ -16,7 +16,7 @@
   <div id="Demo4" class="w3-hide w3-container">
     <p>Lorem ipsum 100% width</p>
   </div>
-</div>-->
+</div>
 <table class="w3-table-all">
     <thead>
       <tr class="w3-red">
@@ -92,7 +92,6 @@
   <a href="#">6</a>
   <a href="#">&raquo;</a>
 </div>
-
 </div>
 </div>
 

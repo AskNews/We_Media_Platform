@@ -187,8 +187,6 @@ function convertToComa( str1 ) {
             </div>
         </div>
     </nav>
-
-
 <section>
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
