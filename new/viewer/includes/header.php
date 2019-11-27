@@ -28,8 +28,8 @@ include "../../Super_Admin/includes/dbconfig.php";
    }
    $row_t=mysqli_fetch_array($query);
 	  ?> 
-<a href="login.php" class="w3-bar-item w3-button <?php echo $type == "login"?'w3-green':'';?>">Login</a>
-<a href="register.php" class="w3-bar-item w3-button <?php echo $type == "login"?'w3-green':'';?>">Register</a>
+<a href="login.php" class="w3-bar-item w3-button <?php echo $typ == "login"?'w3-green':'';?>">Login</a>
+<a href="register.php" class="w3-bar-item w3-button <?php echo $typ == "register"?'w3-green':'';?>">Register</a>
 <a href="gallery.php" class="w3-bar-item w3-button <?php echo $type == "gallery"?'w3-green':'';?>">Gallery</a>
 
 
