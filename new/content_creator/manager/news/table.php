@@ -1,3 +1,4 @@
+
 <br/>
 <div class="col-sm-3">
 <form class="w3-container" method="post" >
@@ -19,7 +20,8 @@
 </label>
 </div>
 </form>
-<br/><br/>
+
+<div class="table">
 <table class="w3-table-all">
     <thead>
       <tr class="w3-green">
@@ -74,3 +76,4 @@
     ?>
   <a href="news.php?page=<?php echo $total_pages;?>" class="<?php if($page>=$total_pages){ echo "disabled";} ?>" >&raquo;</a>
 </div>                
+</div>
