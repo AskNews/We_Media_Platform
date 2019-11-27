@@ -1,7 +1,7 @@
 <div class="w3-container">
   <div class="w3-card-4" style="width:100%;">
     <header class="w3-container w3-blue">
-      <h1>Create News <?php echo $type;?></h1>
+      <h1>Create New <?php echo $type;?></h1>
     </header>
 
    
@@ -95,7 +95,7 @@ Status &nbsp; <select class="w3-input" name="status">
       </div>
 
     <footer class="w3-container w3-blue">
-      <h5>Footer</h5>
+      <h5>AskNews</h5>
     </footer>
   </div>
   </div>

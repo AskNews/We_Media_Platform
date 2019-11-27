@@ -4,33 +4,35 @@ include "includes/header.php";
 ?>
 		<!-- MAIN -->
 		
-<div class="w3-responsive w3-card-4">
-<table class="w3-table w3-striped w3-bordered">
-<thead>
-<tr class="w3-theme">
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>Points</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>Jill</td>
-  <td>Smith</td>
-  <td>50</td>
-</tr>
-<tr class="w3-white">
-  <td>Eve</td>
-  <td>Jackson</td>
-  <td>94</td>
-</tr>
-<tr>
-  <td>Adam</td>
-  <td>Johnson</td>
-  <td>67</td>
-</tr>
-</tbody>
-</table>
+    <div class="w3-container w3-card">
+    <h3>Dashboard</h3>
+<br>
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div> 
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div>
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div> 
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div> 
+<br><br>&nbsp;
+</div><br><br>
+<div class="w3-container w3-card">
+<br>
+<div class="w3-card w3-third">
+  <p>w3-card</p>
+</div> 
+<div class="w3-card w3-third">
+  <p>w3-card</p>
+</div>
+<div class="w3-card w3-third">
+  <p>w3-card</p>
+</div> 
+<br><br>&nbsp;
 </div>
 
 

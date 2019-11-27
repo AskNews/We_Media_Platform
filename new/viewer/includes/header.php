@@ -23,7 +23,7 @@ include "../../Super_Admin/includes/dbconfig.php";
 <?php
 	 while($row=mysqli_fetch_array($query)){
 	 ?>
- <a href="category.php?cat=<?php echo $row['url'];?>" class="w3-bar-item w3-button <?php echo (@$url==$row['url'])?'w3-green':'';?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a>
+ <a href="category.php?cat=<?php echo $row['id'];?>&nam=<?php echo $row['title']?>" class="w3-bar-item w3-button <?php echo (@$url==$row['url'])?'w3-green':'';?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a>
       <?php
    }
    $row_t=mysqli_fetch_array($query);
@@ -51,7 +51,7 @@ include "../../Super_Admin/includes/dbconfig.php";
   </div>
 <?php
     }
-    echo $_SESSION['new-viewer-Login'].'hi';
+  
 ?>
     </div>
 </div>

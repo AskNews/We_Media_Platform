@@ -39,7 +39,7 @@
       </div>
 
       <footer class="w3-container w3-blue">
-      <h5>Footer</h5>
+      <h5>AskNews</h5>
     </footer>
   </div>
   </div>

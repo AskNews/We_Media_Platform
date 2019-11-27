@@ -156,7 +156,7 @@ function update($b){
 function approve(){
   global $con,$error,$select,$type,$success;
   $id1=$_GET['AccountApproval'];
-	$sql="update tbl_$type set AccountApproval=!AccountApproval WHERE Creatorid='$id1'";
+	$sql="update tbl_$type set AccountApproval=!AccountApproval WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
 	if($query){
   $success=ucfirst($type)." Account has been Approved successfully.";

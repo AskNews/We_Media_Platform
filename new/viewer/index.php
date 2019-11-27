@@ -36,81 +36,106 @@ function carousel() {
 </script>
 
 </div>
-
-<div class="w3-container ">
-  <h2>Responsive Layout</h2>
-  <p>The w3-mobile class displays HTML elements vertically on small screens and horizontally on medium/large screens. Resize the browser window to see the effect.</p>
-</div>
-<!---- main-->
-<div class="w3-cell-row">
-  <div class="w3-container  w3-cell w3-twothird" >
+<div class="w3-container w3-card w3-third">
+   
+  <div class="w3-bar">
+    <button class="w3-bar-item w3-button tablink " onclick="openCity(event,'London')">Recommended News</button>
+  </div>
   
-  <div class="w3-panel w3-card ">
-  
-    <p>Sport News</p>
-    <div class="w3-panel w3-card w3-third">
+  <div id="London" class="w3-container city">
+  <div class="w3-panel w3-card">
         <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:30%">
-
-      <br><br>
-        </div>
-        <div class="w3-panel w3-card w3-third">
-        <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:30%">
-
-      <br><br>
-        </div>
-        <div class="w3-panel w3-card w3-third">
-        <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:30%">
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
         <br><br>
   </div>
-  
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
   </div>
-  
   </div>
-  <div class="w3-container w3-blue w3-cell w3-third">
+
+</div>
+
+
+<!---- main-->
+<div class="w3-cell-row">
+<div class="w3-container  w3-cell w3-twothird" >
+<?php
+     $sql="select * from tbl_categories where status='1'";
+	 $query=mysqli_query($con,$sql);
+	 while($row=mysqli_fetch_array($query)){
+	 ?>
+  <div class="w3-panel w3-card ">
+  
+    <h3><?php echo $row['title'];?></h3>
+    <?php
+    $a=$row['id'];
+            $sql1="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$a' LIMIT 5";
+			$query1=mysqli_query($con,$sql1);
+			while($row1=mysqli_fetch_array($query1)){
+			?>
+    <a href="news.php?sid=<?php echo $row1['NewsID'];?>">
+    <div class="w3-panel w3-card w3-third">
+        <br>
+        <img src="../content_creator/img/<?php echo $row1['FileAttach'];?>" class="w3-round-small" alt="Norway" style="width:30%;height:100px;">
+        <?php echo substr($row1['Summary'],0,30);?>...
+      <br><br>
+        </div>
+        </a>
+        <?php
+      }
+        ?>
+       
+  <a href="category.php?cat=<?php echo $row['id']?>&nam=<?php echo $row['title']?>">More....</a>
+  </div>
+  <?php
+   }  
+  ?>
+  </div>
+  <div class="w3-container w3-card w3-third">
    
-  <div class="w3-bar w3-pink">
-    <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">Top News</button>
+  <div class="w3-bar">
+    <button class="w3-bar-item w3-button tablink " onclick="openCity(event,'London')">Top News</button>
     <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">Recent News</button>
     <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">Popular News</button>
   </div>
   
-  <div id="London" class="w3-container w3-pink w3-border city">
+  <div id="London" class="w3-container city">
+  <?php
+    $a=$row['id'];
+            $sql1="select * from tbl_news where TopNews='1' and Approved='1' and Status='1' LIMIT 5";
+			$query1=mysqli_query($con,$sql1);
+			while($row1=mysqli_fetch_array($query1)){
+			?>
+   
   <div class="w3-panel w3-card">
         <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <img src="../content_creator/img/<?php echo $row1['FileAttach'];?>" class="w3-round-small" alt="AskNews" style="width:100px;height:80px;">
         <br><br>
   </div>
-  <div class="w3-panel w3-card">
-        <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
-        <br><br>
-  </div>
-  <div class="w3-panel w3-card">
-        <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
-        <br><br>
-  </div>
+  <?php
+      }
+  ?>
   </div>
 
   <div id="Paris" class="w3-container w3-border city" style="display:none">
+  <?php
+    $a=$row['id'];
+            $sql1="select * from tbl_news where Approved='1' and Status='1' LIMIT 5";
+			$query1=mysqli_query($con,$sql1);
+			while($row1=mysqli_fetch_array($query1)){
+			?>
   <div class="w3-panel w3-card">
         <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <img src="../content_creator/img/<?php echo $row1['FileAttach'];?>" class="w3-round-small" alt="Norway" style="width:100px;height:80px;">
         <br><br>
   </div>
-  <div class="w3-panel w3-card">
-        <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
-        <br><br>
+  <?php
+      }
+  ?>
   </div>
-  <div class="w3-panel w3-card">
-        <br>
-        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
-        <br><br>
-  </div></div>
+  
 
   <div id="Tokyo" class="w3-container w3-border city" style="display:none">
   <div class="w3-panel w3-card">
@@ -128,6 +153,37 @@ function carousel() {
         <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
         <br><br>
   </div></div>
+</div>
+<br><br>&nbsp;
+<div class="w3-container w3-card w3-third">
+   
+  <div class="w3-bar">
+    <button class="w3-bar-item w3-button tablink " onclick="openCity(event,'London')">Top Creators</button>
+  </div>
+  
+  <div id="London" class="w3-container city">
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  <div class="w3-panel w3-card">
+        <br>
+        <img src="../../logo.png" class="w3-round-small" alt="Norway" style="width:100px;">
+        <br><br>
+  </div>
+  </div>
+
 </div>
 
 <script>
@@ -148,6 +204,6 @@ function openCity(evt, cityName) {
 
 </div>
 </div>
-
-</body>
-</html>
+<?php
+include 'includes/footer.php';
+?>

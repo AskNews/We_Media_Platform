@@ -100,7 +100,7 @@ a{
 <body class="reg-card">
 <div> 
 <div class="w3-card-4">
-<div class="w3-container w3-blue">
+<div class="w3-container w3-red">
   <h2>Sign Up AskNews</h2>
 </div>
 <form id="sign_up" method="POST" class="w3-container" enctype="multipart/form-data" ><br/>

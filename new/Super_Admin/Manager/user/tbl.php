@@ -6,7 +6,7 @@
 <div class="w3-container">
     
   <header class="w3-container w3-blue">
-    <h1>Super Admin Panel</h1>
+    <h1>Manage Users</h1>
   </header>
    <br>
 <input type="submit" name="create" value="Create <?php echo $type;?>" class="w3-button w3-theme">
@@ -68,7 +68,7 @@
 
 
   <footer class="w3-container w3-blue">
-    <h5>Footer</h5>
+    <h5>AskNews</h5>
   </footer>
   </div>
 </div>
