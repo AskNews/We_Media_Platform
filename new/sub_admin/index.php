@@ -1,16 +1,79 @@
 <?php
+session_start();
 $type="index";
-include "includes/header.php";
+include "../../Super_Admin/includes/dbconfig.php";
+	if(isset($_SESSION['newSub-AdminLogin'])){
+    
+    }
+    else{
+        header ("location: login.php");
+    }
+	include "engine/engine.php";
 ?>
-		<!-- MAIN -->
+<!DOCTYPE html>
+<html>
+<title>Ask News Sub Admin Panel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style_color.css">
+<link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
 	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<body>
+
+<!-- Side Navigation 
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
+  <h1 class="w3-xxxlarge w3-text-theme">Side Navigation</h1>
+  <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button">Link 4</a>
+</nav>-->
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+ <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> -->
+  <div class="w3-center">
+  <h4>Ask News Sub Admin Panel</h4>
+  </div>
+  
+<div class="w3-container">
+
+<div class="w3-bar w3-theme">
+<a href="index.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "index"?'active':'';?>">Dashboard</a>
+<a href="content_creator.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "content_creator"?'active':'';?>">Content Creator</a>
+<a href="ad_creator.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "ad_creator"?'active':'';?>">Ad Creator</a>
+<a href="gallery.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "gallery"?'active':'';?>">Gallery</a>
+<a href="picture.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "picture"?'active':'';?>">Picture</a>
+<a href="slideshow.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "slideshow"?'active':'';?>">Slideshow</a>
+<a href="categories.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "categories"?'active':'';?>">Categories</a>
+<a href="feedback.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "feedback"?'active':'';?>">Feedback</a>
+<a href="qna.php" class="w3-bar-item w3-button w3-padding-16 <?php echo $type == "qna"?'active':'';?>">QNA</a>
+<a href="logout.php" class="w3-bar-item w3-button w3-padding-16 ">Logout</a>
+  
+  <!--
+  <div class="w3-dropdown-hover">
+    <button class="w3-button w3-padding-16">
+      Dropdown <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <a href="#" class="w3-bar-item w3-button">Link 3</a>
+    </div>
+  </div>-->
+
+</header>
+		<!-- MAIN -->
+    <div class="w3-container">
     <div class="w3-container w3-card">
     <h3>Dashboard <i class="fa fa-tachometer"></i></h3>
     <br>
 <table class="w3-responsive">
 <tr><td>
 <div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total Categories &nbsp;<i class="fa fa-newspaper-o"></i></p>
+<p>&nbsp;&nbsp;Categories &nbsp;<i class="fa fa-newspaper-o"></i></p>
   <div class="w3-center w3-blue">
   <font size="6" >10.4K</font> 
   </div>
@@ -18,7 +81,7 @@ include "includes/header.php";
 </div>
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
 <div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total Gallery &nbsp;<i class="fa fa-users"></i></p>
+<p>&nbsp;&nbsp;Gallery &nbsp;<i class="fa fa-file-image-o"></i></p>
   <div class="w3-center w3-green">
   <font size="6" >30</font> 
   </div>
@@ -26,7 +89,7 @@ include "includes/header.php";
 </div>
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
 <div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total Pictures &nbsp;<i class="fa fa-newspaper-o"></i></p>
+<p>&nbsp;&nbsp;Pictures &nbsp;<i class="fa fa-picture-o"></i></p>
   <div class="w3-center w3-blue">
   <font size="6" >400</font> 
   </div>
@@ -34,44 +97,94 @@ include "includes/header.php";
 </div> 
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
 <div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total Sub Admin &nbsp;<i class="fa fa-users"></i></p>
+<p>&nbsp;&nbsp;SlideShow &nbsp;<i class="fa fa-slideshare"></i></p>
   <div class="w3-center w3-blue">
   <font size="6" >16</font> 
   </div>
   <br>
 </div> 
 </td></tr></table>
-<br>
+<br><br>&nbsp;
+</div><br><br>
+	
+<div class="w3-responsive w3-card-4">
+<h3>Feedback <i class="fa fa-commenting-o" aria-hidden="true"></i>
+</h3> 
+<table class="w3-table w3-striped w3-bordered">
+<thead>
+<tr class="w3-theme">
+  <th>ID</th>
+  <th>User</th>
+  <th>Message</th>
+  <th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>bhavesh</td>
+  <td>Nice service</td>
+  <td><a href="#">Report</a>&nbsp;<a href="#">Reply</a></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>bhavik</td>
+  <td>Great idea, Thank you</td>
+  <td><a href="#">Report</a>&nbsp;<a href="#">Reply</a></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>jeet</td>
+  <td>How can i earn money?</td>
+  <td><a href="#">Report</a>&nbsp;<a href="#">Reply</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br><br>
+
+<div class="w3-container w3-card">
+    <h3>Account Review <i class="fa fa-users"></i></h3>
+    <br>
 <table class="w3-responsive">
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<tr><td>
 <div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total Views &nbsp;<i class="fa fa-newspaper-o"></i></p>
+<p>&nbsp;&nbsp;Content Creators &nbsp;<i class="fa fa-users"></i></p>
   <div class="w3-center w3-blue">
-  <font size="6" >10.4K</font> 
+  <font size="6" >152K</font> 
   </div>
   <br>
 </div>
-</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total viewers &nbsp;<i class="fa fa-users"></i></p>
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-border w3-quarter w3-users" style="width: 200px;">
+<p>&nbsp;&nbsp;Ad Creators &nbsp;<i class="fa fa-users"></i></p>
   <div class="w3-center w3-green">
-  <font size="6" >30</font> 
+  <font size="6" >20</font> 
   </div>
   <br>
 </div>
-</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
 <div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
-<p>&nbsp;&nbsp;Total Content Creator &nbsp;<i class="fa fa-users"></i></p>
+<p>&nbsp;&nbsp;Pendding Accounts &nbsp;<i class="fa fa-users"></i></p>
   <div class="w3-center w3-blue">
-  <font size="6" >400</font> 
+  <font size="6" >56</font> 
+  </div>
+  <br>
+</div> 
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Feedback &nbsp;<i class="fa fa-comment"></i></p>
+  <div class="w3-center w3-blue">
+  <font size="6" >160</font> 
   </div>
   <br>
 </div> 
 </td></tr></table>
 
+
 <br><br>&nbsp;
 </div><br><br>
-
+	</div>
 		<!-- END MAIN -->
         <?php
         include "includes/footer.php";
