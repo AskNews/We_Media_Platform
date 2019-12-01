@@ -1,14 +1,14 @@
 
-  <div class="w3-card-4" style="width:100%;">
+  <div class="wmp-card-4" style="width:100%;">
 
-  <div class="w3-container">
+  <div class="wmp-container">
       
-    <header class="w3-container w3-blue">
+    <header class="wmp-container wmp-blue">
       <h1>My Ads</h1>
     </header>
-    <table class="w3-table-all">
+    <table class="wmp-table-all">
     <thead>
-      <tr class="w3-blue">
+      <tr class="wmp-blue">
         <th>ID</th>
         <th>Ad Name</th>
         <th>url</th>
@@ -31,7 +31,7 @@
   </table>
 
 
-    <footer class="w3-container w3-blue">
+    <footer class="wmp-container wmp-blue">
       <h5>Footer</h5>
     </footer>
     </div>

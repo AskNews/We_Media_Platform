@@ -4,47 +4,47 @@ include "includes/header.php";
 ?>
 		<!-- MAIN -->
 	<br><br>
-    <div class="w3-container w3-card">
+    <div class="wmp-container wmp-card">
     <h3>Dashboard <i class="fa fa-tachometer"></i></h3>
     <br>
-<table class="w3-responsive">
+<table class="wmp-responsive">
 <tr><td>
-<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Total News &nbsp;<i class="fa fa-newspaper-o"></i></p>
-  <div class="w3-center w3-blue">
+  <div class="wmp-center wmp-blue">
   <font size="6" >10.4K</font> 
   </div>
   <br>
 </div>
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-border wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Total Ads &nbsp;<i class="fa fa-adn"></i></p>
-  <div class="w3-center w3-green">
+  <div class="wmp-center wmp-green">
   <font size="6" >30</font> 
   </div>
   <br>
 </div>
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Pendding News &nbsp;<i class="fa fa-newspaper-o"></i></p>
-  <div class="w3-center w3-blue">
+  <div class="wmp-center wmp-blue">
   <font size="6" >400</font> 
   </div>
   <br>
 </div> 
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-border wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Pendding Ads &nbsp;<i class="fa fa-adn"></i></p>
-  <div class="w3-center w3-green">
+  <div class="wmp-center wmp-green">
   <font size="6" >16</font> 
   </div>
   <br>
 </div> 
 </td>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-border wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Reports &nbsp;<i class="fa fa-flag"></i></p>
-  <div class="w3-center w3-blue">
+  <div class="wmp-center wmp-blue">
   <font size="6" >16</font> 
   </div>
   <br>
@@ -54,18 +54,18 @@ include "includes/header.php";
 <br><br>&nbsp;
 </div><br><br>
 	
-<div class="w3-responsive w3-card-4">
+<div class="wmp-responsive wmp-card-4">
 <h3>Pendding Conetnt Creator Accounts <i class="fa fa-commenting-o" aria-hidden="true"></i>
 </h3> 
-<table class="w3-table w3-striped w3-bordered">
+<table class="wmp-table wmp-striped wmp-bordered">
 <thead>
-<tr class="w3-theme">
+<tr class="wmp-theme">
   <th>ID</th>
   <th>Email</th>
   <th>Channel Name</th>
   <th>Action</th>
 </tr>
-</thead>
+</thead> 
 <tbody>
 <tr>
   <td>1</td>
@@ -90,48 +90,48 @@ include "includes/header.php";
 </div>
 <br><br>
 
-<div class="w3-container w3-card">
+<div class="wmp-container wmp-card">
     <h3>Review <i class="fa fa-users"></i></h3>
     <br>
-<table class="w3-responsive">
+<table class="wmp-responsive">
 <tr><td>
-<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Approved News &nbsp;<i class="fa fa-users"></i></p>
-  <div class="w3-center w3-blue">
+  <div class="wmp-center wmp-blue">
   <font size="6" >152K</font> 
   </div>
   <br>
 </div>
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-border w3-quarter w3-users" style="width: 200px;">
+<div class="wmp-card wmp-border wmp-quarter wmp-users" style="width: 200px;">
 <p>&nbsp;&nbsp;Approved Ads &nbsp;<i class="fa fa-adn"></i></p>
-  <div class="w3-center w3-green">
+  <div class="wmp-center wmp-green">
   <font size="6" >20</font> 
   </div>
   <br>
 </div>
 </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Reported Content &nbsp;<i class="fa fa-users"></i></p>
-  <div class="w3-center w3-blue">
+  <div class="wmp-center wmp-blue">
   <font size="6" >56</font> 
   </div>
   <br>
 </div> 
 </td>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Blocked Content &nbsp;<i class="fa fa-users"></i></p>
-  <div class="w3-center w3-green">
+  <div class="wmp-center wmp-green">
   <font size="6" >56</font> 
   </div>
   <br>
 </div> 
 </td>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
-<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<div class="wmp-card wmp-border wmp-quarter wmp-hover-shadow" style="width: 200px;">
 <p>&nbsp;&nbsp;Feedback &nbsp;<i class="fa fa-comment"></i></p>
-  <div class="w3-center w3-blue">
+  <div class="wmp-center wmp-blue">
   <font size="6" >160</font> 
   </div>
   <br>
@@ -142,12 +142,12 @@ include "includes/header.php";
 <br><br>&nbsp;
 </div><br><br>
 	
-<div class="w3-responsive w3-card-4">
+<div class="wmp-responsive wmp-card-4">
 <h3>Feedback <i class="fa fa-commenting-o" aria-hidden="true"></i>
 </h3> 
-<table class="w3-table w3-striped w3-bordered">
+<table class="wmp-table wmp-striped wmp-bordered">
 <thead>
-<tr class="w3-theme">
+<tr class="wmp-theme">
   <th>ID</th>
   <th>User</th>
   <th>Message</th>

@@ -3,7 +3,7 @@
 if(isset($success)){
 ?>
 
-<div class="w3-panel w3-blue">
+<div class="wmp-panel wmp-blue">
   <h3>Success!</h3>
   <p><?php echo $success; ?></p>
 </div> 
@@ -12,14 +12,14 @@ if(isset($success)){
 } else if(isset($error)){
 ?>
 
-<div class="w3-panel w3-red">
+<div class="wmp-panel wmp-red">
   <h3>Warning!</h3>
   <p><?php echo $error; ?></p>
 </div>
 <?php
 }else if(isset($info)){
 ?> 
-<div class="w3-panel w3-orange">
+<div class="wmp-panel wmp-orange">
   <h3>Information!</h3>
   <p><?php echo $info; ?></p>
 </div> 

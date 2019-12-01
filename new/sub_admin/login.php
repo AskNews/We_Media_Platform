@@ -58,20 +58,20 @@ a{
 </head>
 <body class="login-card">
 <div> 
-<div class="w3-card-4">
-<div class="w3-container w3-yellow">
+<div class="wmp-card-4">
+<div class="wmp-container wmp-yellow">
   <h2>Login AskNews Sub Admin</h2>
 </div>
-<form class="w3-container" method="post" ><br/>
+<form class="wmp-container" method="post" ><br/>
 
- <input type="email" class="w3-input" name="email" placeholder="Username" required autofocus><br/>
+ <input type="email" class="wmp-input" name="email" placeholder="Username" required autofocus><br/>
 
-<input type="password" class="w3-input" name="password" placeholder="Password" required><br>
+<input type="password" class="wmp-input" name="password" placeholder="Password" required><br>
 <div style="float:left" >
 <label><input type="checkbox" name="rem" id="rememberme">
 Remember Me</label>
 </div>
-<button class="w3-button w3-green" name="login" style="float: right;">Secure Login</button><br/><br/><br/>
+<button class="wmp-button wmp-green" name="login" style="float: right;">Secure Login</button><br/><br/><br/>
 <a  href="../operator/login.php" style="float:left">Login as Operator!</a>
 <a href="forgot-password.html" style="float:right">Forgot Password?</a><br/><br/>
 </form>

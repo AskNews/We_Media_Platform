@@ -99,27 +99,27 @@ a{
 </head>
 <body class="reg-card">
 <div> 
-<div class="w3-card-4">
-<div class="w3-container w3-red">
+<div class="wmp-card-4">
+<div class="wmp-container wmp-red">
   <h2>Sign Up AskNews</h2>
 </div>
-<form id="sign_up" method="POST" class="w3-container" enctype="multipart/form-data" ><br/>
+<form id="sign_up" method="POST" class="wmp-container" enctype="multipart/form-data" ><br/>
 
-<input type="text" class="w3-input" name="username" value="<?php if(isset($viewstateName)){ echo $viewstateName;}?>" pattern="[a-zA-Z0-9]+" id="username" placeholder="User name">
+<input type="text" class="wmp-input" name="username" value="<?php if(isset($viewstateName)){ echo $viewstateName;}?>" pattern="[a-zA-Z0-9]+" id="username" placeholder="User name">
 <input type="hidden"  name="viewstateName" /><br/>
 
-<input type="email" class="w3-input" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email Address" >
+<input type="email" class="wmp-input" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email Address" >
 <input type="hidden"  name="viewstateEmail" ><br>
 
-<input type="password" class="w3-input" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password"  placeholder="Password">
+<input type="password" class="wmp-input" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password"  placeholder="Password">
 <input type="hidden"  name="viewstatePassword" /><br/>
 
-<input type="password" class="w3-input" name="confirm" id="confirm" value="<?php if(isset($viewstateConfirm)){ echo $viewstateConfirm;}?>" placeholder="Confirm Password">
+<input type="password" class="wmp-input" name="confirm" id="confirm" value="<?php if(isset($viewstateConfirm)){ echo $viewstateConfirm;}?>" placeholder="Confirm Password">
 <input type="hidden"  name="viewstateConfirm" />
 <span id="confirm-error" class="error" ><?php if(isset($error)){ echo $error;}?></span><br/>
 <span id="file-error" class="error" ><?php if(isset($errorForFile)){ echo $errorForFile;}?></span>
 <br/>
-<input type="submit" class="w3-button w3-green" name="submit" value="Register"><br/><br/><br/>
+<input type="submit" class="wmp-button wmp-green" name="submit" value="Register"><br/><br/><br/>
 <a  href="login.php" style="float:left">already have account</a>
 <br/><br/>
 </form>

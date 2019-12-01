@@ -1,10 +1,10 @@
 <!-- Footer -->
-<footer class="w3-container w3-blue w3-padding-16">
+<footer class="wmp-container wmp-blue wmp-padding-16">
   <h3>AskNews</h3>
   <p> <a href="https://google.com" target="_blank">About us</a></p>
-  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+  <div style="position:relative;bottom:55px;" class="wmp-tooltip wmp-right">
   </div>
-  <p>We Media Team  <a href="w3css_references.asp" class="w3-btn w3-theme-light" target="_blank"></a></p>
+  <p>We Media Team  <a href="w3css_references.asp" class="wmp-btn wmp-theme-light" target="_blank"></a></p>
 </footer>
 
 </body>
@@ -12,10 +12,10 @@
 <script>
     function myFunction(id) {
   var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
+  if (x.className.indexOf("wmp-show") == -1) {
+    x.className += " wmp-show";
   } else { 
-    x.className = x.className.replace(" w3-show", "");
+    x.className = x.className.replace(" wmp-show", "");
   }
 }
 

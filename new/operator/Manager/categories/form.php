@@ -12,7 +12,7 @@ a{
 </style>
 
 <div class="form-card">
-<form class="w3-container w3-card-4" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
+<form class="wmp-container wmp-card-4" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
 <?php
 if(isset($_GET['edit'])){
 ?>
@@ -26,10 +26,10 @@ if(isset($_GET['edit'])){
 <?php
 }
 ?>
-  <div class="w3-section">   
+  <div class="wmp-section">   
   <label>Select Gallery</label>   
    
-  <select class="w3-button w3-theme" name="gallery_id">
+  <select class="wmp-button wmp-theme" name="gallery_id">
 	<?php
           $sql="select * from tbl_gallery";
 		  $query=mysqli_query($con,$sql);
@@ -47,10 +47,10 @@ if(isset($_GET['edit'])){
 		  ?>
 		  	</select>
 		</div>
-		<div class="w3-section">   
+		<div class="wmp-section">   
 		<label>Select Image</label>   
   
-		<input type="file" class="w3-theme" name="image" placeholder="Please Select File" value="<?php echo isset($editData)?$editData['image']:"";?>">
+		<input type="file" class="wmp-theme" name="image" placeholder="Please Select File" value="<?php echo isset($editData)?$editData['image']:"";?>">
 	<?php
         if(isset($editData)){
 			if(file_exists($imgPath.$editData['gallery_id']."/".$editData['image']) && !empty($editData['image'])){
@@ -64,20 +64,20 @@ if(isset($_GET['edit'])){
 			}
 		?>
 </div>
-  <div class="w3-section">   
+  <div class="wmp-section">   
   <label>Caption</label>   
-    <input class="w3-input" type="text" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?>" required>
+    <input class="wmp-input" type="text" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?>" required>
     
   </div>
-  <div class="w3-section">   
+  <div class="wmp-section">   
   <label>Date</label>   
-    <input class="w3-input" type="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>" required>
+    <input class="wmp-input" type="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>" required>
     
   </div>
    
-<div class="w3-section">
+<div class="wmp-section">
 	<label>Status</label>
-	<select class="w3-theme" name="status">
+	<select class="wmp-theme" name="status">
 	<?php
         $active='selected="selected"';
 		$inactive='';
@@ -94,18 +94,18 @@ if(isset($_GET['edit'])){
 									</select>
 </div>
 
-<div class="w3-section">   
+<div class="wmp-section">   
   
 <?php
     if(isset($editData)){
 	?>
-	<button type="submit" class="w3-theme" name="u_<?php echo $type;?>"><i class="fa fa-plus-square"> Update &nbsp;<?php echo ucfirst($type);?> &nbsp;Details</i></button>
+	<button type="submit" class="wmp-theme" name="u_<?php echo $type;?>"><i class="fa fa-plus-square"> Update &nbsp;<?php echo ucfirst($type);?> &nbsp;Details</i></button>
 										
       <input type="hidden" name="id" value="<?php echo $editData['id'];?>" />
       <?php
 	}else{
 	  ?>
-<button type="submit" class="w3-theme" name="c_<?php echo $type;?>"><i class="fa fa-plus-square"> Create <?php echo ucfirst($type);?></i></button>
+<button type="submit" class="wmp-theme" name="c_<?php echo $type;?>"><i class="fa fa-plus-square"> Create <?php echo ucfirst($type);?></i></button>
 <?php
 	}
 	  ?>							

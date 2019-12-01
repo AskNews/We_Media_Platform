@@ -1,12 +1,12 @@
-<div class="w3-container">
-  <div class="w3-card-4" style="width:100%;">
-    <header class="w3-container w3-blue">
+<div class="wmp-container">
+  <div class="wmp-card-4" style="width:100%;">
+    <header class="wmp-container wmp-blue">
       <h1>My Feedbacks</h1>
     </header>
-    <div class="w3-container">
-    <table class="w3-table-all">
+    <div class="wmp-container">
+    <table class="wmp-table-all">
     <thead>
-      <tr class="w3-blue">
+      <tr class="wmp-blue">
         <th>First Name</th>
         <th>Last Name</th>
         <th>Points</th>
@@ -21,7 +21,7 @@
 
     </div>
 
-    <footer class="w3-container w3-blue">
+    <footer class="wmp-container wmp-blue">
       <h5>Footer</h5>
     </footer>
   </div>

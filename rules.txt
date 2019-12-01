@@ -1,20 +1,44 @@
 
 #################Content Creator###########################
-Our team reviews user flags for content regulation violations. If the post does not violate our policies, we will not take any action against the post or the contributor.
+Our team reviews user flags for content regulation violations. If the post does not violate our policies,
+we will not take any action against the post or the contributor.
 If we find that a post does violate our content policies, we take one or more of the following actions based on the severity of the violation:
 
-Put the post behind an interstitial where only the author can access the content;
+1) Put the post behind an interstitial where only the author can access the content
 
-Delete the offending content, post or blog;
+2) Delete the offending content, post or blog.
 
-Deduct or cancel the income from the post;
+3) Deduct or cancel the income from the post.
 
-Disable the author's access to their WeMedia account;
+4) Disable the author's access to their WeMedia account.
 
-Report the user to law enforcement.
+5) Report the user to law enforcement.
 
-We may also take any of the above actions if we find that a user has created multiple posts engaging in repeated abusive behavior.
+ We may also take any of the above actions if we find that a user has created multiple posts engaging in repeated abusive behavior.
+
+Note :- if creators monitization is enabled then it's daily post limit is set 3 else limit is 1.
+
+#################Monitization Approval Requirements####################
+The system will calculate if all of the requirements for the benefit are met. If yes, then you can manually apply for it.
+
+Apply requirements are as follows：
+
+1) Registered days>=7
+
+2) Successfully Pubhished atleast 15 news in 1 month 
+
+3) Views of one content(article)>=1000，or followers>=1000
 
 
 
-Shabb,pinku and jaimu...ye link pehle visit karo :- https://mp.ucweb.com/content_rules.html?helpref=content_rules&alias=detail_of_the_content_policy
+################Ad Creator###############################
+Our team reviews user created ads before publishing. If the Ads does not violate our policies,
+1) User must need to setup their ad creator account with payment details.
+
+2) user wallet balance should be enough for creating ads.
+
+3) user must select appropreate ads with relative category.
+
+#############platform revenue################
+
+60,40% ratio

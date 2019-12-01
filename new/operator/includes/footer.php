@@ -19,7 +19,7 @@ function w3_open() {
   x.style.fontSize = "40px";
   x.style.paddingTop = "10%";
   x.style.display = "block";
-  
+   
 }
 
 function w3_close() {

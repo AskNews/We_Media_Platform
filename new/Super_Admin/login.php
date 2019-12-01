@@ -52,13 +52,13 @@ if(isset($_POST['login'])){
 <body>
 
 <!-- Side Navigation 
-<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
-  <h1 class="w3-xxxlarge w3-text-theme">Side Navigation</h1>
-  <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button">Link 4</a>
+<nav class="wmp-sidebar wmp-bar-block wmp-card wmp-animate-left wmp-center" style="display:none" id="mySidebar">
+  <h1 class="wmp-xxxlarge wmp-text-theme">Side Navigation</h1>
+  <button class="wmp-bar-item wmp-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
+  <a href="#" class="wmp-bar-item wmp-button">Link 1</a>
+  <a href="#" class="wmp-bar-item wmp-button">Link 2</a>
+  <a href="#" class="wmp-bar-item wmp-button">Link 3</a>
+  <a href="#" class="wmp-bar-item wmp-button">Link 4</a>
 </nav>-->
 
 <!DOCTYPE html>
@@ -80,9 +80,9 @@ a{
 </head>
 <body class="login-card">
 <!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
- <!-- <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> -->
-  <div class="w3-center">
+<header class="wmp-container wmp-theme wmp-padding" id="myHeader">
+ <!-- <i onclick="w3_open()" class="fa fa-bars wmp-xlarge wmp-button wmp-theme"></i> -->
+  <div class="wmp-center">
   <h4>Ask News Super Admin Panel</h4>
   </div>
   <style>
@@ -93,23 +93,23 @@ a{
     color: #00BCD4;
 }
 </style>
-<div class="w3-container">
+<div class="wmp-container">
 
 </header>
 
 <div> 
-<div class="w3-card-4">
+<div class="wmp-card-4">
 
-<form class="w3-container" method="post" ><br/>
+<form class="wmp-container" method="post" ><br/>
 
- <input type="text" class="w3-input" name="uname" placeholder="Username" required autofocus><br/>
+ <input type="text" class="wmp-input" name="uname" placeholder="Username" required autofocus><br/>
 
-<input type="password" class="w3-input" name="password" placeholder="Password" required><br>
+<input type="password" class="wmp-input" name="password" placeholder="Password" required><br>
 <div style="float:left" >
 <label><input type="checkbox" name="rem" id="rememberme">
 Remember Me</label>
 </div>
-<button class="w3-button w3-green" name="login" type="submit" style="float: right;">Login</button><br/><br/><br/>
+<button class="wmp-button wmp-green" name="login" type="submit" style="float: right;">Login</button><br/><br/><br/>
 <a href="forgot-password.html" style="float:right">Forgot Password?</a><br/><br/>
 </form>
 </div>

@@ -1,27 +1,27 @@
 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post"> 
-<div class="w3-container">
+<div class="wmp-container">
   
-  <div class="w3-center">
+  <div class="wmp-center">
     <h2><?php echo $type;?></h2>
     
   </div>
   
-  <div class="w3-section">      
-    <input class="w3-input" type="text" name="keyword" required>
+  <div class="wmp-section">      
+    <input class="wmp-input" type="text" name="keyword" required>
     <label>Search</label>
     
-  </div><input type="submit" name="search" value="Saerch" class="w3-button w3-theme">
-  <a class="w3-button w3-circle w3-large w3-theme" href="?create" ><i class="fa fa-plus" ></i></a>
+  </div><input type="submit" name="search" value="Saerch" class="wmp-button wmp-theme">
+  <a class="wmp-button wmp-circle wmp-large wmp-theme" href="?create" ><i class="fa fa-plus" ></i></a>
 <br><br>
 <?php
 include "includes/msg.php";
 ?>
 <hr>
-<div class="w3-responsive w3-card-4">
-<table class="w3-table w3-striped w3-bordered">
+<div class="wmp-responsive wmp-card-4">
+<table class="wmp-table wmp-striped wmp-bordered">
 <thead>
-<tr class="w3-theme">
+<tr class="wmp-theme">
 <th>Id</th>
 											<th>Question</th>
 											<th>Answer</th>
@@ -56,24 +56,24 @@ include "includes/msg.php";
 </table>
 </div>
 </div>
-<div class="w3-center">
+<div class="wmp-center">
   
   <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-	  <a href="?page=1" class="w3-bar-item w3-button <?php echo ($i==$_GET['page'])?'w3-theme':'';?> w3-hover-theme">&laquo;</a>
+  <div class="wmp-center wmp-padding-32">
+    <div class="wmp-bar">
+	  <a href="?page=1" class="wmp-bar-item wmp-button <?php echo ($i==$_GET['page'])?'wmp-theme':'';?> wmp-hover-theme">&laquo;</a>
 	  <?php
                                     for($i=1;$i<=$total_pages;$i++)
                                     {
                                         
                                         ?>
-                                        <a href="?page=<?php echo $i;?>" class="w3-bar-item w3-button <?php echo ($i==$_GET['page'])?'w3-theme':'';?> w3-hover-theme"><?php echo $i;?></a>
+                                        <a href="?page=<?php echo $i;?>" class="wmp-bar-item wmp-button <?php echo ($i==$_GET['page'])?'wmp-theme':'';?> wmp-hover-theme"><?php echo $i;?></a>
                                     <?php }
 
                                     ?>
                                   
      
-      <a href="?page=<?php echo $i;?>" class="w3-bar-item w3-button  <?php echo ($i==$_GET['page'])?'w3-theme':'';?> w3-hover-theme">&raquo;</a>
+      <a href="?page=<?php echo $i;?>" class="wmp-bar-item wmp-button  <?php echo ($i==$_GET['page'])?'wmp-theme':'';?> wmp-hover-theme">&raquo;</a>
     </div>
   </div>
 </div>

@@ -1,11 +1,11 @@
 </div>
 <!-- Footer 
-<footer class="w3-container w3-theme-dark">
+<footer class="wmp-container wmp-theme-dark">
   
   <p>Made by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Avinash</a></p>
-  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
-    <span class="w3-text w3-theme w3-padding">Go To Top</span>&nbsp;   
-    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+  <div style="position:relative;bottom:55px;" class="wmp-tooltip wmp-right">
+    <span class="wmp-text wmp-theme wmp-padding">Go To Top</span>&nbsp;   
+    <a class="wmp-text-white" href="#myHeader"><span class="wmp-xlarge">
     <i class="fa fa-chevron-circle-up"></i></span></a>
   </div>
   </footer>
@@ -38,10 +38,10 @@ function openCity(evt, cityName) {
   }
   var activebtn = document.getElementsByClassName("testbtn");
   for (i = 0; i < x.length; i++) {
-    activebtn[i].className = activebtn[i].className.replace(" w3-theme-dark", "");
+    activebtn[i].className = activebtn[i].className.replace(" wmp-theme-dark", "");
   }
   document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-theme-dark";
+  evt.currentTarget.className += " wmp-theme-dark";
 }
 
 var mybtn = document.getElementsByClassName("testbtn")[0];
@@ -50,10 +50,10 @@ mybtn.click();
 // Accordions
 function myAccFunc(id) {
   var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
+  if (x.className.indexOf("wmp-show") == -1) {
+    x.className += " wmp-show";
   } else { 
-    x.className = x.className.replace(" w3-show", "");
+    x.className = x.className.replace(" wmp-show", "");
   }
 }
 

@@ -1,21 +1,21 @@
-<div class="w3-container">
-  <div class="w3-card-4" style="width:100%;">
-    <header class="w3-container w3-blue">
+<div class="wmp-container">
+  <div class="wmp-card-4" style="width:100%;">
+    <header class="wmp-container wmp-blue">
       <h1>Create Ads</h1>
     </header>
 
    
-    <div class="w3-container">
+    <div class="wmp-container">
     <?php
     include "includes/msg.php";
     ?>
-    <form class="w3-container" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+    <form class="wmp-container" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
     <br>
     <label>Ad Name</label>
-<input class="w3-input" type="text" name="name" required>
+<input class="wmp-input" type="text" name="name" required>
 <br>
 <label>Ad Category</label>
-<select  id="category" class="w3-input" name="cat">
+<select  id="category" class="wmp-input" name="cat">
                                         <!--<option  value="<?php //echo $update['CategoryID']; ?>"></option>-->
                                         <?php
                                             $query="select * from tbl_categories where status=1";
@@ -37,16 +37,16 @@
                                         
                                     </select><hr>
 <label>Ad Title</label>
-<input class="w3-input" type="text" name="title" required>
+<input class="wmp-input" type="text" name="title" required>
 <br>
 <label>Ad Url</label>
-<input class="w3-input" type="text" name="url" required>
+<input class="wmp-input" type="text" name="url" required>
 <br>
 <label>Ad Unit Amount</label>
-<input class="w3-input" type="text" name="amt" required>
+<input class="wmp-input" type="text" name="amt" required>
 <br>
 <label>Ad Unit CPC</label>
-<select class="w3-input" name="cpc">
+<select class="wmp-input" name="cpc">
 <option value="0.1">0.1</option>
 <option value="0.2">0.2</option>
 <option value="0.3">0.3</option>
@@ -71,9 +71,9 @@
 </select>
 <hr>
 <label>Ad Image</label>
-<input class="w3-input" type="file" name="image" required>
+<input class="wmp-input" type="file" name="image" required>
 <br>
-Status &nbsp; <select class="w3-input" name="status">
+Status &nbsp; <select class="wmp-input" name="status">
 	<?php
         $active='selected="selected"';
 		$inactive='';
@@ -90,12 +90,12 @@ Status &nbsp; <select class="w3-input" name="status">
 									</select>
                   <br><br>
 
-    <button class="w3-button w3-purple" type="submit" name="send" >Create Ad</button>
+    <button class="wmp-button wmp-purple" type="submit" name="send" >Create Ad</button>
    <br><br>
     </form>
       </div>
 
-    <footer class="w3-container w3-blue">
+    <footer class="wmp-container wmp-blue">
       <h5>AskNews</h5>
     </footer>
   </div>
