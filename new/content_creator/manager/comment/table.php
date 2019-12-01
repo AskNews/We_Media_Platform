@@ -1,12 +1,12 @@
 <br/><br/>
 
-<div class="w3-card-4">
-<div class="w3-container w3-green">
+<div class="wmp-card-4">
+<div class="wmp-container wmp-green">
   <h2>Pending Comment</h2>
 </div><br/><br/>
-<table class="w3-table-all">
+<table class="wmp-table-all">
     <thead>
-      <tr class="w3-green">
+      <tr class="wmp-green">
       <th>News Headline</th>
         <th>Date</th>
         <th>Comment</th>
@@ -22,8 +22,8 @@
         <td><?php echo $row['postdate']; ?></td>
         <td><?php echo $row['comment']; ?></td>
         <td><?php echo $row['user_name'];?></td>
-        <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="w3-button w3-red">Delete</a>
-        <a href="comment.php?spam=<?php echo $row['id']?>" class="w3-button w3-yellow">Spam</a>
+        <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="wmp-button wmp-red">Delete</a>
+        <a href="comment.php?spam=<?php echo $row['id']?>" class="wmp-button wmp-yellow">Spam</a>
         </td>
     </tr>
     <?php } ?>
@@ -46,13 +46,13 @@
 
 <br/><br/>
 
-<div class="w3-card-4">
-<div class="w3-container w3-green">
+<div class="wmp-card-4">
+<div class="wmp-container wmp-green">
   <h2>Approved Comment</h2>
 </div><br/><br/>
-<table class="w3-table-all">
+<table class="wmp-table-all">
     <thead>
-      <tr class="w3-green">
+      <tr class="wmp-green">
       <th>News Headline</th>
         <th>Date</th>
         <th>Comment</th>
@@ -68,8 +68,8 @@
         <td><?php echo $row['postdate']; ?></td>
         <td><?php echo $row['comment']; ?></td>
         <td><?php echo $row['user_name'];?></td>
-        <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="w3-button w3-red">Delete</a>
-        <a href="comment.php?spam=<?php echo $row['id']?>" class="w3-button w3-yellow">Spam</a>
+        <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="wmp-button wmp-red">Delete</a>
+        <a href="comment.php?spam=<?php echo $row['id']?>" class="wmp-button wmp-yellow">Spam</a>
         </td>
     </tr>
     <?php } ?>
@@ -91,13 +91,13 @@
 
 <br/><br/>
 
-<div class="w3-card-4">
-<div class="w3-container w3-green">
+<div class="wmp-card-4">
+<div class="wmp-container wmp-green">
   <h2>Spam Comment</h2>
 </div><br/><br/>
-<table class="w3-table-all">
+<table class="wmp-table-all">
     <thead>
-      <tr class="w3-green">
+      <tr class="wmp-green">
       <th>News Headline</th>
         <th>Date</th>
         <th>Comment</th>
@@ -113,7 +113,7 @@
         <td><?php echo $row['postdate']; ?></td>
         <td><?php echo $row['comment']; ?></td>
         <td><?php echo $row['user_name'];?></td>
-        <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="w3-button w3-red">Delete</a>
+        <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="wmp-button wmp-red">Delete</a>
         
         </td>
     </tr>

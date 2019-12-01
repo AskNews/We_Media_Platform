@@ -98,31 +98,31 @@ else{
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="w3-white w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
-  <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button><br/>
+<div class="wmp-white wmp-sidebar wmp-bar-block wmp-card wmp-animate-left" style="display:none" id="mySidebar">
+  <button class="wmp-bar-item wmp-button wmp-large" onclick="w3_close()">Close &times;</button><br/>
   &nbsp; &nbsp; <a href="profile.php"> <img src="<?php echo "img/".$_SESSION['content_creator_profile']; ?>" style="border-radius:50%" width="50%x" height="20%" alt="User" /> </a>
   <br/><br/>
   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $_SESSION['content_creator_uname'];?></lable><br/><br/>
-  <a href="index.php" class="w3-bar-item w3-button">Dashbord</a><hr/>
-  <a href="profile.php?update_profile" class="w3-bar-item w3-button">Profile</a><hr/>
-  <a href="news.php?m_news" class="w3-bar-item w3-button">News</a><hr/>
-  <!-- <div class="w3-dropdown-hover">
-      <button class="w3-button">News</button>
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="#" class="w3-bar-item w3-button">Add news</a>
-        <a href="#" class="w3-bar-item w3-button">Manage news</a>
+  <a href="index.php" class="wmp-bar-item wmp-button">Dashbord</a><hr/>
+  <a href="profile.php?update_profile" class="wmp-bar-item wmp-button">Profile</a><hr/>
+  <a href="news.php?m_news" class="wmp-bar-item wmp-button">News</a><hr/>
+  <!-- <div class="wmp-dropdown-hover">
+      <button class="wmp-button">News</button>
+      <div class="wmp-dropdown-content wmp-bar-block wmp-card-4">
+        <a href="#" class="wmp-bar-item wmp-button">Add news</a>
+        <a href="#" class="wmp-bar-item wmp-button">Manage news</a>
       </div>
     </div> -->
-  <a href="comment.php?comment" class="w3-bar-item w3-button">Comment</a><hr/>
-  <a href="#" class="w3-bar-item w3-button">Notification</a><hr/>
-  <a href="monetizaton.php" class="w3-bar-item w3-button">Monetization</a><hr/>
-  <a href="feedback.php?showfeed" class="w3-bar-item w3-button">Feedback</a><hr/>
-  <a href="logout.php" class="w3-bar-item w3-button">Logout</a><hr/>
+  <a href="comment.php?comment" class="wmp-bar-item wmp-button">Comment</a><hr/>
+  <a href="#" class="wmp-bar-item wmp-button">Notification</a><hr/>
+  <a href="monetizaton.php" class="wmp-bar-item wmp-button">Monetization</a><hr/>
+  <a href="feedback.php?showfeed" class="wmp-bar-item wmp-button">Feedback</a><hr/>
+  <a href="logout.php" class="wmp-bar-item wmp-button">Logout</a><hr/>
 </div>
 <div id="main">
-<div class="w3-green">
-  <button id="openNav" class="w3-green w3-white w3-xlarge" onclick="w3_open()">&#9776;</button>
-  <div class="w3-container">
+<div class="wmp-green">
+  <button id="openNav" class="wmp-green wmp-white wmp-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="wmp-container">
     <h1>Content Creator</h1>
   </div>
 </div>

@@ -1,31 +1,31 @@
 
 <br/>
 <div class="col-sm-3">
-<form class="w3-container" method="post" >
+<form class="wmp-container" method="post" >
 <div class="upper">
-<a href="news.php?c_news" class="w3-button w3-green" >Add News</a>
+<a href="news.php?c_news" class="wmp-button wmp-green" >Add News</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" style="width:20%;display:inline-block;" class="w3-input" placeholder="Search" name="keyword" >
-<!--<input type="submit" name="btn_search" value="Search" class="w3-button w3-green">-->
-<button type="submit" name="btn_search" class="w3-button w3-green">Search</button>
+<input type="text" style="width:20%;display:inline-block;" class="wmp-input" placeholder="Search" name="keyword" >
+<!--<input type="submit" name="btn_search" value="Search" class="wmp-button wmp-green">-->
+<button type="submit" name="btn_search" class="wmp-button wmp-green">Search</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label>
-<select name="newsType" class="w3-input" >
-<option class="w3-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']=="") {echo "selected";} ?> value="">--Select--</option>
-<option class="w3-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']==4) {echo "selected";} ?> value="4">Approved</option>
-<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==0) {echo "selected";} ?> value="0">Pending</option>
-<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==1) {echo "selected";} ?> value="1">Offline</option>
-<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==2) {echo "selected";} ?> value="2">Rejected</option>
-<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==3) {echo "selected";} ?> value="3">Draft</option>
+<select name="newsType" class="wmp-input" >
+<option class="wmp-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']=="") {echo "selected";} ?> value="">--Select--</option>
+<option class="wmp-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']==4) {echo "selected";} ?> value="4">Approved</option>
+<option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==0) {echo "selected";} ?> value="0">Pending</option>
+<option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==1) {echo "selected";} ?> value="1">Offline</option>
+<option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==2) {echo "selected";} ?> value="2">Rejected</option>
+<option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==3) {echo "selected";} ?> value="3">Draft</option>
 </select> 
-<button class="w3-button w3-green" name="btn_filter" id="submit" type="submit">FILTER</button>
+<button class="wmp-button wmp-green" name="btn_filter" id="submit" type="submit">FILTER</button>
 </label>
 </div>
 </form>
 <div class="table">
-<table class="w3-table-all">
+<table class="wmp-table-all">
     <thead>
-      <tr class="w3-green">
+      <tr class="wmp-green">
         <th>Headline</th>
         <th >File</th>
         <th >Modify Date</th>
@@ -57,10 +57,10 @@
             <?php } ?>
             <td>
             <a  href="?status=<?php echo $row["NewsID"];?>">
-            <button <?php if($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3 || $row["Rejected"]==2){ echo "disabled";} ?>  class="btn <?php echo $row['Status']?'w3-button w3-green':'w3-button w3-red'?>"><?php if($row['Status']){ echo "Active";}else{ echo "In-Active";} ?></button>
+            <button <?php if($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3 || $row["Rejected"]==2){ echo "disabled";} ?>  class="btn <?php echo $row['Status']?'wmp-button wmp-green':'wmp-button wmp-red'?>"><?php if($row['Status']){ echo "Active";}else{ echo "In-Active";} ?></button>
             </a>        
             </td>
-            <td><a  href="?newsid=<?php echo $row["id"]; ?>"><button class="w3-button w3-green">View News</button></a></td>
+            <td><a  href="?newsid=<?php echo $row["id"]; ?>"><button class="wmp-button wmp-green">View News</button></a></td>
             </td>
             </tr>    
 <?php   }//while

@@ -1,10 +1,10 @@
 <div class="col-sm-3">
-<br/><br/><a href="feedback.php?feedback" class="w3-button w3-green" >Send Feedback</a>
+<br/><br/><a href="feedback.php?feedback" class="wmp-button wmp-green" >Send Feedback</a>
 </div>
 <br/><br/>
-<table class="w3-table-all">
+<table class="wmp-table-all">
     <thead>
-      <tr class="w3-green">
+      <tr class="wmp-green">
       <th>Feedback Topic</th>
     <th>Date</th>
     <th>File</th>
@@ -19,13 +19,13 @@
         <td><img src="<?php echo "img"."/".$row['file'];?>" height="100px" widht="100px" ></td>
         <!--<td></td>-->
         <td>
-        <a class="w3-button w3-red" href="?feedid=<?php echo $row["id"]; ?>">Delete</a>
+        <a class="wmp-button wmp-red" href="?feedid=<?php echo $row["id"]; ?>">Delete</a>
 
-        <div class="w3-container">
-        <div class="w3-light-grey w3-section">
-        <button onclick="myFunction('Demo4')" class="w3-button w3-block">
+        <div class="wmp-container">
+        <div class="wmp-light-grey wmp-section">
+        <button onclick="myFunction('Demo4')" class="wmp-button wmp-block">
         Show </button>
-        <div id="Demo4" class="w3-hide w3-container">
+        <div id="Demo4" class="wmp-hide wmp-container">
             <p><?php echo $row['message'] ?></p>
         </div>
         </div>
@@ -34,11 +34,11 @@
         <!--<a class="btn bg-cyan waves-effect m-b-15" <?php //if($row['reply']==""){ echo 'disabled';}?> data-toggle="collapse" data-target="#reply" aria-expanded="false" aria-controls="collapseExample">
         <i class="material-icons"><big>reply</big></i>
         </a>-->
-        <div class="w3-container">
-        <div class="w3-light-grey w3-section">
-        <button onclick="myFunction('Demo5')" <?php if($row['reply']==""){ echo 'disabled';}?> class="w3-button w3-block">
+        <div class="wmp-container">
+        <div class="wmp-light-grey wmp-section">
+        <button onclick="myFunction('Demo5')" <?php if($row['reply']==""){ echo 'disabled';}?> class="wmp-button wmp-block">
         Show Reply</button>
-        <div id="Demo5" class="w3-hide w3-container">
+        <div id="Demo5" class="wmp-hide wmp-container">
             <p><?php echo $row['reply'] ?></p>
         </div>
         </div>
