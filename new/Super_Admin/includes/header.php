@@ -18,6 +18,14 @@ else{
 <link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
 	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+.col-sm-3 select,input
+{
+  width:20%;
+  display:inline-block;
+  
+}
+</style>
 <body>
 
 <!-- Side Navigation 
@@ -34,6 +42,7 @@ else{
 <div class="w3-theme w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
   <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
   <a href="index.php" class="w3-bar-item w3-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
+  <a href="report.php" class="w3-bar-item w3-button ">Reports</a>
 <a href="logout.php" class="w3-bar-item w3-button ">Logout</a>
 
 </div>
@@ -43,6 +52,7 @@ else{
   <a href="#" class="w3-bar-item w3-button">Link 1</a>
   <a href="index.php" class="w3-bar-item w3-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
 <a href="user.php" class="w3-bar-item w3-button <?php echo $type == "user"?'active':'';?>">User</a>
+<a href="report.php" class="w3-bar-item w3-button <?php echo $type == "report"?'active':'';?>">Reports</a>
 <a href="logout.php" class="w3-bar-item w3-button">Logout</a>
 </div>
 

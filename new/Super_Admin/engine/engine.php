@@ -1,5 +1,31 @@
 <?php 
 $query="";
+$result_user="";
+//####################FILTERING#################
+if(isset($_POST['btn_select']))
+{
+  $a=$_POST['usertype'];
+  if($a==1)
+  {
+    $select="select * from tbl_module_user where role=0 and status=1";
+  }
+  else if($a==0){
+    $select="select * from tbl_module_user where role=0 and status=0";
+  }
+  
+  else if($a==2){
+    $select="select * from tbl_module_user where role=1 and status=1";
+  }
+  
+  else if($a==3){
+    $select="select * from tbl_module_user where role=1 and status=0";
+  }
+  else{
+    $select="select * from tbl_module_user where status=0";
+  }
+ $result_user=mysqli_query($con,$select);
+}
+
 //##################PAGINATION ##############################
 @$page=$_GET["page"];
   if($page=="" || $page==1)
@@ -70,7 +96,8 @@ function compressImage($source, $destination, $quality) {
 }
 //#####################INSERT ENGINE######################## 
 @$a;
-function insert($b){
+function insert($b)
+{
 global $a,$type,$con,$success,$error;
 $c=$b-1;
 $p="INSERT INTO tbl_module_".$type." (";

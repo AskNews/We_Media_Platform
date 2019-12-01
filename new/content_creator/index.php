@@ -7,7 +7,7 @@
   </div>
 </div>
 <img src="img_car.jpg" alt="Car" style="width:100%"> -->
-<div class="w3-container">
+<!--<div class="w3-container">
 <p>In this example, the sidebar is hidden (style="display:none")</p>
 
 <div class="w3-light-grey w3-section">
@@ -93,6 +93,212 @@
   <a href="#">&raquo;</a>
 </div>
 </div>
+</div>-->
+
+<!--<br/><br/>
+<div class="w3-container ">
+    <h3>Dashboard</h3>
+<br>
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div> 
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
 </div>
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div> 
+<div class="w3-card w3-quarter">
+  <p>w3-card</p>
+</div> 
+<br><br>&nbsp;
+</div><br><br>
+<div class="w3-container">
+<br>
+<div class="w3-card w3-third">
+  <p>w3-card</p>
+</div> 
+<div class="w3-card w3-third">
+  <p>w3-card</p>
+</div>
+<div class="w3-card w3-third">
+  <p>w3-card</p>
+</div> 
+<br><br>&nbsp;
+</div>-->
+<!-- MAIN -->
+<br/>
+<br/>
+<div class="w3-container">
+    <div class="w3-container w3-card">
+    <h3>Dashboard <i class="fa fa-tachometer"></i></h3>
+    <br>
+<table class="w3-responsive">
+<tr><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Total News &nbsp;<i class="fa fa-newspaper-o"></i></p>
+  <div class="w3-center w3-blue">
+  <font size="6" >10.4K</font> 
+  </div>
+  <br>
+</div>
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Comments&nbsp;<i class="fa fa-newspaper-o"></i></p>
+  <div class="w3-center w3-green">
+  <font size="6" >30</font> 
+  </div>
+  <br>
+</div>
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Followers &nbsp;<i class="fa fa-user"></i></p>
+  <div class="w3-center w3-blue">
+  <font size="6" >400</font> 
+  </div>
+  <br>
+</div> 
+
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Credit Score &nbsp;<i class="fa fa-arrow-up"></i></p>
+  <div class="w3-center w3-green">
+  <font size="6" >400</font> 
+  </div>
+  <br>
+</div> 
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Views(Today) &nbsp;<i class="fa fa-eye"></i></p>
+  <div class="w3-center w3-blue">
+  <font size="6" >16</font> 
+  </div>
+  <br>
+</div> 
+</td>
+
+</tr></table>
+
+<br/>
+<table class="w3-responsive">
+<tr><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Likes &nbsp;<i class="fa fa-heart"></i></p>
+  <div class="w3-center w3-green">
+  <font size="6" >10.4K</font> 
+  </div>
+  <br>
+</div>
+</td>
+
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Balance &nbsp;<i class="fa fa-rupee"></i></p>
+  <div class="w3-center w3-blue">
+  <font size="6" >400K</font> 
+  </div>
+  <br>
+</div> 
+</td>
+
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Your Monetization Task&nbsp;<i  class="fa fa-calendar-minus-o" aria-hidden="true"></i></p>
+  <div class="w3-center w3-green">
+  <font size="6" >2/4(done)</font> 
+  </div>
+  <br>
+</div> 
+</td>
+
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Reported News&nbsp;<i  class="fa fa-flag"></i></p>
+  <div class="w3-center w3-blue">
+  <font size="6" >2</font> 
+  </div>
+  <br>
+</div> 
+</td>
+
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 200px;">
+<p>&nbsp;&nbsp;Pending News&nbsp;<i class="fa fa-clock-o"></i></p>
+  <div class="w3-center w3-green">
+  <font size="6">2</font> 
+  </div>
+  <br>
+</div> 
+</td>
+
+</tr></table>
+
+
+<br><br>&nbsp;
+</div><br><br>
+
+
+<br/>
+<br/>
+<div class="w3-container">
+    <div class="w3-container w3-card">
+    <!--<h3> <i class="fa fa-tachometer"></i></h3>-->
+    <h3>Recommended <i class=></i></h3>
+    <br>
+    
+<table class="w3-responsive">
+<tr><td>
+<div class="w3-card w3-quarter w3-hover-shadow" style="width: 350px;">
+<font size="6" ><p class="w3-blue">&nbsp;&nbsp;Popular Topic &nbsp;<i class=""></i></p></font>
+  <!-- <div class="w3-center w3-blue"> -->
+  <div class="w3-center ">
+  <font size="2">Topic 1</font> <hr/>
+  <font size="2">Topic 2</font> <hr/>
+  <font size="2">Topic 3</font> <hr/>
+  </div>
+  <br>
+</div>
+</td>
+<td>
+
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 400px;">
+<font size="6" ><p class="w3-green">&nbsp;Top Content Creator &nbsp;<i class="fa fa-arrow-up"></i></p></font>
+  <div class="w3-center ">
+  
+  <font size="2" >Creator 1</font><hr/>
+  <font size="2" >Creator 2</font><hr/>
+  <font size="2" >Creator 3</font><hr/>
+
+  </div>
+  <br>
+</div> 
+</td>
+
+</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+<div class="w3-card w3-border w3-quarter w3-hover-shadow" style="width: 350px;">
+<font size="6" ><p   class="w3-blue">&nbsp;&nbsp;Your New Article &nbsp;<i class="fa fa-pencil"></i></p></font>
+  <div class="w3-center ">
+  
+
+  <font size="2" >Your Article 1</font> <hr/>
+  <font size="2" >Your Article 2</font> <hr/>
+  <font size="2" >Your Article 3</font> <hr/>
+  </div>
+  <br>
+</div> 
+</td>
+
+
+</tr></table>
+
+<br/>
+<br><br>&nbsp;
+</div><br><br>
+
 
 <?php include "includes/footer.php";?>

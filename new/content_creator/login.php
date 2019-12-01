@@ -8,6 +8,11 @@
 	include "../../Super_Admin/Includes/dbconfig.php";
 	if(isset($_POST['login']))
 	{
+		if(isset($_POST['rememberme']))
+			{
+				$time = time()+60*60; // for one hour
+				setcookie("content_creator_Cookie",$username,$time);
+			}
 		$username = mysqli_real_escape_string($con,$_POST['username']);
 		$password = mysqli_real_escape_string($con,$_POST['password']);
 		$sql="SELECT * from tbl_content_creator WHERE username='$username' AND password=md5('$password') and Status=1";
@@ -27,11 +32,7 @@
         while($data=mysqli_fetch_assoc($query))
 		//if($data)
 		{
-			if(isset($_POST['rememberme']))
-			{
-				$time = time()+60*60; // for one hour
-				setcookie("content_creator_Cookie",$username,$time);
-			}
+			
             $_SESSION['content_creator_uname']=$username;
             $_SESSION['content_creator_profile']=$data["channel_logo"];
             //echo "image= ".$_SESSION['content_creator_profile'];

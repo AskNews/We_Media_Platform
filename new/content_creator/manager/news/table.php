@@ -2,6 +2,7 @@
 <br/>
 <div class="col-sm-3">
 <form class="w3-container" method="post" >
+<div class="upper">
 <a href="news.php?c_news" class="w3-button w3-green" >Add News</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" style="width:20%;display:inline-block;" class="w3-input" placeholder="Search" name="keyword" >
@@ -10,28 +11,29 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label>
 <select name="newsType" class="w3-input" >
-<option class="w3-input" value="">--Select--</option>
-<option class="w3-input" value="0">Pending</option>
-<option class="w3-input" value="1">Offline</option>
-<option class="w3-input" value="2">Rejected</option>
-<option class="w3-input" value="3">Draft</option>
+<option class="w3-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']=="") {echo "selected";} ?> value="">--Select--</option>
+<option class="w3-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']==4) {echo "selected";} ?> value="4">Approved</option>
+<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==0) {echo "selected";} ?> value="0">Pending</option>
+<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==1) {echo "selected";} ?> value="1">Offline</option>
+<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==2) {echo "selected";} ?> value="2">Rejected</option>
+<option class="w3-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==3) {echo "selected";} ?> value="3">Draft</option>
 </select> 
 <button class="w3-button w3-green" name="btn_filter" id="submit" type="submit">FILTER</button>
 </label>
 </div>
 </form>
-
 <div class="table">
 <table class="w3-table-all">
     <thead>
       <tr class="w3-green">
-      <th>Headline</th>
+        <th>Headline</th>
         <th >File</th>
         <th >Modify Date</th>
         <th >Publish Date</th>
         <th >Views</th>
         <th >Status</th>
-        <th >Action</th></tr>    
+        <th >Action</th>
+      </tr>    
     </tr>
     </thead>
     <tbody>

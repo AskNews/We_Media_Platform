@@ -55,7 +55,7 @@ include "includes/header.php";
 </div><br><br>
 	
 <div class="w3-responsive w3-card-4">
-<h3>Pendding Conetnt Creator Accounts <i class="fa fa-commenting-o" aria-hidden="true"></i>
+<h3>Pendding News <i class="fa fa-commenting-o" aria-hidden="true"></i>
 </h3> 
 <table class="w3-table w3-striped w3-bordered">
 <thead>
@@ -63,6 +63,7 @@ include "includes/header.php";
   <th>ID</th>
   <th>Email</th>
   <th>Channel Name</th>
+  <th>News Headline</th>
   <th>Action</th>
 </tr>
 </thead>
@@ -71,19 +72,22 @@ include "includes/header.php";
   <td>1</td>
   <td>bhavesh4@gmail.com</td>
   <td>Pearl Technicals</td>
-  <td><a href="#">Report</a>&nbsp;<a href="#">Review</a></td>
+  <td>Farm Loan Waiver,secularism: Real<br/>Challenges before UddhavThackeray</td>
+  <td><a href="#">Review</a></td>
 </tr>
 <tr>
   <td>2</td>
   <td>bhavik65@gmail.com</td>
   <td>DV Dash Jobs</td>
-  <td><a href="#">Report</a>&nbsp;<a href="#">Review</a></td>
+  <td>Goverment okay over Rs 22,000-crore military<br/> project deal</td>
+  <td><a href="#">Review</a></td>
 </tr>
 <tr>
   <td>3</td>
   <td>jeet</td>
   <td>Tech Guide</td>
-  <td><a href="#">Report</a>&nbsp;<a href="#">Review</a></td>
+  <td>India to test K-4,the most powerfulr <br/>nuclear missile lainched from Submarine</td>
+  <td><a href="#">Review</a></td>
 </tr>
 </tbody>
 </table>
