@@ -45,8 +45,10 @@ else{
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style_color.css">
-<script src="../ckeditor.js"></script>
+
+
 <head>
+<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 <link rel="icon" href="../../icon.png" type="image/x-icon">
 <style>
 .pagination {
@@ -61,9 +63,7 @@ else{
   
 }
 .upper{
-  width:90%;
-  margin:5% auto;
-  box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+  margin-left:10%;
 }
 .table{
   width:90%;
@@ -95,6 +95,7 @@ else{
 }
 .news-card{width:70%;margin:1% auto;}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="w3-white w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">

@@ -18,6 +18,14 @@ else{
 <link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
 	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+.col-sm-3 select,input
+{
+  width:20%;
+  display:inline-block;
+  
+}
+</style>
 <body>
 
 <!-- Side Navigation 
@@ -31,6 +39,7 @@ else{
 </nav>-->
 <!-- Header -->
 
+<<<<<<< HEAD
 <div class="wmp-theme wmp-sidebar wmp-bar-block wmp-card wmp-animate-left" style="display:none" id="leftMenu">
   <button onclick="closeLeftMenu()" class="wmp-bar-item wmp-button wmp-large">Close &times;</button>
   <a href="index.php" class="wmp-bar-item wmp-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
@@ -44,6 +53,23 @@ else{
   <a href="index.php" class="wmp-bar-item wmp-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
 <a href="user.php" class="wmp-bar-item wmp-button <?php echo $type == "user"?'active':'';?>">User</a>
 <a href="logout.php" class="wmp-bar-item wmp-button">Logout</a>
+=======
+<div class="w3-theme w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
+  <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+  <a href="index.php" class="w3-bar-item w3-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
+  <a href="report.php" class="w3-bar-item w3-button ">Reports</a>
+<a href="logout.php" class="w3-bar-item w3-button ">Logout</a>
+
+</div>
+
+<div class="w3-theme w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+  <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="index.php" class="w3-bar-item w3-button <?php echo $type == "index"?'active':'';?>">Dashboard</a>
+<a href="user.php" class="w3-bar-item w3-button <?php echo $type == "user"?'active':'';?>">User</a>
+<a href="report.php" class="w3-bar-item w3-button <?php echo $type == "report"?'active':'';?>">Reports</a>
+<a href="logout.php" class="w3-bar-item w3-button">Logout</a>
+>>>>>>> 66cc459f3ea138fe49888f8f27509d34743a3df1
 </div>
 
 <div class="wmp-theme wmp-teal">

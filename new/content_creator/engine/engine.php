@@ -178,7 +178,7 @@ if(isset($_POST["update_profile"]))
     $warning=ucfirst($type). " Not Created".mysqli_error($con);
     //$sql=$select;
   } 
-}
+}  
 //__________________________change password______________________
 if(isset($_POST["change_pass"]))
 {  
@@ -265,7 +265,7 @@ if(isset($_POST["add_u"]))
     }
 
 }
-//_____________________cleardata_________________________________________
+//_____________________cleardata_________________________________________ 
 function cleardata()
 {
   $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=$_GET['status']=$_GET['feedid']=null;
@@ -286,12 +286,12 @@ function Updatestatus($id)
     echo "<script>alert('status not updated..:)');</script>";
     cleardata();
   }
-}
+}   
 //_____________________Delete news___________________
 function DeleteNews($id)
 {
   global $con,$type;
-  $sql="update tbl_".$type." set Deletation=!Deletation where id=".$id;
+  $sql="update tbl_".$type." set deletion=!deletion where id=".$id;
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -350,7 +350,7 @@ if(isset($_GET["delete"]))
   DeleteNews($id);
 }
 if(isset($_GET['approve']))
-{
+{   
   $commentid=$_GET['approve'];
   CommentApprove($commentid);
 }
@@ -416,23 +416,27 @@ if(isset($_POST["btn_filter"]))
   //echo "<script>alert($a);</script>";
   if($a==0)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 and Approved=0 ";
+      $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=0 ";
   }
   elseif($a==1)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 and Approved=0 and Rejected=3 and Offline=1";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=0 and Rejected=3 and Offline=1";
   }
   elseif($a==2)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 and Approved=0 and Rejected=2";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=0 and Rejected=2";
   }
   elseif($a==3)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 and Status=2";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Status=2";
+  }
+  elseif($a==4)
+  {
+    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=1";
   }
   else
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0";
     $result_news=mysqli_query($con,$select_news); 
   }
   $result_news=mysqli_query($con,$select_news);

@@ -40,6 +40,11 @@
 <input type="text" class="w3-input" name="seodes"value="<?php echo @$update['SeoDescription']; ?>" placeholder="Enter Seo Description"  readonly="readonly"  id="seodes" >    
 <span id="error_seo_desc" class="error"></span><br/>
 
+<textarea name="editor1"></textarea>
+    <script>
+            CKEDITOR.replace( 'editor1' );
+    </script>
+<br/>
 <input type="file" value="<?php echo @$update['FileAttach']; ?>"  class="w3-input" name="file">    
 <span id="error_attach_file"  class="error"><?php if(isset($error_attach_file)){echo $error_attach_file;}?></span><br/>
 
