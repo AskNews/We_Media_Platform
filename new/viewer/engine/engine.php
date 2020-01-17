@@ -136,7 +136,7 @@ if($data){
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
   }
   }
-  $sql="select * from tbl_categories where status='1'";
+  $sql="select * from tbl_categories where status='1' and deletion='1'";
   $query=mysqli_query($con,$sql);
   $url="";
   $data1;

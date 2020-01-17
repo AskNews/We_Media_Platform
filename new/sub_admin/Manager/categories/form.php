@@ -15,52 +15,30 @@ if(isset($_GET['edit'])){
 <?php
 }
 ?>
+ 
+ <div class="wmp-section">   
+  <label>Title </label>   
+    <input class="wmp-input" type="text" name="title" onkeyup="convertToSlug(this.value);convertToComa(this.value);" value="<?php echo isset($editData)?$editData['title']:"";?>" required>
+    
+  </div>
   <div class="wmp-section">   
-  <label>Select Gallery</label>   
-   
-  <select class="wmp-button wmp-theme" name="gallery_id">
-	<?php
-          $sql="select * from tbl_gallery";
-		  $query=mysqli_query($con,$sql);
-		  while($row=mysqli_fetch_array($query)){
-			  $selected='';
-			  if(isset($editData)){
-				  if($editData['gallery_id']==$row['id']){
-					  $selected='selected="selected"';
-					  }
-				  }
-		  ?>
-          <option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['title']; ?></option>
-          <?php
-		  }
-		  ?>
-		  	</select>
-		</div>
-		<div class="wmp-section">   
-		<label>Select Image</label>   
-  
-		<input type="file" class="wmp-theme" name="image" placeholder="Please Select File" value="<?php echo isset($editData)?$editData['image']:"";?>">
-	<?php
-        if(isset($editData)){
-			if(file_exists($imgPath.$editData['gallery_id']."/".$editData['image']) && !empty($editData['image'])){
-				?>
-				<img src="<?php echo $imgPath.$editData['gallery_id']."/".$editData['image']; ?>" width="100"/>
-				<?php
-				}else echo "No Image found.";
-				?>
-                <input type="hidden" name="oldImage" value="<?php echo $editData['image'];?>" />
-                <?php
-			}
-		?>
-</div>
+  <label>URL </label>   
+    <input class="wmp-input" type="text" id="url" name="url" value="<?php echo isset($editData)?$editData['url']:"";?>" required>
+    
+  </div>
   <div class="wmp-section">   
-  <label>Caption</label>   
-    <input class="wmp-input" type="text" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?>" required>
+  <label>SEO title </label>   
+    <input class="wmp-input" type="text" id="seo_title" name="seo_title" value="<?php echo isset($editData)?$editData['seo_title']:"";?>" required>
+    
+  </div>
+  <div class="wmp-section">   
+  <label>SEO Description </label>   
+    <input class="wmp-input" type="text" id="slug-text" name="seo_desc" value="<?php echo isset($editData)?$editData['seo_desc']:"";?>" required>
     
   </div>
   <div class="wmp-section">   
   <label>Date</label>   
-    <input class="wmp-input" type="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>" required>
+    <input class="wmp-input" type="date" id="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>" required>
     
   </div>
    

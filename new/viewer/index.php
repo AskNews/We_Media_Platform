@@ -62,7 +62,7 @@ function carousel() {
 <div class="wmp-cell-row">
 <div class="wmp-container  wmp-cell wmp-twothird" >
 <?php
-     $sql="select * from tbl_categories where status='1'";
+     $sql="select * from tbl_categories where status='1' and deletion='1'";
 	 $query=mysqli_query($con,$sql);
 	 while($row=mysqli_fetch_array($query)){
 	 ?>
