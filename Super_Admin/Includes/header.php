@@ -69,6 +69,8 @@ include "engine/engine.php";
       <ul class="mainnav">
         <li <?php echo $type == "index"?'class="active"':'';?>><a href="index.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
         <li <?php echo $type == "user"?'class="active"':'';?>><a href="user.php"><i class="icon-dashboard"></i><span>User</span> </a> </li>
+        <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php"><i class="icon-dashboard"></i><span>Gallery</span> </a> </li>
+        <li <?php echo $type == "picture"?'class="active"':'';?>><a href="picture.php"><i class="icon-dashboard"></i><span>Picture</span> </a> </li>
         
         </ul>
     </div>

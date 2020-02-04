@@ -87,8 +87,14 @@ $description="The News Sharing Platform";
         <div class="latest_newsarea"> <span>Latest News</span>
           <ul id="ticker01" class="news_sticker">
           <?php
-
-               $cid=$data1;
+              if(isset($data1)){
+                $cid=$data1;
+               
+              }
+              else{
+                $cid=1;
+               
+              }
                 $sql="select * from tbl_news where Status='1' and Deletation='0' and CategoryID='$cid' and Approved='0'";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 

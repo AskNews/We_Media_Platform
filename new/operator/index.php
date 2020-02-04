@@ -54,13 +54,13 @@ include "includes/header.php";
 <br><br>&nbsp;
 </div><br><br>
 	
-<<<<<<< HEAD
+
 <div class="wmp-responsive wmp-card-4">
 <h3>Pendding Conetnt Creator Accounts <i class="fa fa-commenting-o" aria-hidden="true"></i>
-=======
+
 <div class="w3-responsive w3-card-4">
 <h3>Pendding News <i class="fa fa-commenting-o" aria-hidden="true"></i>
->>>>>>> 66cc459f3ea138fe49888f8f27509d34743a3df1
+
 </h3> 
 <table class="wmp-table wmp-striped wmp-bordered">
 <thead>

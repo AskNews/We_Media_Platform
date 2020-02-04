@@ -7,7 +7,7 @@ $type="Index";
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider">
         <?php
-			$sql="select * from tbl_slideshow where status='1' ORDER BY orderby ASC";
+			$sql="select * from tbl_slideshow where status='1' and deletion='1' ORDER BY orderby ASC";
 			$query=mysqli_query($con,$sql);
 			while($slideshow=mysqli_fetch_array($query)):
 				

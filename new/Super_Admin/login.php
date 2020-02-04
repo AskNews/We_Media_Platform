@@ -8,31 +8,26 @@ if(isset($_SESSION['newSuper-AdminLogin'])){
 include "../../Super_Admin/includes/dbconfig.php";
 //check for login
 if(isset($_POST['login'])){
+include "common_master.php";
+	
+@$username = mysqli_real_escape_string($con,$_POST['username']);
+$ms = mysqli_real_escape_string($con,$_POST['password']);
+$a=login("tbl_module_user",$username,$ms,3);
+if($a==1){
+	
+	if(isset($_POST['rem'])){
+		$time = time()+60*60; // for one hour
+		setcookie("Super-adminCookie",$username,$time);
+		}
+	$_SESSION['newSuper-AdminLogin']=$username;
+	echo "<script>alert('Success');</script>";
+	header ("location: index.php");
 	
 
-	$username = mysqli_real_escape_string($con,$_POST['uname']);
-	$ms = mysqli_real_escape_string($con,$_POST['password']);
-	
-	//login from database
-	$sql="SELECT * from tbl_super_admin WHERE user_name='$username' AND password=md5('$ms') AND status = '1'";
-		$query=mysqli_query($con,$sql);
-	$data=mysqli_fetch_assoc($query);
-	if($data){
-		 
-		//for rember me
-		if(isset($_POST['rem'])){
-			$time = time()+60*60; // for one hour
-			setcookie("SuperAdminCookie",$username,$time);
-			}
-		$_SESSION['newSuper-AdminLogin']=$username;
-		
-		header ("location: index.php");
-		}else
-		{
-			echo mysqli_error($con)."A";
-			}
-
-	}
+}else{
+	echo "<script>alert('Wrong Username or Password')</script>";
+}
+}
 
 ?>
 
@@ -102,7 +97,7 @@ a{
 
 <form class="wmp-container" method="post" ><br/>
 
- <input type="text" class="wmp-input" name="uname" placeholder="Username" required autofocus><br/>
+ <input type="text" class="wmp-input" name="username" placeholder="Username" required autofocus><br/>
 
 <input type="password" class="wmp-input" name="password" placeholder="Password" required><br>
 <div style="float:left" >

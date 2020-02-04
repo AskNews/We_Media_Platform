@@ -66,7 +66,7 @@ if(isset($_POST['login'])){
         <div class="header_top">
           <div class="header_top_left">
             <ul class="top_nav">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="pages/contact.html">Contact</a></li>
             </ul>
@@ -78,7 +78,7 @@ if(isset($_POST['login'])){
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_bottom">
-          <div class="logo_area"><a href="index.html" class="logo"><img src="images/logo.jpg" alt=""></a></div>
+          <div class="logo_area"><a href="index.php" class="logo"><img src="images/logo.jpg" alt=""></a></div>
           <div class="add_banner"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
         </div>
       </div>
@@ -91,14 +91,17 @@ if(isset($_POST['login'])){
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="index.html"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="#">Technology</a></li>
-          
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Tablets</a></li>
-          <li><a href="pages/contact.html">Contact Us</a></li>
-          <li><a href="pages/404.html">404 Page</a></li>
-        </ul>
+          <li <?php echo $type == "Index"?'class="active"':'';?>><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          <?php
+     
+	 while($row=mysqli_fetch_array($query)){
+	 ?>
+      <li <?php echo (@$url==$row['url'])?'class="active"':'';?>><a href="category.php?cat=<?php echo $row['url'];?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
+      <?php
+   }
+   $row_t=mysqli_fetch_array($query);
+	  ?> 
+         </ul>
       </div>
     </nav>
   </section>
@@ -128,21 +131,7 @@ if(isset($_POST['login'])){
                   <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
                 </div>
               </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
+              
             </ul>
           </div>
         </aside>

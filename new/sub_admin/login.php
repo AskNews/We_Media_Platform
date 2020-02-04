@@ -13,28 +13,26 @@ include "../../Super_Admin/includes/dbconfig.php";
 //check for login
 if(isset($_POST['login'])){
 	
+	include "../Super_Admin/common_master.php";
 
-	@$email = mysqli_real_escape_string($con,$_POST['email']);
-	@$ms = mysqli_real_escape_string($con,$_POST['password']);
 	
-	//login from database
-	$sql="SELECT * from tbl_module_user WHERE email='$email' AND password=md5('$ms') AND status = '1' And role='0'";
-	$query=mysqli_query($con,$sql);
-	$data=mysqli_fetch_assoc($query);
-	if($data){
-		 
-		//for rember me
+	@$username = mysqli_real_escape_string($con,$_POST['username']);
+	$ms = mysqli_real_escape_string($con,$_POST['password']);
+	$a=login("tbl_module_user",$username,$ms,0);
+	if($a==1){
+		
 		if(isset($_POST['rem'])){
 			$time = time()+60*60; // for one hour
-			setcookie("sub-adminCookie",$email,$time);
+			setcookie("Sub-adminCookie",$username,$time);
 			}
-		$_SESSION['newSub-AdminLogin']=$email;
+		$_SESSION['newSub-AdminLogin']=$username;
 		echo "<script>alert('Success');</script>";
 		header ("location: index.php");
-		}else
-		{
-			echo mysqli_error($con);
-		}
+		
+
+	}else{
+		echo "<script>alert('Wrong Username or Password')</script>";
+	}
 
 	}
   
@@ -64,7 +62,7 @@ a{
 </div>
 <form class="wmp-container" method="post" ><br/>
 
- <input type="email" class="wmp-input" name="email" placeholder="Username" required autofocus><br/>
+ <input type="text" class="wmp-input" name="username" placeholder="Username" required autofocus><br/>
 
 <input type="password" class="wmp-input" name="password" placeholder="Password" required><br>
 <div style="float:left" >
