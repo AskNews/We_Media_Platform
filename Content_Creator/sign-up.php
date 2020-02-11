@@ -53,7 +53,7 @@ if(isset($_POST['submit']))
 { 
     $ipaddress = $_SERVER['REMOTE_ADDR'];   
     $name=$viewstateUserProfile;
-    echo "name= $name";
+    //echo "name= $name";
     $filename=null;
     if(isset($_FILES))
     {
@@ -66,7 +66,7 @@ if(isset($_POST['submit']))
             if(($_FILES["file"]["type"]=="image/png") || ($_FILES["file"]["type"]=="image/jpg") || ($_FILES["file"]["type"]=="image/jpeg"))
             {
                 $temp = explode(".", $_FILES["file"]["name"]);
-                $extension = end($temp);
+                $extension = strtolower(end($temp));
                 $fileName = $temp[0] . "." . $temp[1];
                 $temp[0] = rand(0, 3000); //Set to random number
                 if (file_exists("img/" . $_FILES["file"]["name"])) 
@@ -77,7 +77,7 @@ if(isset($_POST['submit']))
                 {
                     $temp = explode(".", $_FILES["file"]["name"]);
                     $newfilename = round(microtime(true)) . '.' . end($temp);
-                    move_uploaded_file($_FILES["file"]["tmp_name"],$newfilename);
+                    //move_uploaded_file($_FILES["file"]["tmp_name"],$newfilename);
                     $filename=$newfilename;
                 }
             }
@@ -89,21 +89,26 @@ if(isset($_POST['submit']))
     }
     if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["mobile"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0)
     {
-        if($_POST["password"]!=$_POST["confirm"])
+        /*if(!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $_POST['password']))
+        {
+            $error_pass="Password must be 6 character long and have alphanumeric and have one special character";
+        }
+        else*/ if($_POST["password"]!=$_POST["confirm"])
         {
             $error="password not confirmed";
         }
         else
         {
             $password=md5($_POST["password"]);
-            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
-            values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
+            $joindate=date('m/d/Y ', time());
+            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP,join_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress','$joindate')";
             //echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
-            //values('$_POST[username]','$_POST[email]',$_POST[mobile],'$password','$filename','$ipaddress')";
+            //values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
             if(mysqli_query($con,$query))
             {
+
                 header("location:login.php");
-            }
+            } 
         }
     }
     else
@@ -190,11 +195,11 @@ if(isset($_POST['submit']))
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" id="password"  placeholder="Password">
+                            <input type="password" class="form-control" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password"  placeholder="Password">
                             <input type="hidden"  name="viewstatePassword" />
                             
                         </div>
-                        <span  class="error">Password must be 6 character long and have alphanumeric and have one special character  </span>
+                        <span  class="error"><?php if(isset($error_pass)){ echo $error_pass;} ?> </span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">

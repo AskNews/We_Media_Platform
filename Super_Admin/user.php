@@ -1,9 +1,9 @@
 <?php
-$type="tbl_module_user";
+$type="user";
 $s=1;
 $e=10;
+$imgPath = "image/module_user/";
 include "includes/header.php";
-include "engine/engine.php";
 
 ?>
 
@@ -33,18 +33,15 @@ include "engine/engine.php";
 						
 						<div class="tab-content">
                             <?php
-							if(isset($_GET['c_user']) || isset($_GET['u_user'])){
+							if(isset($_GET['c_user']) || isset($_POST['create']) || isset($_GET['edit'])){
 								include "Manager/user/form.php";
 								
 								
 							}
 							else{
-								if(isset($_GET['m_user'])){
+							
 									include "Manager/user/tbl.php";
-								}
-								else{
-									include "Manager/user/tbl.php";
-								}
+							
 							}
 							?>							
 						</div>

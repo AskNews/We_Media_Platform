@@ -2,7 +2,7 @@
 $type="profile";
 include 'includes/header.php';
 ?>
-
+ 
 <?php
 
 if(isset($_GET['update_profile']))

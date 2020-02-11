@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "includes/dbconfig.php";
+include "engine/engine.php";
 	if(isset($_SESSION['newAccount-AdminLogin'])){
     
     }
@@ -13,7 +14,7 @@ include "includes/dbconfig.php";
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
+<title>We Media Super Admin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +24,8 @@ include "includes/dbconfig.php";
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/pages/dashboard.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
+
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -66,15 +69,10 @@ include "includes/dbconfig.php";
       <ul class="mainnav">
         <li <?php echo $type == "index"?'class="active"':'';?>><a href="index.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
         <li <?php echo $type == "user"?'class="active"':'';?>><a href="user.php"><i class="icon-dashboard"></i><span>User</span> </a> </li>
+        <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php"><i class="icon-dashboard"></i><span>Gallery</span> </a> </li>
+        <li <?php echo $type == "picture"?'class="active"':'';?>><a href="picture.php"><i class="icon-dashboard"></i><span>Picture</span> </a> </li>
         
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Users</span> <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="user.php?c_user">Create Users</a></li>
-            <li><a href="user.php?m_user">Manage Users</a></li>
-            
-          </ul>
-        </li>
-      </ul>
+        </ul>
     </div>
     <!-- /container --> 
   </div>

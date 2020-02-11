@@ -1,0 +1,25 @@
+
+<script>
+    function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("wmp-show") == -1) {
+    x.className += " wmp-show";
+  } else { 
+    x.className = x.className.replace(" wmp-show", "");
+  }
+}
+
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "20%";
+  document.getElementById("mySidebar").style.width = "20%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+</body>
+</html>

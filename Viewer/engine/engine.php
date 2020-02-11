@@ -1,6 +1,12 @@
 <?php
 $query="";
 $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
+@$select1="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,4";
+$result_news=mysqli_query($con,$select1);
+@$sql1=mysqli_query($con,"select * from tbl_$type where `deletion`='1' limit $page1,5");
+@$total_rec=mysqli_num_rows($sql1);
+$total_pages=ceil($total_rec/5);  
+$last=$total_pages-1;    
 
 //##############INSERT ENGINE######################## 
 @$a;
@@ -86,7 +92,7 @@ function update($b){
   }
   //########################LOGIN ENGINE#####################
   
-  $User_email=$_SESSION['newSub-AdminLogin'];
+  @$User_email=$_SESSION['newSub-AdminLogin'];
   
   if(isset($_POST['register'])){
 	
@@ -120,5 +126,21 @@ if($data){
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
   }
   }
-
+  $sql="select * from tbl_categories where status='1' and `deletion`='1'";
+  $query=mysqli_query($con,$sql);
+  $url="";
+  $data1;
+  if(isset($_GET['cat'])){
+    global $url,$data;
+    $url=$_GET['cat'];
+	$sql="select * from tbl_$type where status='1' and url='$url'";
+	$query1=mysqli_query($con,$sql);
+	$data=mysqli_fetch_array($query1);
+	if($data){
+		$title=$data['seo_title'];
+		$description=$data['seo_desc'];
+		$data1=$data['id'];
+		}
+	}
+	
 ?>

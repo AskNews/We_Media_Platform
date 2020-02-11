@@ -1,6 +1,7 @@
 <?php
 $type="comment";
 include 'includes/header.php';
+include_once "engine/engine.php";
 ?>
 <section class="content"> 
   <div class="container-fluid">
@@ -8,7 +9,7 @@ include 'includes/header.php';
 <?php
 if($channel_setup_status==1)
 {
-if(isset($_GET['comment']))
+if(isset($_GET['comment']) || isset($_GET['approve']) || isset($_GET['spam'])|| isset($_GET['deleteComment']) || isset($_GET['page']) )
 {
 include 'manager/comment/table.php';
 }
