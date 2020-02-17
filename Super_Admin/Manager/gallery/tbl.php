@@ -6,8 +6,17 @@
 								<form id="edit-profile" class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 									<fieldset>
                   <div class="form-actions">
-											<button class="btn btn-success" name="create">Create new <?php echo ucfirst($type);?></button>
-											</div>                                 
+                  <div class="control-group">											
+											<label class="control-label" for="title">Search</label>
+											<div class="controls">
+												<input type="text" class="span6" id="title" name="keyword" >
+                        <button class="btn btn-success" name="search">Search <?php echo ucfirst($type);?></button>
+                        <br><br>
+                        <button class="btn btn-info" name="create">Create new <?php echo ucfirst($type);?></button>
+										
+                    	</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+												</div>                                 
 											 <!-- /widget -->
          								 <div class="widget widget-table action-table">
             								<div class="widget-header"> <i class="icon-th-list"></i>
@@ -20,8 +29,8 @@
                 <thead>
                   <tr>
                     <th style="width: 100px;"> Id </th>
-                    <th> User Name</th>
-                    <th> Email</th>
+                    <th> Title</th>
+                    <th> Loaction</th>
                     <th> Date</th>
                     <th>Status</th>
                     <th class="td-actions"> </th>
@@ -29,13 +38,14 @@
                 </thead>
                 <tbody>
                 <?php
-                while($row=mysqli_fetch_array($qry)){
+                while($row=mysqli_fetch_array($sql)){
                 ?>
                   <tr>
                     <td> <?php echo $row['id'];?> </td>
-                    <td> <?php echo $row['user_name'];?> </td>
-                    <td> <?php echo $row['email'];?> </td>
-                    <td> <?php echo $row['date'];?> </td>
+                  
+                    <td> <?php echo $row['title'];?> </td>
+                    <td> <?php echo $row['location'];?> </td>
+                    <td> <?php echo $row['c_date'];?> </td>
                     <td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
 		<?php echo $row['status']?'Active':'in-active'; ?></td>
@@ -48,17 +58,23 @@
               </table>
             </div>
             <ul class="pagination">
-        <li class="<?php if($s == 1 && $e == 10){ echo 'disabled'; } ?>">
-		<a href="?first">First</a>
-		</li>
-        <li class="<?php if($s == 1 && $e == 10){ echo 'disabled'; } ?>">
-            <a href="?prev">Prev</a>
-        </li>
-        <li>
-            <a href="?next">Next</a>
-        </li>
-        <li><a href="?last">Last</a></li>
-    </ul>
+                                    <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
+                                    <?php
+                                    for($i=1;$i<=$total_pages;$i++)
+                                    {
+                                        
+                                        ?>
+                                        <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
+                                        <!--echo "<a href='news.php?page=$i' style='text-decoration:none'>$i </a>";-->
+                                        &nbsp;
+                                    <?php }
+
+                                    ?>
+                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="?page=<?php echo $total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                                    
+                                    </ul>
             <!-- /widget-content --> 
           </div>
           <!-- /widget --> 

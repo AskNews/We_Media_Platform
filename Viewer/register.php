@@ -15,7 +15,7 @@ if(isset($_SESSION['newViewerLogin'])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>NewsFeed</title>
+<title>Login to Ask news</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +48,19 @@ if(isset($_SESSION['newViewerLogin'])){
               <li><a href="index.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="pages/contact.html">Contact</a></li>
+              <?php
+              if(isset($_SESSION['newViewerLogin'])){
+              ?>
+              <li><a href="logout.php">Logout</a></li>
+              <?php
+              }else{
+              ?>
+<li><a href="login.php">Login</a></li>
+<li><a href="register.php">Register</a></li>
+              
+              <?php
+              }
+              ?>
             </ul>
           </div>
           <div class="header_top_right">
@@ -93,7 +106,7 @@ if(isset($_SESSION['newViewerLogin'])){
             <h2>Register</h2>
             <p>Welcome to Ask News</p>
             <form action="<?php echo $_SERVER['PHP_SELF'];?>" class="contact_form" method="post">
-            <input class="form-control" type="text" placeholder="User Name*" name="user_name"><br>
+            <input class="form-control" type="text" placeholder="User Name*" name="user_name">
             <input class="form-control" type="email" placeholder="Email*" name="email">
               <input class="form-control" type="password" placeholder="Password*" name="password">
               <input type="submit" value="Register" name="register">

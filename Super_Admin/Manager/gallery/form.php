@@ -8,104 +8,48 @@
                                                 include "includes/msg.php";
                                                 ?>
                                             		 </div>
-										<div class="control-group">											
-											<label class="control-label" for="image">Profile Image</label>
-											<div class="controls">
-												<input type="file" class="span6" id="image" name="image">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										<?php
-        if(isset($editData)){
-			if(file_exists($imgPath.$editData['image']) && !empty($editData['image'])){
-				?>
-				<img src="<?php echo $imgPath.$editData['image']; ?>" width="100"/>
-				<?php
-				}else echo "No Image found.";
-				?>
-                <input type="hidden" name="oldImage" value="<?php echo $editData['image'];?>" />
-                <?php
-			}
-		?>
+										
+									
 
-										<div class="control-group">											
-											<label class="control-label" for="username">Username</label>
+													 <div class="control-group">											
+											<label class="control-label" for="title">Title</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="uname" value="<?php echo isset($editData)?$editData['user_name']:"";?>">
+												<input type="text" class="span6" id="title" name="title" onkeyup="convertToSlug(this.value);convertToComa(this.value);" value="<?php echo isset($editData)?$editData['title']:"";?>">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="url">URL</label>
+											<div class="controls">
+												<input type="text" class="span6" id="url" name="url" value="<?php echo isset($editData)?$editData['url']:"";?>">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="seo_title">SEO Title</label>
+											<div class="controls">
+												<input type="text" class="span6" id="seo_title" name="seo_title" value="<?php echo isset($editData)?$editData['seo_title']:"";?>">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="seo_desc">SEO Description</label>
+											<div class="controls">
+												<input type="text" class="span6" id="seo_desc" name="seo_desc" value="<?php echo isset($editData)?$editData['seo_desc']:"";?>">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="location">Location</label>
+											<div class="controls">
+												<input type="text" class="span6" id="location" name="location" value="<?php echo isset($editData)?$editData['location']:"";?>">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										<div class="control-group">											
+											<label class="control-label" for="date">Date</label>
+											<div class="controls">
+												<input type="date" class="span6" id="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
 										
-										<div class="control-group">											
-											<label class="control-label" for="firstname">First Name</label>
-											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="fname" value="<?php echo isset($editData)?$editData['first_name']:"";?>">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="lastname">Last Name</label>
-											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="lname" value="<?php echo isset($editData)?$editData['last_name']:"";?>">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="email">Email Address</label>
-											<div class="controls">
-												<input type="text" class="span4" id="email" name="email" value="<?php echo isset($editData)?$editData['email']:"";?>">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="password1">Password</label>
-											<div class="controls">
-												<input type="password" class="span4" id="password1" name="pwd" >
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="password2">Confirm</label>
-											<div class="controls">
-												<input type="password" class="span4" id="password2">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-												
-										
-                                        
-                                        
-                                        <div class="control-group">											
-											<label class="control-label">Permission</label>
-											<?php
-        $sub='';
-		$operator='';
-		if(isset($editData)){
-			if($editData['status']==0){
-				 $operator='checked';
-		
-				}else{
-					$sub='checked';
-				}
-			}
-		?>
-	
-                                            
-                                            <div class="controls">
-                                            <label class="radio inline">
-                                              <input type="radio"  name="role" value="0" <?php echo $sub;?>> News Operator
-                                            </label>
-                                            
-                                            <label class="radio inline">
-                                              <input type="radio" name="role" value="1" <?php echo $operator; ?>>Ad Operator
-                                            </label>
-                                          </div>	<!-- /controls -->			
-										</div> <!-- /control-group -->
-                                        
-										
+									
 											
 										 <br />
 										

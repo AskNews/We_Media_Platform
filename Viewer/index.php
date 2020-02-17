@@ -12,7 +12,7 @@ $type="Index";
 			while($slideshow=mysqli_fetch_array($query)):
 				
 			?> 
-          <div class="single_iteam"> <a href="pages/single_page.html"> <img src="../Sub_Admin/images/slideshow/<?php echo $slideshow['image'];?>" alt=""></a>
+          <div class="single_iteam"> <a href="pages/single_page.html"> <img src="../Super_Admin/image/slideshow/<?php echo $slideshow['image'];?>" alt=""></a>
             <div class="slider_article">
               <h2><a class="slider_tittle" href="pages/single_page.html"><?php echo $slideshow['caption'];?></a></h2>
               <p>Created Date : <?php echo $slideshow['c_date'];?></p>
@@ -60,14 +60,14 @@ $type="Index";
                 <li>
                 <?php
                 $cid=$row['id'];
-                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='0' and CategoryID='$cid' limit 1";
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='1' and CategoryID='$cid' limit 1";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 $row1 = mysqli_fetch_array($query)
               
                 ?>
-                  <figure class="bsbig_fig"> <a href="" class="featured_img"> <img alt="" style="height:283px;width:340px;" src="<?php echo "../Content_Creator/img/".$row1['FileAttach'];?>"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="pages/single_page.html"><?php echo $row1['HeadLine'];?></a> </figcaption>
+                  <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row1['NewsID'];?>" class="featured_img"> <img alt="" style="height:283px;width:340px;" src="<?php echo "../Content_Creator/img/".$row1['FileAttach'];?>"> <span class="overlay"></span> </a>
+                    <figcaption> <a href="view.php?nid=<?php echo $row1['NewsID'];?>"><?php echo $row1['HeadLine'];?></a> </figcaption>
                     <p><?php echo $row1['Summary'];?></p>
                   </figure>
                 </li>
@@ -78,7 +78,7 @@ $type="Index";
               <?php
               $cid=$row['id'];
               $nid=$row1['NewsID'];
-              $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='0' and CategoryID='$cid' and NewsID!='$nid' limit 4";
+              $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='1' and CategoryID='$cid' and NewsID!='$nid' limit 4";
               $query=mysqli_query($con,$sql);
               $index = 0; 
               while($row_s1 = mysqli_fetch_array($query)):
@@ -191,36 +191,23 @@ $type="Index";
           <div class="single_post_content">
             <h2><span>Photography</span></h2>
             <ul class="photograph_nav  wow fadeInDown">
+            <?php
+            $ini_gallery=mysqli_query($con,"select * from tbl_gallery where status=1 limit 6");
+                while($load_gallery=mysqli_fetch_array($ini_gallery)){
+                  $gid=$load_gallery['id'];
+                  $ini_picture=mysqli_query($con,"select * from tbl_picture where gallery_id=$gid and status=1 and deletion=1");
+                  $load_picture=mysqli_fetch_array($ini_picture);
+                  
+            ?>
               <li>
                 <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img2.jpg" title="Photography Ttile 1"> <img src="images/photograph_img2.jpg" alt=""/></a> </figure>
+                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img2.jpg" title="<?php echo $load_picture['caption'];?>"> <img src="../Super_Admin/image/gallery/<?php echo $gid."/".$load_picture['image'];?>" alt=""/></a> </figure>
                 </div>
               </li>
-              <li>
-                <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img3.jpg" title="Photography Ttile 2"> <img src="images/photograph_img3.jpg" alt=""/> </a> </figure>
-                </div>
-              </li>
-              <li>
-                <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img4.jpg" title="Photography Ttile 3"> <img src="images/photograph_img4.jpg" alt=""/> </a> </figure>
-                </div>
-              </li>
-              <li>
-                <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img4.jpg" title="Photography Ttile 4"> <img src="images/photograph_img4.jpg" alt=""/> </a> </figure>
-                </div>
-              </li>
-              <li>
-                <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img2.jpg" title="Photography Ttile 5"> <img src="images/photograph_img2.jpg" alt=""/> </a> </figure>
-                </div>
-              </li>
-              <li>
-                <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img3.jpg" title="Photography Ttile 6"> <img src="images/photograph_img3.jpg" alt=""/> </a> </figure>
-                </div>
-              </li>
+         <?php
+                }
+         ?>
+             
             </ul>
           </div>
           <div class="single_post_content">
