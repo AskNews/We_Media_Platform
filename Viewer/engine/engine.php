@@ -137,10 +137,19 @@ if($data){
 	$query1=mysqli_query($con,$sql);
 	$data=mysqli_fetch_array($query1);
 	if($data){
-		$title=$data['seo_title'];
+		$title=$data['seo_desc'];
 		$description=$data['seo_desc'];
 		$data1=$data['id'];
 		}
 	}
-	
+  
+  if(isset($_GET['nid'])){
+    $gen_news=$_GET['nid'];
+    $fqry=mysqli_query($con,"select * from tbl_news where NewsID=$gen_news and Deletation=0 and Status=1 and Offline=0");
+    $res_view=mysqli_fetch_array($fqry);
+    $resv=$res_view['CategoryID'];
+    $data1=$res_view['CategoryID'];
+    $find_catagory=mysqli_query($con,"select * from tbl_categories where id=$resv");
+    $res_cat=mysqli_fetch_array($find_catagory);
+  }
 ?>

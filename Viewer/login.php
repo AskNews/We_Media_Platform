@@ -9,7 +9,7 @@ if(isset($_SESSION['newViewerLogin'])){
 	header("location: index.php");//content type defer function, where we redirect the page to the login page
 	}
 
-//check for login
+//check for login-
 if(isset($_POST['login'])){
 	
 
@@ -17,7 +17,7 @@ if(isset($_POST['login'])){
 	$ms = mysqli_real_escape_string($con,$_POST['password']);
 	
 	//login from database
-	$sql="SELECT * from tbl_module_$type WHERE email='$email' AND password=md5('$ms') AND status = '1'";
+	$sql="SELECT * from tbl_$type WHERE email='$email' AND password=md5('$ms') AND status = '1'";
 	$query=mysqli_query($con,$sql);
 	$data=mysqli_fetch_assoc($query);
 	if($data){
@@ -36,7 +36,7 @@ if(isset($_POST['login'])){
 <!DOCTYPE html>
 <html>
 <head>
-<title>NewsFeed</title>
+<title>Login to Ask News</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,6 +69,19 @@ if(isset($_POST['login'])){
               <li><a href="index.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="pages/contact.html">Contact</a></li>
+              <?php
+              if(isset($_SESSION['newViewerLogin'])){
+              ?>
+              <li><a href="logout.php">Logout</a></li>
+              <?php
+              }else{
+              ?>
+<li><a href="login.php">Login</a></li>
+<li><a href="register.php">Register</a></li>
+              
+              <?php
+              }
+              ?>
             </ul>
           </div>
           <div class="header_top_right">
@@ -79,8 +92,7 @@ if(isset($_POST['login'])){
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_bottom">
           <div class="logo_area"><a href="index.php" class="logo"><img src="images/logo.jpg" alt=""></a></div>
-          <div class="add_banner"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
-        </div>
+            </div>
       </div>
     </div>
   </header>
@@ -115,8 +127,9 @@ if(isset($_POST['login'])){
             <p>Welcome Back to Ask News</p>
             <form action="<?php echo $_SERVER['PHP_SELF'];?>" class="contact_form" method="post">
               <input class="form-control" type="email" placeholder="Email*" name="email">
-              <input class="form-control" type="password" placeholder="Password*" name="password">
+              <input class="form-control" type="password" placeholder="Password*" name="password"><br><br>
               <input type="submit" value="login" name="login">
+              <br>Don't Have Account? <a href="register.php">here</a>
             </form>
           </div>
         </div>

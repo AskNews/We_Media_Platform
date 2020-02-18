@@ -2,7 +2,7 @@
 $type="picture";
 $s=1;
 $e=10;
-$imgPath = "image/module_user/";
+$imgPath = "image/gallery/";
 include "includes/header.php";
 
 ?>
@@ -21,7 +21,7 @@ include "includes/header.php";
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-user"></i>
-	      				<h3>Manage Users</h3>
+	      				<h3>Manage <?php echo $type;?></h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -34,13 +34,13 @@ include "includes/header.php";
 						<div class="tab-content">
                             <?php
 							if(isset($_GET['c_user']) || isset($_POST['create']) || isset($_GET['edit'])){
-								include "Manager/user/form.php";
+								include "Manager/$type/form.php";
 								
 								
 							}
 							else{
 							
-									include "Manager/user/tbl.php";
+									include "Manager/$type/tbl.php";
 							
 							}
 							?>							
