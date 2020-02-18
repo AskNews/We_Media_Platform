@@ -17,7 +17,7 @@ if(isset($_POST['login'])){
 	$ms = mysqli_real_escape_string($con,$_POST['password']);
 	
 	//login from database
-	$sql="SELECT * from tbl_module_$type WHERE email='$email' AND password=md5('$ms') AND status = '1'";
+	$sql="SELECT * from tbl_$type WHERE email='$email' AND password=md5('$ms') AND status = '1'";
 	$query=mysqli_query($con,$sql);
 	$data=mysqli_fetch_assoc($query);
 	if($data){
@@ -92,8 +92,7 @@ if(isset($_POST['login'])){
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_bottom">
           <div class="logo_area"><a href="index.php" class="logo"><img src="images/logo.jpg" alt=""></a></div>
-          <div class="add_banner"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
-        </div>
+            </div>
       </div>
     </div>
   </header>

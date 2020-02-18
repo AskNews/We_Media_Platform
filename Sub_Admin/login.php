@@ -54,7 +54,7 @@ if(isset($_POST['login'])){
 <html lang="en" class="fullscreen-bg">
 
 <head>
-	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Ask News Operator panel</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -111,7 +111,7 @@ if(isset($_POST['login'])){
 						<div class="overlay"></div>
 						<div class="content text">
 							<h1 class="heading">Welcome to Ask News </h1>
-							<p>Sub Admin</p>
+							<p>Operator</p>
 						</div>
 					</div>
 					<div class="clearfix"></div>

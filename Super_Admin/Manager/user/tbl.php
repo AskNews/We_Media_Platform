@@ -40,8 +40,12 @@
                 <tbody>
                 <?php
                 while($row=mysqli_fetch_array($sql)){
+                if($row['role']==3){
+
+                }else{
                 ?>
                   <tr>
+
                     <td> <?php echo $row['id'];?> </td>
                     <td> <?php echo $row['user_name'];?> </td>
                     <td><?php
@@ -59,6 +63,7 @@
                     <td class="td-actions"><a href="?edit=<?php echo $row['id']; ?>" class="btn btn-small btn-success"><i class="btn-icon-only icon-pencil"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                 <?php
+                }
                 }
                 ?>
                 </tbody>

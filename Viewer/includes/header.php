@@ -1,5 +1,6 @@
 <?php
-include "session.php";
+#include "session.php";
+session_start();
 include "../Super_Admin/includes/dbconfig.php";
 
 $title="Welcome to Ask News";
@@ -68,8 +69,7 @@ $description="The News Sharing Platform";
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_bottom">
           <div class="logo_area"><a href="index.php" class="logo"><img style="height:100px;" src="../logo.png" alt=""></a></div>
-          <div class="add_banner"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
-        </div>
+          </div>
       </div>
     </div>
   </header>

@@ -53,7 +53,8 @@ if(isset($_POST['login'])){
     
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/pages/signin.css" rel="stylesheet" type="text/css">
-
+<link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
+	
 </head>
 
 <body>
