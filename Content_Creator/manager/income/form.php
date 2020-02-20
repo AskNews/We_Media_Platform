@@ -64,11 +64,20 @@
                             </h2>
                         </div>
                         <div class="body">
-                            <form>
-                                <label>Bank Name</label>
+                            <form method="post" action="" >
+                                <!--<label>Bank Name</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="bankname" class="form-control" placeholder="Enter Bank name">
+                                        
+                                        <select class="form-control show-tick" value="" name='status'  id='status'>
+                                        <option>--Select Bank--</option>
+                                        <option value="axis">Axis Bank</option>
+                                        <option value="bob">Bank of Baroda</option>
+                                        <option value="sbi">State Bank of India</option>
+                                        <option value="kotak">Kotak Bank</option>
+                                        <option value="union">Union Bank</option>
+                                        <option value="pnb">Punjab Nation Bank</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <label>Account Number</label>
@@ -82,17 +91,16 @@
                                     <div class="form-line">
                                         <input type="text" id="accountHname" class="form-control" placeholder="Enter Bank account holder name">
                                     </div>
-                                </div>
+                                </div>-->
                                 <label>Transfer Amount</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="amount" class="form-control" placeholder="Enter amount to transfer">
+                                        <input type="text" id="amount" name="amount" class="form-control" placeholder="Enter amount to transfer">
                                     </div>
                                 </div>
                                 <br>
-                                <button type="button" class="btn btn-primary m-t-15 waves-effect">Done</button>
+                                <button type="submit" name="transaction" class="btn btn-primary m-t-15 waves-effect">Done</button>
                             </form>
                         </div>
                     </div>
                 </div>
-          

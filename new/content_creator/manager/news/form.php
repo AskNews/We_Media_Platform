@@ -40,7 +40,7 @@
 <input type="text" class="wmp-input" name="seodes"value="<?php echo @$update['SeoDescription']; ?>" placeholder="Enter Seo Description"  readonly="readonly"  id="seodes" >    
 <span id="error_seo_desc" class="error"></span><br/>
 
-<textarea name="editor1"></textarea>
+<textarea  name="editor1"><?php echo $update['Details']; ?></textarea>
     <script>
             CKEDITOR.replace( 'editor1' );
     </script>
@@ -52,13 +52,11 @@
 <option value="1">Active</option>
 <option value="0">In-Active</option>
 <option value="2">Draft</option>
-</select>
-        
+</select>   
 <br/>
-
 <?php
 if(isset($_GET['newsid'])){
-$query_status="select * from tbl_news where Deletation=0 and NewsID=".$_GET['newsid'];
+$query_status="select * from tbl_news where Deletion=0 and ID=".$_GET['newsid'];
 $data1=mysqli_query($con,$query_status);
 $row1=mysqli_fetch_assoc($data1);
 {

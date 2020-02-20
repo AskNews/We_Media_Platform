@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $channel_setup_status=0;
 $channel_name="";
@@ -56,6 +55,7 @@ else{
   margin-left:40%;
  
 }
+
 .col-sm-3 select,input
 {
   width:20%;
@@ -95,6 +95,59 @@ else{
 }
 .news-card{width:70%;margin:1% auto;}
 </style>
+<style>
+    .error{color:red;}
+    </style>
+ <script type="text/javascript">
+function convertToSlug( str ) {
+	
+  //replace all special characters | symbols with a space
+  str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	
+  // trim spaces at start and end of string
+  str = str.replace(/^\s+|\s+$/gm,'');
+	
+  // replace space with dash/hyphen
+  str = str.replace(/\s+/g, '-');	
+  
+  document.getElementById("url").value= str;
+  
+  //return str;
+}
+function convertToComa1( str2 ) {
+	
+	//replace all special characters | symbols with a space
+	str2 = str2.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	  
+	// trim spaces at start and end of string
+	str2 = str2.replace(/^\s+|\s+$/gm,'');
+	  
+	// replace space with dash/hyphen
+	str2 = str2.replace(/\s+/g, ', ');	
+	
+	document.getElementById("seodes").value= str2;
+  //return str;
+  }
+function convertToComa( str1 ) {
+	
+	//replace all special characters | symbols with a space
+	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	  
+	// trim spaces at start and end of string
+	str1 = str1.replace(/^\s+|\s+$/gm,'');
+	  
+	// replace space with dash/hyphen
+	str1 = str1.replace(/\s+/g, ', ');	
+	
+	document.getElementById("seotitle").value= str1;
+  //return str;
+  }
+  
+	</script>
+    <script>
+
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>

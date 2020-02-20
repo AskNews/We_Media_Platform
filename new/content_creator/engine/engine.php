@@ -397,13 +397,21 @@ if(isset($_GET['feedid']))
 if(isset($_POST["btn_search"]))
 {
   $a=$_POST["keyword"];
-  $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletation=0 and HeadLine like '%$a%'";
+  $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletion=0 and HeadLine like '%$a%' ";
   $result_news=mysqli_query($con,$select_news);
 }
 //___________________________fill data in controls by querystring_________________________
 if(isset($_GET['newsid']))
 {
   $id=$_GET['newsid'];
+  //echo "<script>alert($id);</script>";
+  $sql="select * from tbl_news where id=".$id;
+  $query=mysqli_query($con,$sql);
+  $update=mysqli_fetch_assoc($query);
+}
+if(isset($_GET['d']))
+{
+  $id=$_GET['d'];
   //echo "<script>alert($id);</script>";
   $sql="select * from tbl_news where id=".$id;
   $query=mysqli_query($con,$sql);

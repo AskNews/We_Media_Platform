@@ -1,4 +1,5 @@
-<?php include "includes/header.php";?>
+<?php include "includes/header.php";
+include '../../Super_Admin/Includes/dbconfig.php'; ?>
 <!--<div id="main">
 <div class="wmp-teal">
   <button id="openNav" class="wmp-button wmp-teal wmp-xlarge" onclick="w3_open()">&#9776;</button>

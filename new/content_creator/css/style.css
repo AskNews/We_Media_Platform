@@ -169,6 +169,8 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .wmp-sand,.wmp-hover-sand:hover{color:#000!important;background-color:#fdf5e6!important}
 .wmp-teal,.wmp-hover-teal:hover{color:#fff!important;background-color:#009688!important}
 .wmp-yellow,.wmp-hover-yellow:hover{color:#000!important;background-color:#ffeb3b!important}
+.wmp-yellow,.wmp-hover-orange:hover{color:#000!important;background-color:#d2be0e!important}
+.wmp-grey,.wmp-hover-grey:hover{color:#000!important;background-color:#616161!important}
 
 .wmp-white,.wmp-hover-white:hover{color:#000!important;background-color:#fff!important}
 .wmp-black,.wmp-hover-black:hover{color:#fff!important;background-color:#000!important}
@@ -234,7 +236,15 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .wmp-border-pale-red,.wmp-hover-border-pale-red:hover{border-color:#ffe7e7!important}.wmp-border-pale-green,.wmp-hover-border-pale-green:hover{border-color:#e7ffe7!important}
 .wmp-border-pale-yellow,.wmp-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.wmp-border-pale-blue,.wmp-hover-border-pale-blue:hover{border-color:#e7ffff!important}
 
-
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+    }
 
  .wmp-green,.wmp-hover-green:hover{color:#fff!important;background-color:#4caf50!important;}
  

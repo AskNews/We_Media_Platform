@@ -16,6 +16,10 @@ include_once "engine/engine.php";
                 {
                   include "manager/$type/table.php";
                 }
+                elseif(isset($_GET['d']))
+                {
+                  include "manager/$type/details.php";
+                }
                 else
                 {
                   include "manager/$type/table.php";
