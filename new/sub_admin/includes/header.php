@@ -17,7 +17,7 @@ include "../../Super_Admin/includes/dbconfig.php";
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style_color.css">
 <link rel="icon" type="image/png" sizes="96x96" href="../../icon.png">
-	
+<script type="text/javascript" src="../Super_Admin/common_master.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <body>
 

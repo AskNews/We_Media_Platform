@@ -5,10 +5,12 @@ session_start();
 
 
 //check where the key exists or not
-if(isset($_SESSION['newSub-AdminLogin'])){
+if(isset($_SESSION['newNewsSub-AdminLogin'])||isset($_SESSION['newAdSub-AdminLogin'])){
 	header("location: index.php");//content type defer function, where we redirect the page to the login page
 	}
-include "../Super_Admin/includes/dbconfig.php";
+	include "../Super_Admin/includes/dbconfig.php";
+	include "../Super_Admin/common_master.php";
+
 //check for login
 if(isset($_POST['login'])){
 	
@@ -17,24 +19,33 @@ if(isset($_POST['login'])){
 	$ms = mysqli_real_escape_string($con,$_POST['password']);
 	
 	//login from database
-	$sql="SELECT * from tbl_module_user WHERE email='$email' AND password=md5('$ms') AND status = '1' And role='0'";
-	$query=mysqli_query($con,$sql);
-	$data=mysqli_fetch_assoc($query);
-	if($data){
-		 
+	$a=login("tbl_module_user",$email,$ms,0);
+	$b=login("tbl_module_user",$email,$ms,1);
+		if($a==1){ 
 		//for rember me
 		if(isset($_POST['rem'])){
 			$time = time()+60*60; // for one hour
-			setcookie("sub-adminCookie",$email,$time);
+			setcookie("Newssub-adminCookie",$email,$time);
 			}
-		$_SESSION['newSub-AdminLogin']=$email;
-		echo "<script>alert('Success');</script>";
+		$_SESSION['newNewsSub-AdminLogin']=$email;
+		$_SESSION['role']=0;
+		echo "<script>alert('Ad operator');</script>";
 		header ("location: index.php");
-		}else
+		}else if($b==1)
 		{
-			echo mysqli_error($con)."A";
+			//for rember me
+		if(isset($_POST['rem'])){
+			$time = time()+60*60; // for one hour
+			setcookie("Adsub-adminCookie",$email,$time);
+			}
+		$_SESSION['newAdSub-AdminLogin']=$email;
+		$_SESSION['role']=1;
+		echo "<script>alert('Ad operator');</script>";
+		header ("location: index.php");
+
 			}
 
+		
 	}
 
 ?>
@@ -43,7 +54,7 @@ if(isset($_POST['login'])){
 <html lang="en" class="fullscreen-bg">
 
 <head>
-	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Ask News Operator panel</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -76,8 +87,8 @@ if(isset($_POST['login'])){
 							</div>
 							<form class="form-auth-small" action="login.php" method="post">
 								<div class="form-group">
-									<label for="signin-email" class="control-label sr-only">Email</label>
-									<input type="email" class="form-control" id="signin-email" name="email" placeholder="Email">
+									<label for="signin-email" class="control-label sr-only">User Name</label>
+									<input type="text" class="form-control" id="signin-email" name="email" placeholder="User Name">
 								</div>
 								<div class="form-group">
 									<label for="signin-password" class="control-label sr-only">Password</label>
@@ -100,7 +111,7 @@ if(isset($_POST['login'])){
 						<div class="overlay"></div>
 						<div class="content text">
 							<h1 class="heading">Welcome to Ask News </h1>
-							<p>Sub Admin</p>
+							<p>Operator</p>
 						</div>
 					</div>
 					<div class="clearfix"></div>

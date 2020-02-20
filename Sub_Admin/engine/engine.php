@@ -10,8 +10,13 @@ $query="";
   {
       @$page1=($page*5)-5;
   }
+  if($type=="news"){
+    $select="SELECT * FROM `tbl_$type` where `Deletation`='0' limit $page1,5";
+  
+  }else{
   $select="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,5";
-$result_news=mysqli_query($con,$select);
+  }
+  $result_news=mysqli_query($con,$select);
 $sql1=mysqli_query($con,"select * from tbl_$type");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
@@ -170,8 +175,8 @@ function approve(){
 }  
 
 
-  $User_email=$_SESSION['newSub-AdminLogin'];
-  $sql="SELECT * FROM `tbl_module_user` WHERE `email`='$User_email' ";
+  $User_email=$ses;
+  $sql="SELECT * FROM `tbl_module_user` WHERE `user_name`='$ses' ";
   $qry=mysqli_query($con,$sql);
   $data=mysqli_fetch_array($qry);
   

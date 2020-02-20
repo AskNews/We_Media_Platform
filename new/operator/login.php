@@ -9,29 +9,25 @@ include "../../Super_Admin/includes/dbconfig.php";
 //check for login
 if(isset($_POST['login'])){
 	
+	include "../Super_Admin/common_master.php";
 
-	$email = mysqli_real_escape_string($con,$_POST['email']);
+	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$ms = mysqli_real_escape_string($con,$_POST['password']);
-	
-	//login from database
-	$sql="SELECT * from tbl_module_user WHERE email='$email' AND password=md5('$ms') AND status = '1' And role='1'";
-	$query=mysqli_query($con,$sql);
-	$data=mysqli_fetch_assoc($query);
-	if($data){
-		 
-		//for rember me
+	$a=login("tbl_module_user",$username,$ms,1);
+	if($a==1){
+		
 		if(isset($_POST['rem'])){
 			$time = time()+60*60; // for one hour
-			setcookie("OperatorCookie",$email,$time);
+			setcookie("OperatorCookie",$username,$time);
 			}
-		$_SESSION['new-Operator-Login']=$email;
-		
+		$_SESSION['new-Operator-Login']=$username;
+		echo "<script>alert('Success');</script>";
 		header ("location: index.php");
-		}else
-		{
-			echo mysqli_error($con)."A";
-			}
+		
 
+	}else{
+		echo "<script>alert('Wrong Username or Password')</script>";
+	}
 	}
 
 ?>
@@ -61,11 +57,11 @@ a{
 </div>
 <form class="wmp-container" method="post" ><br/>
 
- <input type="email" class="wmp-input" name="email" placeholder="Email" required autofocus><br/>
+ <input type="username" class="wmp-input" name="username" placeholder="username" required autofocus><br/>
 
 <input type="password" class="wmp-input" name="password" placeholder="Password" required><br>
 <div style="float:left" >
-<label><input type="checkbox" name="rememberme" id="rememberme">
+<label><input type="checkbox" name="rem" id="rememberme">
 Remember Me</label>
 </div>
 <button class="wmp-button wmp-green" name="login" style="float: right;">Login</button><br/><br/><br/>

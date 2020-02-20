@@ -79,7 +79,7 @@
                                         
                                         
                                         <div class="control-group">											
-											<label class="control-label">Role</label>
+											<label class="control-label">Permission</label>
 											<?php
         $sub='';
 		$operator='';
@@ -96,11 +96,11 @@
                                             
                                             <div class="controls">
                                             <label class="radio inline">
-                                              <input type="radio"  name="role" value="0" <?php echo $sub;?>> Sub Admin
+                                              <input type="radio"  name="role" value="0" <?php echo $sub;?>> News Operator
                                             </label>
                                             
                                             <label class="radio inline">
-                                              <input type="radio" name="role" value="1" <?php echo $operator; ?>> Operator
+                                              <input type="radio" name="role" value="1" <?php echo $operator; ?>>Ad Operator
                                             </label>
                                           </div>	<!-- /controls -->			
 										</div> <!-- /control-group -->

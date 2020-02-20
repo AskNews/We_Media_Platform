@@ -1,5 +1,6 @@
 <?php
-include "session.php";
+#include "session.php";
+session_start();
 include "../Super_Admin/includes/dbconfig.php";
 
 $title="Welcome to Ask News";
@@ -45,18 +46,30 @@ $description="The News Sharing Platform";
               <li><a href="index.php">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="pages/contact.html">Contact</a></li>
+              <?php
+              if(isset($_SESSION['newViewerLogin'])){
+              ?>
+              <li><a href="logout.php">Logout</a></li>
+              <?php
+              }else{
+              ?>
+<li><a href="login.php">Login</a></li>
+<li><a href="register.php">Register</a></li>
+              
+              <?php
+              }
+              ?>
             </ul>
           </div>
           <div class="header_top_right">
-            <p>Friday, December 05, 2045</p>
+            <p><?php echo date("l"). ", " .date("Y/m/d"); ?></p>
           </div>
         </div>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_bottom">
           <div class="logo_area"><a href="index.php" class="logo"><img style="height:100px;" src="../logo.png" alt=""></a></div>
-          <div class="add_banner"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
-        </div>
+          </div>
       </div>
     </div>
   </header>
@@ -87,16 +100,22 @@ $description="The News Sharing Platform";
         <div class="latest_newsarea"> <span>Latest News</span>
           <ul id="ticker01" class="news_sticker">
           <?php
-
-               $cid=$data1;
-                $sql="select * from tbl_news where Status='1' and Deletation='0' and CategoryID='$cid' and Approved='0'";
+              if(isset($data1)){
+                $cid=$data1;
+               
+              }
+              else{
+                $cid=1;
+               
+              }
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and CategoryID='$cid' and Approved='1'";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 while($row1 = mysqli_fetch_array($query)){
               
                 ?>
                
-            <li><a href="#"><img src="images/news_thumbnail3.jpg" alt=""><?php echo $row1['HeadLine'];?></a></li>
+            <li><a href="?nid=<?php echo $row1['NewsID'];?>"><img src="images/news_thumbnail3.jpg" alt=""><?php echo $row1['HeadLine'];?></a></li>
             <?php
             }
             ?>

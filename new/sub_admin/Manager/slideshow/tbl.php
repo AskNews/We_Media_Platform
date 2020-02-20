@@ -40,9 +40,9 @@ include "includes/msg.php";
 											<td><?php echo $row['id']; ?></td>
 											
 											<td><?php
-        if(file_exists($imgPath.$row['image']."/".$row['image']) && !empty($row['image'])){
+        if(file_exists($imgPath.$row['image']) && !empty($row['image'])){
 		?>
-        <img src="<?php echo $imgPath.$row['image']."/".$row['image']; ?>" width="80"/>
+        <img src="<?php echo $imgPath.$row['image']; ?>" width="80"/>
         <?php
 		}else echo "No Image found.";
 		?></td><td><?php echo $row['caption']; ?></td>

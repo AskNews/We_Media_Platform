@@ -1,6 +1,6 @@
 <?php
 $type="slideshow";
-$imgPath = "images/gallery/";
+$imgPath = "./images/slideshow/";
 
 include "includes/header.php";
 ?>

@@ -5,7 +5,7 @@
 session_start();
 
 //update data from cookie to session
-if(isset($_COOKIE['adminCookie'])){
+if(isset($_COOKIE['ViewerCookie'])){
 	$_SESSION['newViewerLogin'] = $_COOKIE['ViewerCookie'];
 	}
 

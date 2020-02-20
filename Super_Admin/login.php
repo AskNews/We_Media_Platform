@@ -8,6 +8,7 @@ session_start();
 if(isset($_SESSION['newAccount-AdminLogin'])){
 	header("location: index.php");//content type defer function, where we redirect the page to the login page
 	}
+	include "common_master.php";
 include "includes/dbconfig.php";
 //check for login
 if(isset($_POST['login'])){
@@ -16,10 +17,8 @@ if(isset($_POST['login'])){
 		$username = mysqli_real_escape_string($con,$_POST['username']);
 		$ms = mysqli_real_escape_string($con,$_POST['password']);
 		//login from database
-		$sql="SELECT * from tbl_super_admin WHERE user_name='$username' AND password=md5('$ms') AND status = '1'";
-		$query=mysqli_query($con,$sql);
-		$data=mysqli_fetch_assoc($query);
-		if($data){
+		$a=login("tbl_module_user",$username,$ms,3);
+		if($a==1){
 			 
 			//for rember me
 			if(isset($_POST['rem'])){
@@ -41,7 +40,7 @@ if(isset($_POST['login'])){
   
 <head>
     <meta charset="utf-8">
-    <title>Login - Bootstrap Admin Template</title>
+    <title>We Media (Super Admin)</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
@@ -54,7 +53,8 @@ if(isset($_POST['login'])){
     
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/pages/signin.css" rel="stylesheet" type="text/css">
-
+<link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
+	
 </head>
 
 <body>
@@ -71,19 +71,14 @@ if(isset($_POST['login'])){
 				<span class="icon-bar"></span>
 			</a>
 			
-			<a class="brand" href="index.html">
-				Bootstrap Admin Template				
+			<a class="brand" href="index.php">
+				We Media Super Admin				
 			</a>		
 			
 			<div class="nav-collapse">
 				<ul class="nav pull-right">
 					
-					<li class="">						
-						<a href="signup.html" class="">
-							Don't have an account?
-						</a>
-						
-					</li>
+					
 					
 					<li class="">						
 						<a href="index.html" class="">
@@ -110,7 +105,7 @@ if(isset($_POST['login'])){
 		
 		<form action="login.php" method="post">
 		
-			<h1>Member Login</h1>		
+			<h1>Super Admin Login</h1>		
 			
 			<div class="login-fields">
 				

@@ -1,9 +1,9 @@
 <?php
 $query="";
 $select="SELECT * FROM `tbl_$type` where `deletion`='1'";
-$select1="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,4";
+@$select1="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,4";
 $result_news=mysqli_query($con,$select1);
-$sql1=mysqli_query($con,"select * from tbl_$type where `deletion`='1' limit $page1,5");
+@$sql1=mysqli_query($con,"select * from tbl_$type where `deletion`='1' limit $page1,5");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;    
@@ -92,7 +92,7 @@ function update($b){
   }
   //########################LOGIN ENGINE#####################
   
-  $User_email=$_SESSION['newSub-AdminLogin'];
+  @$User_email=$_SESSION['newSub-AdminLogin'];
   
   if(isset($_POST['register'])){
 	
@@ -126,7 +126,7 @@ if($data){
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
   }
   }
-  $sql="select * from tbl_categories where status='1'";
+  $sql="select * from tbl_categories where status='1' and `deletion`='1'";
   $query=mysqli_query($con,$sql);
   $url="";
   $data1;
@@ -137,10 +137,19 @@ if($data){
 	$query1=mysqli_query($con,$sql);
 	$data=mysqli_fetch_array($query1);
 	if($data){
-		$title=$data['seo_title'];
+		$title=$data['seo_desc'];
 		$description=$data['seo_desc'];
 		$data1=$data['id'];
 		}
 	}
-	
+  
+  if(isset($_GET['nid'])){
+    $gen_news=$_GET['nid'];
+    $fqry=mysqli_query($con,"select * from tbl_news where NewsID=$gen_news and Deletation=0 and Status=1 and Offline=0");
+    $res_view=mysqli_fetch_array($fqry);
+    $resv=$res_view['CategoryID'];
+    $data1=$res_view['CategoryID'];
+    $find_catagory=mysqli_query($con,"select * from tbl_categories where id=$resv");
+    $res_cat=mysqli_fetch_array($find_catagory);
+  }
 ?>
