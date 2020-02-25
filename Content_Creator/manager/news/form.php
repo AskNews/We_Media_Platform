@@ -5,7 +5,6 @@
                             <h2>
                                ADD NEWS
                             </h2>
-                            
                         </div>
                         <div class="body">
                         <?php include "includes/msg.php";?>
@@ -109,7 +108,7 @@
                             </div>
                             <?php
                             if(isset($_GET['newsid'])){
-                            $query_status="select * from tbl_news where Deletation=0 and NewsID=".$_GET['newsid'];
+                            $query_status="select * from tbl_news where deletion=0 and id=".$_GET['newsid'];
                             $data1=mysqli_query($con,$query_status);
                             $row1=mysqli_fetch_assoc($data1);
                             {
@@ -122,36 +121,3 @@
                         </div>      
                     </div>
                 </div>
-                <?php  ?>
-<!--<script src="plugins/jquery/jquery.min.js">
- $("#submit").click(function()
-{
-    var cat=$("#category").val();
-    var headline=$("#newsheadline").val();
-    var url=$("#url").val();
-    var seo_title=$("#seo_title").val();
-    var seo_desc=$("#seo_desc").val();
-    var fileName="";
-    $('input[type="file"]').change(function(e){
-    var fileName = e.target.files[0].name;
-    });
-    var details=$("#editor1").val();
-    var summary=$("#summary").val();
-    var status=$("#status").val();
-    $.ajax({
-                type:"post",
-                url:"../engine/engine.php",
-                //data:{Name:oName},
-                data:$("#form_advanced_validation").serialize(),
-                success:function(data)
-                {
-                    alert(data);
-                },
-                error:function(error)
-                {
-                    
-                }
-			});
-});	
-
-</script>-->

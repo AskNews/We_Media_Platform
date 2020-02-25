@@ -14,7 +14,9 @@
                         <div class="col-sm-12">
                             <select class="form-control show-tick"  name="category">
                             <option value="">--Feedack Category--</option>
-                                <option value="10">10</option>
+                                <option value="Account Audition">Account Audition</option>
+                                <option value="News Audition">News Audition</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>    
                         <span id="error_category" class="error"></span>

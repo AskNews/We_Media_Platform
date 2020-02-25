@@ -13,7 +13,7 @@ include_once "engine/engine.php";
       {
         include "manager/$type/form.php";
       }
-      if(isset($_GET['showfeed']))
+      if(isset($_GET['showfeed']) || isset($_GET['page']))
       {
         include "manager/$type/table.php";
       }
