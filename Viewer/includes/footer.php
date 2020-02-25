@@ -10,14 +10,15 @@
           <div class="footer_widget wow fadeInDown">
             <h2>Category</h2>
             <ul class="tag_nav">
-              <li><a href="#">Games</a></li>
-              <li><a href="#">Sports</a></li>
-              <li><a href="#">Fashion</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Life &amp; Style</a></li>
-              <li><a href="#">Technology</a></li>
-              <li><a href="#">Photo</a></li>
-              <li><a href="#">Slider</a></li>
+            <?php
+     $sql="select * from tbl_categories where status='1' and `deletion`='1'";
+     $query=mysqli_query($con,$sql);
+     while($row=mysqli_fetch_array($query)){
+     ?>
+              <li><a href="category.php?cat=<?php echo $row['url'];?>"><?php echo $row['title'];?></a></li>
+              <?php
+   }
+   ?>
             </ul>
           </div>
         </div>

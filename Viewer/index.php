@@ -85,8 +85,8 @@ $type="Index";
             
               ?>
                 <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
+                  <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $row_s1['NewsID'];?>" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
+                    <div class="media-body"> <a href="view.php?nid=<?php echo $row_s1['NewsID'];?>" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
                   </div>
                 </li>
                 <?php
@@ -112,25 +112,37 @@ $type="Index";
                   <li>
                   <?php
                 $cid=$row2['id'];
-                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='0' and CategoryID='$cid' limit 1";
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='1' and CategoryID='$cid' limit 1";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 $row_2 = mysqli_fetch_array($query)
               
                 ?>
                
-                    <figure class="bsbig_fig"> <a href="pages/single_page.html" class="featured_img"> <img alt="" style="height:225px;width:340px;" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="pages/single_page.html"><?php echo $row_2['HeadLine'];?></a> </figcaption>
+                    <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>" class="featured_img"> <img alt="" style="height:225px;width:340px;" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>"><?php echo $row_2['HeadLine'];?></a> </figcaption>
                       <p><?php echo $row_2['Summary'];?></p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
+                <?php
+                $cid=$row2['id'];//category
+                $nid=$row_2['NewsID'];//news id
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='1' and CategoryID='$cid' and NewsID!='$nid' limit 4";
+                $query=mysqli_query($con,$sql);
+                $index = 0; 
+                while($row_s1 = mysqli_fetch_array($query)):
+              
+                ?>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $row_s1['NewsID'];?>" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
+                      <div class="media-body"> <a href="view.php?nid=<?php echo $row_s1['NewsID'];?>" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
                     </div>
                   </li>
+                  <?php
+                  endwhile;
+                  ?>
                 </ul>
               </div>
             </div>
@@ -149,47 +161,44 @@ $type="Index";
                 <ul class="business_catgnav">
                 <?php
                 $cid=$row3['id'];
-                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='0' and CategoryID='$cid' limit 1";
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='1' and CategoryID='$cid' limit 1";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 $row_2 = mysqli_fetch_array($query)
               
                 ?>
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="pages/single_page.html" class="featured_img"> <img alt="" src="images/featured_img3.jpg"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="pages/single_page.html"><?php echo $row_2['HeadLine']?>hii</a> </figcaption>
-                      <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                    <figure class="bsbig_fig wow fadeInDown"> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>" class="featured_img"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>"><?php echo $row_2['HeadLine']?></a> </figcaption>
+                      <p><?php echo $row_2['Summary']?></p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
+                <?php
+                $cid=$row3['id'];//category
+                $nid=$row_2['NewsID'];//news id
+                $sql="select * from tbl_news where Status='1' and Deletation='0' and Approved='1' and CategoryID='$cid' and NewsID!='$nid' limit 4";
+                $query=mysqli_query($con,$sql);
+                $index = 0; 
+                while($row_s1 = mysqli_fetch_array($query)):
+              
+                ?>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $row_s1['NewsID'];?>" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
+                      <div class="media-body"> <a href="view.php?nid=<?php echo $row_s1['NewsID'];?>" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                    </div>
-                  </li>
+                  <?php
+                  endwhile;
+                  ?>
                 </ul>
               </div>
             </div>
           </div>
         
           <div class="single_post_content">
-            <h2><span>Photography</span></h2>
+            <h2><span>Gallery</span></h2>
             <ul class="photograph_nav  wow fadeInDown">
             <?php
             $ini_gallery=mysqli_query($con,"select * from tbl_gallery where status=1 limit 6");
@@ -210,43 +219,7 @@ $type="Index";
              
             </ul>
           </div>
-          <div class="single_post_content">
-            <h2><span>Games</span></h2>
-            <div class="single_post_content_left">
-              <ul class="business_catgnav">
-                <li>
-                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="pages/single_page.html"> <img src="images/featured_img1.jpg" alt=""> <span class="overlay"></span> </a>
-                    <figcaption> <a href="pages/single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
-                  </figure>
-                </li>
-              </ul>
-            </div>
-            <div class="single_post_content_right">
-              <ul class="spost_nav">
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">

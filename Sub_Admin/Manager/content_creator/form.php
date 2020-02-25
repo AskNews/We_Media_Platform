@@ -36,8 +36,8 @@
 	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['bank_name']:"";?>" disabled>
 </div>
 <div class="panel-heading">
-	<h3 class="panel-title">Account Holder Name</h3>
-	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['account_holder_name']:"";?>" disabled>
+	<h3 class="panel-title">Bank Account Number</h3>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['bank_account_number']:"";?>" disabled>
 </div>
 <div class="panel-heading">
 	<h3 class="panel-title">User Name</h3>

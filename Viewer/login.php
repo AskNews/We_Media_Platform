@@ -49,6 +49,8 @@ if(isset($_POST['login'])){
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.css">
 <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
+	
 <!--[if lt IE 9]>
 <script src="assets/js/html5shiv.min.js"></script>
 <script src="assets/js/respond.min.js"></script>

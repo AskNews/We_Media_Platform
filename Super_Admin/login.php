@@ -72,7 +72,7 @@ if(isset($_POST['login'])){
 			</a>
 			
 			<a class="brand" href="index.php">
-				We Media Super Admin				
+				We Media Admin				
 			</a>		
 			
 			<div class="nav-collapse">
