@@ -145,7 +145,7 @@
                                         <option value="kotak">Kotak Bank</option>
                                         <option value="union">Union Bank</option>
                                         <option value="pnb">Punjab Nation Bank</option>
-                                        </select>
+                                        </select> 
                                                     </div>
                                                     <span class="error"><?php echo @$error_bname; ?></span>
                                                 </div>

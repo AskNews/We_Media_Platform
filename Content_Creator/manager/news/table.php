@@ -16,12 +16,12 @@
 								<div class="dataTables_length" name="" id="DataTables_Table_0_length">
 								<label>Show 
 								<select name="newsType" aria-controls="DataTables_Table_0" class="form-control show-tick">
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']=="") {echo "selected";} ?> value="">--Select--</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"]) && $_POST['newsType']==4) {echo "selected";} ?> value="4">Approved</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==0) {echo "selected";} ?> value="0">Pending</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==1) {echo "selected";} ?> value="1">Offline</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==2) {echo "selected";} ?> value="2">Rejected</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& $_POST['newsType']==3) {echo "selected";} ?> value="3">Draft</option>
+                                <option class="wmp-input" <?php if(isset($_POST["newsType"]) && ($_POST['newsType']=="")) {echo "selected";} ?> value="">--Select--</option>
+                                <option class="wmp-input" <?php if(isset($_POST["newsType"]) && ($_POST['newsType']==4)) {echo "selected";} ?> value="4">Approved</option>
+                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==0)) {echo "selected";} ?> value="0">Pending</option>
+                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==1)) {echo "selected";} ?> value="1">Offline</option>
+                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==2)) {echo "selected";} ?> value="2">Rejected</option>
+                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==3)) {echo "selected";} ?> value="3">Draft</option>
 								</select> 
                                 <button class="btn btn-primary waves-effect" name="btn_filter" id="submit" type="submit">FILTER</button>
                                 </label>
@@ -30,7 +30,7 @@
 
                                 <div class="col-sm-5">
                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">  
-                                <label>Search:<input type="search" class="form-control input-sm" name="keyword" placeholder="" aria-controls="DataTables_Table_0">
+                                <label>Search:<input type="search" class="form-control input-sm" name="keyword" value="<?php if(@isset($_POST['keyword'])){ echo $_POST['keyword'];}?>" placeholder="" aria-controls="DataTables_Table_0">
                                 <button class="btn btn-primary waves-effect"  name="btn_search" id="submit" type="submit">SEARCH</button>
                                </form>
                                 </label>
