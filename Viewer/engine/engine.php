@@ -93,7 +93,7 @@ function update($b){
   //########################LOGIN ENGINE#####################
   
   @$User_email=$_SESSION['newSub-AdminLogin'];
-  
+  $dt=date("Y-m-d");
   if(isset($_POST['register'])){
 	
     $user_name = mysqli_real_escape_string($con,$_POST['user_name']);
@@ -105,7 +105,7 @@ function update($b){
     array('user_name',$user_name),
     array('email',$email),
     array('password',md5($ms)),
-    array('c_date',date("Y-m-d")));
+    array('c_date',$dt));
     //echo "<script>alert('".print_r($a[3])."')</script>";
     insert(3);
       header("Location: login.php");

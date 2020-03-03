@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2020 at 05:58 AM
+-- Generation Time: Mar 03, 2020 at 06:30 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -275,7 +275,7 @@ INSERT INTO `tbl_module_user` (`id`, `user_name`, `image`, `first_name`, `last_n
 --
 
 CREATE TABLE `tbl_news` (
-  `NewsID` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `CategoryID` int(5) NOT NULL,
   `CreatorID` int(10) NOT NULL,
   `TopNews` tinyint(1) NOT NULL DEFAULT '0',
@@ -301,7 +301,7 @@ CREATE TABLE `tbl_news` (
 -- Dumping data for table `tbl_news`
 --
 
-INSERT INTO `tbl_news` (`NewsID`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, `Url`, `SeoTitle`, `SeoDescription`, `FileAttach`, `Summary`, `Details`, `Views`, `ModifyDate`, `Status`, `Approved`, `PublishDate`, `RejectionMsg`, `Offline`, `Rejected`, `PostDate`) VALUES
+INSERT INTO `tbl_news` (`id`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, `Url`, `SeoTitle`, `SeoDescription`, `FileAttach`, `Summary`, `Details`, `Views`, `ModifyDate`, `Status`, `Approved`, `PublishDate`, `RejectionMsg`, `Offline`, `Rejected`, `PostDate`) VALUES
 (17, 3, 1, 0, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.jpg', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2020-02-13 12:34:21', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (21, 3, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', 'shabbu ', '1572801289.jpg', 'shabbu', '<p><em>shabnam mom pic uploaded...:)</em></p>\r\n', 0, '2020-02-13 12:24:05', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (23, 3, 1, 0, 'avinash updated', 'avinash-updated', 'avinash, updated', '', '1573221709.JPG', 'avinash', '<p><strong>avinash updated</strong></p>\r\n\r\n<p><strong>h</strong>ello from editor&nbsp;</p>\r\n\r\n<ol>\r\n	<li>hello edited news</li>\r\n</ol>\r\n\r\n<ul>\r\n	<li>helloe edited news&nbsp;</li>\r\n</ul>\r\n', 0, '2020-02-13 12:26:24', 1, 1, '0000-00-00', 'unfollow the rules of platform', 0, 2, '0000-00-00'),
@@ -409,7 +409,8 @@ INSERT INTO `tbl_slideshow` (`id`, `image`, `caption`, `orderby`, `c_date`, `dat
 (13, '1581942289.jpg', 'Good News', 3, '2020-02-04', '2020-02-17 12:24:49', 1),
 (14, '1581942321.jpg', 'How are you Content Creator', 2, '2020-02-05', '2020-02-17 12:25:21', 1),
 (15, '1581942365.jpg', 'Now Best Chance to Win Prize and Real Cash', 6, '2020-02-03', '2020-02-17 12:26:05', 1),
-(16, '1581582326.png', 'hi', 7, '2020-02-04', '2020-02-13 08:25:25', 1);
+(16, '1581582326.png', 'hi', 7, '2020-02-04', '2020-02-13 08:25:25', 1),
+(17, '1583211940.jpg', 'aviWeb', 5, '2020-03-04', '2020-03-03 05:05:39', 1);
 
 -- --------------------------------------------------------
 
@@ -450,7 +451,9 @@ INSERT INTO `tbl_viewer` (`id`, `user_name`, `email`, `password`, `status`, `c_d
 (0, 'Jp', 'jp90@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', 1, '0000-00-00', '2020-03-03 04:46:09'),
 (0, 'jp', 'jp99@gmail.com', 'f1d577da5b6560447f1c0a1994ce9b1d', 1, '0000-00-00', '2020-03-03 04:47:55'),
 (0, 'jam', 'jam98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', 1, '0000-00-00', '2020-03-03 04:53:46'),
-(0, 'jhgj', 'h43@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', 1, '0000-00-00', '2020-03-03 04:58:01');
+(0, 'jhgj', 'h43@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', 1, '0000-00-00', '2020-03-03 04:58:01'),
+(0, 'aa', 'aa98@gmail.com', '931ffe4c39bc9fdc875cf8f691bf1f57', 1, '0000-00-00', '2020-03-03 05:00:43'),
+(0, 'hgfj', 'hj65@gmail.com', 'f1d577da5b6560447f1c0a1994ce9b1d', 1, '0000-00-00', '2020-03-03 05:01:50');
 
 --
 -- Indexes for dumped tables
@@ -502,7 +505,7 @@ ALTER TABLE `tbl_module_user`
 -- Indexes for table `tbl_news`
 --
 ALTER TABLE `tbl_news`
-  ADD PRIMARY KEY (`NewsID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_picture`
@@ -571,7 +574,7 @@ ALTER TABLE `tbl_module_user`
 -- AUTO_INCREMENT for table `tbl_news`
 --
 ALTER TABLE `tbl_news`
-  MODIFY `NewsID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `tbl_picture`
 --
@@ -586,7 +589,7 @@ ALTER TABLE `tbl_qna`
 -- AUTO_INCREMENT for table `tbl_slideshow`
 --
 ALTER TABLE `tbl_slideshow`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;COMMIT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

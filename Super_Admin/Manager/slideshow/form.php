@@ -40,6 +40,10 @@
                 <input type="hidden" name="oldImage" value="<?php echo $editData['image'];?>" />
                 <?php
 			}
+		
+		?>
+		<?php
+		if(isset($editData)){}else{
 		?>
 										<div class="control-group">											
 											<label class="control-label" for="date">Date</label>
@@ -47,7 +51,9 @@
 												<input type="date" class="span6" id="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
-										
+								<?php
+		}
+								?>		
 										
 									
 											
