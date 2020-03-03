@@ -49,7 +49,7 @@
                     <td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
 		<?php echo $row['status']?'Active':'in-active'; ?></td>
-                    <td class="td-actions"><a href="?edit=<?php echo $row['id']; ?>" class="btn btn-small btn-success"><i class="btn-icon-only icon-pencil"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td class="td-actions"><a href="?edit=<?php echo $row['id']; ?>" class="btn btn-small btn-success"><i class="btn-icon-only icon-pencil"> </i></a><a href="?del=<?php echo $row['id']; ?>" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                 <?php
                 }

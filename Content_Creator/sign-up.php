@@ -53,8 +53,9 @@ if(isset($_POST['submit']))
 { 
     $ipaddress = $_SERVER['REMOTE_ADDR'];   
     $name=$viewstateUserProfile;
-    //echo "name= $name";
     $filename=null;
+    $newfilename="";
+    $f=true;
     if(isset($_FILES))
     {
         if($name==null)
@@ -69,51 +70,98 @@ if(isset($_POST['submit']))
                 $extension = strtolower(end($temp));
                 $fileName = $temp[0] . "." . $temp[1];
                 $temp[0] = rand(0, 3000); //Set to random number
-                if (file_exists("img/" . $_FILES["file"]["name"])) 
-                {
-                    $errorForFile= $_FILES["file"]["name"] . " already exists. ";
-                } 
-                else 
-                {
+                //if (file_exists("img/" . $_FILES["file"]["name"])) 
+               // {
+                //    $errorForFile= $_FILES["file"]["name"] . " already exists. ";
+                //} 
+                //else 
+               // {
                     $temp = explode(".", $_FILES["file"]["name"]);
                     $newfilename = round(microtime(true)) . '.' . end($temp);
-                    //move_uploaded_file($_FILES["file"]["tmp_name"],$newfilename);
                     $filename=$newfilename;
-                }
+                //}
             }
             else
             {
                 $errorForFile="only jpg,png,jpeg are allow";
+                $f=false;
             }
         }
     }
-    if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["mobile"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0)
+    if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["mobile"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0                    )
     {
-        /*if(!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $_POST['password']))
+        if (!preg_match('/^[A-Za-z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,5}$/', $_POST['email']))
         {
-            $error_pass="Password must be 6 character long and have alphanumeric and have one special character";
+            $err_email="Invalid email";
+            $f=false;
         }
-        else*/ if($_POST["password"]!=$_POST["confirm"])
+        if($_POST["password"]!=$_POST["confirm"])
         {
-            $error="password not confirmed";
+            $err_cpass="password not confirmed";
+            $f=false;
         }
-        else
+        if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%^&*+=\/*]{8,12}$/', $_POST['password'])) {
+            $err_pass="Password must be Contain 1 Char. & 1 number 1 & special char";
+            $f=false;
+        }
+        if (!preg_match('/^[a-zA-Z\s]+[0-9\s]+$/', $_POST['username'])) {
+            $err_user="Please insert alpha numeric value";
+            $f=false;
+        }
+        if (!preg_match('/^[0-9]{10}$/', $_POST['mobile'])) {
+            $f=false;
+            $err_mob="Invaid Mobile number ";
+        }
+        $data=mysqli_query($con,"select username as uname,email from tbl_content_creator");
+        while($r=mysqli_fetch_array($data))
+        {
+            if($r['uname']==$_POST['username'])
+            {
+                $f=false;
+                $err_user="Username already exists";
+            break;
+            }
+            if($r['email']==$_POST['email'])
+            {
+                $f=false;
+                $err_email="Email already exists";
+                break;
+            }
+        }
+        if($f==true)
         {
             $password=md5($_POST["password"]);
             $joindate=date('m/d/Y ', time());
-            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP,join_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress','$joindate')";
-            //echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
-            //values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
+            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,join_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$joindate')";
             if(mysqli_query($con,$query))
             {
-
-                header("location:login.php");
-            } 
+               move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
+               header("location:login.php");
+            }
         }
     }
     else
     {
-        echo "<script>alert('Please fill all the details')</script>";
+        if(strlen($_POST['username'])==0)
+        {
+            $err_user="please enter username";
+        }
+        if(strlen($_POST["email"])==0)
+        {
+            $err_email="please enter email";
+        }
+        if(strlen($_POST["mobile"])==0) 
+        {
+            $err_mob="please enter mobile";
+        }
+        if(strlen($_POST["password"])==0) 
+        {
+            $err_pass="please enter password";
+        }
+        if(strlen($_POST["confirm"])==0)
+        {
+            $err_cpass="please enter password";
+        }
     }
 }
 ?>
@@ -168,7 +216,9 @@ if(isset($_POST['submit']))
             <div class="body">
                 <form id="sign_up" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'];?>">
                     <div class="msg">Register a new membership</div>
+                    
                     <div class="input-group">
+                    
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
@@ -177,29 +227,29 @@ if(isset($_POST['submit']))
                             <input type="hidden"  name="viewstateName" />
                             
                         </div>
-                        <span id="username-error" class="error" ></span>
+                        <span id="username-error" class="error" ><?php echo @$err_user;?></span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email Address" >
+                            <input type="text" class="form-control" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email Address" >
                             <input type="hidden"  name="viewstateEmail" />
                             
                         </div>
-                        <span id="email-error" class="error" ></span>
+                        <span id="email-error" class="error" ><?php echo @$err_email;?></span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password"  placeholder="Password">
+                             <input type="password" class="form-control" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password"  placeholder="Password">
                             <input type="hidden"  name="viewstatePassword" />
                             
                         </div>
-                        <span  class="error"><?php if(isset($error_pass)){ echo $error_pass;} ?> </span>
+                        <span  class="error"><?php if(isset($err_pass)){ echo @$err_pass;} ?> </span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -210,18 +260,18 @@ if(isset($_POST['submit']))
                             <input type="hidden"  name="viewstateConfirm" />
                             
                         </div>
-                        <span id="confirm-error" class="error" ><?php if(isset($error)){ echo $error;}?></span>
+                        <span id="confirm-error" class="error" ><?php if(isset($err_cpass)){ echo $err_cpass;}?></span>
                     </div>
 					 <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">call</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="mobile"  value="<?php if(isset($viewstateMobile)){ echo $viewstateMobile;}?>" pattern="[6|7|8|9][0-9]{9}" id="mobile" placeholder="Mobile Number">
+                            <input type="text" class="form-control" name="mobile"  value="<?php if(isset($viewstateMobile)){ echo $viewstateMobile;}?>"  id="mobile" placeholder="Mobile Number">
                             <input type="hidden"  name="viewstateMobile" />
                             
                         </div>
-                        <span id="mobile-error" class="error" ></span>
+                        <span id="mobile-error" class="error" ><?php echo @$err_mob;?></span>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -233,10 +283,12 @@ if(isset($_POST['submit']))
                             
                         </div>
                         <span id="file-error" class="error" ><?php if(isset($errorForFile)){ echo $errorForFile;}?></span>
+                        
                     </div>
+                    
                     <div class="form-group">
                         <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
-                        <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
+                    
                     </div>
 
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit" id="submit" name='submit'>SIGN UP</button>

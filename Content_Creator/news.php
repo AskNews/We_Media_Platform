@@ -16,7 +16,7 @@ include_once "engine/engine.php";
                 {
                     include "manager/$type/form.php";
                 }
-                elseif(isset($_GET['m_news'])||isset($_POST["btn_search"]) || isset($_POST["btn_filter"]))
+                elseif(isset($_GET['m_news'])||isset($_POST["btn_search"]) || isset($_POST["btn_filter"]) || isset($_GET['status']) )
                 {
                   include "manager/$type/table.php";
                 }

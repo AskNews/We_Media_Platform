@@ -4,11 +4,9 @@
                 <h2>
                     PENDING COMMENTS
                 </h2>
-                
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    
                     <div class="row"><div class="col-sm-12"><table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                         <thead>
                             <tr role="row">
@@ -22,12 +20,13 @@
                         <tbody>
                         <?php while($row=mysqli_fetch_assoc($result_comment)){ ?>
                         <tr role="row" class="odd">
-                                <td class="sorting_1"><?php echo $row['headLine'];?></td>
+                                <td class="sorting_1"><?php echo wordwrap($row['headLine'],40,"<br>")?></td>
                                 <td><?php echo $row['postdate']; ?></td>
                                 <td><?php echo $row['comment']; ?></td>
                                 <td><?php echo $row['user_name'];?></td>
                                 <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="btn btn-danger waves-effect">Delete</a>
                                 <a href="comment.php?spam=<?php echo $row['id']?>" class="btn btn-warning waves-effect">Spam</a>
+                                <a href="comment.php?approve=<?php echo $row['id']?>" class="btn btn-primary waves-effect">Approve</a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -41,22 +40,18 @@
                                 <div class="col-sm-7">  
                                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
-                                    <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <li class="paginate_button previous <?php if($page<$total_pages_app_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="comment.php?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
                                     <?php
-                                    for($i=1;$i<=$total_pages;$i++)
-                                    {
-                                        
+                                    for($i=1;$i<=$total_pages_app_com;$i++)
+                                    {        
                                         ?>
                                         <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="comment.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
-                                        <!--echo "<a href='news.php?page=$i' style='text-decoration:none'>$i </a>";-->
                                         &nbsp;
                                     <?php }
-
                                     ?>
-                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
-                                    <a href="comment.php?page=<?php echo $total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
-                                    
+                                    <li class="paginate_button previous <?php if($page>=$total_pages_app_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="comment.php?page=<?php echo $total_pages_app_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>                
                                     </ul>
                                 </div>
                                 </div>
@@ -64,7 +59,6 @@
                                 </div>
                             </div>  
                 </div>
-                
             </div>
         </div>
     </div>
@@ -75,11 +69,9 @@
                 <h2>
                     APPROVED COMMENTS
                 </h2>
-                
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    
                     <div class="row"><div class="col-sm-12"><table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                         <thead>
                             <tr role="row">
@@ -93,7 +85,7 @@
                         <tbody>
                         <?php while($row=mysqli_fetch_assoc($approve_comment)){ ?>
                         <tr role="row" class="odd">
-                                <td class="sorting_1"><?php echo $row['headLine'];?></td>
+                                <td class="sorting_1"><?php echo wordwrap($row['headLine'],40,"<br>")?></td>
                                 <td><?php echo $row['postdate']; ?></td>
                                 <td><?php echo $row['comment']; ?></td>
                                 <td><?php echo $row['user_name'];?></td>
@@ -112,12 +104,11 @@
                                 <div class="col-sm-7">  
                                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
-                                    <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <li class="paginate_button previous <?php if($page<$total_pages_pen_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="comment.php?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
                                     <?php
-                                    for($i=1;$i<=$total_pages;$i++)
-                                    {
-                                        
+                                    for($i=1;$i<=$total_pages_pen_com;$i++)
+                                    {        
                                         ?>
                                         <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="comment.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
                                         <!--echo "<a href='news.php?page=$i' style='text-decoration:none'>$i </a>";-->
@@ -125,8 +116,8 @@
                                     <?php }
 
                                     ?>
-                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
-                                    <a href="comment.php?page=<?php echo $total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                                    <li class="paginate_button previous <?php if($page>=$total_pages_pen_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="comment.php?page=<?php echo $total_pages_pen_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
                                     
                                     </ul>
                                 </div>
@@ -164,12 +155,12 @@
                         <tbody>
                         <?php while($row=mysqli_fetch_assoc($spam_comment)){ ?>
                         <tr role="row" class="odd">
-                                <td class="sorting_1"><?php echo $row['headLine'];?></td>
+                                <td class="sorting_1"><?php echo wordwrap($row['headLine'],40,"<br>");?></td>
                                 <td><?php echo $row['postdate']; ?></td>
                                 <td><?php echo $row['comment']; ?></td>
                                 <td><?php echo $row['user_name'];?></td>
                                 <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="btn btn-danger waves-effect">Delete</a>
-                                <a href="comment.php?spam=<?php echo $row['id']?>" class="btn btn-warning waves-effect">Spam</a>
+                                <!--<a href="comment.php?spam=<?php echo $row['id']?>" class="btn btn-warning waves-effect">Spam</a>-->
                                 
                                 </td>
                             </tr>
@@ -184,10 +175,10 @@
                                 <div class="col-sm-7">  
                                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
-                                    <li class="paginate_button previous <?php if($page<$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <li class="paginate_button previous <?php if($page<$total_pages_spam_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="comment.php?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
                                     <?php
-                                    for($i=1;$i<=$total_pages;$i++)
+                                    for($i=1;$i<=$total_pages_spam_com;$i++)
                                     {
                                         
                                         ?>
@@ -197,9 +188,9 @@
                                     <?php }
 
                                     ?>
-                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
-                                    <a href="comment.php?page=<?php echo $total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
-                                    
+                                    <li class="paginate_button previous <?php if($page>=$total_pages_spam_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="comment.php?page=<?php echo $total_pages_spam_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                            
                                     </ul>
                                 </div>
                                 </div>

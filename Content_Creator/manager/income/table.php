@@ -10,78 +10,48 @@
                         <div class="body">
                             <div class="table-responsive">
                                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                                <div class="row clearfix">
-                                <div class="col-sm-6">
-								<div class="dataTables_length" id="DataTables_Table_0_length">
+                                <form name="f1" action="news.php" method="post">
+                                <div class="col-sm-5">
+								<div class="dataTables_length" name="" id="DataTables_Table_0_length">
 								<label>Show 
-								<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control show-tick">
-								<option value="10">10</option>
-								<option value="25">25</option>
-								<option value="50">50</option>
-								<option value="100">100</option>
-								</select> 
-                                entries</label>
+								<select name="sort" aria-controls="DataTables_Table_0" class="form-control show-tick">
+                                <option class="wmp-input" <?php if(isset($_POST["sort"]) && $_POST['sort']=="") {echo "selected";} ?> value="">--Select--</option>
+                                <option class="wmp-input" <?php if(isset($_POST["sort"]) && $_POST['sort']==1) {echo "selected";} ?> value="1">Ascending</option>
+                                <option class="wmp-input" <?php if(isset($_POST["sort"])&& $_POST['sort']==2) {echo "selected";} ?> value=2>Descending</option>
+                                </select> 
+                                <button class="btn btn-primary waves-effect" name="btn_filter" id="submit" type="submit">FILTER</button>
+                                </label>
 								</div>
 								</div>
-								<div class="col-sm-6">
-                                <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                <label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0"></label>
+
+                                <div class="col-sm-5">
+                                <div id="DataTables_Table_0_filter" class="dataTables_filter">  
+                                <label>Search:<input type="search" class="form-control input-sm" name="keyword" placeholder="" aria-controls="DataTables_Table_0">
+                                <button class="btn btn-primary waves-effect"  name="btn_sort" id="submit" type="submit">SEARCH</button>
+                               </form>
+								</div>
+
                                 </div>
-                                </div>
-                                </div>
-		
-                                
                                 <div class="row"><div class="col-sm-12"><table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                     <thead>
                                         <tr role="row">
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 100px; height=50px;">Date</th>
-                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 50 px; height=50px;">Bank Name</th>
-                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 100px; height=50px;">Account Number</th>
-                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px; height=50px;">Account Holder Name</th>
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px; height=50px;">Amount Withdraw</th>
-                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px; height=50px;">Amount Deposite</th>
+                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px; height=50px;">Income</th>
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px; height=50px;">Balance</th></tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                        <th rowspan="1" colspan="1">Date</th>
-                                        <th rowspan="1" colspan="1">Bank Name</th>
-                                        <th rowspan="1" colspan="1">Account Number</th>
-                                        <th rowspan="1" colspan="1">Account Holder Name</th>
-                                        <th rowspan="1" colspan="1">Amount Withdraw</th>
-                                        <th rowspan="1" colspan="1">Amount Deposite</th>
-                                        <th rowspan="1" colspan="1">Balance</th>
-                                         </tr>
-                                        
-                                    </tfoot>
                                     <tbody>
-                         
                                     <tr role="row" class="odd">
-                                            <td class="sorting_1">Airi Satou</td>
-                                            <td><img src="img/context.jpg" height="100px" widht="100px" ></td>
-                                            <td>Tokyo</td>
-                                            <td>like</td>
-                                            <td>share</td>
-                                            <td>comment</td>
-                                            <td><a href=#><i class="material-icons"><big>remove_red_eye</big></a></li></td>
+                                    <?php
+                                    while()
+                                    {?>
+                                        <td></td>
+                                    <?php}
+                                    ?>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div></div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                                </div>
-                                <div class="col-sm-7">  
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                    <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
-                                    <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
-                                    <li class="paginate_button active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></li>
-                                    <li class="paginate_button next" id="DataTables_Table_0_next">
-                                    <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0">Next</a></li>
-                                    </ul>
-                                    </div></div></div></div>
                             </div>
                         </div>
                     </div>

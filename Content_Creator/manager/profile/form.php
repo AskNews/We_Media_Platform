@@ -1,4 +1,3 @@
-
 <section class="content">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -13,8 +12,7 @@
                                 <img src=<?php echo "img/".$row["channel_logo"]; ?> alt="AdminBSB - Profile Image" height="150px" width="150px" />
                             </div>
                             <div class="content-area">
-                                <h3><?php echo $row["username"]; ?></h3>
-                                
+                                <h3><?php echo $row["username"];?></h3>
                                 <p>Content Creator</p>
                             </div>
                     </div>
@@ -22,15 +20,15 @@
                             <ul>
                                 <li>
                                     <span>Followers</span>
-                                    <span>1.234</span>
+                                    <span><?php echo $follower ?></span>
                                 </li>
                                 <li>
                                     <span>Likes</span>
-                                    <span>1.201</span>
+                                    <span><?php echo $like ?></span>
                                 </li>
                                 <li>
                                     <span>Comments</span>
-                                    <span>14.252</span>
+                                    <span><?php echo $comment; ?></span>
                                 </li>
                             </ul>
                             
@@ -55,27 +53,28 @@
                                                 <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
                                                 <div class="col-sm-9">
                                                     <div class="form-line">
-                                                        <input type="password" class="form-control" id="OldPassword" name="OldPassword" placeholder="Old Password" required>
+                                                        <input type="password" class="form-control" id="OldPassword" value="<?php echo @$_POST['OldPassword'] ?>" name="OldPassword" placeholder="Old Password"  required>
                                                     </div>
-                                                    <span class="error"><?php if(isset($_POST["chang_pass"])){ if($_POST["OldPassword"]!=$row["password"]){ echo "your password is not match with current password";}} ?></span>
+                                <span class="error"><?php echo @$error_old; ?></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="NewPassword" class="col-sm-3 control-label">New Password</label>
                                                 <div class="col-sm-9">
                                                     <div class="form-line">
-                                                        <input type="password" class="form-control" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  name="NewPassword" placeholder="New Password" >
+                                                        <input type="password" value="<?php echo @$_POST['NewPassword'] ?>" title="Your password must contains alphanumeric character"  class="form-control" name="NewPassword" placeholder="New Password" >
                                                     </div>
-                                                    <span  class="error">Password must be 6 character long and have alphanumeric and have one special character  </span>
+                                                    <span class="error"><?php echo @$error_pass;  ?></span>
                                                 </div>
+                                                
                                             </div>
                                             <div class="form-group">
                                                 <label for="NewPasswordConfirm" class="col-sm-3 control-label">New Password (Confirm)</label>
                                                 <div class="col-sm-9">
                                                     <div class="form-line">
-                                                        <input type="password" class="form-control" name="NewPasswordConfirm" placeholder="New Password (Confirm)" >
+                                                        <input type="password" class="form-control" name="NewPasswordConfirm" value="<?php echo @$_POST['NewPasswordConfirm'] ?>" placeholder="New Password (Confirm)" >
                                                     </div>
-                                                    <span class="error"><?php echo @$error_pass;  ?></span>
+                                                    <span class="error"><?php echo @$error_cpass;  ?></span>
                                                 </div>
                                             </div>
 
@@ -95,7 +94,7 @@
                                                 <label for="uname" class="col-sm-2 control-label">User Name</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="[a-zA-Z0-9]+" class="form-control" value="<?php echo $row["username"] ?>" id="txtuname" name="txtuname" placeholder="User Name" >
+                                                        <input type="text" pattern="[a-zA-Z0-9]+" class="form-control" value="<?php if(isset($_POST['update_profile'])){ echo $_POST['txtuname'];}else{echo $row["username"];} ?>" id="txtuname" name="txtuname" placeholder="User Name" >
                                                         
                                                     </div>
                                                     <span class="error"><?php echo @$error_username; ?></span>
@@ -105,7 +104,7 @@
                                                 <label for="Email" class="col-sm-2 control-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="email" class="form-control" value="<?php echo $row["email"] ?>" id="Email" name="email" placeholder="Email" >
+                                                        <input type="text" class="form-control" value="<?php if(isset($_POST['update_profile'])){echo $_POST['email'];}else{echo $row["email"];} ?>" id="Email" name="email" placeholder="Email" >
                                                     </div>
                                                     <span class="error"><?php echo @$error_email; ?></span>
                                                 </div>
@@ -115,7 +114,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" value="<?php echo $row["mobile"] ?>" pattern="[6|7|8|9][0-9]{9}" id="txtmobile" name="txtmobile"  placeholder="Mobile"></textarea>
+                                                         <input type="text" class="form-control" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtmobile'];}else{echo $row["mobile"];} ?>"  id="txtmobile" name="txtmobile"  placeholder="Mobile"></textarea>
                                                     </div>
                                                     <span class="error"><?php echo @$error_mobile; ?></span>
                                                 </div>
@@ -137,7 +136,16 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" pattern="[a-zA-Z]+" id="txtbname"   name="txtbname" placeholder="Bank Name">
+                                                        <!--<input type="text" class="form-control" pattern="[a-zA-Z]+" id="txtbname"  value="<?php //if(isset($_POST['update_profile'])){echo $_POST['txtbname'];}else{echo $row["bank_name"];} ?>"  name="txtbname" placeholder="Bank Name">-->
+                                                        <select class="form-control show-tick" value="" name='status'  id='status'>
+                                        <option>--Select Bank--</option>
+                                        <option value="axis">Axis Bank</option>
+                                        <option value="bob">Bank of Baroda</option>
+                                        <option value="sbi">State Bank of India</option>
+                                        <option value="kotak">Kotak Bank</option>
+                                        <option value="union">Union Bank</option>
+                                        <option value="pnb">Punjab Nation Bank</option>
+                                        </select> 
                                                     </div>
                                                     <span class="error"><?php echo @$error_bname; ?></span>
                                                 </div>
@@ -148,7 +156,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="[a-zA-Z]+" class="form-control" id="txtaccountHname"  name="txtaccountHname" placeholder="Account Holder Name">
+                                                        <input type="text" pattern="[a-zA-Z]+" class="form-control" id="txtaccountHname" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtaccountHname'];}else{echo $row["account_holder_name"];} ?>"  name="txtaccountHname" placeholder="Account Holder Name">
                                                     </div>
                                                     <span class="error"><?php echo @$error_holderName; ?></span>
                                                 </div>
@@ -160,17 +168,17 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control"  id="txtaccountno" name="txtaccountno" placeholder="Account Number">
+                                                        <input type="text" class="form-control"  id="txtaccountno" name="txtaccountno" placeholder="Account Number" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtaccountno'];}else{echo $row["bank_account_number"];} ?>">
                                                     </div>
                                                     <span class="error"><?php echo @$error_accountNum; ?></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="In	putSkills" <?php //if($row["Monetization"]==0){ echo "disabled";} ?> class="col-sm-2 control-label">IFSC Code</label>
+                                                <label for="In	putSkills" <?php //if($row["Monetization"]==0){ echo "disabled";} ?> value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtaccountno'];}else{echo $row["ifsc_code"];} ?>" class="col-sm-2 control-label">IFSC Code</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$" class="form-control"  id="txtIfsc" name="txtIfsc" placeholder="IFSC Code">
+                                                        <input type="text" pattern="^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$" class="form-control"  id="txtIfsc" name="txtIfsc"   value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtIfsc'];}else{echo $row["ifsc_code"];} ?>" placeholder="IFSC Code">
                                                     </div>
                                                     <span class="error"><?php echo @$error_ifsc; ?></span>
                                                 </div>

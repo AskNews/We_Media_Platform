@@ -41,7 +41,7 @@
     while($row=mysqli_fetch_array($result_news))
     {?>
         <tr>
-            <td><?php echo $row['HeadLine']?></td>
+            <td><?php echo wordwrap($row['HeadLine'],25,"<br>\n") ?></td>
             <td><img src="<?php echo $imgPath."/".$row['FileAttach'];?>" height="100px" widht="100px" ></td>
             <?php if($row["Approved"]){ ?>
             <td><?php echo $row['ModifyDate'];?></td>
@@ -53,14 +53,14 @@
             elseif($row["Approved"]==0 && $row["Offline"]==0 && $row["Rejected"]==1){ ?>
             <td colspan='3'>Pending</td>
             <?php } elseif($row["Approved"]==0 && $row["Rejected"]==2){ ?>
-                <td colspan='3'>News is Rejected due to <?php echo $row["RejectionMsg"]; ?><br/> <a href="?newsid=<?php echo $row["NewsID"]; ?>">click to modify</a> </td>
+            <td colspan='3'>News is Rejected due to <?php echo $row["RejectionMsg"]; ?><br/> <a href="?newsid=<?php echo $row["NewsID"]; ?>">click to modify</a> </td>
             <?php } ?>
             <td>
             <a  href="?status=<?php echo $row["NewsID"];?>">
             <button <?php if($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3 || $row["Rejected"]==2){ echo "disabled";} ?>  class="btn <?php echo $row['Status']?'wmp-button wmp-green':'wmp-button wmp-red'?>"><?php if($row['Status']){ echo "Active";}else{ echo "In-Active";} ?></button>
             </a>        
             </td>
-            <td><a  href="?newsid=<?php echo $row["id"]; ?>"><button class="wmp-button wmp-green">View News</button></a></td>
+            <td><a  href="?d=<?php echo $row["id"]; ?>"><button class="wmp-button wmp-green">View News</button></a></td>
             </td>
             </tr>    
 <?php   }//while

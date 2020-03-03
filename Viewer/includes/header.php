@@ -2,7 +2,6 @@
 #include "session.php";
 session_start();
 include "../Super_Admin/includes/dbconfig.php";
-
 $title="Welcome to Ask News";
 $description="The News Sharing Platform";	
   include "engine/engine.php";
@@ -44,8 +43,8 @@ $description="The News Sharing Platform";
           <div class="header_top_left">
             <ul class="top_nav">
               <li><a href="index.php">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="pages/contact.html">Contact</a></li>
+              <li><a href="contactus.php">About</a></li>
+              <li><a href="contactus.php">Contact</a></li>
               <?php
               if(isset($_SESSION['newViewerLogin'])){
               ?>
