@@ -105,8 +105,9 @@ function update($b){
     array('user_name',$user_name),
     array('email',$email),
     array('password',md5($ms)),
-    array('ip',$ip));
-    insert(4);
+    array('c_date',date("Y-m-d")));
+    //echo "<script>alert('".print_r($a[3])."')</script>";
+    insert(3);
       header("Location: login.php");
 	}
   if(isset($_POST['login'])){
@@ -126,7 +127,7 @@ if($data){
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
   }
   }
-  $sql="select * from tbl_categories where status='1' and `deletion`='1'";
+  $sql="select * from tbl_categories where status='1' ";
   $query=mysqli_query($con,$sql);
   $url="";
   $data1;
@@ -145,7 +146,7 @@ if($data){
   
   if(isset($_GET['nid'])){
     $gen_news=$_GET['nid'];
-    $fqry=mysqli_query($con,"select * from tbl_news where NewsID=$gen_news and Deletation=0 and Status=1 and Offline=0");
+    $fqry=mysqli_query($con,"select * from tbl_news where Url='$gen_news' and Status=1 and Offline=0");
     $res_view=mysqli_fetch_array($fqry);
     $resv=$res_view['CategoryID'];
     $data1=$res_view['CategoryID'];

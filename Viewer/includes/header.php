@@ -2,7 +2,6 @@
 #include "session.php";
 session_start();
 include "../Super_Admin/includes/dbconfig.php";
-
 $title="Welcome to Ask News";
 $description="The News Sharing Platform";	
   include "engine/engine.php";

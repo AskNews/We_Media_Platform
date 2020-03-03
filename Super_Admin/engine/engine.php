@@ -11,17 +11,17 @@ $select="";
       @$page1=($page*5)-5;
   }
   if($type=='user'){
-    $select= mysqli_query($con,"select * from tbl_module_$type where deletion='1' limit $page1,5");
+    $select= mysqli_query($con,"select * from tbl_module_$type limit $page1,5");
    }else{
-       $select= mysqli_query($con,"select * from tbl_$type where deletion='1' limit $page1,5");
+       $select= mysqli_query($con,"select * from tbl_$type limit $page1,5");
    
    }
  
 $result_news=$select;
 if($type=='user'){
-    $sql1= mysqli_query($con,"select * from tbl_module_$type where deletion='1' ");
+    $sql1= mysqli_query($con,"select * from tbl_module_$type ");
    }else{
-       $sql1= mysqli_query($con,"select * from tbl_$type where deletion='1' ");
+       $sql1= mysqli_query($con,"select * from tbl_$type ");
    
    }
 
@@ -41,7 +41,7 @@ $last=$total_pages-1;
           @$image=$_FILES['image'];
           @	$imageName=$_POST['oldImage'];
 //##############LOG ENGINE(Not tested)############
-$l="";
+/*$l="";
 function log_engine($c){
     global $l,$type,$con,$success,$error,$select;
     $c=$b-1;
@@ -59,7 +59,7 @@ function log_engine($c){
     mysqli_query($con,$sql);
             return 0;	
     
-}
+}*/
 //##############COMPRESS ENGINE########################
 function compressImage($source, $destination, $quality) {
 
@@ -109,6 +109,29 @@ $sql= $p.");";
     
 		return 0;	
 }
+
+//##############DELETE ENGINE###################################
+function del(){
+    global $con,$error,$select,$type,$info;
+      $id1=$_GET['del'];
+      if($type=="user"){
+      $sql="delete from `tbl_module_$type` WHERE id='$id1'";
+      }else{
+        $sql="delete from `tbl_$type` WHERE id='$id1'";
+      
+         }  
+          $query=mysqli_query($con,$sql);
+      if($query){
+      $info=ucfirst($type) . "Deleted Success";
+    $sql=$select;
+    
+    }
+    else{
+    $error=ucfirst($type) ." is not deleted". Mysqli_error($con);
+    $sql=$select;
+    }
+  }
+  
 //####################UPDATE ENGINE#############################
 
 function update($b){
@@ -166,7 +189,7 @@ if(isset($_POST['c_'.$type])){
     array('last_name',$_POST["lname"]),
     array('email',$_POST["email"]),
     array('password',md5($_POST["pwd"])),
-    array('ip',$_SERVER['REMOTE_ADDR']),
+    
     array('role',$_POST['role'])); 
     insert(8);
 
@@ -248,22 +271,6 @@ if(isset($_GET['edit'])){
   $editData=mysqli_fetch_assoc($query);
   
   }
-//##############DELETE ENGINE###################################
-function del(){
-    global $con,$error,$select,$type,$info;
-      $id1=$_GET['del'];
-      $sql="update `tbl_$type` set deletion=!deletion WHERE id='$id1'";
-      $query=mysqli_query($con,$sql);
-      if($query){
-      $info=ucfirst($type) . "Deleted Success";
-    $sql=$select;
-    
-    }
-    else{
-    $error=ucfirst($type) ." is not deleted". Mysqli_error($con);
-    $sql=$select;
-    }
-  }
 //to change the status of a record
 if(isset($_GET['status'])){
     $id1=$_GET['status'];
@@ -311,7 +318,7 @@ if(isset($_POST['u_'.$type])){
       array('first_name',$_POST["fname"]),
       array('last_name',$_POST["lname"]),
       array('email',$_POST["email"]),
-      array('ip',$_SERVER['REMOTE_ADDR']),
+      
       array('role',$_POST['role'])); 
                update(7);
       }
