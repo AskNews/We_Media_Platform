@@ -108,7 +108,7 @@
                             </div>
                             <?php
                             if(isset($_GET['newsid'])){
-                            $query_status="select * from tbl_news where deletion=0 and id=".$_GET['newsid'];
+                            $query_status="select * from tbl_news where id=".$_GET['newsid'];
                             $data1=mysqli_query($con,$query_status);
                             $row1=mysqli_fetch_assoc($data1);
                             {

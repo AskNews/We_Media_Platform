@@ -1,4 +1,25 @@
 <?php
+//_____________________monetization_____________________________
+$index_qry=mysqli_query($con,"select index_point as index_data from tbl_content_creator where id=".$creatorid);
+$index=mysqli_fetch_array($index_qry);
+$index=$index['index_data'];
+if($index>9)
+{
+  mysqli_query($con,"update tbl_content_creator set Monetization=1 where id=".$creatorid);
+}
+//one month -->follwer 40 , likes on 1 news 100 , 3 news publish , 100 views on 1 news = 5+ index
+$like=mysqli_query($con,"select count(news_id) as nc from tbl_like where news_id in(select id from tbl_news where CreatorID=$creatorid)");
+$like=mysqli_fetch_array($like);
+$like=$like['nc'];
+echo $like;
+
+
+
+
+
+
+//_________________________________________variable declration________________________________________________
+
 $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=null;
 @$page=$_GET["page"];
 if($page=="" || $page==1)
@@ -18,40 +39,39 @@ $comment_qry=mysqli_query($con,"select count(c.id) as comment from tbl_comment c
 $comment_count=mysqli_fetch_array($comment_qry);
 $comment=$comment_count['comment'];
 
-$select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 order by postdate desc limit $page1,5";
+$select_news="select * from tbl_news where CreatorID=".$creatorid."  order by postdate desc limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
 
-$select_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=0 and c.deletion=0 and n.CreatorID=$creatorid limit $page1,5";
+$select_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=0  and n.CreatorID=$creatorid limit $page1,5";
 $result_comment=mysqli_query($con,$select_comment);
 
-$select_approve_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=1  and c.deletion=0 and n.CreatorID=$creatorid limit $page1,5";
+$select_approve_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=1  and n.CreatorID=$creatorid limit $page1,5";
 $approve_comment=mysqli_query($con,$select_approve_comment);
 
-$select_spam_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=2 and c.deletion=0 and n.CreatorID=$creatorid limit $page1,5";
+$select_spam_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=2  and n.CreatorID=$creatorid limit $page1,5";
 $spam_comment=mysqli_query($con,$select_spam_comment);
 
-$select_feedback="select * from tbl_feedback where role=1 and deletion=0";
+$select_feedback="select * from tbl_feedback where role=1 and user_id=".$creatorid;
 $result_feedback=mysqli_query($con,$select_feedback);
 
-//$select_transaction="select * from ";
 
-$sql1=mysqli_query($con,"select * from tbl_$type where deletion=0");
+$sql1=mysqli_query($con,"select * from tbl_$type ");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;
 
 //-------paging for comment-----
-$sql_app_com=mysqli_query($con,"select count(*) from tbl_comment as c,tbl_news as n where c.news_id=n.id and c.status=1 and c.deletion=0 and n.CreatorID=$creatorid");
+$sql_app_com=mysqli_query($con,"select count(*) from tbl_comment as c,tbl_news as n where c.news_id=n.id and c.status=1 and  and n.CreatorID=$creatorid");
 @$total_rec_app_com=mysqli_num_rows($sql_app_com);
 $total_pages_app_com=ceil($total_rec_app_com/5);  
 $last_app_com=$total_pages_app_com-1;
 
-$sql_pens_com=mysqli_query($con,"select count(*) from tbl_comment as c,tbl_news as n where c.news_id=n.id and c.status=0 and c.deletion=0 and n.CreatorID=$creatorid");
+$sql_pens_com=mysqli_query($con,"select count(*) from tbl_comment as c,tbl_news as n where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid");
 @$total_rec_pen_com=mysqli_num_rows($sql_pen_com);
 $total_pages_pen_com=ceil($total_rec_pen_com/5);  
 $last_app_com=$total_pages_pen_com-1;
 
-$sql_spam_com=mysqli_query($con,"select count(*) from tbl_comment as c,tbl_news as n where c.news_id=n.id and c.status=2 and c.deletion=0 and n.CreatorID=$creatorid");
+$sql_spam_com=mysqli_query($con,"select count(*) from tbl_comment as c,tbl_news as n where c.news_id=n.id and c.status=2  and n.CreatorID=$creatorid");
 @$total_rec_spam_com=mysqli_num_rows($sql_spam_com);
 $total_pages_spam_com=ceil($total_rec_spam_com/5);  
 $last_spam_com=$total_pages_spam_com-1;
@@ -354,7 +374,7 @@ function Updatestatus($id)
 function DeleteNews($id)
 {
   global $con,$type;
-  $sql="update tbl_".$type." set deletion=!deletion where id=".$id;
+  $sql="delete from tbl_news where id=".$id;
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -425,7 +445,7 @@ if(isset($_GET['spam']))
 if(isset($_GET['deleteComment']))
 {
   $id=$_GET['delete'];
-  $sql="update tbl_$type set deletion=!deletion where id=$id";
+  $sql="delete from tbl_comment where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -441,7 +461,7 @@ if(isset($_GET['deleteComment']))
 if(isset($_GET['feedid']))
 {
   $id=$_GET['feedid'];
-  $sql="update tbl_$type set deletion=!deletion where id=$id";
+  $sql="delete from tbl_feedback where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)
   {
@@ -460,12 +480,13 @@ if(isset($_GET['feedid']))
 if(isset($_POST["btn_search"]))
 {
   $a=$_POST["keyword"];
-  $select_news="select * from tbl_news where CreatorID=".$creatorid." and Deletion=0 and HeadLine like '%$a%' ";
+  $select_news="select * from tbl_news where CreatorID=".$creatorid." and HeadLine like '%$a%' ";
   $result_news=mysqli_query($con,$select_news);
 }
 //___________________________fill data in controls by querystring_________________________
 if(isset($_GET['newsid']))
 {
+  
   $id=$_GET['newsid'];
   //echo "<script>alert($id);</script>";
   $sql="select * from tbl_news where id=".$id;
@@ -487,27 +508,27 @@ if(isset($_POST["btn_filter"]))
   //echo "<script>alert($a);</script>";
   if($a==0)
   {
-      $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=0 ";
+      $select_news="select * from tbl_news where CreatorID=".$creatorid." and Approved=0 ";
   }
   elseif($a==1)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=0 and Rejected=3 and Offline=1";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=0 and Rejected=3 and Offline=1";
   }
   elseif($a==2)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=0 and Rejected=2";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=0 and Rejected=2";
   }
   elseif($a==3)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Status=2";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Status=2";
   }
   elseif($a==4)
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0 and Approved=1";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=1";
   }
   else
   {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and deletion=0";
+    $select_news="select * from tbl_news where CreatorID=".$creatorid;
     $result_news=mysqli_query($con,$select_news); 
   }
   $result_news=mysqli_query($con,$select_news);
@@ -544,7 +565,7 @@ if(isset($_POST['btn_send']))
     }
     $topic=$_POST['category'];
     $message=$_POST['message'];
-    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file,ip) values('$creatorid','$topic','$message','$date',1,'$newfilename','$ipaddress')";
+    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     //echo $sql;
     $qry=mysqli_query($con,$sql);
     if($qry){

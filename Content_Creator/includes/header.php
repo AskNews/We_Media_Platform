@@ -10,9 +10,9 @@ $warning=null;
 $success=null;
 $channel_logo="";
 $uname="";
+$mon=0;
 include "../Super_Admin/includes/dbconfig.php";
-$sql_all="select * from tbl_content_creator";
-$qry_all=mysqli_query($con,$sql_all);
+
 
 $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
 $query_details=mysqli_query($con,$sql);
@@ -23,13 +23,15 @@ if(isset($_SESSION['content_creator_uname']))
     while($data=mysqli_fetch_assoc($query_details))
     {
         $email=$data["email"];
-            $_SESSION['content_creator_profile']=$data["channel_logo"];
+        $mon=$data["Monetization"];
+        $_SESSION['content_creator_profile']=$data["channel_logo"];
         $creatorid=$data["id"];
         if(strlen($data["ChannelName"])>0 && strlen($data["ChannelDescription"])>0 ) 
         {
             $channel_name=$data["ChannelName"];   
             $channel_des=$data["ChannelDescription"];
             $channel_setup_status=1;
+            
             
         }
         else
@@ -38,10 +40,12 @@ if(isset($_SESSION['content_creator_uname']))
         }
     }
 }
+
 else
 {
     header ("location: login.php");
 }
+
 include "engine/engine.php";
 ?>
 <html>
@@ -200,7 +204,7 @@ function convertToComa( str1 ) {
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <!--<li class="header">MAIN NAVIGATION</li>-->
+                    
                     <li <?php echo $type == "index"?'class="active"':'';?>> 
                         <a href="index.php">
                             <i class="material-icons">home</i>
@@ -236,7 +240,8 @@ function convertToComa( str1 ) {
                             </li>
                         </ul>
                     </li>
-                    <?php while(@$row=mysqli_fetch_assoc($query_details)){if($row["Monetization"]==1){?> 
+
+                    <?php if($mon==1){?> 
                     <li <?php echo $type == "income"?'class="active"':'';?>>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>
@@ -251,7 +256,7 @@ function convertToComa( str1 ) {
                             </li>
                         </ul>
                     </li>
-                         <?php }} ?>
+                         <?php } ?>
                     <li <?php echo $type == "comment"?'class="active"':'';?>>
                         <a href="comment.php?comment">
                             <i class="material-icons">comment</i>

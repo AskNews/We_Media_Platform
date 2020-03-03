@@ -16,15 +16,16 @@
         while($data=mysqli_fetch_assoc($query))
 		//if($data)
 		{
-			if(isset($_POST['rememberme']))
+			if(!empty($_POST['rememberme']))
 			{
 				$time = time()+60*60; // for one hour
-				setcookie("content_creator_Cookie",$username,$time);
+				setcookie("c_cookie",$username,$time);
 			}
             $_SESSION['content_creator_uname']=$username;
             $_SESSION['content_creator_profile']=$data["channel_logo"];
             //echo "image= ".$_SESSION['content_creator_profile'];
-			header ("location: index.php");
+            header ("location: index.php");
+            //echo $_COOKIE['c_cookie'];
 		}
 		// else
 		// {
@@ -75,7 +76,9 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username or email" required autofocus>
+                        
+                            <input type="text" class="form-control" name="username"  value="<?php if(@$_COOKIE['c_cookie']!=null){ echo $_COOKIE['c_cookie'];}?>" placeholder="Username or email" required autofocus>
+                         
                         </div>
                     </div>
                     <div class="input-group">
