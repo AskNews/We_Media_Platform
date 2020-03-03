@@ -17,18 +17,22 @@
                                                     <input class="au-input au-input--full" type="text" name="unit_name" placeholder="Unit Name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Title</label>
-                                                    <input class="au-input au-input--full" type="Title" name="title" placeholder="Title">
-                                                </div>
-                                                <div class="form-group">
                                                     <label>Amount</label>
                                                     <input class="au-input au-input--full" type="amount" name="amount" placeholder="Amount">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seo_title</label>
+                                                    <input class="au-input au-input--full" type="text" name="seo_title" placeholder="Seo_Title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seo_Description</label>
+                                                    <input class="au-input au-input--full" type="text" name="seo_desc" placeholder="Seo_Description">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Ad Unit Image</label>
                                                     <input type="file" id="file-input" name="imagefile" class="form-control-file">
                                                 </div>
-                                                
+                                           
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
@@ -59,6 +63,7 @@
                                                             <option value="0">Please select</option>
                                                             <option value="1">Active</option>
                                                             <option value="2">In-Active</option>
+                                                            <option value="2">Draft</option>
                                                         </select>
                                                     </div>
                                                 </div>

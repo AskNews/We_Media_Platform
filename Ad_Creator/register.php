@@ -1,6 +1,123 @@
 <?php
 if(isset($_POST['reg'])){
    echo "<script>alert('Hi')</script>";
+
+ include '../Super_Admin/Includes/dbconfig.php';
+$viewstateName=null;
+$viewstateEmail=null;
+$viewstateMobile=null;
+$viewstatePassword=null;
+$viewstateConfirm=null;
+
+
+if(array_key_exists("viewstateName",$_POST))
+{	
+	$viewstateName=$_POST["username"];	
+}
+else
+{
+	$viewstateName=null;
+}
+
+if(array_key_exists("viewstateEmail",$_POST))
+{	
+	$viewstateEmail=$_POST["email"];	
+}
+else
+{
+	$viewstateEmail=null;
+}
+if(array_key_exists("viewstateMobile",$_POST))
+{	
+	$viewstateMobile=$_POST["mobile"];	
+}
+else
+{
+	$viewstateMobile=null;
+}
+if(array_key_exists("viewstatePassword",$_POST))
+{	
+	$viewstatePassword=$_POST["password"];	
+}
+else
+{
+	$viewstatePassword=null;
+}
+if(array_key_exists("viewstateConfirm",$_POST))
+{	
+	$viewstateConfirm=$_POST["confirm"];	
+}
+else
+{
+	$viewstateConfirm=null;
+}
+if(isset($_POST['submit']))
+{ 
+    $ipaddress = $_SERVER['REMOTE_ADDR'];   
+    $name=$viewstateUserProfile;
+    //echo "name= $name";
+    $filename=null;
+    if(isset($_FILES))
+    {
+        if($name==null)
+        {
+            $filename="default.jpg";
+        }
+        else
+        {
+            if(($_FILES["file"]["type"]=="image/png") || ($_FILES["file"]["type"]=="image/jpg") || ($_FILES["file"]["type"]=="image/jpeg"))
+            {
+                $temp = explode(".", $_FILES["file"]["name"]);
+                $extension = strtolower(end($temp));
+                $fileName = $temp[0] . "." . $temp[1];
+                $temp[0] = rand(0, 3000); //Set to random number
+                if (file_exists("img/" . $_FILES["file"]["name"])) 
+                {
+                    $errorForFile= $_FILES["file"]["name"] . " already exists. ";
+                } 
+                else 
+                {
+                    $temp = explode(".", $_FILES["file"]["name"]);
+                    $newfilename = round(microtime(true)) . '.' . end($temp);
+                    //move_uploaded_file($_FILES["file"]["tmp_name"],$newfilename);
+                    $filename=$newfilename;
+                }
+            }
+            else
+            {
+                $errorForFile="only jpg,png,jpeg are allow";
+            }
+        }
+    }
+    if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["mobile"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0)
+    {
+        /*if(!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $_POST['password']))
+        {
+            $error_pass="Password must be 6 character long and have alphanumeric and have one special character";
+        }
+        else*/ if($_POST["password"]!=$_POST["confirm"])
+        {
+            $error="password not confirmed";
+        }
+        else
+        {
+            $password=md5($_POST["password"]);
+            $joindate=date('m/d/Y ', time());
+            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP,join_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress','$joindate')";
+            //echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
+            //values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
+            if(mysqli_query($con,$query))
+            {
+
+                header("location:login.php");
+            } 
+        }
+    }
+    else
+    {
+        echo "<script>alert('Please fill all the details')</script>";
+    }
+}
 }
 ?>
 <!DOCTYPE html>
@@ -62,8 +179,16 @@ if(isset($_POST['reg'])){
                                     <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
+                                    <label>Phone No</label>
+                                    <input class="au-input au-input--full" type="number" name="mobile" placeholder="Phone No">
+                                </div>
+                                <div class="form-group">
                                     <label>Password</label>
                                     <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm-Password</label>
+                                    <input class="au-input au-input--full" type="password" name="confirm" placeholder="Confirm-Password">
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
