@@ -11,7 +11,7 @@
             <h2>Category</h2>
             <ul class="tag_nav">
             <?php
-     $sql="select * from tbl_categories where status='1' and `deletion`='1'";
+     $sql="select * from tbl_categories where status='1'";
      $query=mysqli_query($con,$sql);
      while($row=mysqli_fetch_array($query)){
      ?>

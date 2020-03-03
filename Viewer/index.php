@@ -66,7 +66,7 @@ $type="Index";
                 $row1 = mysqli_fetch_array($query)
               
                 ?>
-                  <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row1['NewsID'];?>" class="featured_img"> <img alt="" style="height:283px;width:340px;" src="<?php echo "../Content_Creator/img/".$row1['FileAttach'];?>"> <span class="overlay"></span> </a>
+                  <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row1['id'];?>" class="featured_img"> <img alt="" style="height:283px;width:340px;" src="<?php echo "../Content_Creator/img/".$row1['FileAttach'];?>"> <span class="overlay"></span> </a>
                     <figcaption> <a href="view.php?nid=<?php echo $row1['Url'];?>"><?php echo $row1['HeadLine'];?></a> </figcaption>
                     <p><?php echo $row1['Summary'];?></p>
                   </figure>
@@ -77,8 +77,8 @@ $type="Index";
               <ul class="spost_nav">
               <?php
               $cid=$row['id'];
-              $nid=$row1['NewsID'];
-              $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and NewsID!='$nid' limit 4";
+              $nid=$row1['id'];
+              $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and id!='$nid' limit 4";
               $query=mysqli_query($con,$sql);
               $index = 0; 
               while($row_s1 = mysqli_fetch_array($query)):
@@ -119,8 +119,8 @@ $type="Index";
               
                 ?>
                
-                    <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>" class="featured_img"> <img alt="" style="height:225px;width:340px;" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>"><?php echo $row_2['HeadLine'];?></a> </figcaption>
+                    <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row_2['id'];?>" class="featured_img"> <img alt="" style="height:225px;width:340px;" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="view.php?nid=<?php echo $row_2['id'];?>"><?php echo $row_2['HeadLine'];?></a> </figcaption>
                       <p><?php echo $row_2['Summary'];?></p>
                     </figure>
                   </li>
@@ -128,8 +128,8 @@ $type="Index";
                 <ul class="spost_nav">
                 <?php
                 $cid=$row2['id'];//category
-                $nid=$row_2['NewsID'];//news id
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and NewsID!='$nid' limit 4";
+                $nid=$row_2['id'];//news id
+                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and id!='$nid' limit 4";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 while($row_s1 = mysqli_fetch_array($query)):
@@ -168,8 +168,8 @@ $type="Index";
               
                 ?>
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>" class="featured_img"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="view.php?nid=<?php echo $row_2['NewsID'];?>"><?php echo $row_2['HeadLine']?></a> </figcaption>
+                    <figure class="bsbig_fig wow fadeInDown"> <a href="view.php?nid=<?php echo $row_2['id'];?>" class="featured_img"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="view.php?nid=<?php echo $row_2['id'];?>"><?php echo $row_2['HeadLine']?></a> </figcaption>
                       <p><?php echo $row_2['Summary']?></p>
                     </figure>
                   </li>
@@ -177,8 +177,8 @@ $type="Index";
                 <ul class="spost_nav">
                 <?php
                 $cid=$row3['id'];//category
-                $nid=$row_2['NewsID'];//news id
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and NewsID!='$nid' limit 4";
+                $nid=$row_2['id'];//news id
+                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and id!='$nid' limit 4";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 while($row_s1 = mysqli_fetch_array($query)):
@@ -204,7 +204,7 @@ $type="Index";
             $ini_gallery=mysqli_query($con,"select * from tbl_gallery where status=1 limit 6");
                 while($load_gallery=mysqli_fetch_array($ini_gallery)){
                   $gid=$load_gallery['id'];
-                  $ini_picture=mysqli_query($con,"select * from tbl_picture where gallery_id=$gid and status=1 and deletion=1");
+                  $ini_picture=mysqli_query($con,"select * from tbl_picture where gallery_id=$gid and status=1 ");
                   $load_picture=mysqli_fetch_array($ini_picture);
                   
             ?>

@@ -107,14 +107,14 @@ $description="The News Sharing Platform";
                 $cid=1;
                
               }
-                $sql="select * from tbl_news where Status='1' and Deletation='0' and CategoryID='$cid' and Approved='1'";
+                $sql="select * from tbl_news where Status='1' and CategoryID='$cid' and Approved='1'";
                 $query=mysqli_query($con,$sql);
                 $index = 0; 
                 while($row1 = mysqli_fetch_array($query)){
               
                 ?>
                
-            <li><a href="?nid=<?php echo $row1['NewsID'];?>"><img src="images/news_thumbnail3.jpg" alt=""><?php echo $row1['HeadLine'];?></a></li>
+            <li><a href="?nid=<?php echo $row1['id'];?>"><img src="images/news_thumbnail3.jpg" alt=""><?php echo $row1['HeadLine'];?></a></li>
             <?php
             }
             ?>
