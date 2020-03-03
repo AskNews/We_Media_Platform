@@ -32,29 +32,7 @@ $last=$total_pages-1;
           @ $newfilename = round(microtime(true)) . '.' . $extension;
           @$image=$_FILES['image'];
           @	$imageName=$_POST['oldImage'];
-        //##############LOG ENGINE############
-$log;
-function log_engine($b){
-    global $log,$type,$con,$success,$error,$select;
-    $c=$b-1;
-    $p="INSERT INTO tbl_log (";
-    for($i=0;$i<$b;$i++){	
-    $p=$p."`".$log[$i][0]."`";
-    if($i==$c){}else{$p=$p.",";}
-    }
-    $p=$p.") VALUES (";
-    for($i=0;$i<$b;$i++){	
-    $p=$p."'".$log[$i][1]."'";
-    if($i==$c){}else{$p=$p.",";}
-    }
-    
-    $sql= $p.");";
-   // $success=$sql;
-    mysqli_query($con,$sql);
-            return 0;	
-    
-}
-
+       
           
 //###################COMPRESS ENGINE########################
 function compressImage($source, $destination, $quality) {
@@ -103,7 +81,7 @@ $qry=mysqli_query($con,$sql);
 function del(){
   global $con,$error,$select,$type,$info;
 	$id1=$_GET['del'];
-	$sql="update `tbl_$type` set deletion=!deletion WHERE id='$id1'";
+	$sql="delete from `tbl_$type` WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
 	if($query){
     $info=ucfirst($type) . "Deleted Success";
@@ -205,11 +183,7 @@ if(isset($_POST['c_'.$type.''])){
        array('c_date',$_POST['dat']),
        array('status',$_POST['status']));
        insert(8);
-       $log=array(
-        array('log','The '.$type.' '.$_POST['title'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-      );
-      log_engine(1);
-     
+      
       }
    
    if($type=="categories"){
@@ -223,10 +197,7 @@ if(isset($_POST['c_'.$type.''])){
     array('c_date',$_POST['dat']),
     array('status',$_POST['status']));
      insert(7);
-   $log=array(
-     array('log','The '.$type.' '.$_POST['title'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-   );
-   log_engine(1);
+   
   }
   if($type=="qna"){
      
@@ -239,11 +210,8 @@ if(isset($_POST['c_'.$type.''])){
      array('status',$_POST['status']),
       array('role',$data['role'])
     );
-      insert(6);
-    $log=array(
-      array('log','The '.$type.' '.$_POST['question'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-    );
-    log_engine(1);
+      insert(5);
+   
    }
    if($type=="picture"){
     
@@ -266,10 +234,7 @@ if(isset($_POST['c_'.$type.''])){
       array('c_date',$_POST['dat']),
       array('status',$_POST['status']));
        insert(6);
-       $log=array(
-        array('log','The '.$type.' '.$_POST['caption'].' Has Been Created in gallery '.$_POST['gallery_id'].' By '.$data['id'].'  on '.$_POST['dat'])
-      );
-      log_engine(1);
+     
        
       }
   
@@ -289,10 +254,7 @@ if(isset($_POST['c_'.$type.''])){
       array('c_date',$_POST['dat']),
       array('status',$_POST['status']));
        insert(6);
-       $log=array(
-        array('log','The '.$type.' '.$_POST['caption'].' Has Been Created By '.$data['id'].'  on '.$_POST['dat'])
-      );
-      log_engine(1);
+      
      
    }
    
