@@ -1,329 +1,186 @@
 <?php
-$type="Index";
- include "includes/header.php";
- ?>
-  <section id="sliderSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="slick_slider">
-        <?php
+$type="index";
+include 'includes/header.php';
+?>
+<!-- content -->
+<div class="wrapper row3">
+  <div id="container">
+    <!-- ################################################################################################ -->
+    <div id="homepage" class="clear">
+      <div class="two_third first">
+        <section class="main_slider">
+          <div class="rslides_container clear">
+            <ul class="rslides clear" id="rslides">
+            <?php
 			$sql="select * from tbl_slideshow where status='1' ORDER BY orderby ASC";
 			$query=mysqli_query($con,$sql);
 			while($slideshow=mysqli_fetch_array($query)):
 				
 			?> 
-          <div class="single_iteam"> <a href="pages/single_page.html"> <img src="../Super_Admin/image/slideshow/<?php echo $slideshow['image'];?>" alt=""></a>
-            <div class="slider_article">
-              <h2><a class="slider_tittle" href="pages/single_page.html"><?php echo $slideshow['caption'];?></a></h2>
-              <p>Created Date : <?php echo $slideshow['c_date'];?></p>
-            </div>
+              <li><img src="../Super_Admin/image/slideshow/<?php echo $slideshow['image'];?>" style="width:600; height:300px;" alt=""></li>
+              
+              <?php
+              endwhile;
+              ?>
+            </ul>
           </div>
+        </section>
+       
+       
+        <div class="divider2"></div>
+         <?php
+        $sql="select * from tbl_categories where status='1'";
+		$query=mysqli_query($con,$sql);
+		$index = 1; 
+		while($row = mysqli_fetch_array($query)):
+		?>
+        <article class="one_half push30 <?php echo $index++%2 !=0?'first':'';?>">
+         <h2><?php echo $row['title']; ?></h2>
+         <?php
+		 //find out the news related to the category
+		 
+		 $cat_id=$row['id'];
+		 $subSql="select * from tbl_news where Status ='1' and Approved='1' and CategoryID='$cat_id' order by id DESC LIMIT 5";
+		 $subQuery=mysqli_query($con,$subSql);
+		 $firstNews=mysqli_fetch_array($subQuery);
+		 ?>
+          <?php
+        if(file_exists("../Content_Creator/img/".$firstNews['FileAttach']) && !empty($firstNews['FileAttach'])){
+		?>
+                <div class="push20"><img alt="" style="height:283px;width:340px;" src="<?php echo "../Content_Creator/img/".$firstNews['FileAttach'];?>"></div><?php
+		}
+				?>
+         
+          <h2><?php echo substr($firstNews['HeadLine'],0,60);?> ...</h2>
+          <p><?php echo substr($firstNews['Summary'],0,60);?> ...</p>
+          <footer class="read-more"><a href="news.php?news=<?php echo $firstNews['Url']; ?>">Read More &raquo;</a></footer>
+           <ul class="list underline push50">
+           <?php
+           while($subRow = mysqli_fetch_array($subQuery)):
+		   ?>
+          <li><a href="news.php?news=<?php echo $subRow['Url']; ?>"><?php echo substr($subRow['HeadLine'],0,60);?> ...</a></li>
           <?php
           endwhile;
-          ?>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-          <h2><span>Latest post</span></h2>
-          <div class="latest_post_container">
-            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-            <ul class="latest_postnav">
-              <li>
-                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                </div>
-              </li>
-            </ul>
-            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="contentSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="left_content">
-
+?>
+</ul>
+        </article>
         <?php
-         $sql="select * from tbl_categories where status='1' limit 1";
-         $query=mysqli_query($con,$sql);
-         $index = 0; 
-         $row = mysqli_fetch_array($query)
-      
-        ?>
-            <div class="single_post_content">
-            <h2><span><?php echo $row['title'];?></span></h2>
-            <div class="single_post_content_left">
-              <ul class="business_catgnav  wow fadeInDown">
-                <li>
-                <?php
-                $cid=$row['id'];
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' limit 1";
-                $query=mysqli_query($con,$sql);
-                $index = 0; 
-                $row1 = mysqli_fetch_array($query)
-              
-                ?>
-                  <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row1['id'];?>" class="featured_img"> <img alt="" style="height:283px;width:340px;" src="<?php echo "../Content_Creator/img/".$row1['FileAttach'];?>"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="view.php?nid=<?php echo $row1['Url'];?>"><?php echo $row1['HeadLine'];?></a> </figcaption>
-                    <p><?php echo $row1['Summary'];?></p>
-                  </figure>
-                </li>
-              </ul>
-            </div>
-            <div class="single_post_content_right">
-              <ul class="spost_nav">
+        endwhile;
+		?>
+      </div>
+      <!-- #### -->
+      <div class="one_third">
+        <div class="tab-wrapper clear">
+          <ul class="tab-nav clear">
+            <li><a href="#tab-1">Top News</a></li>
+            <li><a href="#tab-2">Recent News</a></li>
+            <li><a href="#tab-3">Popular News</a></li>
+          </ul>
+          <div class="tab-container">
+            <!-- Tab Content -->
+            <div id="tab-1" class="tab-content clear">
+              <article class="clear push20">
               <?php
-              $cid=$row['id'];
-              $nid=$row1['id'];
-              $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and id!='$nid' limit 4";
-              $query=mysqli_query($con,$sql);
-              $index = 0; 
-              while($row_s1 = mysqli_fetch_array($query)):
+            $sql="select * from tbl_news where Status='1' and Approved='1' and TopNews='1' order by id DESC LIMIT 5";
+			$query=mysqli_query($con,$sql);
+			while($row=mysqli_fetch_array($query)){
+			?>
             
-              ?>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $row_s1['Url'];?>" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
-                    <div class="media-body"> <a href="view.php?nid=<?php echo $row_s1['Url'];?>" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
-                  </div>
-                </li>
-                <?php
-                endwhile;
-                ?>
-              </ul>
+              <article class="clear push20">
+              <?php
+        if(file_exists("../Content_Creator/img/".$row['FileAttach']) && !empty($row['FileAttach'])){
+		?>
+                <div class="imgl"><img src="../Content_Creator/img/<?php echo $row['FileAttach'];?>" style="width:50px; height:50px;" alt=""></div><?php
+		}
+				?>
+                <h2 class="font-medium nospace"><a href="news.php?news=<?php echo $row['Url'];?>"><?php echo substr($row['HeadLine'],0,30); ?> ...</a></h2>
+                <p class="nospace"><?php echo substr($row['Summary'],0,60); ?>...</p>
+              </article>
+              <?php
+			}
+			  ?>
             </div>
-          </div>
-        <div class="fashion_technology_area">
-        <?php
-        $a=$row['id'];
-        $sql="select * from tbl_categories where id NOT IN('$a') and status='1' limit 1";
-        $query=mysqli_query($con,$sql);
-        $index = 0; 
-        $row2 = mysqli_fetch_array($query)
-       
-          ?>
+            <!-- ## TAB 2 ## -->
+            <div id="tab-2" class="tab-content clear">
+            <?php
+            $sql="select * from tbl_news where Status='1' and Approved='1' order by id DESC LIMIT 5";
+			$query=mysqli_query($con,$sql);
+			while($row=mysqli_fetch_array($query)){
+			?>
             
-            <div class="fashion">
-              <div class="single_post_content">
-                <h2><span><?php echo $row2['title'];?></span></h2>
-                <ul class="business_catgnav wow fadeInDown">
-                  <li>
-                  <?php
-                $cid=$row2['id'];
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' limit 1";
-                $query=mysqli_query($con,$sql);
-                $index = 0; 
-                $row_2 = mysqli_fetch_array($query)
-              
-                ?>
-               
-                    <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $row_2['id'];?>" class="featured_img"> <img alt="" style="height:225px;width:340px;" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="view.php?nid=<?php echo $row_2['id'];?>"><?php echo $row_2['HeadLine'];?></a> </figcaption>
-                      <p><?php echo $row_2['Summary'];?></p>
-                    </figure>
-                  </li>
-                </ul>
-                <ul class="spost_nav">
-                <?php
-                $cid=$row2['id'];//category
-                $nid=$row_2['id'];//news id
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and id!='$nid' limit 4";
-                $query=mysqli_query($con,$sql);
-                $index = 0; 
-                while($row_s1 = mysqli_fetch_array($query)):
-              
-                ?>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $row_s1['Url'];?>" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
-                      <div class="media-body"> <a href="view.php?nid=<?php echo $row_s1['Url'];?>" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
-                    </div>
-                  </li>
-                  <?php
-                  endwhile;
-                  ?>
-                </ul>
-              </div>
+              <article class="clear push20">
+              <?php
+       if(file_exists("../Content_Creator/img/".$row['FileAttach']) && !empty($row['FileAttach'])){
+        ?>
+                <div class="imgl"><img src="../Content_Creator/img/<?php echo $row['FileAttach'];?>" style="width:50px; height:50px;" alt=""></div><?php
+		}
+				?>
+                <h2 class="font-medium nospace"><a href="news.php?news=<?php echo $row['Url'];?>"><?php echo substr($row['HeadLine'],0,30); ?> ...</a></h2>
+                <p class="nospace"><?php echo substr($row['Summary'],0,60); ?>...</p>
+              </article>
+              <?php
+			}
+			  ?>
             </div>
-            <?php
-        $b=$row2['id'];
-        $sql="select * from tbl_categories where id NOT IN ('$a','$b') and status='1' limit 1";
-        $query=mysqli_query($con,$sql);
-        $index = 0; 
-        $row3 = mysqli_fetch_array($query)
-       
-          ?>
-       
-            <div class="technology">
-              <div class="single_post_content">
-                <h2><span><?php echo $row3['title'];?></span></h2>
-                <ul class="business_catgnav">
-                <?php
-                $cid=$row3['id'];
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' limit 1";
-                $query=mysqli_query($con,$sql);
-                $index = 0; 
-                $row_2 = mysqli_fetch_array($query)
-              
-                ?>
-                  <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="view.php?nid=<?php echo $row_2['id'];?>" class="featured_img"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_2['FileAttach'];?>"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="view.php?nid=<?php echo $row_2['id'];?>"><?php echo $row_2['HeadLine']?></a> </figcaption>
-                      <p><?php echo $row_2['Summary']?></p>
-                    </figure>
-                  </li>
-                </ul>
-                <ul class="spost_nav">
-                <?php
-                $cid=$row3['id'];//category
-                $nid=$row_2['id'];//news id
-                $sql="select * from tbl_news where Status='1' and Approved='1' and CategoryID='$cid' and id!='$nid' limit 4";
-                $query=mysqli_query($con,$sql);
-                $index = 0; 
-                while($row_s1 = mysqli_fetch_array($query)):
-              
-                ?>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $row_s1['Url'];?>" class="media-left"> <img alt="" src="<?php echo "../Content_Creator/img/".$row_s1['FileAttach'];?>"> </a>
-                      <div class="media-body"> <a href="view.php?nid=<?php echo $row_s1['Url'];?>" class="catg_title"> <?php echo $row_s1['HeadLine'];?></a> </div>
-                    </div>
-                  </li>
-                  <?php
-                  endwhile;
-                  ?>
-                </ul>
-              </div>
+            <!-- ## TAB 3 ## -->
+            <div id="tab-3" class="tab-content clear">
+               <?php
+            $sql="select * from tbl_news where Status='1' and Approved='1' order by Views DESC LIMIT 5";
+			$query=mysqli_query($con,$sql);
+			while($row=mysqli_fetch_array($query)){
+			?>
+            
+              <article class="clear push20">
+              <?php
+       if(file_exists("../Content_Creator/img/".$row['FileAttach']) && !empty($row['FileAttach'])){
+        ?>
+                <div class="imgl"><img src="../Content_Creator/img/<?php echo $row['FileAttach'];?>" style="width:50px; height:50px;" alt=""></div><?php
+		}
+				?>
+                <h2 class="font-medium nospace"><a href="news.php?news=<?php echo $row['Url'];?>"><?php echo substr($row['HeadLine'],0,30); ?> ...</a></h2>
+                <p class="nospace"><?php echo substr($row['Summary'],0,60); ?>...</p>
+              </article>
+              <?php
+			}
+			  ?>
             </div>
+            <!-- / Tab Content -->
           </div>
-        
-          <div class="single_post_content">
-            <h2><span>Gallery</span></h2>
-            <ul class="photograph_nav  wow fadeInDown">
-            <?php
-            $ini_gallery=mysqli_query($con,"select * from tbl_gallery where status=1 limit 6");
-                while($load_gallery=mysqli_fetch_array($ini_gallery)){
-                  $gid=$load_gallery['id'];
-                  $ini_picture=mysqli_query($con,"select * from tbl_picture where gallery_id=$gid and status=1 ");
-                  $load_picture=mysqli_fetch_array($ini_picture);
-                  
-            ?>
-              <li>
-                <div class="photo_grid">
-                  <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img2.jpg" title="<?php echo $load_picture['caption'];?>"> <img src="../Super_Admin/image/gallery/<?php echo $gid."/".$load_picture['image'];?>" alt=""/></a> </figure>
-                </div>
-              </li>
-         <?php
-                }
-         ?>
-             
-            </ul>
-          </div>
+        </div>
+        <div class="clear push30"></div>
+       
+        <div class="divider2"></div>
+        <h2 class="nospace font-medium push20">Categories</h2>
+        <nav class="footer_nav">
+        <ul class="nospace">
+
           
+          <?php
+     $sql="select * from tbl_categories where status='1'";
+	 $query=mysqli_query($con,$sql);
+	 while($row=mysqli_fetch_array($query)){
+	 ?>
+      <li <?php echo (isset($url) && $url==$row['url'])?'class="active"':'';?>><a href="category.php?cat=<?php echo $row['url'];?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
+      <?php
+	 }
+	  ?>
+        </ul>
+      </nav>
+      <div class="divider2"></div>
+        
+        <div class="clear">
+          <h2 class="nospace font-medium push20">Google Ads</h2>
+          <ul class="nospace spacing clear">
+            <li class="one_half first"><a href="#"><img src="images/demo/150x150.gif" alt=""></a></li>
+            
+          </ul>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <aside class="right_content">
-          <div class="single_sidebar">
-            <h2><span>Popular Post</span></h2>
-            <ul class="spost_nav">
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="single_sidebar">
-            <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
-              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
-              <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
-            </ul>
-            <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="category">
-                <ul>
-                  <li class="cat-item"><a href="#">Sports</a></li>
-                  <li class="cat-item"><a href="#">Fashion</a></li>
-                  <li class="cat-item"><a href="#">Business</a></li>
-                  <li class="cat-item"><a href="#">Technology</a></li>
-                  <li class="cat-item"><a href="#">Games</a></li>
-                  <li class="cat-item"><a href="#">Life &amp; Style</a></li>
-                  <li class="cat-item"><a href="#">Photography</a></li>
-                </ul>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="video">
-                <div class="vide_area">
-                  <iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="comments">
-                <ul class="spost_nav">
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Sponsor</span></h2>
-            <a class="sideAdd" href="#"><img src="images/add_img.jpg" alt=""></a> </div>
-          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Category Archive</span></h2>
-            <select class="catgArchive">
-              <option>Select Category</option>
-              <option>Life styles</option>
-              <option>Sports</option>
-              <option>Technology</option>
-              <option>Treads</option>
-            </select>
-          </div>
-          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Links</span></h2>
-            <ul>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Rss Feed</a></li>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Life &amp; Style</a></li>
-            </ul>
-          </div>
-        </aside>
-      </div>
     </div>
-  </section>
- <?php
- include "includes/footer.php";
- ?>
+    <!-- ################################################################################################ -->
+    <div class="clear"></div>
+  </div>
+</div>
+<?php
+include "includes/footer.php";
+?>
