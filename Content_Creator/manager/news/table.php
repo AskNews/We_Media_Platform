@@ -56,7 +56,7 @@
                                             <td  style="width: 250px;"><?php echo wordwrap($row['HeadLine'],35,"<br>")?></td>
                                             <td  style="width: 80px;"><img src="<?php echo $imgPath."/".$row['FileAttach'];?>" height="100px" width="80px" ></td>
                                             <?php if($row["Approved"]){ ?>
-                                            <td><?php echo $row['ModifyDate'];?></td>
+                                            <td><?php echo substr($row['ModifyDate'],0,10);?></td>
                                             <td><?php echo $row['PublishDate'];?></td>
                                             <td style="width: 10px;"><?php echo $row['Views'];?></td>
                                             <?php } elseif($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3){ ?> 
@@ -90,17 +90,17 @@
                                 <div class="col-sm-7">  
                                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
-                                    <li class="paginate_button previous <?php if(/*$page*/$_GET['page']>$total_pages || $_GET['page']==1){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <li class="paginate_button previous <?php if(/*$page*/$_GET['page']>$total_news_pages || $_GET['page']==1){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="news.php?page=<?php echo $_GET['page']-1;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
                                     <?php
-                                    for($i=1;$i<=$total_pages;$i++)
+                                    for($i=1;$i<=$total_news_pages;$i++)
                                     {
                                         ?>
                                         <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="news.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>        
                                         &nbsp;
                                     <?php }
                                     ?>
-                                    <li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <li class="paginate_button previous <?php if($page>=$total_news_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="news.php?page=<?php echo $_GET['page']+1;//$total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
                                     
                                     </ul>

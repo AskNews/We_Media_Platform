@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $channel_setup_status=0;
@@ -11,6 +12,8 @@ $success=null;
 $channel_logo="";
 $uname="";
 $mon=0;
+
+
 include "../Super_Admin/includes/dbconfig.php";
 
 
@@ -45,6 +48,46 @@ else
 {
     header ("location: login.php");
 }
+$noti=mysqli_query($con,"select count(id) as c from tbl_notification where role=0 and user_id=".$creatorid." and is_seen=0");
+$noti_count=mysqli_fetch_array($noti);
+$noti_count=$noti_count['c'];
+
+$fl_count=mysqli_query($con,"select count(f.id) as follower from tbl_follower f, tbl_content_creator c where f.content_creator_id=c.id and c.id=".$creatorid);
+$fl=mysqli_fetch_array($fl_count);
+$fl=$fl['follower'];
+
+
+$i_count=mysqli_query($con,"select index_point as ip from tbl_content_creator where id=".$creatorid);
+$index=mysqli_fetch_array($i_count);
+$index=$index['ip'];
+
+$bal_count=mysqli_query($con,"select earnings as bal from tbl_content_creator where id=".$creatorid);
+$bal=mysqli_fetch_array($bal_count);
+$bal=$bal['bal'];
+
+$n_count=mysqli_query($con,"select count(id) as news from tbl_news where CreatorID=".$creatorid);
+$news=mysqli_fetch_array($n_count);
+$news=$news['news'];
+
+$n_p_count=mysqli_query($con,"select count(id) as news from tbl_news where Approved=0 and CreatorID=".$creatorid);
+$news_p=mysqli_fetch_array($n_p_count);
+$news_p=$news_p['news'];
+
+$v_count=mysqli_query($con,"select sum(Views) as view from tbl_news where Approved=1 and CreatorID=".$creatorid);
+$views=mysqli_fetch_array($v_count);
+$views=$views['view'];
+
+$l_count=mysqli_query($con,"select count(id) as l from tbl_like where news_id in (select id from tbl_news where CreatorID in(select id from tbl_content_creator where id=".$creatorid."))");
+$t_like=mysqli_fetch_array($l_count);
+$t_like=$t_like['l'];
+
+$ttl_with=mysqli_query($con,"select life_time_withdraw_amt lf from tbl_content_creator where id=".$creatorid);
+$ttl_withdraw=mysqli_fetch_array($ttl_with);
+$ttl_withdraw=$ttl_withdraw['lf'];
+
+$last_with=mysqli_query($con,"select withdraw_amt wa from tbl_transaction where content_creator_id=".$creatorid." order by c_date desc limit 1");
+$last_withdraw=mysqli_fetch_array($last_with);
+$last_withdraw=$last_withdraw['wa'];
 
 include "engine/engine.php";
 ?>
@@ -150,7 +193,7 @@ function convertToComa( str1 ) {
                 <li class="dropdown"> 
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
-                        <span class="label-count">7</span>
+                        <span class="label-count"><?php echo $noti_count; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">NOTIFICATIONS</li>
@@ -162,10 +205,8 @@ function convertToComa( str1 ) {
                                             <i class="material-icons">person_add</i>
                                         </div>
                                         <div class="menu-info">
-                                            <h4>12 new members joined</h4>
-                                            <p>
-                                                <i class="material-icons">access_time</i> 14 mins ago
-                                            </p>
+                                            <h4><?php echo $noti_count." New Notification";?></h4>
+                                            
                                         </div>
                                     </a>
                                 </li>
@@ -173,7 +214,7 @@ function convertToComa( str1 ) {
                             </ul>
                         </li>
                         <li class="footer">
-                            <a href="javascript:void(0);">View All Notifications</a>
+                            <a href="notification.php?noti">View All Notifications</a>
                         </li>
                     </ul>
                 </li>
@@ -263,8 +304,8 @@ function convertToComa( str1 ) {
                             <span>Comment</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="pages/typography.html">
+                    <li <?php echo $type == "noti"?'class="active"':'';?> >
+                        <a href="notification.php?noti">
                             <i class="material-icons">notifications</i>
                             <span>Notification</span>
                         </a>
@@ -273,6 +314,18 @@ function convertToComa( str1 ) {
                         <a href="feedback.php?feedback">
                             <i class="material-icons">edit</i>
                             <span>FeedBack</span>
+                        </a>
+                    </li>
+					<li <?php echo $type == "qna"?'class="active"':'';?>>
+                        <a href="qna.php?qna">
+                            <i class="material-icons">question_answer</i>
+                            <span>QNA</span>
+                        </a>
+                    </li>
+					<li <?php echo $type == "rules"?'class="active"':'';?>>
+                        <a href="rules.php?rules">
+                            <i class="material-icons">gavel</i>
+                            <span>Rules</span>
                         </a>
                     </li>
                     <li>

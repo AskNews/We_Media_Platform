@@ -20,11 +20,11 @@
                             <ul>
                                 <li>
                                     <span>Followers</span>
-                                    <span><?php echo $follower ?></span>
+                                    <span><?php echo $fl ?></span>
                                 </li>
                                 <li>
                                     <span>Likes</span>
-                                    <span><?php echo $like ?></span>
+                                    <span><?php echo $t_like ?></span>
                                 </li>
                                 <li>
                                     <span>Comments</span>
