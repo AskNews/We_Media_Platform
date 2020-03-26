@@ -144,8 +144,8 @@ if($data){
 		}
 	}
   
-  if(isset($_GET['nid'])){
-    $gen_news=$_GET['nid'];
+  if(isset($_GET['news'])){
+    $gen_news=$_GET['news'];
     $fqry=mysqli_query($con,"select * from tbl_news where Url='$gen_news' and Status=1 and Offline=0");
     $res_view=mysqli_fetch_array($fqry);
     $resv=$res_view['CategoryID'];
@@ -153,4 +153,5 @@ if($data){
     $find_catagory=mysqli_query($con,"select * from tbl_categories where id=$resv");
     $res_cat=mysqli_fetch_array($find_catagory);
   }
+ 
 ?>
