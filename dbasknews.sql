@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2020 at 06:30 AM
+-- Generation Time: Apr 04, 2020 at 09:03 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -101,12 +101,13 @@ CREATE TABLE `tbl_categories` (
 
 INSERT INTO `tbl_categories` (`id`, `title`, `url`, `seo_title`, `seo_desc`, `c_date`, `date`, `status`) VALUES
 (1, 'Education1', 'education1', 'education1', 'Education News', '2019-11-06', '2020-02-12 17:08:08', 1),
-(3, 'BUSINESS', 'business', 'business', 'Business News', '2019-11-14', '2020-01-10 15:26:08', 1),
+(3, 'Business News ', 'business-news', 'business, news', 'List of Business News', '2019-11-14', '2020-03-18 06:12:38', 1),
 (4, 'CRIME', 'crime', 'crime', 'Crime News', '2019-11-19', '2020-02-13 11:47:56', 1),
 (5, 'JOB', 'job', 'job', 'Job News', '2019-11-20', '2020-02-13 11:47:59', 1),
 (6, 'Science News', 'science-news', 'science, news', 'Science', '2019-11-20', '2020-01-10 15:27:41', 1),
 (11, 'Super Categories', 'super-categories', 'super, categories', 'hii', '2020-02-04', '2020-02-12 17:08:05', NULL),
-(12, 'Life Style News', 'life-style-news', 'life, style, news', 'News about lifestyle', '2020-02-04', '2020-02-17 12:21:35', 1);
+(12, 'Life Style News', 'life-style-news', 'life, style, news', 'News about lifestyle', '2020-02-04', '2020-02-17 12:21:35', 1),
+(13, 'Crime News ', 'crime-news', 'crime, news', 'List of crime news', '2020-03-03', '2020-03-18 06:15:17', 1);
 
 -- --------------------------------------------------------
 
@@ -226,15 +227,17 @@ CREATE TABLE `tbl_gallery` (
 --
 
 INSERT INTO `tbl_gallery` (`id`, `title`, `url`, `seo_title`, `seo_desc`, `location`, `c_date`, `date`, `status`) VALUES
-(1, 'First Gallery1', 'First Gallery1', 'first, gallery1', 'To First gallery trail', 'India', '2019-11-13', '2020-02-12 13:43:52', 0),
-(4, 'Health Gallery', 'Health Gallery', 'health, gallery', 'Tips of Health', 'no', '2019-11-26', '2020-02-17 12:05:45', 0),
-(7, 'Lifestyle', 'Lifestyle', 'lifestyle', 'Tips about lifestyle', 'no', '2019-11-25', '2020-02-17 12:03:39', 0),
-(8, 'Quick Fresh Technology News', 'Quick Fresh Technology News', 'quick, fresh, technology, news', 'News About Technology', 'no', '2019-11-27', '2020-02-17 12:04:41', 0),
+(1, 'First Gallery1', 'First Gallery1', 'first, gallery1', 'To First gallery trail', 'India', '2019-11-13', '2020-03-16 10:20:19', 1),
+(4, 'Health Gallery', 'Health Gallery', 'health, gallery', 'Tips of Health', 'no', '2019-11-26', '2020-03-16 10:20:22', 1),
+(7, 'Lifestyle', 'Lifestyle', 'lifestyle', 'Tips about lifestyle', 'no', '2019-11-25', '2020-03-16 10:20:24', 1),
+(8, 'Quick Fresh Technology News', 'Quick Fresh Technology News', 'quick, fresh, technology, news', 'News About Technology', 'no', '2019-11-27', '2020-03-16 10:20:16', 1),
 (9, 'Beauty Tips', 'Beauty Tips', 'beauty, tips', 'Content of Beauty tips', 'no', '2019-11-18', '2020-02-17 12:05:15', 1),
-(10, 'final', 'final', 'final', 'final', 'final', '2019-11-13', '2019-11-02 11:21:05', 1),
-(11, 'log test', 'log-test', 'log, test', 'log test', 'log test', '2019-11-27', '2019-11-17 09:18:45', 1),
-(12, 'Fenil patel', 'fenil-patel', 'fenil, patel', 'hi', 'no', '2020-01-20', '2020-02-12 13:22:08', 0),
-(13, 'Super Gallery', 'Super Gallery', 'super, gallery', 'Super gallery Trail', 'Super Admin', '2020-02-17', '2020-02-12 13:27:46', NULL);
+(14, 'New Viewer', 'New Viewer', 'new, viewer', 'New Viewer gallery', 'no', '2020-03-18', '2020-03-16 10:25:54', 1),
+(15, 'hello', 'hello', 'hello', 'hello', 'no', '2020-03-18', '2020-03-16 10:27:36', 1),
+(16, 'hi', 'hi', 'hi', 'hi', 'no', '2020-03-17', '2020-03-16 10:27:47', 1),
+(17, 'time pass', 'time pass', 'time, pass', 'hi', 'no', '2020-03-24', '2020-03-16 10:28:00', 1),
+(18, 'bhavesh mishra', 'bhavesh mishra', 'bhavesh, mishra', 'bhavesh ko batane ke liye', 'no', '2020-03-03', '2020-03-28 09:39:40', 1),
+(19, 'jgj9siuy8i', 'jgj9siuy8i', 'jgj9siuy8i', 'gjjgj', 'gkhgj', '2020-07-08', '2020-03-28 09:40:07', 1);
 
 -- --------------------------------------------------------
 
@@ -261,7 +264,7 @@ CREATE TABLE `tbl_module_user` (
 
 INSERT INTO `tbl_module_user` (`id`, `user_name`, `image`, `first_name`, `last_name`, `email`, `password`, `date`, `status`, `role`) VALUES
 (2, 'AviWeb', '1581940664.png', 'Avinash', 'Mishra', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2020-02-17 11:57:43', 1, 0),
-(3, 'Kishan', '1581999632.', 'Kishan', 'mishra', 'kishan12@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2020-02-18 04:20:31', 1, 1),
+(3, 'Kishan', '1585300719.jpg', 'Kishan', 'mishra', 'kishan12@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2020-03-27 10:20:50', 0, 0),
 (4, 'Shabnam', '1581940758.png', 'shabbu', 'siduqi', 'sabu87@gmail.com', '202cb962ac59075b964b07152d234b70', '2020-02-17 11:59:18', 1, 0),
 (5, 'Avinash', '1581940782.png', 'Avinash', 'Mishra', 'avinas98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2020-02-18 04:16:29', 1, 3),
 (6, 'Lion', '1581512168.jpg', 'Lion', 'King', 'lion87@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', '2020-02-12 12:56:08', 1, 0),
@@ -302,10 +305,10 @@ CREATE TABLE `tbl_news` (
 --
 
 INSERT INTO `tbl_news` (`id`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, `Url`, `SeoTitle`, `SeoDescription`, `FileAttach`, `Summary`, `Details`, `Views`, `ModifyDate`, `Status`, `Approved`, `PublishDate`, `RejectionMsg`, `Offline`, `Rejected`, `PostDate`) VALUES
-(17, 3, 1, 0, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.jpg', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2020-02-13 12:34:21', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
+(17, 3, 1, 1, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.jpg', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2020-03-24 12:01:53', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (21, 3, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', 'shabbu ', '1572801289.jpg', 'shabbu', '<p><em>shabnam mom pic uploaded...:)</em></p>\r\n', 0, '2020-02-13 12:24:05', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (23, 3, 1, 0, 'avinash updated', 'avinash-updated', 'avinash, updated', '', '1573221709.JPG', 'avinash', '<p><strong>avinash updated</strong></p>\r\n\r\n<p><strong>h</strong>ello from editor&nbsp;</p>\r\n\r\n<ol>\r\n	<li>hello edited news</li>\r\n</ol>\r\n\r\n<ul>\r\n	<li>helloe edited news&nbsp;</li>\r\n</ul>\r\n', 0, '2020-02-13 12:26:24', 1, 1, '0000-00-00', 'unfollow the rules of platform', 0, 2, '0000-00-00'),
-(25, 4, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2020-02-18 05:04:28', 1, 1, '0000-00-00', 'unfollow the rules of platform', 1, 3, '0000-00-00'),
+(25, 4, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2020-03-16 12:46:37', 1, 1, '0000-00-00', 'unfollow the rules of platform', 0, 3, '0000-00-00'),
 (27, 4, 1, 0, 'category selected', 'category-selected', 'category, selected', '', '1572972155.jpg', 'hello from category 2', '<p>hello from category 2 this is basic details of news</p>\r\n', 0, '2020-02-18 05:04:33', 1, 1, '0000-00-00', '', 0, 0, '0000-00-00'),
 (29, 4, 1, 0, 'category 1 selected', 'category-1-selected', 'category, 1, selected', '', '1572973197.png', 'category1', '<p>selection of category 1 that is ssshjfh</p>\r\n', 0, '2020-02-18 05:04:36', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (30, 5, 1, 0, 'shabnam', 'shabnam', 'shabnam', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2020-02-18 05:04:40', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
@@ -334,13 +337,24 @@ CREATE TABLE `tbl_picture` (
 --
 
 INSERT INTO `tbl_picture` (`id`, `gallery_id`, `caption`, `image`, `c_date`, `date`, `status`) VALUES
-(44, 2, 'Knowledge About Internet', '1581941911.jpg', '2020-01-21', '2020-02-17 12:18:30', 1),
-(45, 2, 'super update1', '1581523958.png', '2020-01-21', '2020-02-15 10:52:36', 1),
-(46, 7, 'Funny Images', '1581941937.jpg', '2020-02-11', '2020-02-17 12:18:57', 1),
-(47, 9, 'asdds', '1581941954.jpg', '2020-02-04', '2020-02-17 12:19:14', 1),
-(48, 8, 'Best Pic 2019', '1581941984.jpg', '2020-02-04', '2020-02-17 12:19:44', 1),
-(49, 4, 'fgdgf', '1581763991.png', '2020-02-03', '2020-02-15 11:58:53', 0),
-(50, 1, 'Viewer testing', '1581763674.png', '2020-02-04', '2020-02-15 10:47:53', 1);
+(51, 1, 'hi', '1584354061.PNG', '2020-03-03', '2020-03-16 10:21:01', 1),
+(52, 1, 'hello', '1584354075.png', '2020-03-03', '2020-03-16 10:21:14', 1),
+(53, 4, 'hi', '1584354106.png', '2020-03-11', '2020-03-16 10:21:46', 1),
+(54, 4, 'hello', '1584354133.png', '2020-03-03', '2020-03-16 10:22:13', 1),
+(55, 7, 'hi', '1584354149.png', '2020-03-10', '2020-03-16 10:22:28', 1),
+(56, 7, 'hello', '1584354197.png', '2020-03-11', '2020-03-16 10:23:17', 1),
+(57, 8, 'hello', '1584354241.png', '2020-03-10', '2020-03-16 10:24:01', 1),
+(58, 8, 'hii', '1584354265.png', '2020-03-09', '2020-03-16 10:24:25', 1),
+(59, 9, 'hi', '1584354289.png', '2020-03-02', '2020-03-16 10:24:48', 1),
+(60, 9, 'hello', '1584354304.png', '2020-03-11', '2020-03-16 10:25:03', 1),
+(61, 14, 'hi', '1584354369.png', '2020-03-03', '2020-03-16 10:26:08', 1),
+(62, 14, 'hello', '1584354383.png', '2020-03-04', '2020-03-16 10:26:22', 1),
+(63, 15, 'fg', '1584354502.png', '2020-03-03', '2020-03-16 10:28:22', 1),
+(64, 15, 'dfgh', '1584354514.png', '2020-03-03', '2020-03-16 10:28:33', 1),
+(65, 16, 'dfgh', '1584354527.png', '2020-03-13', '2020-03-16 10:28:46', 1),
+(66, 16, 'cvb', '1584354542.png', '2020-03-02', '2020-03-16 10:29:02', 1),
+(67, 17, 'dgh', '1584354556.png', '2020-03-02', '2020-03-16 10:29:16', 1),
+(68, 17, 'dfghcbv', '1584354584.png', '2020-03-09', '2020-03-16 10:29:44', 1);
 
 -- --------------------------------------------------------
 
@@ -453,7 +467,9 @@ INSERT INTO `tbl_viewer` (`id`, `user_name`, `email`, `password`, `status`, `c_d
 (0, 'jam', 'jam98@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', 1, '0000-00-00', '2020-03-03 04:53:46'),
 (0, 'jhgj', 'h43@gmail.com', 'e69dc2c09e8da6259422d987ccbe95b5', 1, '0000-00-00', '2020-03-03 04:58:01'),
 (0, 'aa', 'aa98@gmail.com', '931ffe4c39bc9fdc875cf8f691bf1f57', 1, '0000-00-00', '2020-03-03 05:00:43'),
-(0, 'hgfj', 'hj65@gmail.com', 'f1d577da5b6560447f1c0a1994ce9b1d', 1, '0000-00-00', '2020-03-03 05:01:50');
+(0, 'hgfj', 'hj65@gmail.com', 'f1d577da5b6560447f1c0a1994ce9b1d', 1, '0000-00-00', '2020-03-03 05:01:50'),
+(0, '', 'rahul@gmail.com', '3fca379b3f0e322b7b7967bfcfb948ad', 1, '2020-03-24', '2020-03-24 12:12:50'),
+(0, 'Avinash', 'jm87@gmail.com', 'e71b2e99a78da9c585fa1698501e527e', 1, '2020-03-24', '2020-03-24 12:17:41');
 
 --
 -- Indexes for dumped tables
@@ -549,7 +565,7 @@ ALTER TABLE `tbl_ad_creator`
 -- AUTO_INCREMENT for table `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tbl_content_creator`
 --
@@ -564,7 +580,7 @@ ALTER TABLE `tbl_feedback`
 -- AUTO_INCREMENT for table `tbl_gallery`
 --
 ALTER TABLE `tbl_gallery`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tbl_module_user`
 --
@@ -579,7 +595,7 @@ ALTER TABLE `tbl_news`
 -- AUTO_INCREMENT for table `tbl_picture`
 --
 ALTER TABLE `tbl_picture`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `tbl_qna`
 --
