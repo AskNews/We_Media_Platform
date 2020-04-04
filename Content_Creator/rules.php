@@ -1,5 +1,5 @@
 <?php
-$type="feedback";
+$type="rules";
 include "includes/header.php";
 include_once "engine/engine.php";
 ?>
@@ -9,11 +9,8 @@ include_once "engine/engine.php";
     <?php 
     if($channel_setup_status==1)
     {
-      if(isset($_GET["feedback"]))
-      {
-        include "manager/$type/form.php";
-      }
-      if(isset($_GET['showfeed']) || isset($_GET['page']))
+      
+      if(isset($_GET['rules']))
       {
         include "manager/$type/table.php";
       }
