@@ -94,25 +94,28 @@ function update($b){
   
   @$User_email=$_SESSION['newSub-AdminLogin'];
   $dt=date("Y-m-d");
-  if(isset($_POST['register'])){
+  if(isset($_POST['send'])){
+	if($type=="Register"){
+    $user_name = mysqli_real_escape_string($con,$_POST['name']);
 	
-    $user_name = mysqli_real_escape_string($con,$_POST['user_name']);
-	
-	$email = mysqli_real_escape_string($con,$_POST['email']);
-  $ms = mysqli_real_escape_string($con,$_POST['password']);
-  $ip=$_SERVER['REMOTE_ADDR'];
-  $a=array(
-    array('user_name',$user_name),
-    array('email',$email),
-    array('password',md5($ms)),
-    array('c_date',$dt));
-    //echo "<script>alert('".print_r($a[3])."')</script>";
-    insert(3);
-      header("Location: login.php");
-	}
+    $email = mysqli_real_escape_string($con,$_POST['email']);
+    $ms = mysqli_real_escape_string($con,$_POST['password']);
+    $type="viewer";
+    $a=array(
+      array('user_name',$user_name),
+      array('email',$email),
+      array('password',md5($ms)),
+      array('c_date',$dt));
+      //echo "<script>alert('".print_r($a[3])."')</script>";
+      insert(4);
+        header("Location: login.php");
+    
+        }
+
+    }
   if(isset($_POST['login'])){
 	
-   
+   $type="viewer";
 	$email = mysqli_real_escape_string($con,$_POST['email']);
   $ms = mysqli_real_escape_string($con,$_POST['password']);
   $sql="SELECT * from tbl_$type WHERE email='$email' AND password=md5('$ms') AND status = '1'";
@@ -120,8 +123,8 @@ function update($b){
  $data=mysqli_fetch_array($query);
 if($data){
   $_SESSION['newViewerLogin']=$data['user_name'];
-  header ("location: index.php");
-  echo '<script>alert("Welcome")</script>';
+  //header ("location: index.php");
+  echo '<script>alert("'.$_SESSION['newViewerLogin'].'")</script>';
   }
   else{
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
@@ -139,8 +142,9 @@ if($data){
 	$data=mysqli_fetch_array($query1);
 	if($data){
 		$title=$data['seo_desc'];
-		$description=$data['seo_desc'];
-		$data1=$data['id'];
+		$desc=$data['seo_desc'];
+    $data1=$data['id'];
+    $keyword=$data['seo_title'];
 		}
 	}
   

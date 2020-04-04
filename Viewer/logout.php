@@ -1,6 +1,7 @@
 <?php
+$type="logout";
 session_start();
 session_destroy();
-setcookie("viewerCookie",NULL, time() -1);
+
 header("location: login.php");
 ?>

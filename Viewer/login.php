@@ -1,36 +1,12 @@
 <?php
-session_start();
-include "admin/includes/dbconfig.php";
+$type ="Login";
+include "../Super_Admin/includes/dbconfig.php";
 
+
+include "includes/header.php";
 if(isset($_SESSION['newViewerLogin'])){
   	header("location: index.php");//content type defer function, where we redirect the page to the login page
 	}
-//working for contact us
-if(isset($_POST['login'])){
- 
-$email = mysqli_real_escape_string($con,$_POST['email']);
-$password = mysqli_real_escape_string($con,$_POST['password']);
-//login from database
-
-$ms="Avinash".$password;
- $sql="SELECT * from dbviewer WHERE email='$email' AND password=md5('$ms') AND status = '1'";
- $query=mysqli_query($con,$sql);
- $data=mysqli_fetch_array($query);
-if($data){
-  
- 
-  
-  $_SESSION['newViewerLogin']=$data['user_name'];
-  
-  
-  header ("location: index.php");
-  echo '<script>alert("Welcome")</script>';
-  }
-  else{
-      echo '<script>alert("error'.mysqli_error($con).'")</script>';
-  }
-}
-include "includes/header.php";
 
 ?>
 
@@ -50,7 +26,7 @@ include "includes/header.php";
           <?php
 		  }
 		  ?>
-          <form class="rnd5" action="login.php" method="post">
+          <form class="rnd5" method="post">
             <div class="form-input clear">
              
               <label class="" for="email">Email <span class="required">*</span><br>

@@ -5,10 +5,20 @@
       <h2 class="footer_title">Footer Navigation</h2>
       <nav class="footer_nav">
         <ul class="nospace">
-          <li><a href="#">Join As Content Creator</a></li>
+          <li><a href="../Content_Creator/index.php">Join As Content Creator</a></li>
           <li><a href="#">Join Our We Media Program</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
+          <?php
+     if(isset($_SESSION['newViewerLogin'])){
+     ?>
+ <li><a href="logout.php">Logout</a></li>
+     <?php
+     }else{
+     ?>
+          <li><a href="login.php">Login</a></li>
+          <li><a href="register.php">Register</a></li>
+        <?php
+     }
+        ?>
         </ul>
       </nav>
     </div>
@@ -50,6 +60,13 @@
         </ul>
       </div>
     </div>
+    <?php
+     if(isset($_SESSION['newViewerLogin'])){
+     ?>
+    
+    <?php
+     }else{
+    ?>
     <div class="one_quarter">
       <h2 class="footer_title">Contact Us</h2>
       <form class="rnd5" action="#" method="post">
@@ -71,13 +88,15 @@
         </p>
       </form>
     </div>
+<?php
+     }
+?>
   </div>
 </div>
 <div class="wrapper row4">
   <div id="copyright" class="clear">
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-  </div>
+    <p class="fl_left">Copyright &copy; 2020 - All Rights Reserved - <a href="#">Ask News</a></p>
+     </div>
 </div>
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>

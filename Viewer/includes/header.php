@@ -2,7 +2,7 @@
 session_start();
 include "../Super_Admin/includes/dbconfig.php";
 $title="Welcome to Ask News";
-$description="The News Sharing Platform";
+$desc="The News Sharing Platform";
 
 	
   include "engine/engine.php";
@@ -15,7 +15,11 @@ $description="The News Sharing Platform";
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="layout/styles/main.css" rel="stylesheet" type="text/css" media="all">
 <link href="layout/styles/mediaqueries.css" rel="stylesheet" type="text/css" media="all">
+<meta name="description" content="<?php echo $desc;?>">
+  <meta name="keywords" content="<?php echo $keyword;?>">
 <link href="css/lightbox.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
+	
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <!--[if lt IE 9]>
 <link href="layout/styles/ie/ie8.css" rel="stylesheet" type="text/css" media="all">
@@ -40,8 +44,13 @@ $description="The News Sharing Platform";
     </div>
     <div id="header-contact">
       <ul class="list none">
-        <li><span class="icon-envelope"></span> <a href="#">info@domain.com</a></li>
-        <li><span class="icon-phone"></span> +xx xxx xxxxxxxxxx</li>
+      <?php
+      if(isset($_SESSION['newViewerLogin'])){
+      ?>
+        <li><span class="icon-envelope"></span> <a href="#">Welcome <?php echo @$_SESSION['newViewerLogin'];?></a></li>
+        <?php
+      }
+        ?>
       </ul>
     </div>
   </header>
@@ -60,11 +69,20 @@ $description="The News Sharing Platform";
      }
       ?>
       <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php" title="Gallery">Gallery</a></li>
-     
-      <li <?php echo $type == "Login"?'class="active"':'';?>><a href="login.php" title="Login">Login</a></li>
-      <li <?php echo $type == "Register"?'class="active"':'';?>><a href="Register.php" title="Register">Register</a></li>
+     <?php
+     if(isset($_SESSION['newViewerLogin'])){
+     ?>
       <li <?php echo $type == "Logout"?'class="active"':'';?>><a href="logout.php" title="Logout">Logout</a></li>
-
+      <li <?php echo $type == "Contact"?'class="active"':'';?>><a href="contact.php" title="Contact Us">Contact US</a></li>
+    
+       <?php
+     }else{
+      ?>
+       <li <?php echo $type == "Login"?'class="active"':'';?>><a href="login.php" title="Login">Login</a></li>
+      <li <?php echo $type == "Register"?'class="active"':'';?>><a href="Register.php" title="Register">Register</a></li>
+     <?php
+     }
+     ?>
     </ul>
   </nav>
 </div>

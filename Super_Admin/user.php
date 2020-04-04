@@ -21,7 +21,14 @@ include "includes/header.php";
 	      			
 	      			<div class="widget-header">
 	      				<i class="icon-user"></i>
-	      				<h3>Manage Users</h3>
+						  <h3><?php
+						 	 if(isset($_GET['c_user']) || isset($_POST['create']) || isset($_GET['edit'])){
+									echo "Create ";
+							  }else{
+								echo "Manage ";
+							  }
+						  ?>
+							   User</h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
