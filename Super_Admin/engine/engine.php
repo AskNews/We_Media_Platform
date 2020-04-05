@@ -132,6 +132,21 @@ function del(){
     }
   }
   
+  //####################Dashboard Create stuff#############################
+function showcount($tblName){
+    global $con;
+    $ds_query=mysqli_query($con,"select count(*) from $tblName");
+    $ds_result=mysqli_fetch_array($ds_query);
+return "Total ".ucfirst(substr($tblName,4))." (".$ds_result[0].")";
+}
+ //####################Dashboard Manage stuff#############################
+ function showActivecount($tblName){
+    global $con;
+    $ds_query=mysqli_query($con,"select count(*) from $tblName where status=1");
+    $ds_result=mysqli_fetch_array($ds_query);
+return "Active ".ucfirst(substr($tblName,4))." (".$ds_result[0].")";
+}
+
 //####################UPDATE ENGINE#############################
 
 function update($b){
@@ -320,7 +335,7 @@ if(isset($_POST['u_'.$type])){
       array('email',$_POST["email"]),
       
       array('role',$_POST['role'])); 
-               update(7);
+               update(6);
       }
       if($type=="categories"){
      

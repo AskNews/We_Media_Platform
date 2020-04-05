@@ -1,45 +1,99 @@
 <?php
 $type="categories";
+//session_start();
 include "includes/header.php";
-
-//single post 
-$c=mysqli_query($con,"select * from tbl_news where CategoryID='$data[id]' and Status=1 and Approved=1 and Offline=0");
-$d=mysqli_fetch_array($c);
-
+$index=1;
 ?>
-<section id="contentSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="left_content">
-          <div class="single_post_content">
-            <h2><span><?php echo @$data['title'];?></span></h2>
-            <div class="single_post_content_left">
-              <ul class="business_catgnav  wow fadeInDown">
-                <li>
-                  <figure class="bsbig_fig"> <a href="view.php?nid=<?php echo $d['Url'];?>" class="featured_img"> <img alt="" style="height:300px;" src="../Content_Creator/img/<?php echo $d['FileAttach'];?>"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="view.php?nid=<?php echo $d['Url'];?>"><?php echo $d['HeadLine'];?></a> </figcaption>
-                    <p><?php echo $d['Summary'];?></p>
-                  </figure>
-                </li>
-              </ul>
-            </div>
-            <div class="single_post_content_right">
-              <ul class="spost_nav">
-               <?php
-               while($result=mysqli_fetch_array($c)){
-               ?>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="view.php?nid=<?php echo $result['NewsID'];?>" class="media-left"> <img alt="" src="../Content_Creator/img/<?php echo $d['FileAttach'];?>"> </a>
-                    <div class="media-body"> <a href="view.php?nid=<?php echo $result['NewsID'];?>" class="catg_title"> <?php echo $result['HeadLine'];?></a> </div>
-                  </div>
-                </li>
-                <?php
-               }
-                ?>
-              </ul>
-            </div>
-          </div>
-  </section>
-<?php
+<!-- content -->
+<div class="wrapper row3">
+  <div id="container">
+    <!-- ################################################################################################ -->
+    <div id="portfolio" class="three_quarter <?php echo $index++%2 !=0?'first':'';?>">
+    <h2><?php echo $data['title']; ?></h2>
+      <ul class="clear">
+       <?php
+		 //find out the news related to the category
+		 
+		 $cat_id=$data['id'];
+		 $sql="select * from tbl_news where Status ='1' and Approved='1' and CategoryID='$cat_id' order by id DESC LIMIT 10";
+		 $query=mysqli_query($con,$sql);
+		 
+		 
+		 while($row = mysqli_fetch_array($query)):
+		 ?>
+        <li class="one_half first">
+          <article class="clear">
+           <?php
+        if(file_exists("../Content_Creator/img/".$row['FileAttach']) && !empty($row['FileAttach'])){
+		?>
+            
+            <img src="../Content_Creator/img/<?php echo $row['FileAttach']; ?>" style="width:420px; height:140px; " alt="">
+           
+            <?php
+		}
+				?>
+            <header>
+              <h2 class="blog-post-title"><a href="news.php?news=<?php echo $row['Url']; ?>"><?php echo substr($row['HeadLine'],0,30); ?> ...</a></h2>
+              <div class="blog-post-meta">
+                <ul>
+                  <li class="blog-post-date">
+                    <time datetime="2000-04-06T08:15+00:00"><strong>Date: </strong><?php echo date("F j, y, g:i a", strtotime($row['PostDate'])); ?></time>
+                  </li>
+                  <li class="blog-post-cats"></li>
+                </ul>
+              </div>
+            </header>
+            <p><?php echo substr($row['Summary'],0,70); ?> ...</p>
+            <footer class="read-more"><a href="news.php?news=<?php echo $row['Url']; ?>">Read More &raquo;</a></footer>
+          </article>
+        </li>
+         <?php
+          endwhile;
+?>
+       
+      </ul>
+     
+    </div>
+    <!-- ################################################################################################ -->
+    <div id="sidebar_1" class="sidebar one_quarter">
+      <aside>
+        <!-- ########################################################################################## -->
+        <h2><?php echo $data['title']; ?></h2>
+        <nav>
+          <ul>
+          <?php
+		 //find out the news related to the category
+		 
+		 $cat_id=$data['id'];
+		 $sql="select * from tbl_news where Status ='1' and Approved='1' and CategoryID='$cat_id' order by id DESC LIMIT 10";
+		 $query=mysqli_query($con,$sql);
+		 
+		 
+		 while($row = mysqli_fetch_array($query)):
+		 ?>
+            <li>
+           <a href="news.php?news=<?php echo $row['Url']; ?>"><?php echo substr($row['HeadLine'],0,50); ?> ...</a></li>
+            <?php
+          endwhile;
+?>
+          </ul>
+        </nav>
+        <!-- /nav -->
+        
+        <!-- /section -->
+        <section>
+          <article>
+            <img style="height:550px;width:300px;">
+          </article>
+        </section>
+        <!-- /section -->
+        <!-- ########################################################################################## -->
+      </aside>
+    </div>
+    <!-- ################################################################################################ -->
+    <div class="clear"></div>
+  </div>
+</div>
+<?php 
 include "includes/footer.php";
 ?>

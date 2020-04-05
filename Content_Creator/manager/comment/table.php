@@ -21,7 +21,7 @@
                         <?php while($row=mysqli_fetch_assoc($result_comment)){ ?>
                         <tr role="row" class="odd">
                                 <td class="sorting_1"><?php echo wordwrap($row['headLine'],40,"<br>")?></td>
-                                <td><?php echo $row['postdate']; ?></td>
+                                <td><?php echo substr($row['postdate'],0,10) ?></td>
                                 <td><?php echo $row['comment']; ?></td>
                                 <td><?php echo $row['user_name'];?></td>
                                 <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="btn btn-danger waves-effect">Delete</a>
@@ -86,7 +86,7 @@
                         <?php while($row=mysqli_fetch_assoc($approve_comment)){ ?>
                         <tr role="row" class="odd">
                                 <td class="sorting_1"><?php echo wordwrap($row['headLine'],40,"<br>")?></td>
-                                <td><?php echo $row['postdate']; ?></td>
+                                <td><?php echo substr($row['postdate'],0,10) ?></td>
                                 <td><?php echo $row['comment']; ?></td>
                                 <td><?php echo $row['user_name'];?></td>
                                 <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="btn btn-danger waves-effect">Delete</a>
@@ -156,7 +156,7 @@
                         <?php while($row=mysqli_fetch_assoc($spam_comment)){ ?>
                         <tr role="row" class="odd">
                                 <td class="sorting_1"><?php echo wordwrap($row['headLine'],40,"<br>");?></td>
-                                <td><?php echo $row['postdate']; ?></td>
+                                <td><?php echo substr($row['postdate'],0,10) ?></td>
                                 <td><?php echo $row['comment']; ?></td>
                                 <td><?php echo $row['user_name'];?></td>
                                 <td><a href="comment.php?deleteComment=<?php echo $row['id']?>" class="btn btn-danger waves-effect">Delete</a>

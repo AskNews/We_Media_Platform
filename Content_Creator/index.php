@@ -6,74 +6,85 @@ $type="index";
         <div class="container-fluid">
             <div class="block-header">
                 <h3>DASHBOARD</h3>
-
             <!-- Widgets -->
             <br/>
-            
             <div class="row clearfix">
+                
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">remove_red_eye</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">VIEWS (TODAY)</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">face</i>
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-pink">
+                            <i class="material-icons ">face</i>
                         </div>
                         <div class="content">
                             <div class="text">FOLLOWER</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $fl ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">ac_unit</i>
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-blue">
+                            <i class="material-icons">trending_up</i>
                         </div>
                         <div class="content">
                             <div class="text">INDEX</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $index; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-indigo">	
                             <i class="material-icons">attach_money</i>
                         </div>
                         <div class="content">
                             <div class="text">BALANCE</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $bal; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
+				
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-lime">
                             <i class="material-icons">list</i>
                         </div>
                         <div class="content">
                             <div class="text">TOTAL NEWS</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $news; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">timelapse</i>
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-green">
+                            <i class="material-icons ">timelapse</i>
                         </div>
                         <div class="content">
                             <div class="text">TOTAL PENDING NEWS</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $news_p; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-black">
+                            <i class="material-icons">remove_red_eye</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">TOTAL VIEWS</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $views; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box hover-zoom-effect">
+                        <div class="icon bg-red">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">TOTAL LIKES</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $t_like; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -85,36 +96,6 @@ $type="index";
             <!-- #END# CPU Usage -->
            
             <div class="row clearfix">
-                <!-- Visitors -->
-                <!--
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="body bg-pink">
-                            <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                 data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                 data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                 data-fill-Color="rgba(0, 188, 212, 0)">
-                                12,10,9,6,5,6,10,5,7,5,12,13,7,12,11
-                            </div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    TODAY
-                                    <span class="pull-right"><b>1 200</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    YESTERDAY
-                                    <span class="pull-right"><b>3 872</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    LAST WEEK
-                                    <span class="pull-right"><b>26 582</b> <small>USERS</small></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Visitors -->
-                <!-- Latest Social Trends -->
                 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="card">

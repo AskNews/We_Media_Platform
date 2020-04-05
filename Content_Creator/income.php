@@ -11,7 +11,7 @@ if($channel_setup_status==1)
     if(isset($_GET['earnNtransaction'])){
         include "manager/income/form.php";
     }
-    elseif(isset($_GET['history'])){
+    elseif(isset($_GET['history']) || isset($_GET['page'])){
         include "manager/income/table.php";
     }
 }

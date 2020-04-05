@@ -16,6 +16,7 @@ include "engine/engine.php";
 <meta charset="utf-8">
 <title>We Media Admin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -27,6 +28,7 @@ include "engine/engine.php";
 <link href="css/pages/dashboard.css" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
 
+<link href="css/pages/plans.css" rel="stylesheet"> 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -49,7 +51,7 @@ include "engine/engine.php";
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="icon-user"></i><?php echo $_SESSION['newAccount-AdminLogin'];?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;">Profile</a></li>
+              <li><a href="profile.php">Profile</a></li>
               <li><a href="logout.php">Logout</a></li>
             </ul>
           </li>
@@ -67,11 +69,11 @@ include "engine/engine.php";
     <div class="container">
       <ul class="mainnav">
         <li <?php echo $type == "index"?'class="active"':'';?>><a href="index.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li <?php echo $type == "user"?'class="active"':'';?>><a href="user.php"><i class="icon-dashboard"></i><span>User</span> </a> </li>
-        <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php"><i class="icon-dashboard"></i><span>Gallery</span> </a> </li>
-        <li <?php echo $type == "picture"?'class="active"':'';?>><a href="picture.php"><i class="icon-dashboard"></i><span>Picture</span> </a> </li>
-        <li <?php echo $type == "categories"?'class="active"':'';?>><a href="categories.php"><i class="icon-dashboard"></i><span>Categories</span> </a> </li>
-        <li <?php echo $type == "slideshow"?'class="active"':'';?>><a href="slideshow.php"><i class="icon-dashboard"></i><span>Slideshow</span> </a> </li>
+        <li <?php echo $type == "user"?'class="active"':'';?>><a href="user.php"><i class="icon-user"></i><span>User</span> </a> </li>
+        <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php"><i class="icon-play-circle"></i><span>Gallery</span> </a> </li>
+        <li <?php echo $type == "picture"?'class="active"':'';?>><a href="picture.php"><i class="icon-picture"></i><span>Picture</span> </a> </li>
+        <li <?php echo $type == "categories"?'class="active"':'';?>><a href="categories.php"><i class="icon-tag"></i><span>Categories</span> </a> </li>
+        <li <?php echo $type == "slideshow"?'class="active"':'';?>><a href="slideshow.php"><i class="icon-play"></i><span>Slideshow</span> </a> </li>
         
         </ul>
     </div>

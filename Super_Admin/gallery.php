@@ -20,8 +20,14 @@ include "includes/header.php";
 	      		<div class="widget ">
 	      			
 	      			<div class="widget-header">
-	      				<i class="icon-user"></i>
-	      				<h3>Manage <?php echo $type;?></h3>
+	      				<i class="icon-play-circle"></i>
+	      				<h3><?php
+						 	 if(isset($_GET['c_galery']) || isset($_POST['create']) || isset($_GET['edit'])){
+									echo "Create ";
+							  }else{
+								echo "Manage ";
+							  }
+						   echo $type;?></h3>
 	  				</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -33,7 +39,7 @@ include "includes/header.php";
 						
 						<div class="tab-content">
                             <?php
-							if(isset($_GET['c_user']) || isset($_POST['create']) || isset($_GET['edit'])){
+							if(isset($_GET['c_gallery']) || isset($_POST['create']) || isset($_GET['edit'])){
 								include "Manager/$type/form.php";
 								
 								
