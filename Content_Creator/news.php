@@ -9,7 +9,7 @@ include_once "engine/engine.php";
   <div class="container-fluid">
   <div class="row clearfix">
   
-               <?php
+              <?php
               if($channel_setup_status==1)
               {
                   if(isset($_GET['c_news'])||isset($_GET['newsid']) ||isset($_GET['newsidModify']))

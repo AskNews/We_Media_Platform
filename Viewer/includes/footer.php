@@ -1,4 +1,3 @@
-<!-- Footer -->
 <div class="wrapper row2">
   <div id="footer" class="clear">
     <div class="one_quarter first">
@@ -61,35 +60,32 @@
       </div>
     </div>
     <?php
-     if(isset($_SESSION['newViewerLogin'])){
-     ?>
-    
-    <?php
-     }else{
     ?>
     <div class="one_quarter">
       <h2 class="footer_title">Contact Us</h2>
-      <form class="rnd5" action="#" method="post">
+      <form class="rnd5" action="<?php  echo $_SERVER["PHP_SELF"]; ?>" method="post">
+      <?php $uid=$_SESSION['id']; ?>
+      <input type="hidden" name="user_id" value="<?php echo $uid; ?>">
         <div class="form-input clear">
           <label for="ft_author">Name <span class="required">*</span><br>
-            <input type="text" name="ft_author" id="ft_author" value="" size="22">
+            <input type="text" name="ft_author" id="ft_author" <?php if(isset($_SESSION['newViewerLogin'])) { echo "readonly"; } else {} ?> value="<?php echo @$_SESSION['newViewerLogin']?>" size="22">
           </label>
           <label for="ft_email">Email <span class="required">*</span><br>
-            <input type="text" name="ft_email" id="ft_email" value="" size="22">
+            <input type="text" name="ft_email" id="ft_email" value="<?php echo @$_SESSION['newVieweremail'] ?>" <?php if(isset($_SESSION['newViewerLogin'])) { echo "readonly"; } else {} ?>>
           </label>
         </div>
         <div class="form-message">
-          <textarea name="ft_message" id="ft_message" cols="25" rows="10"></textarea>
+          <textarea name="data" id="ft_message" cols="25" rows="10"></textarea>
         </div>
         <p>
-          <input type="submit" value="Submit" class="button small orange">
+          <input type="submit" value="Submit" name="insert_feed" class="button small orange">
           &nbsp;
           <input type="reset" value="Reset" class="button small grey">
         </p>
       </form>
     </div>
 <?php
-     }
+     //}
 ?>
   </div>
 </div>
@@ -98,7 +94,6 @@
     <p class="fl_left">Copyright &copy; 2020 - All Rights Reserved - <a href="#">Ask News</a></p>
      </div>
 </div>
-<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
 <script>window.jQuery || document.write('<script src="layout/scripts/jquery-latest.min.js"><\/script>\
@@ -108,5 +103,9 @@
 <script src="layout/scripts/jquery-mobilemenu.min.js"></script>
 <script src="layout/scripts/custom.js"></script>
 <script src="js/lightbox.js"></script>
+
 </body>
 </html>
+
+
+$sql="select * from tbl_news where Status ='1' and Approved='1' and CreatorID=".$_GET['id']." order by PublishDate desc ";

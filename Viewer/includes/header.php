@@ -3,12 +3,13 @@ session_start();
 include "../Super_Admin/includes/dbconfig.php";
 $title="Welcome to Ask News";
 $desc="The News Sharing Platform";
-
-	
-  include "engine/engine.php";
+$user="";
+$user_idd="";
+include "engine/engine.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 <title><?php echo $title;?></title>
 <meta charset="UTF-8">
@@ -20,7 +21,6 @@ $desc="The News Sharing Platform";
 <link href="css/lightbox.css" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="96x96" href="../icon.png">
 	
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <!--[if lt IE 9]>
 <link href="layout/styles/ie/ie8.css" rel="stylesheet" type="text/css" media="all">
 <script src="layout/scripts/ie/css3-mediaqueries.min.js"></script>
@@ -36,11 +36,13 @@ $desc="The News Sharing Platform";
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="layout/scripts/responsiveslides.js-v1.53/responsiveslides.css" rel="stylesheet" type="text/css" media="all">
 </head>
+
 <body class="">
 <div class="wrapper row1">
   <header id="header" class="full_width clear">
     <div id="hgroup">
-      <img src="../logo.png" style="height:100px;">
+      <!-- <img src="../logo.png" style="height:100px;"> -->
+      <h1>ASK NEWS</h1>
     </div>
     <div id="header-contact">
       <ul class="list none">
@@ -67,13 +69,23 @@ $desc="The News Sharing Platform";
       <li <?php echo (@$url==$row['url'])?'class="active"':'';?>><a href="category.php?cat=<?php echo $row['url'];?>" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a></li>
       <?php
      }
-      ?>
+     
+     if(isset($_SESSION['newViewerLogin'])){ ?>
+     <li><a class="drop" href="#" title="My Account">My Account</a>
+        <ul>
+          <li><a href="account.php?pass" <?php echo $type == "MyAccount"?'class="active"':'';?> title="Change Password">Change Password</a></li>
+          <li><a href="account.php?edit" <?php echo $type == "MyAccount"?'class="active"':'';?> title="Edit Profile">Edit Profile</a></li>
+          <li><a href="account.php?follower" <?php echo $type == "follower"?'class="active"':'';?> title="Follower">Following</a></li>
+        </ul>
+      </li>
+     <?php
+     } ?>
       <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php" title="Gallery">Gallery</a></li>
      <?php
      if(isset($_SESSION['newViewerLogin'])){
      ?>
       <li <?php echo $type == "Logout"?'class="active"':'';?>><a href="logout.php" title="Logout">Logout</a></li>
-      <li <?php echo $type == "Contact"?'class="active"':'';?>><a href="contact.php" title="Contact Us">Contact US</a></li>
+      
     
        <?php
      }else{
@@ -83,6 +95,7 @@ $desc="The News Sharing Platform";
      <?php
      }
      ?>
+     
     </ul>
   </nav>
 </div>
