@@ -1,6 +1,6 @@
 <?php
 //local and remote server connection
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1:3306' || $_SERVER['REMOTE_ADDR'] == '::1'){
+if($_SERVER['REMOTE_ADDR'] == '127.0.0.1:3306' && $_SERVER['REMOTE_ADDR'] == '::1'){
 	
 	@define("hostname","127.0.0.1:3306");
 	@define("username","root");

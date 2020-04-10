@@ -206,7 +206,7 @@ if(isset($_POST['c_'.$type])){
     array('password',md5($_POST["pwd"])),
     
     array('role',$_POST['role'])); 
-    insert(8);
+    insert(7);
 
         compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
    }
