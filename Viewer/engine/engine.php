@@ -108,7 +108,7 @@ function update($b){
             $err['user']="Username already exists";
             echo "Username already exists";
         break;
-        }
+        } 
         if($r['email']==trim($_POST['email']))
         {
             $f=false;
