@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2020 at 06:55 PM
+-- Generation Time: Apr 14, 2020 at 07:46 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -57,7 +57,7 @@ CREATE TABLE `tbl_adunit` (
 --
 
 INSERT INTO `tbl_adunit` (`ad_id`, `unit_name`, `category_id`, `ad_creator_id`, `url`, `seo_title`, `seo_desc`, `file_attach`, `summary`, `details`, `view`, `u_date`, `status`, `approve`, `publish_date`, `rejection_msg`, `offline`, `rejected`, `post_date`, `cpc`, `amount`) VALUES
-(1, 'test', 3, 1, 'test-unit', 'test,unit', 'test_unit', 'dor.jpg', 'hey this is first ad ', 'hey this is first ad ', 10, '2020-04-07 14:54:33', 1, 1, '2020-04-07', '', 0, 0, '2020-04-07 12:01:15', '2', '94.00');
+(1, 'test', 3, 1, 'test-unit', 'test,unit', 'test_unit', 'dor.jpg', 'hey this is first ad ', 'hey this is first ad ', 10, '2020-04-13 07:17:14', 1, 1, '2020-04-07', '', 0, 0, '2020-04-07 12:01:15', '2', '86.00');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,11 @@ CREATE TABLE `tbl_adunit_report` (
 --
 
 INSERT INTO `tbl_adunit_report` (`id`, `ad_id`, `news_id`, `user_id`, `company_earning`, `creator_earning`, `c_date`) VALUES
-(11, 1, 39, 1, '1.20', '0.80', '2020-04-07 14:54:33');
+(11, 1, 39, 1, '1.20', '0.80', '2020-04-07 14:54:33'),
+(12, 1, 23, 1, '1.20', '0.80', '2020-04-12 13:16:48'),
+(13, 1, 23, 0, '1.20', '0.80', '2020-04-13 07:04:25'),
+(14, 1, 39, 0, '1.20', '0.80', '2020-04-13 07:04:34'),
+(15, 1, 27, 3, '1.20', '0.80', '2020-04-13 07:17:14');
 
 -- --------------------------------------------------------
 
@@ -175,9 +179,11 @@ INSERT INTO `tbl_comment` (`comment_id`, `news_id`, `user_name`, `comment`, `pos
 (6, 21, 'priyanka', 'good news', '2019-11-11 03:45:48', 0, ''),
 (7, 38, 'shazia', 'hey ...this is first comment from user side', '2020-04-05 07:23:15', 1, ''),
 (8, 38, 'shazia', 'hwrgwrtwhtrhwrthwrtwhrtwrt', '2020-04-05 07:23:19', 1, ''),
-(9, 38, 'shabbu', 'ajax comment', '2020-04-05 07:01:27', 0, ''),
-(10, 38, 'shabbu', 'ajax comment 2', '2020-04-05 07:02:06', 0, ''),
-(11, 38, 'shabbu', 'hey..this is first comment of ajax', '2020-04-05 07:03:12', 0, '');
+(9, 38, 'shabbu', 'ajax comment', '2020-04-12 13:20:35', 1, ''),
+(10, 38, 'shabbu', 'ajax comment 2', '2020-04-12 13:20:28', 1, ''),
+(11, 38, 'shabbu', 'hey..this is first comment of ajax', '2020-04-12 13:20:20', 1, ''),
+(12, 0, 'shabbu', 'hey comment', '2020-04-13 06:39:53', 0, ''),
+(13, 39, 'shabbu', 'hey sexy', '2020-04-13 06:40:41', 1, '');
 
 -- --------------------------------------------------------
 
@@ -214,7 +220,7 @@ CREATE TABLE `tbl_content_creator` (
 --
 
 INSERT INTO `tbl_content_creator` (`id`, `username`, `email`, `mobile`, `password`, `ChannelName`, `ChannelDescription`, `AccountApproval`, `Status`, `channel_logo`, `DateTime`, `Monetization`, `join_date`, `privacy`, `bank_name`, `account_holder_name`, `bank_account_number`, `ifsc_code`, `earnings`, `life_time_withdraw_amt`, `index_point`) VALUES
-(1, 'shabnam20', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', 1, 1, '1573281867.jpg', '2019-11-01 09:45:42', 1, '', 0, '', '', '', '', '652.40', '1350.00', 10),
+(1, 'shabnam20', 'shabnam@gmail.com', 8238347295, '6083400d6743368844a5a3f3e86aa5b7', 'tech', 'good channel for technicians', 1, 1, '1573281867.jpg', '2019-11-01 09:45:42', 1, '', 0, '', '', '', '', '655.60', '1350.00', 10),
 (2, 'Avinash1232', 'shab@gmail.com', 7412589630, '6083400d6743368844a5a3f3e86aa5b7', '', '', 1, 1, 'default.jpg', '2019-11-01 09:45:42', 0, '', 0, '', '', '', '', '0.00', '0.00', 0),
 (3, 'Avinash123', 'shab@gmail.com', 7415896304, '6083400d6743368844a5a3f3e86aa5b7', '', '', 1, 1, '', '2019-11-01 09:45:42', 0, '', 0, '', '', '', '', '0.00', '0.00', 0),
 (4, 'Shazia', 'shazia@gmail.com', 7418529630, '6083400d6743368844a5a3f3e86aa5b7', 'dhb', 'fdvgbhnj', 1, 1, 'default.jpg', '2019-11-01 12:49:46', 0, '', 0, '', '', '', '', '0.00', '0.00', 0),
@@ -269,7 +275,8 @@ CREATE TABLE `tbl_follower` (
 --
 
 INSERT INTO `tbl_follower` (`id`, `content_creator_id`, `viewer_id`, `date`) VALUES
-(5, 1, 1, '2020-04-06 13:19:10');
+(5, 1, 1, '2020-04-06 13:19:10'),
+(7, 1, 3, '2020-04-13 07:17:19');
 
 -- --------------------------------------------------------
 
@@ -325,7 +332,8 @@ CREATE TABLE `tbl_like` (
 INSERT INTO `tbl_like` (`id`, `viewer_id`, `news_id`, `is_like`, `c_date`) VALUES
 (4, 1, 21, 1, '2020-04-06 06:23:31'),
 (5, 3, 23, 1, '2020-04-06 13:01:03'),
-(7, 1, 39, 1, '2020-04-06 13:44:35');
+(7, 1, 39, 1, '2020-04-06 13:44:35'),
+(9, 3, 27, 1, '2020-04-13 07:17:16');
 
 -- --------------------------------------------------------
 
@@ -396,10 +404,10 @@ INSERT INTO `tbl_news` (`id`, `CategoryID`, `CreatorID`, `TopNews`, `HeadLine`, 
 (17, 3, 1, 0, 'My New News', 'my-new-news', 'my, new, news', 'hello creaton of new news', '1572800906.jpg', 'first News', '<p>hello hello<strong> hello&nbsp; hsbfhd<s> shabnam</s></strong></p>\r\n', 0, '2020-02-13 12:34:21', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (21, 3, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', 'shabbu ', '1572801289.jpg', 'shabbu', '<p><em>shabnam mom pic uploaded...:)</em></p>\r\n', 0, '2020-02-13 12:24:05', 1, 1, '0000-00-00', '', 0, 1, '0000-00-00'),
 (23, 3, 1, 0, 'avinash updated', 'avinash-updated', 'avinash, updated', '', '1573221709.JPG', 'avinash', '<p><strong>avinash updated</strong></p>\r\n\r\n<p><strong>h</strong>ello from editor&nbsp;</p>\r\n\r\n<ol>\r\n	<li>hello edited news</li>\r\n</ol>\r\n\r\n<ul>\r\n	<li>helloe edited news&nbsp;</li>\r\n</ul>\r\n', 0, '2020-04-05 14:46:00', 1, 1, '2020-03-29', 'unfollow the rules of platform', 0, 2, '0000-00-00'),
-(25, 4, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2020-03-16 15:14:16', 0, 1, '0000-00-00', 'unfollow the rules of platform', 1, 3, '0000-00-00'),
+(25, 4, 1, 0, 'virat kohli', 'virat-kohli', 'virat, kohli', '', '1572971720.jpg', 'dsfghjk fxcgvhbjnk ', '<p>hello from shabnam</p>\r\n', 0, '2020-04-13 07:22:51', 0, 0, '0000-00-00', 'unfollow the rules of platform', 1, 3, '0000-00-00'),
 (27, 4, 1, 0, 'category selected', 'category-selected', 'category, selected', '', '1572972155.jpg', 'hello from category 2', '<p>hello from category 2 this is basic details of news</p>\r\n', 0, '2020-02-18 05:04:33', 1, 1, '0000-00-00', '', 0, 0, '0000-00-00'),
 (29, 4, 1, 0, 'category 1 selected', 'category-1-selected', 'category, 1, selected', '', '1572973197.png', 'category1', '<p>selection of category 1 that is ssshjfh</p>\r\n', 0, '2020-03-15 15:31:29', 1, 1, '0000-00-00', '', 0, 1, '2020-02-25'),
-(30, 5, 1, 0, 'shabnam', 'shabnam', 'shabnam', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2020-03-15 15:31:32', 1, 1, '0000-00-00', '', 0, 1, '2020-02-25'),
+(30, 5, 1, 0, 'cfgvhjk', 'fghjkl;', 'drtfygyu', '', '1573220143.JPG', 'shabnam siddiqui', '<ol>\r\n	<li>shabnam</li>\r\n</ol>\r\n\r\n<blockquote>\r\n<ul>\r\n	<li>hi</li>\r\n	<li>dhejhf</li>\r\n	<li>fdjbkfm,</li>\r\n	<li>&nbsp;</li>\r\n</ul>\r\n</blockquote>\r\n', 0, '2020-04-13 07:24:41', 1, 1, '0000-00-00', '', 0, 1, '2020-02-25'),
 (35, 5, 1, 0, 'shabnam siddiqui', 'shabnam-siddiqui', 'shabnam, siddiqui', '', '1573220432.JPG', 'shabnam', '<p>shabnam editor</p>\r\n', 0, '2020-03-15 15:31:35', 1, 1, '0000-00-00', '', 0, 1, '2020-02-25'),
 (37, 5, 1, 0, 'maha cyclone', 'maha-cyclone', 'maha, cyclone', '', '1573220727.JPG', 'maha cyclone', '<p>maha cyclone in south gujrat</p>\r\n', 10, '2020-03-16 08:15:42', 1, 1, '0000-00-00', '', 0, 1, '2020-02-25'),
 (38, 4, 1, 0, 'avinash', 'avinash', 'avinash', '', '1573985652.png', 'avinash', '<p>avinash</p>\r\n', 200, '2020-04-05 14:33:14', 1, 1, '2020-03-25', '', 0, 1, '2020-02-25'),
@@ -419,7 +427,7 @@ CREATE TABLE `tbl_notification` (
   `user_id` int(5) NOT NULL,
   `role` int(1) NOT NULL,
   `is_seen` tinyint(1) NOT NULL DEFAULT '0',
-  `c_date` varchar(15) NOT NULL
+  `c_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -427,8 +435,8 @@ CREATE TABLE `tbl_notification` (
 --
 
 INSERT INTO `tbl_notification` (`id`, `sub`, `description`, `user_id`, `role`, `is_seen`, `c_date`) VALUES
-(1, 'testing', 'only for testing the notification \r\n', 1, 0, 1, '2020-03-16'),
-(2, 'testing 2', 'hello..how are uh..ur monetization is enabled now \r\nkeep earning..:)', 1, 0, 1, '2020-03-10');
+(1, 'testing', 'only for testing the notification \r\n', 1, 0, 1, '2020-03-16 07:00:00'),
+(2, 'testing 2', 'hello..how are uh..ur monetization is enabled now \r\nkeep earning..:)', 1, 0, 1, '2020-03-10 07:00:00');
 
 -- --------------------------------------------------------
 
@@ -941,20 +949,35 @@ INSERT INTO `tbl_recent` (`id`, `user`, `news_id`, `c_date`) VALUES
 (437, 'shabbu', 37, '2020-04-05 12:48:45'),
 (438, 'shabbu', 37, '2020-04-05 12:48:48'),
 (439, 'shabbu', 37, '2020-04-05 12:58:40'),
-(440, 'shabbu', 37, '2020-04-05 12:58:42');
+(440, 'shabbu', 37, '2020-04-05 12:58:42'),
+(441, 'shabnam', 27, '2020-04-13 07:17:39'),
+(442, 'shabnam', 27, '2020-04-13 07:18:07'),
+(443, 'shabnam', 27, '2020-04-13 07:18:14'),
+(444, 'shabnam', 27, '2020-04-13 07:18:29'),
+(445, 'shabnam', 27, '2020-04-13 07:18:30'),
+(446, 'shabnam', 27, '2020-04-13 07:19:32');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_recommend`
+-- Table structure for table `tbl_report`
 --
 
-CREATE TABLE `tbl_recommend` (
+CREATE TABLE `tbl_report` (
   `id` int(11) NOT NULL,
-  `viewer_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `news_id` int(11) NOT NULL,
   `c_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_report`
+--
+
+INSERT INTO `tbl_report` (`id`, `user_id`, `news_id`, `c_date`) VALUES
+(1, 1, 39, '2020-04-13 06:33:45'),
+(5, 0, 23, '2020-04-13 07:08:22'),
+(6, 3, 27, '2020-04-13 07:17:14');
 
 -- --------------------------------------------------------
 
@@ -1135,9 +1158,9 @@ ALTER TABLE `tbl_recent`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_recommend`
+-- Indexes for table `tbl_report`
 --
-ALTER TABLE `tbl_recommend`
+ALTER TABLE `tbl_report`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1171,7 +1194,7 @@ ALTER TABLE `tbl_adunit`
 -- AUTO_INCREMENT for table `tbl_adunit_report`
 --
 ALTER TABLE `tbl_adunit_report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `tbl_ad_creator`
 --
@@ -1186,7 +1209,7 @@ ALTER TABLE `tbl_categories`
 -- AUTO_INCREMENT for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
-  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `comment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tbl_content_creator`
 --
@@ -1201,7 +1224,7 @@ ALTER TABLE `tbl_feedback`
 -- AUTO_INCREMENT for table `tbl_follower`
 --
 ALTER TABLE `tbl_follower`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tbl_gallery`
 --
@@ -1211,7 +1234,7 @@ ALTER TABLE `tbl_gallery`
 -- AUTO_INCREMENT for table `tbl_like`
 --
 ALTER TABLE `tbl_like`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tbl_module_user`
 --
@@ -1241,12 +1264,12 @@ ALTER TABLE `tbl_qna`
 -- AUTO_INCREMENT for table `tbl_recent`
 --
 ALTER TABLE `tbl_recent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
 --
--- AUTO_INCREMENT for table `tbl_recommend`
+-- AUTO_INCREMENT for table `tbl_report`
 --
-ALTER TABLE `tbl_recommend`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tbl_slideshow`
 --

@@ -80,19 +80,16 @@ function update($b){
   $qry=mysqli_query($con,$sql);
   if($qry){
     $success=ucfirst($type). " Details Updated Success";
-    
     $sql=$select;
-
- //$p="c_".$type;
   }else{
      $error=ucfirst($type). " Details Not Updated".mysqli_error($con);
      $sql=$select;
   }
       return 0;
   }
-  //########################LOGIN ENGINE#####################
+//########################LOGIN ENGINE#####################
   
-  //------------------------------registration------------------------
+//------------------------------registration------------------------
 
   @$User_email=$_SESSION['newSub-AdminLogin'];
   $dt=date("Y-m-d");
@@ -202,9 +199,38 @@ if($data){
     $res_cat=mysqli_fetch_array($find_catagory);
   }
 
-  //------------------insert comment---------------------
-  if(isset($_POST['comment']) && isset($_POST['id']))
+//---------------------insert report-----------------------
+
+if(isset($_POST['user_id']) && isset($_POST['user_id'])!=0 && isset($_POST['news_id']))
+{
+  $f=true;
+  $qry="";
+  $con = new mysqli('127.0.0.1:3306','root','','dbasknews');
+  $qry=mysqli_query($con,"select * from tbl_report where user_id='".$_POST['user_id']."' and news_id='".$_POST['news_id']."'");
+  if(mysqli_num_rows($qry)>0)
   {
+    $f=false;
+  }
+  if($f==true)
+  {
+    $qry=mysqli_query($con,"insert into tbl_report(user_id,news_id) values('".$_POST['user_id']."','".$_POST['news_id']."')");
+    if($qry)
+    {
+      echo 'You report news..:)';
+    }
+    else{
+      echo 'you can\'t report...plz try again..:(';
+    }
+  }
+  else{
+    echo "you already report this news";
+  }
+}
+
+  //------------------insert comment---------------------
+  if(isset($_POST['news_id']) && isset($_POST['user_name'])!="" && isset($_POST['comment']) && isset($_POST['user_name']))
+  {
+    //echo "hello";
       $con = new mysqli('127.0.0.1:3306','root','','dbasknews');
       $db = mysqli_select_db($con,'dbasknews');
       $f=true;
@@ -214,7 +240,7 @@ if($data){
       }
       if($f==true)
       {
-        $qry=mysqli_query($con,"insert into tbl_comment(news_id,user_name,comment) values('".$_POST['id']."','".$_POST['user_name']."','".$_POST['comment']."')");
+        $qry=mysqli_query($con,"insert into tbl_comment(news_id,user_name,comment) values('".$_POST['news_id']."','".$_POST['user_name']."','".$_POST['comment']."')");
         if($qry)
         {
           echo 'comment send..:)';
@@ -229,7 +255,7 @@ if($data){
       }
   }
 //-------------------------------follower-----------------------
-if(isset($_POST['user_name']) && isset($_POST['CreatorID']) && isset($_POST['viewer_id']) && isset($_POST['isFollow']))
+if(isset($_POST['user_name']) && isset($_POST['user_name'])!="" && isset($_POST['CreatorID']) && isset($_POST['viewer_id']) && isset($_POST['isFollow']))
 {
   $qry="";
   $con = new mysqli('127.0.0.1:3306','root','','dbasknews');
@@ -256,7 +282,7 @@ if(isset($_POST['user_name']) && isset($_POST['CreatorID']) && isset($_POST['vie
 
 //-------------------------like----------------------------
 
-if(isset($_POST['viewer_id']) && isset($_POST['news_id']) && isset($_POST['isLike']))
+if(isset($_POST['viewer_id']) && isset($_POST['viewer_id'])!=0 && isset($_POST['news_id']) && isset($_POST['isLike']))
 {
   $qry="";
   $con = new mysqli('127.0.0.1:3306','root','','dbasknews');
