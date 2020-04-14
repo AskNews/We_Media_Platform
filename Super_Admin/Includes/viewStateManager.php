@@ -1,0 +1,100 @@
+<?php
+if(array_key_exists("viewstateTitle",$_POST))
+{	
+	$viewstateTitle=$_POST["title"];	
+}
+else
+{
+	$viewstateTitle=null;
+}
+if(array_key_exists("vsUrl",$_POST))
+{	
+	$vsUrl=$_POST["url"];	
+}
+else
+{
+	$vsUrl=null;
+}
+if(array_key_exists("vsSeoTitle",$_POST))
+{	
+	$vsSeoTitle=$_POST["seo_title"];	
+}
+else
+{
+	$vsSeoTitle=null;
+}
+if(array_key_exists("vsSeoDesc",$_POST))
+{	
+	$vsSeoDesc=$_POST["seo_desc"];	
+}
+else
+{
+	$vsSeoDesc=null;
+}
+if(array_key_exists("vsLocation",$_POST))
+{	
+	$vsLocation=$_POST["location"];	
+}
+else
+{
+	$vsLocation=null;
+}
+if(array_key_exists("vskeyword",$_POST))
+{	
+	$vskeyword=$_POST["keyword"];	
+}
+else
+{
+	$vskeyword=null;
+}
+if(array_key_exists("vsfname",$_POST))
+{	
+	$vsfname=$_POST["fname"];	
+}
+else
+{
+	$vsfname=null;
+}
+if(array_key_exists("vslname",$_POST))
+{	
+	$vslname=$_POST["lname"];	
+}
+else
+{
+	$vslname=null;
+}
+
+if(array_key_exists("vsuname",$_POST))
+{	
+	$vsuname=$_POST["uname"];	
+}
+else
+{
+	$vsuname=null;
+}
+if(array_key_exists("vsemail",$_POST))
+{	
+	$vsemail=$_POST["email"];	
+}
+else
+{
+	$vsemail=null;
+}
+if(array_key_exists("vscaption",$_POST))
+{	
+	$vscaption=$_POST["caption"];	
+}
+else
+{
+	$vscaption=null;
+}
+if(array_key_exists("vsorderby",$_POST))
+{	
+	$vsorderby=$_POST["orderby"];	
+}
+else
+{
+	$vsorderby=null;
+}
+ 
+?>

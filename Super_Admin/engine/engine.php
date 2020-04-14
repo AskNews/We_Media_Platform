@@ -1,12 +1,14 @@
 <?php
+include "includes/viewStateManager.php";
 $select="";
+$decide=false;
 //##################PAGINATION ##############################
 @$page=$_GET["page"];
   if($page=="" || $page==1)
   {
       @$page1=0;
   }
-  else
+  else 
   {
       @$page1=($page*5)-5;
   }
@@ -149,6 +151,8 @@ return "Active ".ucfirst(substr($tblName,4))." (".$ds_result[0].")";
 
 //####################UPDATE ENGINE#############################
 
+
+
 function update($b){
     global $con,$error,$select,$type,$success,$id,$a;
     $c=$b-1;
@@ -184,6 +188,20 @@ function update($b){
         return 0;
     }
   
+
+    //###############Data Verify Engine#####################
+    function chk($param,$wh){
+        global $con,$type;
+        if($type=="user"){
+        $slc=mysqli_query($con,"select $param from tbl_module_$type where $param='$wh'");
+        }else{
+            $slc=mysqli_query($con,"select $param from tbl_$type where $param='$wh'");
+        }
+        $res=mysqli_fetch_array($slc);
+        return $res[0];
+    }
+
+
 if(isset($_POST['c_'.$type])){
     if($type=="user"){
     @$image=$_FILES['image'];
@@ -206,12 +224,23 @@ if(isset($_POST['c_'.$type])){
     array('password',md5($_POST["pwd"])),
     
     array('role',$_POST['role'])); 
+     if($_POST['uname']==chk("user_name",$_POST['uname'])){
+        $error="User Name is already used";
+        $decide=true;
+    }else if($_POST['email']==chk("email",$_POST['email'])){
+        $error="email is already used";
+        $decide=true;
+    }else if($_POST["pwd"]!=@$_POST["pwd2"]){
+        $error="Password and Confirm is not Same";
+        $decide=true;
+    }
+    else{
     insert(7);
-
         compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
    }
+}
    if($type=="categories"){
-     
+    
     $a=array(
      
      array('title',$_POST['title']),
@@ -219,21 +248,41 @@ if(isset($_POST['c_'.$type])){
      array('seo_title',$_POST['seo_title']),
      array('seo_desc',$_POST['seo_desc']),
      array('c_date',$_POST['dat']));
+     if($_POST['title']==chk("title",$_POST['title'])){
+        $error="title is already used";
+        $decide=true;
+    }else if($_POST['url']==chk("url",$_POST['url'])){
+        $error="url is already used";
+        $decide=true;
+    }
+    else{
+ insert(5);
+    }
      
-      insert(5);
    
    }
    if($type=="gallery"){
     $a=array(
-     array('title',$_POST['title']),
-     array('url',$_POST['title']),
-     array('seo_title',$_POST['seo_title']),
-     array('seo_desc',$_POST['seo_desc']),
-     array('location',$_POST['location']),
-     array('c_date',$_POST['dat'])
+        array('title',$_POST['title']),
+        array('url',$_POST['title']),
+        array('seo_title',$_POST['seo_title']),
+        array('seo_desc',$_POST['seo_desc']),
+        array('location',$_POST['location']),
+        array('c_date',$_POST['dat'])
+    
+    );
+    if($_POST['title']==chk("title",$_POST['title'])){
+            $error="title is already used";
+            $decide=true;
+        }else if($_POST['url']==chk("url",$_POST['url'])){
+            $error="url is already used";
+            $decide=true;
+        }
+        else{
+     insert(6);
+        }
+   
  
- );
- insert(6);
 }
 if($type=="picture"){
     
@@ -242,12 +291,6 @@ if($type=="picture"){
       mkdir($imgPath.$_POST['gal']);
       }
     //working for image
-    
-    if(isset($image['name'])&&!empty($image['name'])){
-      //to copy or move from temp to a destination
-              // Compress image
-      compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gal']."/".$newfilename,60);
-      }
      $a=array(
       
       array('gallery_id',$_POST['gal']),
@@ -255,8 +298,18 @@ if($type=="picture"){
       array('image',$newfilename),
       array('c_date',$_POST['dat']));
      
+      if($_POST['caption']==chk("caption",$_POST['caption'])){
+        $error="This Caption by is already used";
+        $decide=true;
+    }else{
+    if(isset($image['name'])&&!empty($image['name'])){
+      //to copy or move from temp to a destination
+              // Compress image
+      compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gal']."/".$newfilename,60);
+      }
+    
        insert(4);
-       
+    }
        
       
      }
@@ -268,8 +321,18 @@ if($type=="picture"){
             array('c_date',$_POST['dat']),
             
         );
-        insert(4);
-        compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
+        if($_POST['caption']==chk("caption",$_POST['caption'])){
+            $error="This Caption by is already used";
+            $decide=true;
+        }
+        else if($_POST['orderby']==chk("orderby",$_POST['orderby'])){
+            $error="This order by is already used";
+            $decide=true;
+        }
+        else{
+            insert(4);
+            compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
+        }
      }
      }
 
@@ -423,19 +486,19 @@ if(isset($_POST['search'])){
 else{
   $searchkey = $_POST['keyword'];
   if($type=="picture" || $type=="slideshow"){
-    $sql=mysqli_query($con,"select * from tbl_$type where caption like '%$searchkey%' or id like '%$searchkey%' and deletion='1'");
+    $sql=mysqli_query($con,"select * from tbl_$type where caption like '%$searchkey%' or id like '%$searchkey%' ");
     }
     if($type=="gallery" || $type=="categories"){
-      $sql=mysqli_query($con,"select * from tbl_$type where title like '%$searchkey%' or id like '%$searchkey%' and deletion='1'");
+      $sql=mysqli_query($con,"select * from tbl_$type where title like '%$searchkey%' or id like '%$searchkey%' ");
       }
       if($type=="qna"){
-        $sql=mysqli_query($con,"select * from tbl_$type where question like '%$searchkey%' or id like '%$searchkey%' and deletion='1'");
+        $sql=mysqli_query($con,"select * from tbl_$type where question like '%$searchkey%' or id like '%$searchkey%' ");
         }
         if($type=="feedbcak"){
-          $sql=mysqli_query($con,"select * from tbl_$type where subject like '%$searchkey%' or message like '%$searchkey%' or id like '%$searchkey%' and deletion='1'");
+          $sql=mysqli_query($con,"select * from tbl_$type where subject like '%$searchkey%' or message like '%$searchkey%' or id like '%$searchkey%' ");
           }
           if($type=="user"){
-            $sql=mysqli_query($con,"select * from tbl_module_$type where user_name like '%$searchkey%' or first_name like '%$searchkey%' or id like '%$searchkey%' or last_name like '%$searchkey%' or email like '%$searchkey%' and deletion='1'");
+            $sql=mysqli_query($con,"select * from tbl_module_$type where user_name like '%$searchkey%' or first_name like '%$searchkey%' or id like '%$searchkey%' or last_name like '%$searchkey%' or email like '%$searchkey%' ");
             }  
 }
 }else{

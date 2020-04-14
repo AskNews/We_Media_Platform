@@ -22,7 +22,7 @@ include "includes/header.php";
 	      			<div class="widget-header">
 	      				<i class="icon-play-circle"></i>
 	      				<h3><?php
-						 	 if(isset($_GET['c_galery']) || isset($_POST['create']) || isset($_GET['edit'])){
+						 	 if(isset($_GET['c_galery']) || isset($_POST['create']) || isset($_GET['edit']) || $decide==true){
 									echo "Create ";
 							  }else{
 								echo "Manage ";
@@ -39,7 +39,7 @@ include "includes/header.php";
 						
 						<div class="tab-content">
                             <?php
-							if(isset($_GET['c_gallery']) || isset($_POST['create']) || isset($_GET['edit'])){
+							if(isset($_GET['c_gallery']) || isset($_POST['create']) || isset($_GET['edit']) || $decide==true){
 								include "Manager/$type/form.php";
 								
 								

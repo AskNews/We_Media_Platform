@@ -15,7 +15,7 @@
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<?php
-        if(isset($editData)){
+        if(isset($editData)){  
 			if(file_exists($imgPath.$editData['gallery_id']."/".$editData['image']) && !empty($editData['image'])){
 				?>
 				<img src="<?php echo $imgPath.$editData['gallery_id']."/".$editData['image']; ?>" width="100"/>
@@ -53,7 +53,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="caption">Caption</label>
 											<div class="controls">
-												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?>">
+												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?><?php if(isset($vscaption)){ echo $vscaption;}?>">
+												<input type="hidden" name="vscaption">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
