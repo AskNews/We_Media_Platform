@@ -30,7 +30,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Ad Unit Image</label>
-                                                    <input type="file" id="file-input" name="imagefile" class="form-control-file">
+                                                    <input type="file" id="file-input" name="file" class="form-control-file">
                                                 </div>
                                            
                                             </div>

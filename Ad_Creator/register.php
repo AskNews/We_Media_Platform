@@ -1,62 +1,65 @@
 <?php
-if(isset($_POST['reg'])){
-   echo "<script>alert('Hi')</script>";
+/*if(isset($_POST['reg'])){
+   echo "<script>alert('Hi')</script>";*/
 
- include '../Super_Admin/Includes/dbconfig.php';
-$viewstateName=null;
-$viewstateEmail=null;
-$viewstateMobile=null;
-$viewstatePassword=null;
-$viewstateConfirm=null;
-
-
-if(array_key_exists("viewstateName",$_POST))
-{	
-	$viewstateName=$_POST["username"];	
-}
-else
-{
-	$viewstateName=null;
-}
-
-if(array_key_exists("viewstateEmail",$_POST))
-{	
-	$viewstateEmail=$_POST["email"];	
-}
-else
-{
-	$viewstateEmail=null;
-}
-if(array_key_exists("viewstateMobile",$_POST))
-{	
-	$viewstateMobile=$_POST["mobile"];	
-}
-else
-{
-	$viewstateMobile=null;
-}
-if(array_key_exists("viewstatePassword",$_POST))
-{	
-	$viewstatePassword=$_POST["password"];	
-}
-else
-{
-	$viewstatePassword=null;
-}
-if(array_key_exists("viewstateConfirm",$_POST))
-{	
-	$viewstateConfirm=$_POST["confirm"];	
-}
-else
-{
-	$viewstateConfirm=null;
-}
-if(isset($_POST['submit']))
-{ 
-    $ipaddress = $_SERVER['REMOTE_ADDR'];   
+   include '../Super_Admin/Includes/dbconfig.php';
+   $viewstateName=null;
+   $viewstateEmail=null;
+   $viewstateMobile=null;
+   $viewstatePassword=null;
+   $viewstateConfirm=null;
+   
+   
+   if(array_key_exists("viewstateName",$_POST))
+   {	
+       $viewstateName=$_POST["username"];	
+   }
+   else
+   {
+       $viewstateName=null;
+   }
+   
+   if(array_key_exists("viewstateEmail",$_POST))
+   {	
+       $viewstateEmail=$_POST["email"];	
+   }
+   else
+   {
+       $viewstateEmail=null;
+   }
+   if(array_key_exists("viewstateMobile",$_POST))
+   {	
+       $viewstateMobile=$_POST["mobile"];	
+   }
+   else
+   {
+       $viewstateMobile=null;
+   }
+   if(array_key_exists("viewstatePassword",$_POST))
+   {	
+       $viewstatePassword=$_POST["password"];	
+   }
+   else
+   {
+       $viewstatePassword=null;
+   }
+   if(array_key_exists("viewstateConfirm",$_POST))
+   {	
+       $viewstateConfirm=$_POST["confirm"];	
+   }
+   else
+   {
+       $viewstateConfirm=null;
+   }
+   
+   @$viewstateUserProfile=$_FILES["file"]["name"];
+   if(isset($_POST['reg']))
+   {  
+    $ipaddress = $_SERVER['REMOTE_ADDR'];
     $name=$viewstateUserProfile;
-    //echo "name= $name";
     $filename=null;
+    $newfilename="";
+    $f=true;
     if(isset($_FILES))
     {
         if($name==null)
@@ -71,54 +74,103 @@ if(isset($_POST['submit']))
                 $extension = strtolower(end($temp));
                 $fileName = $temp[0] . "." . $temp[1];
                 $temp[0] = rand(0, 3000); //Set to random number
-                if (file_exists("img/" . $_FILES["file"]["name"])) 
-                {
-                    $errorForFile= $_FILES["file"]["name"] . " already exists. ";
-                } 
-                else 
-                {
+                //if (file_exists("img/" . $_FILES["file"]["name"])) 
+               // {
+                //    $errorForFile= $_FILES["file"]["name"] . " already exists. ";
+                //} 
+                //else 
+               // {
                     $temp = explode(".", $_FILES["file"]["name"]);
                     $newfilename = round(microtime(true)) . '.' . end($temp);
-                    //move_uploaded_file($_FILES["file"]["tmp_name"],$newfilename);
                     $filename=$newfilename;
-                }
+                //}
             }
             else
             {
                 $errorForFile="only jpg,png,jpeg are allow";
+                $f=false;
             }
         }
     }
-    if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["mobile"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0)
-    {
-        /*if(!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $_POST['password']))
-        {
-            $error_pass="Password must be 6 character long and have alphanumeric and have one special character";
-        }
-        else*/ if($_POST["password"]!=$_POST["confirm"])
-        {
-            $error="password not confirmed";
-        }
-        else
-        {
-            $password=md5($_POST["password"]);
-            $joindate=date('m/d/Y ', time());
-            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP,join_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress','$joindate')";
-            //echo "insert into tbl_content_creator(username,email,mobile,password,channel_logo,IP)
-            //values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$ipaddress')";
-            if(mysqli_query($con,$query))
-            {
-
-                header("location:login.php");
-            } 
-        }
-    }
-    else
-    {
-        echo "<script>alert('Please fill all the details')</script>";
-    }
-}
-}
+    
+       if(strlen($_POST["username"])>0 && strlen($_POST["email"])>0 && strlen($_POST["mobile"])>0 && strlen($_POST["password"])>0 && strlen($_POST["confirm"])>0                    )
+       {
+           if (!preg_match('/^[A-Za-z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,5}$/', $_POST['email']))
+           {
+               $err_email="Invalid email";
+               $f=false;
+           }
+           if($_POST["password"]!=$_POST["confirm"])
+           {
+               $err_cpass="password not confirmed";
+               $f=false;
+           }
+           if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%^&*+=\/*]{8,12}$/', $_POST['password'])) {
+               $err_pass="Password must be Contain 1 Char. & 1 number 1 & special char";
+               $f=false;
+           }
+           if (!preg_match('/^[a-zA-Z\s]+[0-9\s]+$/', $_POST['username'])) {
+               $err_user="Please insert alpha numeric value";
+               $f=false;
+           }
+           if (!preg_match('/^[0-9]{10}$/', $_POST['mobile'])) {
+               $f=false;
+               $err_mob="Invaid Mobile number ";
+           }
+           $data=mysqli_query($con,"select username as uname,email from tbl_ad_creator");
+           while($r=mysqli_fetch_array($data))
+           {
+               if($r['uname']==$_POST['username'])
+               {
+                   $f=false;
+                   $err_user="Username already exists";
+               break;
+               }
+               if($r['email']==$_POST['email'])
+               {
+                   $f=false;
+                   $err_email="Email already exists";
+                   break;
+               }
+           }
+           if($f==true)
+           {
+               $password=md5($_POST["password"]);
+               $joindate=date('m/d/Y ', time());
+               $query="insert into tbl_ad_creator(username,email,phone,password,profile_image,c_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$joindate')";
+               if(mysqli_query($con,$query))
+               {
+                  move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
+                 echo "<sript>alert('Insert Success')</sript>";
+                  header("location:login.php");
+               }
+           }
+       }
+       else
+       {
+           if(strlen($_POST['username'])==0)
+           {
+               $err_user="please enter username";
+           }
+           if(strlen($_POST["email"])==0)
+           {
+               $err_email="please enter email";
+           }
+           if(strlen($_POST["mobile"])==0) 
+           {
+               $err_mob="please enter mobile";
+           }
+           if(strlen($_POST["password"])==0) 
+           {
+               $err_pass="please enter password";
+           }
+           if(strlen($_POST["confirm"])==0)
+           {
+               $err_cpass="please enter password";
+           }
+       }
+   }
+   ?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -169,41 +221,57 @@ if(isset($_POST['submit']))
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="" method="post" >
+                            <form id="register" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'];?>" >
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
+                                    <input class="au-input au-input--full" type="text" name="username" value="<?php if(isset($viewstateName)){ echo $viewstateName;}?>" pattern="[a-zA-Z0-9]+" id="username" placeholder="Username">
+                                    <input type="hidden"  name="viewstateName" />
                                 </div>
+                                <span id="username-error" class="error" ><?php echo @$err_user;?></span>
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <input class="au-input au-input--full" type="email" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email">
+                                    <input type="hidden"  name="viewstateEmail" />
                                 </div>
                                 <div class="form-group">
                                     <label>Phone No</label>
-                                    <input class="au-input au-input--full" type="number" name="mobile" placeholder="Phone No">
+                                    <input class="au-input au-input--full" type="number" name="mobile" id="phone" value="<?php if(isset($viewstateMobile)){ echo $viewstateMobile;}?>" placeholder="Phone No">
+                                    <input type="hidden"  name="viewstateMobile" />
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full" type="password" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password" placeholder="Password">
+                                    <input type="hidden"  name="viewstatePassword" />
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm-Password</label>
-                                    <input class="au-input au-input--full" type="password" name="confirm" placeholder="Confirm-Password">
+                                    <input class="au-input au-input--full" type="password" name="confirm" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password" placeholder="Confirm-Password">
+                                    <input type="hidden"  name="viewstateConfirm" />
                                 </div>
+                                <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-input" class=" form-control-label">File input</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="file" id="file" name="file" class="form-control-file">
+                                                    <input type="hidden"  name="viewstateUserProfile" />
+                                                </div>
+                                            </div>
                                 <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="aggree">Agree the terms and policy
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" name="reg">Register</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" id="reg" name="reg">Register</button>
                                
-                            </form>
+                            
                             <div class="register-link">
                                 <p>
                                     Already have account?
                                     <a href="login.php">Login</a>
                                 </p>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

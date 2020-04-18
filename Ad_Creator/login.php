@@ -1,3 +1,39 @@
+<?php
+
+	session_start();
+	if(isset($_SESSION['ad_creator_uname']))
+	{
+		header("location: index.php");
+	}
+	include "../Super_Admin/Includes/dbconfig.php";
+	if(isset($_POST['login']))
+	{
+		$username = mysqli_real_escape_string($con,$_POST['username']);
+		$password = mysqli_real_escape_string($con,$_POST['password']);
+		$sql="SELECT * from tbl_ad_creator WHERE username='$username' or email='$username' AND password=md5('$password')";
+        $query=mysqli_query($con,$sql);
+		
+        while($data=mysqli_fetch_assoc($query))
+		//if($data)
+		{
+			if(!empty($_POST['remember']))
+			{
+				$time = time()+60*60; // for one hour
+				setcookie("ad_cookie",$username,$time);
+			}
+            $_SESSION['ad_creator_uname']=$username;
+           // $_SESSION['content_creator_profile']=$data["channel_logo"];
+            //echo "image= ".$_SESSION['content_creator_profile'];
+            header ("location: index.php");
+            //echo $_COOKIE['c_cookie'];
+		}
+		// else
+		// {
+		// 	$error = "invalid username and password. please try later";
+		// }
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,14 +83,14 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="" method="post">
+                            <form id="sign_in" method="post">
                                 <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <label>Email OR UserName</label>
+                                    <input class="au-input au-input--full" type="text" name="username" value="<?php if(@$_COOKIE['ad_cookie']!=null){ echo $_COOKIE['ad_cookie'];}?>" placeholder="Email or User Name" required autofocus>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password" required>
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
@@ -64,7 +100,7 @@
                                         <a href="#">Forgotten Password?</a>
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" name="login" >sign in</button>
                                 
                             </form>
                             <div class="register-link">
