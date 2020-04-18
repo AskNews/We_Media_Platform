@@ -11,7 +11,7 @@ include "includes/header.php";
   <div id="container">
     
     <section>
-      <h2>Recent Photo Gallery</h2>
+      <!-- <h2>Recent Photo Gallery</h2> -->
       <ul class="nospace clear">
       <?php
       $sql="select * from tbl_gallery where status='1'";

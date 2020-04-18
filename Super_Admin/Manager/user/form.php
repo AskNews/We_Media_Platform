@@ -11,7 +11,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="image">Profile Image</label>
 											<div class="controls">
-												<input type="file" class="span6" id="image" name="image">
+												<input type="file" class="span6" id="image" name="image" value="<?php if(isset($vsimage)){ echo $vsimage;}?>">
+												<input type="hidden" name="vsimage" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<?php
@@ -30,7 +31,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="uname" value="<?php echo isset($editData)?$editData['user_name']:"";?>">
+												<input type="text" class="span6" id="firstname" name="uname" value="<?php echo isset($editData)?$editData['user_name']:"";?><?php if(isset($vsuname)){ echo $vsuname;}?>">
+											    <input type="hidden" name="vsuname" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -38,7 +40,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="fname" value="<?php echo isset($editData)?$editData['first_name']:"";?>">
+												<input type="text" class="span6" id="firstname" name="fname" value="<?php echo isset($editData)?$editData['first_name']:"";?><?php if(isset($vsfname)){ echo $vsfname;}?>">
+											    <input type="hidden" name="vsfname" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -46,7 +49,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="lname" value="<?php echo isset($editData)?$editData['last_name']:"";?>">
+												<input type="text" class="span6" id="lastname" name="lname" value="<?php echo isset($editData)?$editData['last_name']:"";?><?php if(isset($vslname)){ echo $vslname;}?>">
+											    <input type="hidden" name="vslname" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -54,7 +58,8 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="text" class="span4" id="email" name="email" value="<?php echo isset($editData)?$editData['email']:"";?>">
+												<input type="text" class="span4" id="email" name="email" value="<?php echo isset($editData)?$editData['email']:"";?><?php if(isset($vsemail)){ echo $vsemail;}?>">
+												<input type="hidden" name="vsemail" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -64,6 +69,7 @@
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
 												<input type="password" class="span4" id="password1" name="pwd" >
+												
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -71,7 +77,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password2">
+												<input type="password" class="span4" id="password2" name="pwd2">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 												

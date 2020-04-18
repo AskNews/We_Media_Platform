@@ -8,30 +8,28 @@
 	include "../Super_Admin/Includes/dbconfig.php";
 	if(isset($_POST['login']))
 	{
-		$username = mysqli_real_escape_string($con,$_POST['username']);
-		$password = mysqli_real_escape_string($con,$_POST['password']);
-		$sql="SELECT * from tbl_content_creator WHERE username='$username' or email='$username' AND password=md5('$password') and Status=1";
+		$username = trim($_POST['username']);
+		$password = trim($_POST['password']);
+		$sql="select * from tbl_content_creator where (username='".$username."' or email='".$username."') and password='".md5($password)."'";
         $query=mysqli_query($con,$sql);
-		
-        while($data=mysqli_fetch_assoc($query))
-		//if($data)
-		{
-			if(!empty($_POST['rememberme']))
-			{
-				$time = time()+60*60; // for one hour
-				setcookie("c_cookie",$username,$time);
-			}
+        $data=mysqli_fetch_array($query);
+        if(!empty($_POST['rememberme']))
+        {
+            $time = time()+60*60; // for one hour
+            setcookie("c_cookie",$username,$time);
+        }
+        if($data)
+        {
             $_SESSION['content_creator_uname']=$username;
             $_SESSION['content_creator_profile']=$data["channel_logo"];
-            //echo "image= ".$_SESSION['content_creator_profile'];
             header ("location: index.php");
-            //echo $_COOKIE['c_cookie'];
-		}
-		// else
-		// {
-		// 	$error = "invalid username and password. please try later";
-		// }
-	}
+        }
+        else
+        {
+            echo '<script>alert("error'.mysqli_error($con).'")</script>';
+        }
+        
+    }
 ?>
 
 <!DOCTYPE html>

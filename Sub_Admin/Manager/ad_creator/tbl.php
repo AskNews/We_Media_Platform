@@ -4,7 +4,7 @@
 							<input class="form-control" type="text" name="keyword">
 							<span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search">Search!</button></span>
 						</div>
-				<br><br>
+				<br><br> 
                 		<table class="table table-striped">
 										<thead>
 											<tr>

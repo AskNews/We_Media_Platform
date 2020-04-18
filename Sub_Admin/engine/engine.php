@@ -11,10 +11,10 @@ $query="";
       @$page1=($page*5)-5;
   }
   if($type=="news"){
-    $select="SELECT * FROM `tbl_$type` where `Deletation`='0' limit $page1,5";
+    $select="SELECT * FROM `tbl_$type` limit $page1,5";
   
   }else{
-  $select="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,5";
+  $select="SELECT * FROM `tbl_$type` limit $page1,5";
   }
   $result_news=mysqli_query($con,$select);
 $sql1=mysqli_query($con,"select * from tbl_$type");
@@ -171,34 +171,7 @@ if(isset($_POST['c_'.$type.''])){
               @  $temp = explode(".", $_FILES["image"]["name"]);
                @ $newfilename = round(microtime(true)) . '.' . $extension;
       
-   if($type=="gallery"){
-
-     $a=array(
-       array('sub_admin_id',$data['id']),
-       array('title',$_POST['title']),
-       array('url',$_POST['url']),
-       array('seo_title',$_POST['seo_title']),
-       array('seo_desc',$_POST['seo_desc']),
-       array('location',$_POST['location']),
-       array('c_date',$_POST['dat']),
-       array('status',$_POST['status']));
-       insert(8);
-      
-      }
-   
-   if($type=="categories"){
-     
-   $a=array(
-    array('sub_admin_id',$data['id']),
-    array('title',$_POST['title']),
-    array('url',$_POST['url']),
-    array('seo_title',$_POST['seo_title']),
-    array('seo_desc',$_POST['seo_desc']),
-    array('c_date',$_POST['dat']),
-    array('status',$_POST['status']));
-     insert(7);
-   
-  }
+  
   if($type=="qna"){
      
     $a=array(
@@ -213,50 +186,7 @@ if(isset($_POST['c_'.$type.''])){
       insert(5);
    
    }
-   if($type=="picture"){
-    
-    //check existing folder and create new one
-    if(!is_dir($imgPath.$_POST['gallery_id'])){
-      mkdir($imgPath.$_POST['gallery_id']);
-      }
-    //working for image
-    
-    if(isset($image['name'])&&!empty($image['name'])){
-      //to copy or move from temp to a destination
-              // Compress image
-      compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gallery_id']."/".$newfilename,60);
-      }
-     $a=array(
-      array('sub_admin_id',$data['id']),
-      array('gallery_id',$_POST['gallery_id']),
-      array('caption',$_POST['caption']),
-      array('image',$newfilename),
-      array('c_date',$_POST['dat']),
-      array('status',$_POST['status']));
-       insert(6);
-     
-       
-      }
-  
-   if($type=="slideshow"){
-    //working for image
-    
-    if(isset($image['name'])&&!empty($image['name'])){
-      //to copy or move from temp to a destination
-              // Compress image
-      compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
-      }
-     $a=array(
-      array('sub_admin_id',$data['id']),
-      array('caption',$_POST['caption']),
-      array('orderby',$_POST['orderby']),
-      array('image',$newfilename),
-      array('c_date',$_POST['dat']),
-      array('status',$_POST['status']));
-       insert(6);
-      
-     
-   }
+   
    
 }
   

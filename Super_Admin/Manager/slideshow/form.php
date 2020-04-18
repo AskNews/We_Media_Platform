@@ -14,13 +14,15 @@
 													 <div class="control-group">											
 											<label class="control-label" for="caption">caption</label>
 											<div class="controls">
-												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?>">
+												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?><?php if(isset($vscaption)){ echo $vscaption;}?>">
+												<input type="hidden" name="vscaption">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
 											<label class="control-label" for="orderby">Order By</label>
 											<div class="controls">
-												<input type="text" class="span6" id="orderby" name="orderby" value="<?php echo isset($editData)?$editData['orderby']:"";?>">
+												<input type="text" class="span6" id="orderby" name="orderby" value="<?php echo isset($editData)?$editData['orderby']:"";?><?php if(isset($vsorderby)){ echo $vsorderby;}?>">
+											    <input type="hidden" name="vsorderby">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											

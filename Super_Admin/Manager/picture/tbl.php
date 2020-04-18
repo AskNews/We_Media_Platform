@@ -9,7 +9,8 @@
                   <div class="control-group">											
 											<label class="control-label" for="title">Search</label>
 											<div class="controls">
-												<input type="text" class="span6" id="title" name="keyword" >
+												<input type="text" class="span6" id="title" name="keyword" value="<?php if(isset($vskeyword)){ echo $vskeyword;}?>">
+                        <input type="hidden"  name="vskeyword" />
                         <button class="btn btn-success" name="search">Search <?php echo ucfirst($type);?></button>
                         <br><br>
                         <button class="btn btn-info" name="create">Create new <?php echo ucfirst($type);?></button>

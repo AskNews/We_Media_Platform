@@ -1,6 +1,3 @@
-C:\Users\Jishan Siddique\.gradle\caches\modules-2\
-metadata-2.69\descriptors\com.android.tools\sdk-common\
-26.4.0\6740fe48b44caed96d7f50b66ff7b0b5
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	<div class="card">
 		<div class="header">

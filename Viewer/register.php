@@ -1,8 +1,6 @@
 <?php
 $type ="Register";
 include "../Super_Admin/includes/dbconfig.php";
-
-
 //working for contact us
 
 include "includes/header.php";
@@ -30,13 +28,16 @@ if(isset($_SESSION['newViewerLogin'])){
              <form class="rnd5" method="post">
             <div class="form-input clear">
               <label class="" for="name">Name <span class="required">*</span><br>
-                <input type="text" name="name" id="name" value="" size="22" title="Please Enter your fullname" required>
+                <input type="text" name="name" id="name" value=""  title="Please Enter your fullname" required>
+                <span><?php echo @$err['user']; ?></span>
               </label><br>
               <label class="" for="email">Email <span class="required">*</span><br>
-                <input type="text" name="email" id="email" value="" size="22" title="please enter a valid email" pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)">
+                <input type="text" name="email" id="email" value=""  title="please enter a valid email" pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)">
+                <span><?php echo @$err['email']; ?></span>
               </label><br>
               <label class="" for="subject">Password <span class="required">*</span><br>
                 <input type="password" name="password" id="subject" value="" size="22">
+                <span><?php echo @$err['pass']; ?></span>
               </label><br>
             </div>
             
