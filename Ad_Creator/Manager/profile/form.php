@@ -1,10 +1,8 @@
-<div class="main-content">
-<div class="page-wrapper">
-    <div class="container">
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
-                <?php  $data="select * from tbl_ad_creator where id=".$creatorid;
+                <?php  $data="select * from tbl_ad_creator where ad_creator_id=".$creatorid;
                          $result=mysqli_query($con,$data);
                             while($row=mysqli_fetch_assoc($result)){ ?>
                     <div class="card">
@@ -24,15 +22,15 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>Followers</td>
-                                                        <td><?php echo $follower ?></td>
+                                                        <td>0</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Likes</td>
-                                                        <td><?php echo $like ?></td>
+                                                        <td>0</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Comments</td>
-                                                        <td><?php echo $comment; ?></td>
+                                                        <td>0   </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -82,7 +80,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-asterisk"></i>
                                                     </div>
-                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtmobile'];}else{echo $row["mobile"];} ?>"  id="txtmobile" name="txtmobile" placeholder="Mobile" class="form-control">
+                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtmobile'];}else{echo $row["phone"];} ?>"  id="txtmobile" name="txtmobile" placeholder="Mobile" class="form-control">
                                                 </div>
                                                 <span class="error"><?php echo @$error_mobile; ?></span>
                                             </div>
@@ -129,6 +127,7 @@
                                                 </div>
                                                 <span class="error"><?php echo @$error_cpass;  ?></span>
                                             </div>
+                                            <?php }?>
                                             <div class="form-actions form-group">
                                                 <button type="submit" href="#change_password_settings" name="change_pass" class="btn btn-success btn-sm">Change Password</button>
                                             </div>
@@ -140,6 +139,3 @@
 									</div>
 								</div>
 							</div>
-     </div>
-</div>
- </div>

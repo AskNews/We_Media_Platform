@@ -68,7 +68,7 @@
         }
         else
         {
-            if(($_FILES["file"]["type"]=="image/png") || ($_FILES["file"]["type"]=="image/jpg") || ($_FILES["file"]["type"]=="image/jpeg"))
+            if(($_FILES["file"]["type"]=="img/png") || ($_FILES["file"]["type"]=="img/jpg") || ($_FILES["file"]["type"]=="img/jpeg"))
             {
                 $temp = explode(".", $_FILES["file"]["name"]);
                 $extension = strtolower(end($temp));
@@ -227,27 +227,31 @@
                                     <input class="au-input au-input--full" type="text" name="username" value="<?php if(isset($viewstateName)){ echo $viewstateName;}?>" pattern="[a-zA-Z0-9]+" id="username" placeholder="Username">
                                     <input type="hidden"  name="viewstateName" />
                                 </div>
-                                <span id="username-error" class="error" ><?php echo @$err_user;?></span>
+                                <span style="color:red" id="username-error" class="error" ><?php echo @$err_user;?></span>
                                 <div class="form-group">
                                     <label>Email Address</label>
                                     <input class="au-input au-input--full" type="email" name="email" id="email" value="<?php if(isset($viewstateEmail)){ echo $viewstateEmail;}?>" placeholder="Email">
                                     <input type="hidden"  name="viewstateEmail" />
                                 </div>
+                                <span style="color:red" id="email-error" class="error" ><?php echo @$err_email;?></span>
                                 <div class="form-group">
                                     <label>Phone No</label>
                                     <input class="au-input au-input--full" type="number" name="mobile" id="phone" value="<?php if(isset($viewstateMobile)){ echo $viewstateMobile;}?>" placeholder="Phone No">
                                     <input type="hidden"  name="viewstateMobile" />
                                 </div>
+                                <span style="color:red" id="mobile-error" class="error" ><?php echo @$err_mob;?></span>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input class="au-input au-input--full" type="password" name="password" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password" placeholder="Password">
                                     <input type="hidden"  name="viewstatePassword" />
                                 </div>
+                                <span style="color:red" class="error"><?php if(isset($err_pass)){ echo @$err_pass;} ?> </span>
                                 <div class="form-group">
                                     <label>Confirm-Password</label>
                                     <input class="au-input au-input--full" type="password" name="confirm" value="<?php if(isset($viewstatePassword)){ echo $viewstatePassword;}?>" id="password" placeholder="Confirm-Password">
                                     <input type="hidden"  name="viewstateConfirm" />
                                 </div>
+                                <span style="color:red" id="confirm-error" class="error" ><?php if(isset($err_cpass)){ echo $err_cpass;}?></span>
                                 <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="file-input" class=" form-control-label">File input</label>
@@ -257,6 +261,7 @@
                                                     <input type="hidden"  name="viewstateUserProfile" />
                                                 </div>
                                             </div>
+                                            <span style="color:red" id="file-error" class="error" ><?php if(isset($errorForFile)){ echo $errorForFile;}?></span>
                                 <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="aggree">Agree the terms and policy

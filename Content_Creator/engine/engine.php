@@ -607,9 +607,9 @@ if(isset($_POST['btn_send']))
     }
     $topic=$_POST['category'];
     $message=$_POST['message'];
-    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
+    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     //echo $sql;
-	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
+	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     $qry=mysqli_query($con,$sql);
     if($qry){
       $success=ucfirst($type). " Created Success";

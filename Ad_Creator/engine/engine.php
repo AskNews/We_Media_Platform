@@ -4,17 +4,16 @@
 //$cat=$adname=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=null;
 $unitName=$amount=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$cat=$cpc=$url=$status=null;
 
-$follower=0;
-$follower_qry="select sum()";
 
-$like=0;
-
-$select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  order by post_date desc";
+$select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  order by publish_date DESC";
+//echo $select_ad;
 $result_ad=mysqli_query($con,$select_ad);
 
-$select_feedback="select * from tbl_feedback where role=2 and user_id=".$creatorid;
+$select_feedback="select * from tbl_feedback where role=1 and user_id=".$creatorid." order by c_date desc";
 $result_feedback=mysqli_query($con,$select_feedback);
 
+$select_noti="select * from tbl_notification where role=1 and user_id=".$creatorid." order by c_date desc"	;
+$result_noti=mysqli_query($con,$select_noti);
 
 $sql2=mysqli_query($con,"select * from tbl_$type ");
 @$total_rec=mysqli_num_rows($sql2);
@@ -25,7 +24,7 @@ $sql2=mysqli_query($con,"select * from tbl_$type ");
 @$seoDes=$_POST["seo_desc"];
 @$attachFile=$_FILES["file"]["name"];
 @$cpc=$_POST["cpc"];
-@$details=$_POST["editor1"];
+@$details=$_POST["details"];
 @$summary=$_POST["summary"];
 @$url=$_POST["url"];
 @$status=$_POST["status"];
@@ -78,7 +77,7 @@ if(isset($_POST['add_'.$type.'']))
           }
           imagejpeg($attachFile, $destination, $quality);
         }
-        compressImage($_FILES['file']['tmp_name'],$imgPath."/".$newfilename,60);
+        compressImage($_FILES['file']['tmp_name'],"img/".$newfilename,60);
     }
     else
     {
@@ -92,7 +91,7 @@ if(isset($_POST['add_'.$type.'']))
       //echo $sql;
       if($qry){
         $success=ucfirst($type). " Created Success";
-      move_uploaded_file($_FILES['file']['tmp_name'],$imgPath."/".$newfilename);
+      move_uploaded_file($_FILES['file']['tmp_name'],"img/".$newfilename);
       cleardata();
       }else{
           $warning=ucfirst($type). " Not Created".mysqli_error($con);
@@ -136,7 +135,7 @@ if(isset($_GET['feedid']))
 if(isset($_POST["btn_search"]))
 {
   $a=$_POST["keyword"];
-  $select_ad="select * from tbl_adunit where category_id=".$creatorid." and unit_name like '%$a%' or u_date='".$a."' or publish_date='".$a."' or view='".$a."' or status='".$a."'";
+  $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid." and unit_name like '%$a%' or u_date='".$a."' or publish_date='".$a."' or view='".$a."' or status='".$a."'";
   $result_ad=mysqli_query($con,$select_ad);
 }
 //___________________________fill data in controls by querystring_________________________
@@ -164,27 +163,27 @@ if(isset($_POST["btn_filter"]))
   //echo "<script>alert($a);</script>";
   if($a==0)
   {
-      $select_ad="select * from tbl_adunit where category_id=".$creatorid." and approve=0 ";
+      $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid." and approve=0 ";
   }
   elseif($a==1)
   {
-    $select_ad="select * from tbl_adunit where category_id=".$creatorid."  and approve=0 and rejected=3 and offline=1";
+    $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  and approve=0 and rejected=3 and offline=1";
   }
   elseif($a==2)
   {
-    $select_ad="select * from tbl_adunit where category_id=".$creatorid."  and approve=0 and rejected=2";
+    $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  and approve=0 and rejected=2";
   }
   elseif($a==3)
   {
-    $select_ad="select * from tbl_adunit where category_id=".$creatorid." and status=2";
+    $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid." and status=2";
   }
   elseif($a==4)
   {
-    $select_ad="select * from tbl_adunit where category_id=".$creatorid."  and approve=1";
+    $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  and approve=1";
   }
   else
   {
-    $select_ad="select * from tbl_adunit where category_id=".$creatorid;
+    $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid;
     $result_ad=mysqli_query($con,$select_ad); 
   }
   $result_ad=mysqli_query($con,$select_ad);
@@ -211,7 +210,7 @@ if(isset($_GET['feedid']))
   }
 }
 //__________________________________insert feedback__________________________________
-if(isset($_POST['btn_send']))
+if(isset($_POST['Submit']))
 {
   $newfilename;
   if(isset($_FILES['file']['name'])&&!empty($_FILES['file']['name']))
@@ -242,7 +241,7 @@ if(isset($_POST['btn_send']))
     }
     $topic=$_POST['category'];
     $message=$_POST['message'];
-    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',2,'$newfilename')";
+    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     //echo $sql;
     $qry=mysqli_query($con,$sql);
     if($qry){
@@ -288,7 +287,7 @@ if(isset($_POST["update_profile"]))
     {
       if($name==null)
       {
-        $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile' where id=$creatorid";
+        $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile' where ad_creator_id=$creatorid";
       }
       else
       {
@@ -302,7 +301,7 @@ if(isset($_POST["update_profile"]))
             $newfilename = round(microtime(true)) . '.' . end($temp);
             move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
             $filename=$newfilename;
-            $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile',profile_image='$filename' where id=$creatorid";           
+            $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile',profile_image='$filename' where ad_creator_id=$creatorid";           
         }
         else
         {
@@ -342,7 +341,7 @@ if(isset($_POST["change_pass"]))
 {  
   $flag=true;
   $pass="";
-  $data="select * from tbl_ad_creator where id=".$creatorid;
+  $data="select * from tbl_ad_creator where ad_creator_id=".$creatorid;
   $result=mysqli_query($con,$data);
   while($row=mysqli_fetch_assoc($result))
   {
@@ -361,7 +360,7 @@ if(isset($_POST["change_pass"]))
   }
   if($flag==true)
   {
-    $sql="update tbl_ad_creator set password='".md5($_POST['NewPassword'])."' where id=$creatorid";
+    $sql="update tbl_ad_creator set password='".md5($_POST['NewPassword'])."' where ad_creator_id=$creatorid";
     $qry=mysqli_query($con,$sql);
     if($qry)
     {
@@ -393,6 +392,15 @@ function Updatestatus($id)
     cleardata();
   }
 }   
+//___________________filter feedback_______________________
+
+if(isset($_POST['btn_feed_filter']))
+{
+	$a=$_POST['sort'];
+	if($a==1)
+		$select_feedback="select * from tbl_feedback where user_id=".$creatorid." and role=0 order by c_date asc";
+	$result_feedback=mysqli_query($con,$select_feedback);
+}
 
 
 ?>

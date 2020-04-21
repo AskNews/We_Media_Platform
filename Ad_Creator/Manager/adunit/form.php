@@ -71,6 +71,7 @@
                                                     <label>Amount</label>
                                                     <input class="au-input au-input--full" type="amount" name="amount" placeholder="Amount">
                                                 </div>
+                                                <span style="color:red" id="error_amount" class="error"></span>
                                                     <label>Summary</label>
                                                     <input class="au-input au-input--full" type="text" name="summary"value="<?php echo @$update['summary']; ?>" onkeyup="convertToComa1(this.value);" id="summary" placeholder="Summary">
                                                 </div>
@@ -78,10 +79,12 @@
                                                 <div class="form-group">
                                                     <label>CPC</label>
                                                     <input class="au-input au-input--full" type="cpc" name="cpc" placeholder="CPC">
+                        
                                                 </div>
+                                                <span style="color:red" id="error_amount" class="error"></span>
                                                 <div class="form-group">
                                                     <label for="textarea-input" class=" form-control-label">Details</label>
-                                                    <textarea name="textarea-input" id="textarea-input" rows="5" placeholder="Content..." class="form-control">
+                                                    <textarea name="details" id="details" rows="5" placeholder="Content..." class="form-control">
                                                     <?php echo @$update['details']; ?></textarea>
                                              </div>
                                              <span id="error_details" class="error"></span>

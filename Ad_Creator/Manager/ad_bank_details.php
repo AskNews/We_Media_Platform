@@ -17,22 +17,27 @@
                                 <label>Full Name</label>
                                 <input class="au-input au-input--full" type="text" name="fullname" placeholder="As per Passbook">
                             </div>
+                            <span style="color:red" id="fullname-error" class="error" >Invalid Input</span>
                             <div class="form-group">
                                 <label>IFSC_Code</label>
                                 <input class="au-input au-input--full" type="text" name="ifsc" placeholder="IFSC Code">
                             </div>
+                            <span style="color:red" id="fullname-error" class="error" >Invalid Input</span>
                             <div class="form-group">
                                 <label>Card Number</label>
                                 <input class="au-input au-input--full" type="text" name="card" placeholder="Card Number">
                             </div>
+                            <span style="color:red" id="fullname-error" class="error" >Invalid Input</span>
                             <div class="form-group">
                                 <label>CVV Number</label>
                                 <input class="au-input au-input--full" type="text" name="cvv" placeholder="CVV Number">
                             </div>
+                            <span style="color:red" id="fullname-error" class="error" >Invalid Input</span>
                             <div class="form-group">
                                 <label>Bank Balance</label>
                                 <input class="au-input au-input--full" type="text" name="balance" placeholder="Bank Balance">
                             </div>
+                            <span style="color:red" id="fullname-error" class="error" >Invalid Input</span>
                             <!-- <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="aggree">Agree the terms and policy

@@ -33,7 +33,8 @@
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 103px;">Publish Date</th>
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 10px;">Views</th>
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 79px;">Status</th>
-                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;">Action</th></tr>
+                                        <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;">Action</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
                                         <?php
@@ -41,33 +42,26 @@
                                     {?>
                                             <tr role="row" class="tr-shadow">
                                             <td style="width: 250px;"><?php echo wordwrap($row['unit_name'],35,"<br>")?></td>
-                                <td style="width: 80px;"><img src="<?php echo $imgPath."/".$row['file_attach'];?>" height="100px" width="80px" > </td>
-                                <?php if($row["approve"]){ ?>
-                                    <td><?php echo substr($row['u_date'],0,10);?></td>
+                                <td style="width: 80px;"><img src="<?php echo "img/".$row['file_attach'];?>" height="100px" width="80px" > </td>
+                                <td><?php echo substr($row['u_date'],0,10)?></td>
+                                <?php if($row["approve"]==1 && $row['offline']==0 && ($row['rejected']==0 || $row['rejected']==1)){ ?>
                                             <td><?php echo $row['publish_date'];?></td>
-                                            <td style="width: 10px;"><?php echo $row['View'];?></td>
-                                            <?php } elseif($row["approve"]==0 && $row["offline"]==1 && $row["rejected"]==3){ ?> 
-                                            <td colspan='3'> Your ad is offline due to <?php echo $row["rejection_msg"]; ?></td>
+                                            <td style="width: 10px;"><?php echo $row['view'];?></td>
+                                            <?php } elseif($row["approve"]==0 && $row["offline"]==1 && $row["rejected"]==2){ ?> 
+                                            <td colspan='2' style="text-align:center"> Your Ad is offline due to <?php echo $row["rejection_msg"]; ?></td>
                                             <?php }
-                             elseif($row["approve"]==0 && $row["offline"]==0 && $row["rejected"]==1){ ?>
-                                <td colspan='3'>Pending</td>
-                                <?php } elseif($row["approve"]==0 && $row["rejected"]==2){ ?>
-                                    <td colspan='3'>ad is Rejected due to <?php echo $row["rejection_msg"]; ?><br/> <a href="?ad_id=<?php echo $row["id"]; ?>">click to modify</a> </td>
-                                <?php } ?>          
+                                            elseif($row["approve"]==0 && $row["offline"]==0 && $row['rejected']==0){ ?>
+                                            <td colspan='2' style="text-align:center">Pending</td>
+                                            <?php } elseif($row["approve"]==0 && $row["rejected"]==1 && $row["offline"]==0){ ?>
+                                                <td colspan='2' style="text-align:center">News is Rejected due to <?php echo $row["rejection_msg"]; ?><a href="?adid=<?php echo $row["id"]; ?>">click to modify</a> </td>
+                                            <?php } ?>           
                                 <td>
-                                <a  href="?status=<?php echo $row["id"];?>">
+                                <a  href="?status=<?php echo $row["ad_id"];?>">
                                 <button <?php if($row["approve"]==0 && $row["offline"]==1 && $row["rejected"]==3 || $row["rejected"]==2){ echo "disabled";} ?>  class="btn <?php echo $row['status']?'btn-primary waves-effect':'btn-warning waves-effect'?>"><?php if($row['status']){ echo "Active";}else{ echo "In-Active";} ?></button>
                                 </a>        
                                 </td>
-                                <td>
-                                    <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                            </tr>
-                                            <?php   }//while   
+                                 </tr>
+                             <?php   }//while   
                                     ?>  
                                         </tbody>
                                     </table>
