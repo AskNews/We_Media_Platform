@@ -402,5 +402,12 @@ if(isset($_POST['btn_feed_filter']))
 	$result_feedback=mysqli_query($con,$select_feedback);
 }
 
+//_____________________________search notification___________________
+if(isset($_POST['search_noti']))
+{
+	$result_noti=mysqli_query($con,"select * from tbl_notification where user_id=$creatorid and role=1 and sub like '%".$_POST['keyword']."%' or c_date='".$_POST['keyword']."' or description like '%".$_POST['keyword']."%'");
+}
+
+
 
 ?>
