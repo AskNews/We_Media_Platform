@@ -159,6 +159,7 @@ if(isset($_GET['d']))
 //____________________________filter news_________________
 if(isset($_POST["btn_filter"]))
 {
+  $temp="";
   @$a=$_POST["adType"];
   //echo "<script>alert($a);</script>";
   if($a==0)
