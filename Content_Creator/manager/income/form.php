@@ -47,8 +47,10 @@
                                 <label>Transfer Amount</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="amount" name="amount" class="form-control" placeholder="Enter amount to transfer">
+                                        <input type="text" id="amount" name="amount" class="form-control" value="<?php echo $_POST['amount']?>" placeholder="Enter amount to transfer">
+                                        
                                     </div>
+                                    <span class='error'><?php echo @$err;?><span>
                                 </div>
                                 <br>
                                 <button type="submit" name="transaction" class="btn btn-primary m-t-15 waves-effect">Done</button>

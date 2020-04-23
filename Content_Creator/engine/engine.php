@@ -278,6 +278,29 @@ if(isset($_POST["update_profile"]))
           $error_email="Invalid email";
           $flag=false;
       }
+      if(empty($bankname))
+      {
+        $error_bname="Invalid bank name";
+        $flag=false;
+
+      }
+      if(empty($ifsc) || !preg_match('^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$',$ifsc))
+      {
+        $flag=false;
+        $error_ifsc="Invalid IFSC code";
+      }
+      if(empty($account) || !preg_match('/^[0-9]*$/',$account))
+      {
+        $error_accountNum="Invalid Account number";
+        $flag=false;
+        
+      }
+      if(empty($holdername) || !preg_match('/^[A-Za-z]*$/',$holdername))
+      {
+        $error_holderName="Invalid bank name";
+        $flag=false;
+        
+      }
     }  
     if($flag==true)
     {
@@ -609,7 +632,13 @@ if(isset($_POST['btn_send']))
     $message=$_POST['message'];
     $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     //echo $sql;
+<<<<<<< HEAD
 	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+=======
+  echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
+  if(!empty($message))
+  {
+>>>>>>> e9ab1dc451eee5a5f7b92b4e2f34eabdd1a4edda
     $qry=mysqli_query($con,$sql);
     if($qry){
       $success=ucfirst($type). " Created Success";
@@ -617,6 +646,11 @@ if(isset($_POST['btn_send']))
     }else{
         $warning=ucfirst($type). " Not Created".mysqli_error($con);
     }
+  }
+  else
+  {
+    $err="Invalid input";
+  }
 }
 
 //_____________________________________insert transaction__________________________
@@ -625,9 +659,8 @@ if(isset($_POST['transaction']))
 	$e_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 	$e=mysqli_fetch_array($e_qry);
 	$e=$e['e'];
-	if($e>=500 && $_POST['amount']<$e)
+	if($e>=500 && $_POST['amount']<$e && !emmpty($_POSt['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
 	{
-		//echo " > 900 < amount ";
 		$u_qry=mysqli_query($con,"update tbl_content_creator set earnings=earnings-".$_POST['amount'].", 
 		life_time_withdraw_amt=life_time_withdraw_amt+".$_POST['amount']." where id=".$creatorid."");
 		$bal_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
@@ -642,7 +675,11 @@ if(isset($_POST['transaction']))
 		{
 		  echo "<script>alert('amount transfer unsuccessfully...:(');</script>";
 		}
-	}
+  }
+  else
+  {
+    $err="please insert valid amount";
+  }
 }
 
 //_____________________________search transaction______________________________

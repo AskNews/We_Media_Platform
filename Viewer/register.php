@@ -28,16 +28,16 @@ if(isset($_SESSION['newViewerLogin'])){
              <form class="rnd5" method="post">
             <div class="form-input clear">
               <label class="" for="name">Name <span class="required">*</span><br>
-                <input type="text" name="name" id="name" value=""  title="Please Enter your fullname" required>
-                <span><?php echo @$err['user']; ?></span>
+                <input type="text" name="name" id="name" value="<?php echo @$_POST['name']?>"  title="Please Enter your fullname" >
+                <span class="error"><?php echo @$err['user']; ?></span>
               </label><br>
               <label class="" for="email">Email <span class="required">*</span><br>
-                <input type="text" name="email" id="email" value=""  title="please enter a valid email" pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)">
-                <span><?php echo @$err['email']; ?></span>
+                <input type="text" name="email" id="email" value="<?php echo @$_POST['email']?>"  title="please enter a valid email" pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)">
+                <span class="error"><?php echo @$err['email']; ?></span>
               </label><br>
               <label class="" for="subject">Password <span class="required">*</span><br>
-                <input type="password" name="password" id="subject" value="" size="22">
-                <span><?php echo @$err['pass']; ?></span>
+                <input type="password" name="password" id="subject" value="<?php echo @$_POST['password']?>" size="22">
+                <span class="error"><?php echo @$err['pass']; ?></span>
               </label><br>
             </div>
             
