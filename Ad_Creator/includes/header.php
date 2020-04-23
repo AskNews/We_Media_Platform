@@ -1,4 +1,47 @@
-<!DOCTYPE html>
+<?php
+session_start();
+$creatorid=0;
+$info=null;
+$email="";
+$warning=null;
+$success=null;
+$profile_image="";
+$uname="";
+$wal_amt=0;
+$cvv=0;
+$card=0;
+$approve=0;
+include "../Super_Admin/includes/dbconfig.php";
+
+$sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' and status=1";
+$query_details=mysqli_query($con,$sql);
+if(isset($_SESSION['ad_creator_uname']))
+{
+    $sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' or email='$_SESSION[ad_creator_uname]' and status=1";
+    $query=mysqli_query($con,$sql);
+    while($data=mysqli_fetch_assoc($query))
+    {
+        $email=$data["email"];
+        $_SESSION['ad_creator_profile']=$data["profile_image"];
+        $creatorid=$data["ad_creator_id"];
+        $wal_amt=$data['wallet'];
+        $cvv=$data['cvv_number'];
+        $card=$data['card_number'];
+        $approve=$data['approval'];
+    }
+}
+else
+{
+    header ("location: login.php");
+}
+
+$noti=mysqli_query($con,"select count(id) as c from tbl_notification where role=1 and user_id=".$creatorid." and is_seen=0");
+$noti_count=mysqli_fetch_array($noti);
+$noti_count=$noti_count['c'];
+
+include "engine/engine.php";
+?>
+
 <html lang="en">
 
 <head>
@@ -10,7 +53,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Welcome To Asknews</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -33,82 +76,91 @@
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
+    <style type="text/css">
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+        .error{color:red;}
+    </style>
 </head>
 
-<body class="animsition">
+<body class="animsitsion" style="animation-duration: 900ms; opacity: 1;">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
+        <aside class="menu-sidebar2">
+        <div class="logo">
+                    <a href="#">
+                        <img src="images/icon/logo-white.png" alt="Cool Admin" />
+                    </a>
                 </div>
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+        <div class="menu-sidebar2__content js-scrollbar1">
+                <div class="account2">
+                    <div class="image img-cir img-120">
+                        <img src="img/<?php echo $_SESSION['ad_creator_profile']?>" alt="no image" />
+                    </div>
+                    <h4 class="name"><?php echo $_SESSION['ad_creator_uname']?></h4>
+                    <a href="logout.php">Sign out</a>
+                </div>
+                <nav class="navbar-sidebar2">
+                    
+                    <ul class="list-unstyled navbar__list">
+
+                        <li <?php echo $type == "index"?'class="active"':'';?>>
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+
+                        <li <?php echo $type == "adunit"?'class="active"':'';?> >
+                            <a  href="#">
+                                <i class="fas fas fa-plus-square"></i>Ad Unit</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="adunit.php?form">Create New Ad</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Dashboard 2</a>
+                                    <a href="adunit.php?table">Manage Ad Unit</a>
                                 </li>
-                               
                             </ul>
                         </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                        <li <?php echo $type == "feedback"?'class="active"':'';?>>
+                            <a  href="feedback.php?feedback">
+                                <i class="fas fa fa-commenting"></i>Feedback</a>
                         </li>
-                       
+                        <li <?php echo $type == "qna"?'class="active"':'';?>>
+                            <a href="qna.php">
+                                <i class="fas fa fa-comments"></i>QNA</a>
+                        </li>
+                        <li <?php echo $type == "notification"?'class="active"':'';?>>
+                            <a  href="notification.php?noti">
+                                <i class="fas fa fa-bell"></i>Notification</a>
+                        </li>
+                        <li <?php echo $type == "rules"?'class="active"':'';?>>
+                            <a  href="rules.php?rules">
+                                <i class="fas fa fa-gavel"></i>Rules</a>
+                        </li>
                     </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                               
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                       
-                    </ul>
+                    
                 </nav>
             </div>
         </aside>
@@ -117,125 +169,28 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
+            <header class="header-desktop2">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
+                        <div class="header-wrap2">
+                            <div class="logo d-block d-lg-none">
+                                <a href="#">
+                                    <!-- <img src="images/icon/logo-white.png" alt="CoolAdmin" /> -->
+                                </a>
+                            </div>
                             <div class="header-button">
-                                <div class="noti-wrap">
+                            <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-comment-more"></i>
-                                        <span class="quantity">1</span>
-                                        <div class="mess-dropdown js-dropdown">
-                                            <div class="mess__title">
-                                                <p>You have 2 news message</p>
-                                            </div>
-                                            <div class="mess__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
-                                                </div>
-                                                <div class="content">
-                                                    <h6>Michelle Moreno</h6>
-                                                    <p>Have sent a photo</p>
-                                                    <span class="time">3 min ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="mess__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
-                                                </div>
-                                                <div class="content">
-                                                    <h6>Diane Myers</h6>
-                                                    <p>You are now connected on message</p>
-                                                    <span class="time">Yesterday</span>
-                                                </div>
-                                            </div>
-                                            <div class="mess__footer">
-                                                <a href="#">View all messages</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-email"></i>
-                                        <span class="quantity">1</span>
-                                        <div class="email-dropdown js-dropdown">
-                                            <div class="email__title">
-                                                <p>You have 3 New Emails</p>
-                                            </div>
-                                            <div class="email__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
-                                                </div>
-                                                <div class="content">
-                                                    <p>Meeting about new dashboard...</p>
-                                                    <span>Cynthia Harvey, 3 min ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="email__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
-                                                </div>
-                                                <div class="content">
-                                                    <p>Meeting about new dashboard...</p>
-                                                    <span>Cynthia Harvey, Yesterday</span>
-                                                </div>
-                                            </div>
-                                            <div class="email__item">
-                                                <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
-                                                </div>
-                                                <div class="content">
-                                                    <p>Meeting about new dashboard...</p>
-                                                    <span>Cynthia Harvey, April 12,,2018</span>
-                                                </div>
-                                            </div>
-                                            <div class="email__footer">
-                                                <a href="#">See all emails</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-notifications"></i>
-                                        <span class="quantity">3</span>
+                                        <i class="zmdi zmdi-notifications">
+                                        <span class='quantity'><?php echo $noti_count;?></span>
+                                        </i>
+                                        <a href="javascript:void(0);">
                                         <div class="notifi-dropdown js-dropdown">
                                             <div class="notifi__title">
-                                                <p>You have 3 Notifications</p>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c1 img-cir img-40">
-                                                    <i class="zmdi zmdi-email-open"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a email notification</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c2 img-cir img-40">
-                                                    <i class="zmdi zmdi-account-box"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>Your account has been blocked</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c3 img-cir img-40">
-                                                    <i class="zmdi zmdi-file-text"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a new file</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
+                                                <p>You have <?php echo $noti_count; ;?> Notifications</p>
                                             </div>
                                             <div class="notifi__footer">
-                                                <a href="#">All notifications</a>
+                                                <a href="notification.php?noti">All notifications</a>
                                             </div>
                                         </div>
                                     </div>
@@ -243,41 +198,32 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="<?php echo "img/".$_SESSION['ad_creator_profile'];?>" width="150" height="150" style="margin-right:15px; margin-top:10px;"  alt="User">
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#"><?php echo $_SESSION['ad_creator_uname'];?></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="<?php echo "img/".$_SESSION['ad_creator_profile']; ?>" width="80" height="80" alt="User">
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#"><?php echo $_SESSION['ad_creator_uname'];?></a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
-                                                </div>
+                                               </div>
                                             </div>
                                             <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                <div class="account-dropdown__item" <?php echo $type == "profile"?'class="active"':'';?>>
+                                                    <a href="profile.php?update_profile">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

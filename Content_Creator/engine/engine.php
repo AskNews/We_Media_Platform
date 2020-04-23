@@ -630,8 +630,11 @@ if(isset($_POST['btn_send']))
     }
     $topic=$_POST['category'];
     $message=$_POST['message'];
-    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
+    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     //echo $sql;
+
+	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+
   echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
   if(!empty($message))
   {
@@ -655,7 +658,7 @@ if(isset($_POST['transaction']))
 	$e_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 	$e=mysqli_fetch_array($e_qry);
 	$e=$e['e'];
-	if($e>=500 && $_POST['amount']<$e && !emmpty($_POSt['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
+	if($e>=500 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
 	{
 		$u_qry=mysqli_query($con,"update tbl_content_creator set earnings=earnings-".$_POST['amount'].", 
 		life_time_withdraw_amt=life_time_withdraw_amt+".$_POST['amount']." where id=".$creatorid."");
