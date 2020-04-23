@@ -131,18 +131,27 @@ include "engine/engine.php";
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
 
-                        <li <?php echo $type == "adunit"?'class="active"':'';?> >
-                            <a  href="#">
-                                <i class="fas fas fa-plus-square"></i>Ad Unit</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+
+                        <li <?php echo $type == "adunit"?'class="active"':'';?>>
+                            <a class="js-arrow" href="#">
+                                <i class="fas fas fa-plus-square"></i>Ads 
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="adunit.php?form">Create New Ad</a>
+                                <a href="adunit.php?form">
+                                        <i ></i>Create New Ad</a>
                                 </li>
                                 <li>
-                                    <a href="adunit.php?table">Manage Ad Unit</a>
+                                    <a href="adunit.php?table">
+                                        <i ></i>Manage Ad Unit</a>
                                 </li>
                             </ul>
                         </li>
+
+
                         <li <?php echo $type == "feedback"?'class="active"':'';?>>
                             <a  href="feedback.php?feedback">
                                 <i class="fas fa fa-commenting"></i>Feedback</a>

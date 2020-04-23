@@ -58,13 +58,13 @@
                                             <?php } ?>    
                                             <td><?php echo $row['amount'];?></td>       
                                 <td>
-                                <a  href="?status=<?php echo $row["ad_id"];?>">
+                                <a data-toggle="tooltip" data-placement="top" title="Status" href="?status=<?php echo $row["ad_id"];?>">
                                 <button <?php if($row["approve"]==0 && $row["offline"]==1 && $row["rejected"]==2 || $row["rejected"]==1 || $row['amount']==0.00){ echo "disabled";} ?>  class="btn <?php echo $row['status']==1?'btn-primary waves-effect':'btn-warning waves-effect'?>"><?php if($row['status']==1){ echo "Active";}else{ echo "In-Active";} ?></button>
                                 </a>        
                                 </td>
                                 <td>
-                                <a href="#"><button  class="btn btn-primary waves-effect"><span class="fas fas fa-eye" ></span></button></a>
-                                <a href="adunit.php?amount=<?php echo $row['seo_title']?>"><button   class="btn btn-primary waves-effect"><span class="fas fas fa-rupee plus-sqaure" ></span></button></a>
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Show Ad" ><button  class="btn btn-primary waves-effect"><span class="fas fas fa-eye" ></span></button></a>
+                                <a data-toggle="tooltip" data-placement="top" title="Refill Ad" href="adunit.php?amount=<?php echo $row['seo_title']?>"><button   class="btn btn-primary waves-effect"><span class="fas fas fa-rupee plus-sqaure" ></span></button></a>
                                 </td>
                                  </tr>
                              <?php   }//while   
