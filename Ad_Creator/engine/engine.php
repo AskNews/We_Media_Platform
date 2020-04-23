@@ -4,16 +4,44 @@
 //$cat=$adname=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=null;
 $unitName=$amount=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$cat=$cpc=$url=$status=null;
 
+@$page=$_GET["page"];
+if($page=="" || $page==1)
+{
+  @$page1=0;
+}
+else
+{
+    @$page1=($page*5)-5;
+} 
 
-$select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  order by publish_date DESC";
+$select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid."  order by publish_date DESC limit $page1,5";
 //echo $select_ad;
 $result_ad=mysqli_query($con,$select_ad);
 
-$select_feedback="select * from tbl_feedback where role=1 and user_id=".$creatorid." order by c_date desc";
+$select_feedback="select * from tbl_feedback where role=1 and user_id=".$creatorid." order by c_date desc limit $page1,5";
 $result_feedback=mysqli_query($con,$select_feedback);
 
-$select_noti="select * from tbl_notification where role=1 and user_id=".$creatorid." order by c_date desc"	;
+$select_noti="select * from tbl_notification where role=1 and user_id=".$creatorid." order by c_date desc limit $page1,5"	;
 $result_noti=mysqli_query($con,$select_noti);
+
+//---------------paging ad ------------------
+$sql1=mysqli_query($con,"select * from tbl_$type ");
+@$total_ad_rec=mysqli_num_rows($sql1);
+$total_ad_pages=ceil($total_news_rec/5);  
+$last_ad=$total_news_pages-1;
+
+//---------------paging notification ------------------
+$sql_noti=mysqli_query($con,"select * from tbl_$type ");
+@$total_rec=mysqli_num_rows($sql_noti);
+$total_pages=ceil($total_rec/5);  
+$last=$total_pages-1;
+
+//---------------paging feedback ------------------
+$sql_feed=mysqli_query($con,"select * from tbl_$type ");
+@$total_rec=mysqli_num_rows($sql_feed);
+$total_pages=ceil($total_rec/5);  
+$last=$total_pages-1;
+
 
 $sql2=mysqli_query($con,"select * from tbl_$type ");
 @$total_rec=mysqli_num_rows($sql2);

@@ -632,13 +632,12 @@ if(isset($_POST['btn_send']))
     $message=$_POST['message'];
     $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
     //echo $sql;
-<<<<<<< HEAD
+
 	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
-=======
+
   echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
   if(!empty($message))
   {
->>>>>>> e9ab1dc451eee5a5f7b92b4e2f34eabdd1a4edda
     $qry=mysqli_query($con,$sql);
     if($qry){
       $success=ucfirst($type). " Created Success";
