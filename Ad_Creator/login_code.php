@@ -6,6 +6,7 @@ $Email=$_POST["email"];
 $Pass=$_POST["password"];
 
 $res=mysqli_query($con,"select email,password from tbl_ad_creator where email='$Email' and password='$Pass'");
+//echo "select email,password from tbl_ad_creator where email='$Email' and password='$Pass'";
 
      if(mysqli_num_rows($res)>0)
         {      

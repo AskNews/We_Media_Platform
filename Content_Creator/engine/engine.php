@@ -4,7 +4,7 @@
 $index_qry=mysqli_query($con,"select index_point as index_data from tbl_content_creator where id=".$creatorid);
 $index=mysqli_fetch_array($index_qry);
 $index=$index['index_data'];
-if($index>9)
+if($index>100)
 {
   mysqli_query($con,"update tbl_content_creator set Monetization=1 where id=".$creatorid);
 }
