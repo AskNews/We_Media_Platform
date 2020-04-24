@@ -169,17 +169,6 @@ include "engine/engine.php";
                             <a class="js-arrow" href="rules.php?rules">
                                 <i class="fas fa fa-gavel"></i>Rules</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Help</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Contact-us</a>
-                        </li>
-
-                    
-
                     </ul>
                 </div>
             </nav>
@@ -237,14 +226,6 @@ include "engine/engine.php";
                         <li class="has-sub"  <?php echo $type == "rules"?'class="active"':'';?>>
                             <a class="js-arrow" href="rules.php?rules">
                                 <i class="fas fa fa-gavel"></i>Rules</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fa fa-info-circle"></i>Help</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fa fa-phone"></i>Contact-us</a>
                         </li>
                     </ul>
                 </nav>

@@ -17,24 +17,7 @@
                                     <i class="fa fa-map-marker"></i>Ad Creator</div>
                             </div>
                             <hr>
-                            <div class="table-responsive table-style1">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Followers</td>
-                                                        <td>0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Likes</td>
-                                                        <td>0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Comments</td>
-                                                        <td>0   </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                </div>
+                           
                                 
                         </div>
                     </div>
@@ -114,7 +97,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-asterisk"></i>
                                                     </div>
-                                                    <input type="password" id="NewPassword" value="<?php echo @$_POST['NewPassword'] ?>" title="Your password must contains alphanumeric character"  class="form-control" name="NewPassword">
+                                                    <input type="password" id="NewPassword" value="<?php echo @$_POST['NewPassword'] ?>" placeholder="New-Password" title="Your password must contains alphanumeric character"  class="form-control" name="NewPassword">
                                                 </div>
                                                 <span class="error"><?php echo @$error_pass;  ?></span>
                                             </div>

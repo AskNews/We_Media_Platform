@@ -28,7 +28,7 @@ $result_noti=mysqli_query($con,$select_noti);
 $sql1=mysqli_query($con,"select * from tbl_$type ");
 @$total_ad_rec=mysqli_num_rows($sql1);
 $total_ad_pages=ceil($total_news_rec/5);  
-$last_ad=$total_news_pages-1;
+$last_ad=$total_ad_pages-1;
 
 //---------------paging notification ------------------
 $sql_noti=mysqli_query($con,"select * from tbl_$type ");

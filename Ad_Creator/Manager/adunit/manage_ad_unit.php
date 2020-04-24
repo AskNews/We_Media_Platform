@@ -67,6 +67,32 @@
                                     </table>
                                 </div>
                                 <!-- END DATA TABLE -->
+                                <div class="row">
+                                <div class="col-md-1">
+                                <!--<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing <?php echo $page1;?> to 5 of <?php echo $total_rec;?> entries</div>-->
+                                </div>
+                                <div class="col-sm-7">  
+                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <ul class="pagination">
+                                    <li class="paginate_button previous <?php if(/*$page*/$_GET['page']>$total_ad_pages || $_GET['page']==1){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="ad.php?page=<?php echo $_GET['page']-1;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
+                                    <?php
+                                    for($i=1;$i<=$total_ad_pages;$i++)
+                                    {
+                                        ?>
+                                        <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="ad.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>        
+                                        &nbsp;
+                                    <?php }
+                                    ?>
+                                    <li class="paginate_button previous <?php if($page>=$total_ad_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="ad.php?page=<?php echo $_GET['page']+1;//$total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                                    
+                                    </ul>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
   </div>
