@@ -89,64 +89,6 @@ $type="index";
                     </div>
                 </div>
             </div>
-            <!-- #END# Widgets -->
-            
-            <!-- CPU Usage -->
-            
-            <!-- #END# CPU Usage -->
-           
-            <div class="row clearfix">
-                
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="body bg-cyan">
-                            <div class="m-b--35 font-bold">LATEST TRENDS</div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    #socialtrends
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>
-                                    #materialdesign
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>#adminbsb</li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Latest Social Trends -->
-                <!-- Answered Tickets -->
-                
-                <div class="col-xs-14 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="body bg-teal">
-                            <div class="font-bold m-b--35">TOP CONTENT CREATORS</div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    <div class="image">
-                                                image controls
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4>user name</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 14 mins ago
-                                                </p>
-                                            </div>  
-                                </li>
-                        </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Answered Tickets -->
-            </div>
-            <div class="row clearfix">
-            </div>
         </div>
     </section>
 <?php

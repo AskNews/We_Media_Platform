@@ -25,8 +25,9 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <textarea rows="4" name="message" class="form-control" placeholder="Please type what you want..."></textarea>
+                                    <textarea rows="4" name="message" value="<?php echo @$_POST['message']?>" class="form-control" placeholder="Please type what you want..."></textarea>
                                 </div>
+                                <span class="error"><?php echo @$err;?></span>
                             </div>
                         </div>
                     </div>

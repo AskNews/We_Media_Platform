@@ -156,7 +156,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="[a-zA-Z]+" class="form-control" id="txtaccountHname" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtaccountHname'];}else{echo $row["account_holder_name"];} ?>"  name="txtaccountHname" placeholder="Account Holder Name">
+                                                        <input type="text"  class="form-control" id="txtaccountHname" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtaccountHname'];}else{echo $row["account_holder_name"];} ?>"  name="txtaccountHname" placeholder="Account Holder Name">
                                                     </div>
                                                     <span class="error"><?php echo @$error_holderName; ?></span>
                                                 </div>
@@ -178,7 +178,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$" class="form-control"  id="txtIfsc" name="txtIfsc"   value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtIfsc'];}else{echo $row["ifsc_code"];} ?>" placeholder="IFSC Code">
+                                                        <input type="text" pattern="" class="form-control"  id="txtIfsc" name="txtIfsc"   value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtIfsc'];}else{echo $row["ifsc_code"];} ?>" placeholder="IFSC Code">
                                                     </div>
                                                     <span class="error"><?php echo @$error_ifsc; ?></span>
                                                 </div>
@@ -203,6 +203,5 @@
                 </div>
                 <?php } ?>
             </div>
-          
         </div>
 </section>

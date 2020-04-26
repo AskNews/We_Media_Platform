@@ -35,8 +35,10 @@ include "engine/engine.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="layout/scripts/responsiveslides.js-v1.53/responsiveslides.css" rel="stylesheet" type="text/css" media="all">
+<style>
+    .error{color:red;}
+</style>
 </head>
-
 <body class="">
 <div class="wrapper row1">
   <header id="header" class="full_width clear">

@@ -58,6 +58,7 @@ $fl=$fl['follower'];
 
 
 $i_count=mysqli_query($con,"select index_point as ip from tbl_content_creator where id=".$creatorid);
+//echo "select index_point as ip from tbl_content_creator where id=".$creatorid;
 $index=mysqli_fetch_array($i_count);
 $index=$index['ip'];
 
@@ -206,7 +207,7 @@ function convertToComa( str1 ) {
                                         </div>
                                         <div class="menu-info">
                                             <h4><?php echo $noti_count." New Notification";?></h4>
-                                            
+         
                                         </div>
                                     </a>
                                 </li>

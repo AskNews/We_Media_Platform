@@ -14,9 +14,14 @@ If we find that a post does violate our content policies, we take one or more of
 
 5) Report the user to law enforcement.
 
+<<<<<<< HEAD
+We may also take any of the above actions if we find that a user has created multiple posts engaging in repeated abusive behavior.
+a
+=======
  We may also take any of the above actions if we find that a user has created multiple posts engaging in repeated abusive behavior.
 
 Note :- if creators monitization is enabled then it's daily post limit is set 3 else limit is 1.
+>>>>>>> 0862aeb0e4ffab4970a25d74a82146c7a04f35b2
 
 #################Monitization Approval Requirements####################
 The system will calculate if all of the requirements for the benefit are met. If yes, then you can manually apply for it.
