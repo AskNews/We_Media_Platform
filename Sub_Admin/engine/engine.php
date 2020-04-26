@@ -7,7 +7,7 @@ $query="";
       @$page1=0;
   }
   else
-  {
+  { 
       @$page1=($page*5)-5;
   }
   if($type=="news"){
@@ -139,7 +139,7 @@ function update($b){
 function approve(){
   global $con,$error,$select,$type,$success;
   $id1=$_GET['AccountApproval'];
-	$sql="update tbl_$type set AccountApproval=!AccountApproval WHERE Creatorid='$id1'";
+	$sql="update tbl_$type set AccountApproval=!AccountApproval WHERE id='$id1'";
 	$query=mysqli_query($con,$sql);
 	if($query){
   $success=ucfirst($type)." Account has been Approved successfully.";
@@ -229,56 +229,8 @@ if(isset($_GET['edit'])){
   
 
 	//check existing folder and create new one
-  if($type=="picture"){
-  if(!is_dir($imgPath.$_POST['gallery_id'])){
-    
-		@mkdir(@$imgPath.$_POST['gallery_id']);
-    }
   
-	//working for image
-	if(isset($image['name'])&&!empty($image['name'])){
-		
-    compressImage($_FILES['image']['tmp_name'],$imgPath.$_POST['gallery_id']."/".$newfilename,60);
-    
-		if($imageName!=""){
-			//to remove old image from directory
-			@unlink($imgPath.$gallery_id."/".$imageName);
-     
-    }  
-  }
- $a=array(
-      array('gallery_id',$_POST['gallery_id']),
-      array('caption',$_POST['caption']),
-      array('image',$newfilename),
-      array('c_date',$_POST['dat']),
-      array('status',$_POST['status']));
-     update(5);
-    
-  }
-
-  if($type=="gallery"){
-   $a=array(
-    array('title',$_POST['title']),
-    array('url',$_POST['url']),
-    array('seo_title',$_POST['seo_title']),
-    array('seo_desc',$_POST['seo_desc']),
-    array('location',$_POST['location']),
-    array('c_date',$_POST['dat']),
-    array('status',$_POST['status']));
-    update(7);
  
-  }
-  if($type=="categories"){
-     $a=array(
-     array('title',$_POST['title']),
-     array('url',$_POST['url']),
-     array('seo_title',$_POST['seo_title']),
-     array('seo_desc',$_POST['seo_desc']),
-     array('c_date',$_POST['dat']),
-     array('status',$_POST['status']));
-      update(6);
-    
-     }
      if($type=="feedback"){
       $a=array(
         array('module_user_id',$data['id']),
@@ -287,28 +239,6 @@ if(isset($_GET['edit'])){
      
       }
    
-  if($type=="slideshow"){
-    //working for image
-	if(isset($image['name'])&&!empty($image['name'])){
-		
-    compressImage($_FILES['image']['tmp_name'],$imgPath.$newfilename,60);
-    
-		if($imageName!=""){
-			//to remove old image from directory
-			@unlink($imgPath.$imageName);
-      
-    }  
-  }
-      $a=array(
-      array('caption',$_POST['caption']),
-      array('orderby',$_POST['orderby']),
-      
-      array('image',$newfilename),
-        array('c_date',$_POST['dat']),
-        array('status',$_POST['status']));
-         update(5);
-     
-  }
   
   
 }
@@ -322,18 +252,9 @@ if(isset($_POST['search'])){
 else{
   $searchkey = $_POST['keyword'];
   if($type=="picture" || $type=="slideshow"){
-    $sql="select * from tbl_$type where caption like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
+    $sql="select * from tbl_$type where caption like '%$searchkey%' or id like '%$searchkey%'";
     }
-    if($type=="gallery" || $type=="categories"){
-      $sql="select * from tbl_$type where title like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
-      }
-      if($type=="qna"){
-        $sql="select * from tbl_$type where question like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
-        }
-        if($type=="feedbcak"){
-          $sql="select * from tbl_$type where subject like '%$searchkey%' or message like '%$searchkey%' or id like '%$searchkey%' and deletion='1'";
-          }
-            
+  
 }
 }else{
   $sql=$select;

@@ -2,7 +2,7 @@
 $type="news";
 include 'includes/header.php';
 $user=@$_SESSION['newViewerLogin'];
-$uid=$_SESSION['id'];
+$uid=@$_SESSION['id'];
 //mysqli_query($con,"insert into tbl_recent(user,news_id) values('".$user."','".$res_view['id']."')");
 $sql_ad=mysqli_query($con,"SELECT * FROM tbl_adunit where status='1' ORDER BY RAND ( )  LIMIT 1");
 $row=mysqli_fetch_array($sql_ad);
@@ -167,7 +167,7 @@ $(document).ready(function(){
           location.reload();
         }
       });
-  })
+  }) 
 });
 </script>
 <?php
