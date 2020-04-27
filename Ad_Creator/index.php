@@ -3,86 +3,67 @@ $type="index";
 include 'includes/header.php';
 ?>
 <?php
-echo $type;
+$qry_ttl_ad=mysqli_query($con,"select count(ad_id) as ttl_ad from tbl_adunit where approve=1  and ad_creator_id=".$creatorid);
+$qry_ttl_pen_ad=mysqli_query($con,"select count(ad_id) as ttl_pen_ad from tbl_adunit where approve=0  and ad_creator_id=".$creatorid);
+$ttl_ad=mysqli_fetch_array($qry_ttl_ad);
+$ttl_ad=$ttl_ad['ttl_ad'];
+$ttl_pen_ad=mysqli_fetch_array($qry_ttl_pen_ad);
+$ttl_pen_ad=$ttl_pen_ad['ttl_pen_ad'];
 ?>
- <div class="main-content">
- <div class="container">
-<div class="row m-t-25">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i   class="fa fa-text-height" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>10</h2>
-                                                <span>Total Advertisements</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c2">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i  class="fa fa-eye" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>0</h2>
-                                                <span>Viewers</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart2"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c3">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i  class="fa fa-clock-o" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>2</h2>
-                                                <span>Pendding Advertisements</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart3"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c4">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i  class="fa fa-inr" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>5000</h2>
-                                                <span>Balance</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart4"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-     </div>
-     </div>
+<div class="main-content">
+<div class="container">
+<section class="statistic statistic2">                
+    <div class="row">
+    
+    <div class="col-md-6 col-lg-3">
+            <div class="statistic__item statistic__item--blue">
+                <h2 class="number"><?php echo $ttl_ad; ?></h2>
+                <span class="desc">Total Ads</span>
+                <div class="icon">
+                    <i class=""></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="statistic__item statistic__item--red">
+                <h2 class="number"><?php echo $ttl_pen_ad; ?></h2>
+                <span class="desc">Total Pending Ads</span>
+                <div class="icon">
+                    <i class=""></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="statistic__item statistic__item--green">
+                <h2 class="number"><?php echo $lifetime_amt; ?></h2>
+                <span class="desc">Total Lifetime Deposite Amount</span>
+                <div class="icon">
+                    <i class="zmdi zmdi-money"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="statistic__item statistic__item--orange">
+                <h2 class="number"><?php echo $spend_amt; ?></h2>
+                <span class="desc">Total Spend Amount</span>
+                <div class="icon">
+                    <i class="zmdi zmdi-money"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="statistic__item statistic__item--green">
+                <h2 class="number"><?php echo $wal_amt; ?></h2>
+                <span class="desc">Current Wallet Amount</span>
+                <div class="icon">
+                    <i class="zmdi zmdi-money"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>                          
+</div>
+</div>
 <?php
 include 'includes/footer.php';
 ?>

@@ -196,11 +196,9 @@ if(isset($_POST['btnAdAmount']))
   }
 }
 
-
 //_______________________________________search news____________________________________
 if(isset($_POST["btn_search"]))
 {
-  
   $a=$_POST["keyword"];
   $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid." and unit_name like '%$a%' or u_date='".$a."' or publish_date='".$a."' or view='".$a."' or status='".$a."'";
   $result_ad=mysqli_query($con,$select_ad);
