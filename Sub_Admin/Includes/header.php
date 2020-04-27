@@ -114,7 +114,7 @@ function convertToComa( str1 ) {
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><?php echo $data['user_name'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="profile.php"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="logout.php"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -138,31 +138,25 @@ function convertToComa( str1 ) {
 					<?php
 					if($_SESSION['role']==0){
 					?>
-					<li><a href="content_creator.php" <?php echo $type == "content_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Content Creator</span></a></li>
-					<li><a href="news.php" <?php echo $type == "news"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span> News</span></a></li>
+					<li><a href="content_creator.php" <?php echo $type == "content_creator"?'class="active"':'';?>><i class="fa fa-users"></i> <span>Content Creator</span></a></li>
+					<li><a href="news.php" <?php echo $type == "news"?'class="active"':'';?>><i class="fa fa-newspaper-o"></i> <span> News</span></a></li>
+					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="fa fa-commenting"></i> <span>Feedback</span></a></li>
+					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="fa fa-question-circle-o"></i> <span>QNA</span></a></li>
 					
 					<?php
 					}else{
 					?>	
-					<li><a href="ad_creator.php" <?php echo $type == "ad_creator"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Ad Creator</span></a></li>
-					<li><a href="ads.php" <?php echo $type == "ads"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Ads</span></a></li>
 					
-					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>Feedback</span></a></li>
-					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="lnr lnr-home"></i> <span>QNA</span></a></li>
+					<li><a href="ad_creator.php" <?php echo $type == "ad_creator"?'class="active"':'';?>><i class="fa fa-users"></i> <span>Ad Creator</span></a></li>
+					<li><a href="ads.php" <?php echo $type == "ads"?'class="active"':'';?>><i class="fa fa-adn"></i> <span>Ads</span></a></li>
+					
+					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="fa fa-commenting"></i> <span>Feedback</span></a></li>
+					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="fa fa-question-circle-o"></i> <span>QNA</span></a></li>
 					
 					<?php
 					}
 					?>
-                        <li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="page-profile.html" class="">Profile</a></li>
-									<li><a href="page-login.html" class="">Login</a></li>
-									<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-								</ul>
-							</div>
-						</li>
+                       
 					</ul>
 				</nav>
 			</div>

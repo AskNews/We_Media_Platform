@@ -49,14 +49,15 @@
       </ul>
     </div>
     <div class="one_quarter">
-      <h2 class="footer_title">From Twitter</h2>
+      <h2 class="footer_title">Top Content Creator</h2>
       <div class="tweet-container">
         <ul class="list none">
-          <li><strong>@<a href="#">name</a></strong> <span class="tweet_text">RT <span class="at">@</span><a href="#">name</a> Donec suscipit vehicula turpis sed lutpat Quisque vitae quam neque.</span> <span class="tweet_time"><a href="#">about 9 hours ago</a></span></li>
-          <li><strong>@<a href="#">name</a></strong> <span class="tweet_text">RT <span class="at">@</span><a href="#">name</a> Donec suscipit vehicula turpis sed lutpat Quisque vitae quam neque.</span> <span class="tweet_time"><a href="#">about 9 hours ago</a></span></li>
-          <li><strong>@<a href="#">name</a></strong> <span class="tweet_text">RT <span class="at">@</span><a href="#">name</a> Donec suscipit vehicula turpis sed lutpat Quisque vitae quam neque.</span> <span class="tweet_time"><a href="#">about 9 hours ago</a></span></li>
-          <li><strong>@<a href="#">name</a></strong> <span class="tweet_text">RT <span class="at">@</span><a href="#">name</a> Donec suscipit vehicula turpis sed lutpat Quisque vitae quam neque.</span> <span class="tweet_time"><a href="#">about 9 hours ago</a></span></li>
-        </ul>
+        <li><strong>@<a href="#">Avinash</a></strong> <span class="tweet_text">Channel Name <span class="at">@</span><a href="#">AviWeb</a> </span> </li>
+          <li><strong>@<a href="#">Priyanka</a></strong> <span class="tweet_text">Channel Name <span class="at">@</span><a href="#">Web Tech</a> </span> </li>
+          
+          <li><strong>@<a href="#">Shabnam</a></strong> <span class="tweet_text">Channel Name <span class="at">@</span><a href="#">Tech Talk</a> </span> </li>
+          <li><strong>@<a href="#">Jaimin</a></strong> <span class="tweet_text">Channel Name <span class="at">@</span><a href="#">Knowledge</a> </span> </li>
+           </ul>
       </div>
     </div>
     <?php
@@ -64,7 +65,7 @@
     <div class="one_quarter">
       <h2 class="footer_title">Contact Us</h2>
       <form class="rnd5" action="<?php  echo $_SERVER["PHP_SELF"]; ?>" method="post">
-      <?php $uid=$_SESSION['id']; ?>
+      <?php @$uid=$_SESSION['id']; ?>
       <input type="hidden" name="user_id" value="<?php echo $uid; ?>">
         <div class="form-input clear">
           <label for="ft_author">Name <span class="required">*</span><br>
@@ -107,5 +108,3 @@
 </body>
 </html>
 
-
-$sql="select * from tbl_news where Status ='1' and Approved='1' and CreatorID=".$_GET['id']." order by PublishDate desc ";

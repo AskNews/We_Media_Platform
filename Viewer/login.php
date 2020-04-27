@@ -46,9 +46,7 @@ if(isset($_SESSION['newViewerLogin']))
           <a href="register.php">Forget Password...?</a>
         </div>
       </div>    
-          <div class="one_half">
-            <img src="images/demo/logo1.png">
-          </div>
+         
         </section>
       </div>
     </div>

@@ -1,1 +1,0 @@
-setttings table

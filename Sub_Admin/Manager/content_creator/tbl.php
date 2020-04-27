@@ -1,5 +1,4 @@
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-<button type="submit" class="btn btn-success" name="create"><i class="fa fa-plus-square">&nbsp; Create New <?php echo ucfirst($type);?></i></button>
            <br><br>             <div class="input-group">
 							<input class="form-control" type="text" name="keyword">
 							<span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search">Search!</button></span>
