@@ -11,6 +11,8 @@ $wal_amt=0;
 $cvv=0;
 $card=0;
 $approve=0;
+$lifetime_amt=0;
+$spend_amt=0;
 include "../Super_Admin/includes/dbconfig.php";
 
 $sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' and status=1";
@@ -25,6 +27,8 @@ if(isset($_SESSION['ad_creator_uname']))
         $_SESSION['ad_creator_profile']=$data["profile_image"];
         $creatorid=$data["ad_creator_id"];
         $wal_amt=$data['wallet'];
+        $lifetime_amt=$data['lifetime_amount'];
+        $spend_amt=$data['spend_amount'];
         $cvv=$data['cvv_number'];
         $card=$data['card_number'];
         $approve=$data['approval'];
@@ -151,6 +155,10 @@ include "engine/engine.php";
                             </ul>
                         </li>
 
+                        <li <?php echo $type == "wallet"?'class="active"':'';?>>
+                            <a href="wallet.php?wallet">
+                                <i class="fas fa-rupee"></i>Wallet</a>
+                        </li>
 
                         <li <?php echo $type == "feedback"?'class="active"':'';?>>
                             <a  href="feedback.php?feedback">

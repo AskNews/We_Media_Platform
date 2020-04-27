@@ -6,10 +6,8 @@ $type="index";
         <div class="container-fluid">
             <div class="block-header">
                 <h3>DASHBOARD</h3>
-            <!-- Widgets -->
             <br/>
             <div class="row clearfix">
-                
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box hover-zoom-effect">
                         <div class="icon bg-pink">
@@ -42,8 +40,7 @@ $type="index";
                             <div class="number count-to" data-from="0" data-to="<?php echo $bal; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
-                </div>
-				
+                </div>		
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box hover-zoom-effect">
                         <div class="icon bg-lime">
@@ -85,6 +82,34 @@ $type="index";
                         <div class="content">
                             <div class="text">TOTAL LIKES</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo $t_like; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h2>NEWS FLOW</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div id="graph">
+                            <?php 
+                            // $chart=mysqli_query($con,"select * from tbl_news where status=1 and CreatorID=".$creatorid." order by PublishDate"); 
+                            echo "select * from tbl_news where status=1 and CreatorID=".$creatorid." order by PublishDate";
+                            ?>
+                            <script>
+                            Morris.Bar({ element: 'graph', 
+                            data: <?php echo $data; ?> , 
+                            xkey: 'year' ,
+                            ykeys: ['purchase', 'sale', 'profit'] , 
+                            labels: ['Purchase', 'Sale', 'Profit'] }); 
+                            </script>
+                            </div>
                         </div>
                     </div>
                 </div>
