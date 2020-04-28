@@ -39,6 +39,10 @@ $noti=mysqli_query($con,"select count(id) as c from tbl_notification where role=
 $noti_count=mysqli_fetch_array($noti);
 $noti_count=$noti_count['c'];
 
+//count total ads
+$n_count=mysqli_query($con,"select count(id) as ads from tbl_adunit where ad_creator_id=".$creatorid);
+$ads=mysqli_fetch_array($n_count);
+$ads=$ads['ads'];
 include "engine/engine.php";
 ?>
 
@@ -54,6 +58,8 @@ include "engine/engine.php";
 
     <!-- Title Page-->
     <title>Welcome To Asknews</title>
+    <!-- Favicon-->
+    <link rel="images" href="images/icon.png" type="image/x-icon">
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -111,83 +117,19 @@ include "engine/engine.php";
         <aside class="menu-sidebar2">
         <div class="logo">
                     <a href="#">
-                        <img src="images/icon/logo-white.png" alt="Cool Admin" />
+                       <p style="Color:White;font-size:150%;">Ad Creator</p>
                     </a>
                 </div>
         <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">
-                    <div class="image img-cir img-120">
+                    <div class="image img-cir img-100">
                         <img src="img/<?php echo $_SESSION['ad_creator_profile']?>" alt="no image" />
                     </div>
                     <h4 class="name"><?php echo $_SESSION['ad_creator_uname']?></h4>
-                    <a href="logout.php">Sign out</a>
+                  
                 </div>
-<<<<<<< HEAD
-            </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub"<?php echo $type == "index"?'class="active"':'';?>>
-                            <a class="js-arrow" href="index.php">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fas fa-desktop"></i>Ad Unit</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="adunit.php">Create New Ad</a>
-                                </li>
-                                <li>
-                                    <a href="manage_ad_unit.html">Manage Ad Unit</a>
-                                </li>
-                               
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fas fa-desktop"></i>Ad Unit Balance</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="create_ad.php">Account Balance</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub" <?php echo $type == "feedback"?'class="active"':'';?>>
-                            <a class="js-arrow" href="feedback.php?feedback">
-                                <i class="fas fa fa-commenting"></i>Feedback</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="qna.php">
-                                <i class="fas fa fa-comments"></i>QNA</a>
-                        </li>
-                        <li class="has-sub" <?php echo $type == "noti"?'class="active"':'';?>>
-                            <a class="js-arrow" href="notification.php?noti">
-                                <i class="fas fa fa-bell"></i>Notification</a>
-                        </li>
-                        <li class="has-sub"  <?php echo $type == "rules"?'class="active"':'';?>>
-                            <a class="js-arrow" href="rules.php?rules">
-                                <i class="fas fa fa-gavel"></i>Rules</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- END HEADER MOBILE-->
-
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/logo.png" alt="Cool Admin">
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1 ps">
-                <nav class="navbar-sidebar">
-=======
                 <nav class="navbar-sidebar2">
                     
->>>>>>> e6e3eba21bebe2482ab572dc8fcaa86fd714c84f
                     <ul class="list-unstyled navbar__list">
 
                         <li <?php echo $type == "index"?'class="active"':'';?>>

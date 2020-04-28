@@ -141,7 +141,7 @@
                if(mysqli_query($con,$query))
                {
                   move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
-                 echo "<sript>alert('Insert Success')</sript>";
+                  echo "<script>alert('REgister Successfully...:)');</script>";
                   header("location:login.php");
                }
            }

@@ -27,9 +27,8 @@ $result_noti=mysqli_query($con,$select_noti);
 $sql1=mysqli_query($con,"select * from tbl_$type ");
 @$total_ad_rec=mysqli_num_rows($sql1);
 
-$total_ad_pages=ceil($total_news_rec/5);  
+$total_ad_pages=ceil($total_ad_rec/5);  
 $last_ad=$total_ad_pages-1;
-=======
 //$total_ad_pages=ceil($total_news_rec/5);  
 //$last_ad=$total_news_pages-1;
 
@@ -222,7 +221,7 @@ if(isset($_GET['d']))
   $query=mysqli_query($con,$sql);
   $update=mysqli_fetch_assoc($query);
 }
-//____________________________filter news_________________
+//____________________________filter ad_________________
 if(isset($_POST["btn_filter"]))
 {
   $temp="";
