@@ -132,7 +132,7 @@ if(isset($_POST['submit']))
         {
             $password=md5($_POST["password"]);
             $joindate=date('m/d/Y ', time());
-            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,join_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$joindate')";
+            $query="insert into tbl_content_creator(username,email,mobile,password,channel_logo,c_date) values('$_POST[username]','$_POST[email]','$_POST[mobile]','$password','$filename','$joindate')";
             if(mysqli_query($con,$query))
             {
                move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);

@@ -52,7 +52,7 @@ $comment_qry=mysqli_query($con,"select count(c.id) as comment from tbl_comment c
 $comment_count=mysqli_fetch_array($comment_qry);
 $comment=$comment_count['comment'];
 
-$select_news="select * from tbl_news where CreatorID=".$creatorid."  order by PublishDate desc limit $page1,5";
+$select_news="select * from tbl_news where CreatorID=".$creatorid." and approved=1 order by PublishDate limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
 
 $select_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid order by postdate desc limit $page1,5 ";
@@ -78,7 +78,7 @@ $result_transaction=mysqli_query($con,$select_transaction);
 
 //---------------paging news ------------------
 
-$sql1=mysqli_query($con,"select * from tbl_$type ");
+$sql1=mysqli_query($con,"select * from tbl_$type where approved=1 and CreatorID=$creatorid");
 @$total_news_rec=mysqli_num_rows($sql1);
 $total_news_pages=ceil($total_news_rec/5);  
 $last_news=$total_news_pages-1;
@@ -86,21 +86,22 @@ $last_news=$total_news_pages-1;
 
 //---------------paging transaction ------------------
 
-$sql_transaction=mysqli_query($con,"select * from tbl_$type ");
+
+$sql_transaction=mysqli_query($con,"select * from tbl_$type where content_creator_id=$creatorid ");
 @$total_transaction_rec=mysqli_num_rows($sql_transaction);
 $total_transaction_pages=ceil($total_transaction_rec/5);  
 $last_transaction=$total_transaction_pages-1;
 
 //---------------paging notification ------------------
 
-$sql_noti=mysqli_query($con,"select * from tbl_$type ");
+$sql_noti=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=$creatorid ");
 @$total_rec=mysqli_num_rows($sql_noti);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;
 
 //---------------paging feedback ------------------
 
-$sql_feed=mysqli_query($con,"select * from tbl_$type where role=0");
+$sql_feed=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=$creatorid");
 @$total_rec_feed=mysqli_num_rows($sql_feed);
 $total_pages_feed=ceil($total_rec_feed/5);  
 $last_feed=$total_pages_feed-1;
@@ -124,6 +125,7 @@ $total_pages_spam_com=ceil($total_rec_spam_com/5);
 $last_spam_com=$total_pages_spam_com-1;
 
 @$headLine=$_POST["newsheadline"];
+@$cat=$_POST['category'];
 @$url=$_POST["url"];
 @$seoTitle=$_POST["seotitle"];
 @$seoDes=$_POST["seodes"];
@@ -188,6 +190,7 @@ if(isset($_POST['add_'.$type.'']))
       //echo $sql;
       if($qry){
         $success=ucfirst($type). " Created Success";
+        echo "<script>alert('news inserted..:)');</script>";
       move_uploaded_file($_FILES['file']['tmp_name'],$imgPath."/".$newfilename);
       cleardata();
       }else{
