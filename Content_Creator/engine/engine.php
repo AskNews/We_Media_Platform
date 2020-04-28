@@ -638,19 +638,21 @@ if(isset($_POST['btn_send']))
     }
     $topic=$_POST['category'];
     $message=$_POST['message'];
-    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+    $sql="insert into tbl_feedback(user_id,subject,message,role,file) values('$creatorid','$topic','$message','0','$newfilename')";
     //echo $sql;
 
-	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+	//echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
 
-  echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
+  //echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
   if(!empty($message))
   {
     $qry=mysqli_query($con,$sql);
     if($qry){
       $success=ucfirst($type). " Created Success";
+      echo "<script>alert('feedback send..:)')</script>";
     cleardata();
     }else{
+      echo "<script>alert('feedback not send..:(')</script>";
         $warning=ucfirst($type). " Not Created".mysqli_error($con);
     }
   }
@@ -666,14 +668,14 @@ if(isset($_POST['transaction']))
 	$e_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 	$e=mysqli_fetch_array($e_qry);
 	$e=$e['e'];
-	if($e>=500 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
+	if($e>=300 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
 	{
 		$u_qry=mysqli_query($con,"update tbl_content_creator set earnings=earnings-".$_POST['amount'].", 
 		life_time_withdraw_amt=life_time_withdraw_amt+".$_POST['amount']." where id=".$creatorid."");
 		$bal_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 		$bal=mysqli_fetch_array($bal_qry);
 		$bal=$bal['e'];
-		$t_qry=mysqli_query($con,"insert into tbl_transaction(content_creator_id ,withdraw_amt,c_date,balance) values(".$creatorid.",'".$_POST['amount']."','".$date."','".$bal."')");
+		$t_qry=mysqli_query($con,"insert into tbl_transaction(content_creator_id ,withdraw_amt,balance) values(".$creatorid.",'".$_POST['amount']."','".$bal."')");
 		if($u_qry && $t_qry)
 		{
 			echo "<script>alert('amount transfer successfully...:)');</script>";

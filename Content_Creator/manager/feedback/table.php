@@ -47,8 +47,7 @@
                         <tr>
                         <td><?php echo $row['subject'] ?></td>
                         <td><?php echo substr($row['c_date'],0,10) ?></td>
-                        <td><img src="<?php echo "img/".$row['file'];?>" height="100px" widht="100px" ></td>
-                        <!--<td></td>-->
+                        <?php if($row['file']!=null) { ?><td><img src="<?php echo "img/".$row['file'];?>" height="100px" widht="100px" > </td><?php }  else{ ?> <td>no files</td><?php } ?>
                         <td>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="body">

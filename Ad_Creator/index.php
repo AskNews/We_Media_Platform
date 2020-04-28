@@ -85,7 +85,7 @@ $ttl_pen_ad=$ttl_pen_ad['ttl_pen_ad'];
                             WHEN month(publish_date)=10 THEN 'Octuber'
                             WHEN month(publish_date)=11 THEN 'November' 
                             WHEN month(publish_date)=12 THEN 'December' 
-                            END) AS Month from tbl_adunit ) AS Result where approve=1 and ad_creator_id=".$creatorid." GROUP BY Month");
+                            END) AS Month from tbl_adunit ) AS Result where approve=1 and ad_creator_id=".$creatorid." GROUP BY Month order by month(publish_date)");
                         $arr=array();
                         while($row=mysqli_fetch_array($chart_qry))
                         {
