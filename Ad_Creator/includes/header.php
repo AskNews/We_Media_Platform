@@ -58,7 +58,7 @@ include "engine/engine.php";
 
     <!-- Title Page-->
     <title>Welcome To Asknews</title>
-
+    <link rel="icon" href="../icon.png" type="image/x-icon">
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -115,7 +115,7 @@ include "engine/engine.php";
         <aside class="menu-sidebar2">
         <div class="logo">
                     <a href="#">
-                        <img src="images/icon/logo-white.png" alt="Cool Admin" />
+                        <img src="../logo.png" style="height:100%;width:140%;border:3px solid black;" />
                     </a>
                 </div>
         <div class="menu-sidebar2__content js-scrollbar1">

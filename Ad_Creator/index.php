@@ -14,8 +14,7 @@ $ttl_pen_ad=$ttl_pen_ad['ttl_pen_ad'];
 <div class="container">
 <section class="statistic statistic2">                
     <div class="row">
-    
-    <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3">
             <div class="statistic__item statistic__item--blue">
                 <h2 class="number"><?php echo $ttl_ad; ?></h2>
                 <span class="desc">Total Ads</span>
@@ -105,13 +104,12 @@ $ttl_pen_ad=$ttl_pen_ad['ttl_pen_ad'];
                             labels:['Ads Count']
                         });
                         </script>                            
-                                    </div>
-                                </div>
+                        </div>
+                        </div>
         </div>
         </div>
     </div>
-</section>
-                                
+</section>                              
 </div>
 </div>
 <?php
