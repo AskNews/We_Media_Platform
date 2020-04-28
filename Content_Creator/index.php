@@ -93,7 +93,7 @@ $type="index";
                     <div class="header">
                         <div class="row clearfix">
                             <div class="col-xs-12 col-sm-6">
-                                <h2>NEWS FLOW</h2>
+                                <h2>MONTH WISE NEWS </h2>
                             </div>
                         </div>
                     </div>

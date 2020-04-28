@@ -52,7 +52,7 @@ $comment_qry=mysqli_query($con,"select count(c.id) as comment from tbl_comment c
 $comment_count=mysqli_fetch_array($comment_qry);
 $comment=$comment_count['comment'];
 
-$select_news="select * from tbl_news where CreatorID=".$creatorid." and approved=1 order by PublishDate limit $page1,5";
+$select_news="select * from tbl_news where CreatorID=".$creatorid." order by PublishDate limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
 
 $select_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid order by postdate desc limit $page1,5 ";
@@ -433,11 +433,13 @@ function Updatestatus($id)
   $query=mysqli_query($con,$sql);
   if($query)
   {
-   echo "<script>alert('status updated..:)');</script>";
+    header("location:news.php");
+   //echo "<script>alert('status updated..:)');</script>";
    cleardata();
   }
   else
   {
+    //header("location:news.php");
     echo "<script>alert('status not updated..:)');</script>";
     cleardata();
   }
