@@ -8,7 +8,7 @@
                                     <div class="table-data__tool-left">
                                         <div class="rs-select2--light rs-select2--md">
                                         <label>Show </label>
-                                        <select name="newsType" aria-controls="DataTables_Table_0" class="form-control show-tick">
+                                        <select name="adType" aria-controls="DataTables_Table_0" class="form-control show-tick">
                                 <option class="wmp-input" <?php if(isset($_POST["newsType"]) && ($_POST['newsType']=="")) {echo "selected";} ?> value="">--Select--</option>
                                 <option class="wmp-input" <?php if(isset($_POST["newsType"]) && ($_POST['newsType']==4)) {echo "selected";} ?> value="4">Approved</option>
                                 <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==0)) {echo "selected";} ?> value="0">Pending</option>
@@ -18,7 +18,7 @@
 								</select> 
                                             <div class="dropDownSelect2"></div>
                                         </div>
-                                        <button class="au-btn-filter" name="btn_filter" id="submit" type="submit">
+                                        <button class="au-btn-filter" name="btn_filter" type="submit">
                                             <i class="zmdi zmdi-filter-list"></i>filters</button>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     {?>
                                             <tr role="row" class="tr-shadow">
                                             <td style="width: 150px;"><?php echo wordwrap($row['unit_name'],35,"<br>")?></td>
-                                <td style="width: 80px;"><img src="<?php echo "img/".$row['file_attach'];?>" height="100px" width="80px" > </td>
+                                <td><img src="<?php echo "img/".$row['file_attach'];?>" height="100px" width="100px" > </td>
                                 <td><?php echo substr($row['u_date'],0,10)?></td>
                                 <?php if($row["approve"]==1 && $row['offline']==0 && ($row['rejected']==0 || $row['rejected']==1)){ ?>
                                             <td><?php echo $row['publish_date'];?></td>
