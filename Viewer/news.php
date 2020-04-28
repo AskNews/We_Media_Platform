@@ -2,13 +2,12 @@
 $type="news";
 include 'includes/header.php';
 $user=@$_SESSION['newViewerLogin'];
-<<<<<<< HEAD
 $uid=@$_SESSION['id'];
 //mysqli_query($con,"insert into tbl_recent(user,news_id) values('".$user."','".$res_view['id']."')");
-=======
+
 @$uid=$_SESSION['id'];
 mysqli_query($con,"insert into tbl_recent(user,news_id) values('".$user."','".$res_view['id']."')");
->>>>>>> e6e3eba21bebe2482ab572dc8fcaa86fd714c84f
+
 $sql_ad=mysqli_query($con,"SELECT * FROM tbl_adunit where status='1' ORDER BY RAND ( )  LIMIT 1");
 $row=mysqli_fetch_array($sql_ad);
 ?>

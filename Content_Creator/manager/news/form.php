@@ -26,7 +26,7 @@
                                                 }
                                             }
                                                    ?>
-                                                    <option value="<?php echo $row['id'];  ?>" <?php if(@$update["CategoryID"]==$row["id"]){ echo "selected";}?> ><?php echo $row['title'];?></option>
+                                                    <option value="<?php echo $row['id'];  ?>" <?php if(@$update["CategoryID"]==$row["id"] || isset($_POST['category'])){ echo "selected";}?> ><?php echo $row['title'];?></option>
                                                 <?php
                                             }
                                             
@@ -39,35 +39,35 @@
                             <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">New Headline</label>
-                                        <input type="text" class="form-control" value="<?php echo @$update['HeadLine']; ?>" id="newsheadline" onkeyup="convertToSlug(this.value);convertToComa(this.value);" name="newsheadline" >
+                                        <input type="text" class="form-control" value="<?php echo @$update['HeadLine']; echo @$_POST['newsheadline']; ?>" id="newsheadline" onkeyup="convertToSlug(this.value);convertToComa(this.value);" name="newsheadline" >
                                     </div>
                                     <span id="error_headline" class="error"><?php if(isset($error_headline)){echo $error_headline;}?></span>
                             </div>
                             <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">Url</label>
-                                        <input type="text" class="form-control" id="url" value="<?php echo @$update['Url']; ?>" readonly="readonly"  name="url">
+                                        <input type="text" class="form-control" id="url" value="<?php echo @$update['Url']; echo @$_POST['url'] ?>" readonly="readonly"  name="url">
                                     </div>
                                     <span id="error_url" class="error"></span>
                             </div>
                             <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">SEO Title</label>
-                                        <input type="text" class="form-control"  name="seotitle" value="<?php echo @$update['SeoTitle']; ?>" readonly="readonly" id="seotitle">  
+                                        <input type="text" class="form-control"  name="seotitle" value="<?php echo @$update['SeoTitle']; echo @$_POST['seotitle']?>" readonly="readonly" id="seotitle">  
                                     </div>
                                     <span id="error_seo_title" class="error"></span>
                             </div>
                             <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">Summary</label>
-                                        <input type="text" class="form-control" name="summary" value="<?php echo @$update['Summary']; ?>" onkeyup="convertToComa1(this.value);" id="summary" >    
+                                        <input type="text" class="form-control" name="summary" value="<?php echo @$update['Summary']; echo @$_POST['summary'] ?>" onkeyup="convertToComa1(this.value);" id="summary" >    
                                     </div>
                                     <span id="error_summary" class="error"><?php if(isset($error_summary)){echo $error_summary;}  ?></span>
                             </div>
                             <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">SEO Description</label>
-                                        <input type="text" class="form-control" name="seodes"value="<?php echo @$update['SeoDescription']; ?>"  readonly="readonly"  id="seodes" >    
+                                        <input type="text" class="form-control" name="seodes" value="<?php echo @$update['SeoDescription']; echo @$_POST['seodes'] ?>"  readonly="readonly"  id="seodes" >    
                                     </div>
                                     <span id="error_seo_desc" class="error"></span>
                             </div>
@@ -84,7 +84,7 @@
                                            <!-- Ckeditor -->
                                         <script src="plugins/ckeditor/ckeditor.js"></script>
                                             <textarea name="editor1" id="editor1">
-                                            <?php echo @$update['Details']; ?>
+                                            <?php echo @$update['Details']; echo @$_POST['editor1'] ?>
                                             </textarea>
                                         <script>
                                             // Replace the <textarea id="editor1"> with a CKEditor
@@ -97,7 +97,7 @@
                             
                             <div class="row clearfix">
                                 <div class="col-sm-12">
-                                    <select class="form-control show-tick" value="<?php echo @$update['Status']; ?>" name='status'  id='status'>
+                                    <select class="form-control show-tick" value="<?php echo @$update['Status'];  echo @$_POST['status']?>" name='status'  id='status'>
                                         
                                         <option value="1">Active</option>
                                         <option value="0">In-Active</option>

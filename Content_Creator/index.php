@@ -115,11 +115,13 @@ $type="index";
                             WHEN month(PublishDate)=11 THEN 'November' 
                             WHEN month(PublishDate)=12 THEN 'December' 
                             END) AS Month from tbl_news ) AS Result where Approved=1 and CreatorID=".$creatorid." GROUP BY Month");
-                        $data=mysqli_fetch_array($chart_qry);
+                        
                         $arr=array();
-                        while($row=mysqli_fetch_array($chart_qry))
+                        $i=0;
+                        while($row=mysqli_fetch_assoc($chart_qry))
                         {
                             $arr[]=$row;
+                            
                         }
                         ?>
                         <script src='js/jquery.min.js'></script>
