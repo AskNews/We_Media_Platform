@@ -1,28 +1,13 @@
 
-        
+        <div class="container-fluid">
             <div class="row">
-            <div class="col-lg-4">
+                
                 <?php  $data="select * from tbl_ad_creator where ad_creator_id=".$creatorid;
                          $result=mysqli_query($con,$data);
                             while($row=mysqli_fetch_assoc($result)){ ?>
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title mb-3">Profile Card</strong>
-                        </div>
-                        <div class="card-body">
-                            <div class="mx-auto d-block">
-                                <img class="rounded-circle mx-auto d-block" src="<?php echo "img/".$row["profile_image"]; ?>" alt="Profile Iamge">
-                                <h5 class="text-sm-center mt-2 mb-1"><?php echo $row["username"];?></h5>
-                                <div class="location text-sm-center">
-                                    <i class="fa fa-map-marker"></i>Ad Creator
-                                </div>
-                            </div>
-                            <hr>
-                            
-                        </div>
-                    </div>
-                </div>		    
-						<div class="col-lg-8">
+                    
+                
+							<div class="col-lg-10">
 								<div class="card">
 									<div class="card-header">
 										<h4>Your Details</h4>
@@ -122,7 +107,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-lock"></i>
                                                     </div>
-                                                    <input type="password" id="NewPassword" value="<?php echo @$_POST['NewPassword'] ?>" placeholder="New-Password" title="Your password must contains alphanumeric character"  class="form-control" name="NewPassword">
+                                                    <input type="password" id="NewPassword" value="<?php echo @$_POST['NewPassword'] ?>" title="Your password must contains alphanumeric character" placeholder="New-Password"  class="form-control" name="NewPassword">
                                                 </div>
                                                 <span class="error"><?php echo @$error_pass;  ?></span>
                                             </div>
@@ -146,4 +131,4 @@
 										</div>
 									</div>
 								</div>
-							
+							</div>

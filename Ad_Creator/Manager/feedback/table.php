@@ -36,12 +36,13 @@
                                         <tr>
                                                 <td><?php echo $row['subject'] ?></td>
                                                 <td><?php echo $row['c_date'] ?></td>
-                                                <td><img src="<?php echo "img/".$row['file'];?>" height="100px" width="100px" ></td>
+                                                <?php if($row['file']!=null) { ?><td><img src="<?php echo "img/".$row['file'];?>" height="50px" widht="50px" > </td><?php }  else{ ?> <td>no files</td><?php } ?>
                                                 <td>
                                                     <div class="table-data-feature">
                                                     <a class="btn bg-cyan waves-effect m-b-15" data-toggle="collapse" data-target="#subject<?php echo $row['id']?>" aria-expanded="false" aria-controls="collapseExample">
                                                         <i class="fas fa-eye"></i>
                                                        </a>
+                                                       <br/>
                                                        <div class="collapse" id="subject<?php echo $row['id']?>">
                                                      <div class="well">
                                                      <?php echo $row['message'] ?>
