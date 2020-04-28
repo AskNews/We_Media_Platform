@@ -6,6 +6,7 @@ include_once "engine/engine.php";
 <div class="main-content">
 <div class="page-wrapper">
 <?php
+
 if($wal_amt>=100 && $cvv!=0 && $card!=0 && $approve==1 )
 {
     if(isset($_GET['form']))
