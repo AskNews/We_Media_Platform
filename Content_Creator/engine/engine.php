@@ -86,6 +86,7 @@ $last_news=$total_news_pages-1;
 
 //---------------paging transaction ------------------
 
+
 $sql_transaction=mysqli_query($con,"select * from tbl_$type ");
 @$total_transaction_rec=mysqli_num_rows($sql_transaction);
 $total_transaction_pages=ceil($total_transaction_rec/5);  
