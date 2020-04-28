@@ -1,10 +1,11 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                
                 <?php  $data="select * from tbl_ad_creator where ad_creator_id=".$creatorid;
                          $result=mysqli_query($con,$data);
                             while($row=mysqli_fetch_assoc($result)){ ?>
+<<<<<<< HEAD
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title mb-3">Profile Card</strong>
@@ -23,6 +24,11 @@
                     </div>
                 </div>
 							<div class="col-lg-8">
+=======
+                    
+                
+							<div class="col-lg-10">
+>>>>>>> e6e3eba21bebe2482ab572dc8fcaa86fd714c84f
 								<div class="card">
 									<div class="card-header">
 										<h4>Your Details</h4>
@@ -41,6 +47,7 @@
 												<div class="tab-pane fade show active" id="profile_settings" role="tabpanel" aria-labelledby="nav-home-tab">
                                                 <form action="" method="post" class="">
                                             <div class="form-group">
+                                            <br/><span>User Name</span>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-user"></i>
@@ -50,6 +57,7 @@
                                                 <span class="error"><?php echo @$error_username; ?></span>
                                             </div>
                                             <div class="form-group">
+                                            <span>Email</span>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-envelope"></i>
@@ -59,15 +67,17 @@
                                                 <span class="error"><?php echo @$error_email; ?></span>
                                             </div>
                                             <div class="form-group">
+                                            <span>Mobile Number</span>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-asterisk"></i>
+                                                        <i class="fa fa-phone-square"></i>
                                                     </div>
                                                     <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtmobile'];}else{echo $row["phone"];} ?>"  id="txtmobile" name="txtmobile" placeholder="Mobile" class="form-control">
                                                 </div>
                                                 <span class="error"><?php echo @$error_mobile; ?></span>
                                             </div>
                                             <div class="form-group">
+                                            <span>User Profile</span>
                                              <div class="input-group">
                                              <div class="input-group-addon">
                                                         <i class="fa fa-folder"></i>
@@ -76,6 +86,36 @@
                                                 </div>
                                                 <span class="error"><?php echo @$errorForFile; ?></span>
                                              </div>
+                                             <div class="form-group">
+                                             <span>CVV Number</span>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone-square"></i>
+                                                    </div>
+                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['cvv'];}else{echo $row["cvv_number"];} ?>"  id="cvv" name="cvv" placeholder="CVV  Number" class="form-control">
+                                                </div>
+                                                <span class="error"><?php echo @$error_cvv; ?></span>
+                                            </div>
+                                             <div class="form-group">
+                                             <span>Card Number</span>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone-square"></i>
+                                                    </div>
+                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['card'];}else{echo $row["card_number"];} ?>"  id="card" name="card" placeholder="Card  Number" class="form-control">
+                                                </div>
+                                                <span class="error"><?php echo @$error_card; ?></span>
+                                            </div>
+                                            <div class="form-group">
+                                            <span>Wallet Amount</span>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone-square"></i>
+                                                    </div>
+                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['wallet'];}else{echo $row["wallet"];} ?>"  id="wallet" name="wallet" placeholder="Wallet Amount" class="form-control">
+                                                </div>
+                                                <span class="error"><?php echo @$error_wallet; ?></span>
+                                            </div>
                                             <div class="form-actions form-group">
                                                 <button type="submit" name="update_profile" class="btn btn-success btn-sm">Update</button>
                                             </div>
@@ -86,7 +126,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-asterisk"></i>
+                                                        <i class="fa fa-lock"></i>
                                                     </div>
                                                     <input type="password" id="OldPassword" value="<?php echo @$_POST['OldPassword'] ?>" name="OldPassword" placeholder="Old-Password" class="form-control" required>
                                                 </div>
@@ -95,16 +135,20 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-asterisk"></i>
+                                                        <i class="fa fa-lock"></i>
                                                     </div>
+<<<<<<< HEAD
                                                     <input type="password" id="NewPassword" value="<?php echo @$_POST['NewPassword'] ?>" placeholder="New-Password" title="Your password must contains alphanumeric character"  class="form-control" name="NewPassword">
+=======
+                                                    <input type="password" id="NewPassword" value="<?php echo @$_POST['NewPassword'] ?>" title="Your password must contains alphanumeric character" placeholder="New-Password"  class="form-control" name="NewPassword">
+>>>>>>> e6e3eba21bebe2482ab572dc8fcaa86fd714c84f
                                                 </div>
                                                 <span class="error"><?php echo @$error_pass;  ?></span>
                                             </div>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-asterisk"></i>
+                                                        <i class="fa fa-lock"></i>
                                                     </div>
                                                     <input type="password" id="NewPasswordConfirm" name="NewPasswordConfirm" value="<?php echo @$_POST['NewPasswordConfirm'] ?>" placeholder="Confirm-new-password" class="form-control">
                                                 </div>

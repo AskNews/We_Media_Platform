@@ -1,12 +1,12 @@
 <form method="post" action="#" enctype="multipart/form-data" >
-<div class="col-lg-9">
+<div class="col-lg-10">
 <div class="card">
                                     <div class="card-header">
                                         <strong>SEND FEEDBACK</strong>
                                     </div>
                                     <div class="card-body card-block">
                                         <div class="form-group">
-                                              <a href="feedback.php?showfeed" role="buttton" class="btn btn-success  btn-lg" >SHOW FEEDBACK</a>
+                                              <a href="feedback.php?showfeed" role="buttton" class="btn btn-success  " >SHOW FEEDBACK</a>
                                             
                                             </div>
                                             <div class="form-group">

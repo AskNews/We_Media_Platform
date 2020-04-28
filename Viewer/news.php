@@ -75,7 +75,7 @@ $row=mysqli_fetch_array($sql_ad);
           <div class='like' style='margin-left:250px;margin-top:-90px'>
           <?php $qry=mysqli_query($con,"select * from tbl_like where viewer_id='".$uid."' and news_id='".$res_view['id']."'");
             $l_count=mysqli_query($con,"select count(id) as l from tbl_like where news_id in (select id from tbl_news where id=".$res_view['id'].")");
-            $t_like=mysqli_fetch_array($l_count);
+            $t_like=mysqli_fetch_array ($l_count);
             $t_like=$t_like['l'];
           ?>
           <input type='hidden' <?php echo mysqli_num_rows($qry)>0?'value="yes"':'value="no"'; ?> name='isLike' id='isLike' >

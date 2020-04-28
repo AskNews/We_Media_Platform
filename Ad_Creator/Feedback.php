@@ -14,11 +14,6 @@ include_once "engine/engine.php";?>
       {
         include "manager/$type/table.php";
       }
-    else
-    {
-      echo "<big>sorry... :(   <br/><a href=channel_setup.php?channelSetup>please set your channel</a></big>";
-    }
-  
 ?>
 </div>
 </div>

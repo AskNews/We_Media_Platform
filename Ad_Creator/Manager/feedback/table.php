@@ -1,5 +1,5 @@
 
-<div class="main-content">
+
      <div class="section__content section__content--p30">
          <div class="container-fluid">
             <div class="row">
@@ -19,9 +19,9 @@
                         </div>
                     </div>
                 </form>
-            </div>
-                            <div class="col-lg-10">
-                                <div class="table-responsive table--no-card m-b-30">
+            
+                            <div class="col-lg-12">
+                                <div class="table-responsive table-responsive-data2">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>

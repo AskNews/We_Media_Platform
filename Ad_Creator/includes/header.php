@@ -7,30 +7,29 @@ $warning=null;
 $success=null;
 $profile_image="";
 $uname="";
+$wal_amt=0;
+$cvv=0;
+$card=0;
+$approve=0;
 include "../Super_Admin/includes/dbconfig.php";
 
-
 $sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' and status=1";
-echo $sql;
 $query_details=mysqli_query($con,$sql);
 if(isset($_SESSION['ad_creator_uname']))
 {
-    echo "hello from session";
-    $sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' and status=1";
-    echo $sql;
+    $sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' or email='$_SESSION[ad_creator_uname]' and status=1";
     $query=mysqli_query($con,$sql);
-    //echo $query;
-   //$r=mysqli_fetch_array($query);
-   //print_r($r);
     while($data=mysqli_fetch_assoc($query))
     {
         $email=$data["email"];
         $_SESSION['ad_creator_profile']=$data["profile_image"];
         $creatorid=$data["ad_creator_id"];
+        $wal_amt=$data['wallet'];
+        $cvv=$data['cvv_number'];
+        $card=$data['card_number'];
+        $approve=$data['approval'];
     }
-    //echo    $_SESSION['ad_creator_profile'];
 }
-
 else
 {
     header ("location: login.php");
@@ -103,26 +102,27 @@ include "engine/engine.php";
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }
+        .error{color:red;}
     </style>
 </head>
 
-<body class="animsition" style="animation-duration: 900ms; opacity: 1;">
+<body class="animsitsion" style="animation-duration: 900ms; opacity: 1;">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
-            <div class="header-mobile__bar">
-                <div class="container-fluid">
-                    <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/logo.png" alt="AskNews">
-                        </a>
-                        <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                        </button>
-                    </div>
+        <aside class="menu-sidebar2">
+        <div class="logo">
+                    <a href="#">
+                        <img src="images/icon/logo-white.png" alt="Cool Admin" />
+                    </a>
                 </div>
+        <div class="menu-sidebar2__content js-scrollbar1">
+                <div class="account2">
+                    <div class="image img-cir img-120">
+                        <img src="img/<?php echo $_SESSION['ad_creator_profile']?>" alt="no image" />
+                    </div>
+                    <h4 class="name"><?php echo $_SESSION['ad_creator_uname']?></h4>
+                    <a href="logout.php">Sign out</a>
+                </div>
+<<<<<<< HEAD
             </div>
             <nav class="navbar-mobile">
                 <div class="container-fluid">
@@ -184,57 +184,57 @@ include "engine/engine.php";
             </div>
             <div class="menu-sidebar__content js-scrollbar1 ps">
                 <nav class="navbar-sidebar">
+=======
+                <nav class="navbar-sidebar2">
+                    
+>>>>>>> e6e3eba21bebe2482ab572dc8fcaa86fd714c84f
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="index.php">
+
+                        <li <?php echo $type == "index"?'class="active"':'';?>>
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li class="has-sub">
+
+
+                        <li <?php echo $type == "adunit"?'class="active"':'';?>>
                             <a class="js-arrow" href="#">
-                                <i class="fas fas fa-desktop"></i>Ad Unit</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fas fa-plus-square"></i>Ads 
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="adunit.php">Create New Ad</a>
+                                <a href="adunit.php?form">
+                                        <i ></i>Create New Ad</a>
                                 </li>
                                 <li>
-                                    <a href="manage_ad_unit.php">Manage Ad Unit</a>
+                                    <a href="adunit.php?table">
+                                        <i ></i>Manage Ad Unit</a>
                                 </li>
-                                
                             </ul>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fas fa-desktop"></i>Ad Unit Balance</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="#">Account Balance</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub" <?php echo $type == "feedback"?'class="active"':'';?>>
-                            <a class="js-arrow" href="feedback.php?feedback">
+
+
+                        <li <?php echo $type == "feedback"?'class="active"':'';?>>
+                            <a  href="feedback.php?feedback">
                                 <i class="fas fa fa-commenting"></i>Feedback</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="qna.php">
+                        <li <?php echo $type == "qna"?'class="active"':'';?>>
+                            <a href="qna.php">
                                 <i class="fas fa fa-comments"></i>QNA</a>
                         </li>
-                        <li class="has-sub" <?php echo $type == "noti"?'class="active"':'';?>>
-                            <a class="js-arrow" href="notification.php?noti">
+                        <li <?php echo $type == "notification"?'class="active"':'';?>>
+                            <a  href="notification.php?noti">
                                 <i class="fas fa fa-bell"></i>Notification</a>
                         </li>
-                        <li class="has-sub"  <?php echo $type == "rules"?'class="active"':'';?>>
-                            <a class="js-arrow" href="rules.php?rules">
+                        <li <?php echo $type == "rules"?'class="active"':'';?>>
+                            <a  href="rules.php?rules">
                                 <i class="fas fa fa-gavel"></i>Rules</a>
                         </li>
                     </ul>
+                    
                 </nav>
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                </div>
-                <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                </div>
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
@@ -242,25 +242,25 @@ include "engine/engine.php";
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
+            <header class="header-desktop2">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="header-wrap">
-                        <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
-
+                        <div class="header-wrap2">
+                            <div class="logo d-block d-lg-none">
+                                <a href="#">
+                                    <!-- <img src="images/icon/logo-white.png" alt="CoolAdmin" /> -->
+                                </a>
+                            </div>
                             <div class="header-button">
                             <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-notifications"></i>
+                                        <i class="zmdi zmdi-notifications">
+                                        <span class='quantity'><?php echo $noti_count;?></span>
+                                        </i>
                                         <a href="javascript:void(0);">
                                         <div class="notifi-dropdown js-dropdown">
                                             <div class="notifi__title">
-                                                <p>You have <?php echo $noti_count;?> Notifications</p>
+                                                <p>You have <?php echo $noti_count; ;?> Notifications</p>
                                             </div>
                                             <div class="notifi__footer">
                                                 <a href="notification.php?noti">All notifications</a>
@@ -271,7 +271,7 @@ include "engine/engine.php";
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="<?php echo "img/".$_SESSION['ad_creator_profile'];?>" width="80" height="80" alt="User">
+                                            <img src="<?php echo "img/".$_SESSION['ad_creator_profile'];?>" width="150" height="150" style="margin-right:15px; margin-top:10px;"  alt="User">
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#"><?php echo $_SESSION['ad_creator_uname'];?></a>
@@ -294,11 +294,6 @@ include "engine/engine.php";
                                                     <a href="profile.php?update_profile">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="logout.php">
