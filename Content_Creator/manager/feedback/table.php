@@ -52,7 +52,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="body">
                                 
-                                <a class="btn bg-cyan waves-effect m-b-15" data-toggle="collapse" data-target="#subject<?php echo $row['id']?>" aria-expanded="false" aria-controls="collapseExample">
+                                <a class="btn bg-cyan waves-effect m-b-15" data-toggle="collapse" title="view feedback" data-target="#subject<?php echo $row['id']?>" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="material-icons"><big>remove_red_eye</big></i>
                                 </a>
                                 

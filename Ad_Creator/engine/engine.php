@@ -23,10 +23,12 @@ $result_feedback=mysqli_query($con,$select_feedback);
 $select_noti="select * from tbl_notification where role=1 and user_id=".$creatorid." order by c_date desc limit $page1,5"	;
 $result_noti=mysqli_query($con,$select_noti);
 
-
 //---------------paging ad ------------------
 $sql1=mysqli_query($con,"select * from tbl_$type ");
 @$total_ad_rec=mysqli_num_rows($sql1);
+
+$total_ad_pages=ceil($total_ad_rec/5);  
+$last_ad=$total_ad_pages-1;
 //$total_ad_pages=ceil($total_news_rec/5);  
 //$last_ad=$total_news_pages-1;
 
@@ -115,16 +117,13 @@ if(isset($_POST['add_'.$type.'']))
     if($flag==true)
     {
       $sql="insert into tbl_$type(category_id,ad_creator_id,unit_name,url,seo_title,seo_desc,file_attach,amount,summary,details,status,post_date,cpc) values('$cat','$creatorid','$unitName','$url','$seoTitle','$seoDes','$newfilename','$amount','$summary','$details','$status','$date',$cpc)";
-      $qry_u_ac=mysqli_query($con,"update tbl_ad_creator set wallet=wallet-".$amount.", spend_amount=spend_amount+".$amount." where ad_creator_id=".$creatorid);
       $qry=mysqli_query($con,$sql);
-      if($qry && $qry_u_ac){
-        //$success=ucfirst($type). " Created Success";
-        echo "</script>alert('ad created ..:)');</script>";
+      if($qry){
+        $success=ucfirst($type). " Created Success";
       move_uploaded_file($_FILES['file']['tmp_name'],"img/".$newfilename);
       cleardata();
       }else{
-        echo "</script>alert('ad not created... try again..:(');</script>";
-          //$warning=ucfirst($type). " Not Created".mysqli_error($con);
+          $warning=ucfirst($type). " Not Created".mysqli_error($con);
           //$sql=$select;
       }
     }
@@ -164,41 +163,43 @@ if(isset($_GET['feedid']))
 
 
 //____________________________refill ad___________________________
-
 if(isset($_POST['btnAdAmount']))
 {
-  $e_qry=mysqli_query($con,"select wallet as e from tbl_ad_creator where ad_creator_id=".$creatorid);
-  $e=mysqli_fetch_array($e_qry);
-  $e=$e['e'];
-  $amt=$_POST['amount'];
-  if($e<100)
-  {
-    $err="your wallet amount is less than 100 <br/> click to ad wallet amount <a href='#'> add amount</a>";
-    mysqli_query($con,"insert into tbl_notification(sub,description,user_id,role) values('refill account','refill your wallet to refill ad',".$creatorid.",'1')");
-  }
-  else if($e>=100 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
-  {
-    $qry_u_ac=mysqli_query($con,"update tbl_ad_creator set wallet=wallet-".$amt.", spend_amount=spend_amount+".$amt." where ad_creator_id=".$creatorid);
-    $qry_u_ad=mysqli_query($con,"update tbl_adunit set amount=amount+".$amt." where seo_title='".$_GET['amount']."'");
-    if($qry_u_ac && $qry_u_ad)
-    {
-      echo "<script>alert('ad refill successfully...:)');</script>";
-      $amt=0;
-    }
-    else{
-      echo "<script>alert('ad refill unsuccessfully try again...:)');</script>";
-    }
+  // $e_qry=mysqli_query($con,"select wallet as e from tbl_ad_creator where ad_creator_id=".$creatorid);
+  // $e=mysqli_fetch_array($e_qry);
+  // $e=$e['e'];
+  // $amt=$_POST['amount'];
+  // if($e<100)
+  // {
+  //   $err="your wallet amount is less than 100 <br/> click to ad wallet amount <a href='#'> add amount</a>";
+  //   mysqli_query($con,"insert into tbl_notification(sub,description,user_id,role) values('refill account','refill your wallet to refill ad',".$creatorid.",'1')");
+  // }
+  // else if($e>=100 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
+  // {
+  //   $qry_u_ac=mysqli_query($con,"update tbl_ad_creator set wallet=wallet-".$amt.", spend_amount=spend_amount+".$amt." where ad_creator_id=".$creatorid);
+  //   $qry_u_ad=mysqli_query($con,"update tbl_adunit set amount=amount+".$amt." where seo_title='".$_GET['amount']."'");
+  //   if($qry_u_ac && $qry_u_ad)
+  //   {
+  //     echo "<script>alert('ad refill successfully...:)');</script>";
+  //     $amt=0;
+  //   }
+  //   else{
+  //     echo "<script>alert('ad refill unsuccessfully try again...:)');</script>";
+  //   }
     
-  }
-  else
-  {
-    $err="please insert valid amount";
-  }
+  // }
+  // else
+  // {
+  //   $err="please insert valid amount";
+  // }
+  echo "<script>alert('hello');</script>";
 }
+
 
 //_______________________________________search news____________________________________
 if(isset($_POST["btn_search"]))
 {
+  
   $a=$_POST["keyword"];
   $select_ad="select * from tbl_adunit where ad_creator_id=".$creatorid." and unit_name like '%$a%' or u_date='".$a."' or publish_date='".$a."' or view='".$a."' or status='".$a."'";
   $result_ad=mysqli_query($con,$select_ad);
@@ -208,6 +209,7 @@ if(isset($_GET['ad_id']))
 {
   
   $id=$_GET['ad_id'];
+  //echo "<script>alert($id);</script>";
   $sql="select * from tbl_adunit where ad_id=".$id;
   $query=mysqli_query($con,$sql);
   $update=mysqli_fetch_assoc($query);
@@ -215,12 +217,12 @@ if(isset($_GET['ad_id']))
 if(isset($_GET['d']))
 {
   $id=$_GET['d'];
+  //echo "<script>alert($id);</script>";
   $sql="select * from tbl_adunit where ad_id=".$id;
   $query=mysqli_query($con,$sql);
   $update=mysqli_fetch_assoc($query);
 }
-//____________________________filter news_________________
-
+//____________________________filter ad_________________
 if(isset($_POST["btn_filter"]))
 {
   $temp="";
@@ -264,6 +266,8 @@ if(isset($_GET['feedid']))
   if($query)
   {
    echo "<script>alert('Feedback deleted..:)');</script>";
+   //cleardata();
+   //$_GET['feedid']=null;
    header("location:feedback.php?showfeed");
   }
   else
@@ -305,42 +309,17 @@ if(isset($_POST['Submit']))
     $topic=$_POST['category'];
     $message=$_POST['message'];
     $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+    //echo $sql;
     $qry=mysqli_query($con,$sql);
     if($qry){
       $success=ucfirst($type). " Created Success";
+    //move_uploaded_file($_FILES['file']['tmp_name'],"img"."/".$newfilename);
     cleardata();
     }else{
         $warning=ucfirst($type). " Not Created".mysqli_error($con);
     }
 }
-
-//___________________refill wallet____________________
-
-if(isset($_POST['updt_wallet']))
-{
-
-  @$wallet=$_POST["wallet_amt"];
-  $flag=true;
-  if(empty($wallet) || !preg_match('/^[0-9]*$/',$wallet))
-  {
-    $error_wallet="Invalid Wallet Amount";
-      $flag=false;
-  }
-  if($flag==true)
-  {
-    $qry=mysqli_query($con,"update tbl_ad_creator set lifetime_amount=lifetime_amount+".$wallet.", wallet=wallet+".$wallet." where ad_creator_id=".$creatorid);
-    if($qry)
-    {
-      echo "<script>alert('your wallet refilled...:)');</script>";
-    }
-    else
-    {
-      echo "<script>alert('your wallet not refilled..try again...:(');</script>";
-    }
-  }
-}
-
-//____________________________update profile___________________________
+//____________________________update profile or refill wallet___________________________
 if(isset($_POST["update_profile"]))
 {
   @$username=$_POST["txtuname"];
@@ -348,7 +327,7 @@ if(isset($_POST["update_profile"]))
   @$mobile=$_POST["txtmobile"];
   @$cvv=$_POST["cvv"];
   @$card=$_POST["card"];
-  //@$wallet=$_POST["wallet"];
+  @$wallet=$_POST["wallet"];
   $sql="";
   $flag=true;
   $ipaddress = $_SERVER['REMOTE_ADDR'];   
@@ -374,7 +353,7 @@ if(isset($_POST["update_profile"]))
     {
       if($name==null)
       {
-        $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile',cvv_number='$cvv',card_number='$card' where ad_creator_id=$creatorid";
+        $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile',cvv_number='$cvv',card_number='$card',wallet=wallet+'$wallet',lifetime_amount=lifetime_amount+'$wallet' where ad_creator_id=$creatorid";
       }
       else
       {
@@ -388,7 +367,7 @@ if(isset($_POST["update_profile"]))
             $newfilename = round(microtime(true)) . '.' . end($temp);
             move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
             $filename=$newfilename;
-            $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile',profile_image='$filename',cvv_number='$cvv',card_number='$card' where ad_creator_id=$creatorid";           
+            $sql="update tbl_ad_creator set username='$username',email='$email',phone='$mobile',profile_image='$filename',cvv_number='$cvv',card_number='$card',wallet=wallet+'$wallet',lifetime_amount=lifetime_amount+'$wallet' where ad_creator_id=$creatorid";           
         }
         else
         {
@@ -419,7 +398,11 @@ if(isset($_POST["update_profile"]))
         $error_card="Invalid Card Number";
         $flag=false; 
       }
-      
+      if(empty($wallet) || !preg_match('/^[0-9]*$/',$wallet))
+      {
+        $error_wallet="Invalid Wallet Amount";
+          $flag=false;
+      }
     }  
     if($flag==true)
     {
