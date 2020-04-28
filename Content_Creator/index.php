@@ -114,8 +114,8 @@ $type="index";
                             WHEN month(PublishDate)=10 THEN 'Octuber'
                             WHEN month(PublishDate)=11 THEN 'November' 
                             WHEN month(PublishDate)=12 THEN 'December' 
-                            END) AS Month from tbl_news ) AS Result where Approved=1 and CreatorID=".$creatorid." GROUP BY Month");
-                        
+                            END) AS Month from tbl_news ) AS Result where Approved=1 and CreatorID=".$creatorid." GROUP BY Month order by month(PublishDate)");
+                            
                         $arr=array();
                         $i=0;
                         while($row=mysqli_fetch_assoc($chart_qry))

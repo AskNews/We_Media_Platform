@@ -28,7 +28,7 @@ else
         <div class="card bg-warning">
             <div class="card-body">
                 <blockquote class="blockquote mb-0 text-light">
-                    <p class="text-light">please modify your bank details or refill your wallet amount to get access your account <br/>
+                    <p class="text-light">please modify your <a href='profile.php?update_profile'>bank details</a> or refill  your wallet amount to get access your account <br/>
                     click to modify <a href='wallet.php?wallet'>modify details</a><br/>
                     or you are block by admin</p>                                        
                 </blockquote>

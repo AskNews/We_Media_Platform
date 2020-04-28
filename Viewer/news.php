@@ -182,9 +182,6 @@ $(document).ready(function(){
           location.reload();
         }
       });
-<<<<<<< HEAD
-  }) 
-=======
     }
     else
     {
@@ -209,7 +206,7 @@ $(document).ready(function(){
       alert("please login...");
     }
   })
->>>>>>> e6e3eba21bebe2482ab572dc8fcaa86fd714c84f
+
 });
 </script>
 <?php
