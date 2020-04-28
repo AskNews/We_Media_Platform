@@ -40,18 +40,18 @@
                                 <div class="col-sm-7">  
                                     <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                     <ul class="pagination">
-                                    <li class="paginate_button previous <?php if($page<$total_pages_app_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <li class="paginate_button previous <?php if($page<$total_pages_pen_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="comment.php?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
                                     <?php
-                                    for($i=1;$i<=$total_pages_app_com;$i++)
+                                    for($i=1;$i<=$total_pages_pen_com;$i++)
                                     {        
                                         ?>
                                         <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="comment.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
                                         &nbsp;
                                     <?php }
                                     ?>
-                                    <li class="paginate_button previous <?php if($page>=$total_pages_app_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
-                                    <a href="comment.php?page=<?php echo $total_pages_app_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>                
+                                    <li class="paginate_button previous <?php if($page>=$total_pages_pen_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="comment.php?page=<?php echo $total_pages_pen_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>                
                                     </ul>
                                 </div>
                                 </div>
@@ -107,7 +107,7 @@
                                     <li class="paginate_button previous <?php if($page<$total_pages_pen_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
                                     <a href="comment.php?page=1" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
                                     <?php
-                                    for($i=1;$i<=$total_pages_pen_com;$i++)
+                                    for($i=1;$i<=$total_pages_app_com;$i++)
                                     {        
                                         ?>
                                         <li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="comment.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>
@@ -116,8 +116,8 @@
                                     <?php }
 
                                     ?>
-                                    <li class="paginate_button previous <?php if($page>=$total_pages_pen_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
-                                    <a href="comment.php?page=<?php echo $total_pages_pen_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
+                                    <li class="paginate_button previous <?php if($page>=$total_pages_app_com){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+                                    <a href="comment.php?page=<?php echo $total_pages_app_com;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
                                     
                                     </ul>
                                 </div>

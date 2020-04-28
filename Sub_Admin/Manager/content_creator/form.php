@@ -74,7 +74,7 @@
 <?php
     if(isset($editData)){
 	?>
-	<button type="submit" class="btn btn-warning" name="u_<?php echo $type;?>"><i class="fa fa-plus-square"> Update &nbsp;<?php echo ucfirst($type);?> &nbsp;Details</i></button>
+	<button type="submit" class="btn btn-warning" name="u_<?php echo $type;?>"><i class="fa fa-plus-square"> Approve &nbsp;<?php echo ucfirst($type);?> &nbsp;Details</i></button>
 										
       <input type="hidden" name="id" value="<?php echo $editData['id'];?>" />
       <?php

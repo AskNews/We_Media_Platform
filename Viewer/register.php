@@ -50,9 +50,7 @@ if(isset($_SESSION['newViewerLogin'])){
         </div>
       </div>
      
-      <div class="one_half">
-            <img src="images/demo/logo1.png">
-          </div>
+     
         </section>
       </div>
     </div>

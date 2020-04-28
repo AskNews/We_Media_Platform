@@ -1,5 +1,4 @@
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-<button type="submit" class="btn btn-success" name="create"><i class="fa fa-plus-square">&nbsp; Create New <?php echo ucfirst($type);?></i></button>
            <br><br>             <div class="input-group">
 							<input class="form-control" type="text" name="keyword">
 							<span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search">Search!</button></span>
@@ -12,10 +11,10 @@
 											<th>User Id</th>
 											<th>Subject</th>
 											<th>Message</th>
-											<th>Reply</th>
+											
 											<th>Role</th>
 											<th>Date</th>
-											<th>Status</th>
+											
 											<th>Operation</th>
 											</tr>
 										</thead>
@@ -26,19 +25,26 @@
 		  
 	  ?>
 											<tr>
-											<td><?php echo $sn+1;?></td>
+											<td><?php echo $sn=$sn+1;?></td>
 											<td><?php echo $row['user_id']; ?></td>
 											<td><?php echo $row['subject']; ?></td>
 											<td><?php echo $row['message']; ?></td>
-											<td><?php echo $row['reply']; ?></td>
-											<td><?php echo $row['role']; ?></td>
+											
+											<td><?php 
+											if($row['role']==0){
+											echo 'Content Creator';
+											}
+											else if($row['role']==1){
+												echo 'Viewer';
+											 }
+											 else{
+												 echo 'Ad Creator';
+											 } ?></td>
 											
 											<td><?php echo $row['c_date']; ?></td>
-											<td>
-		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
-		<?php echo $row['status']?'Active':'in-active'; ?></td>
+											
         <td><a href="?del=<?php echo $row['id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
-        <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Reply</a></td>
+       </td>
       
          
 											</tr>

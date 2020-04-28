@@ -100,16 +100,7 @@
                                                 </div>
                                                 <span class="error"><?php echo @$error_card; ?></span>
                                             </div>
-                                            <div class="form-group">
-                                            <span>Wallet Amount</span>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-phone-square"></i>
-                                                    </div>
-                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['wallet'];}else{echo $row["wallet"];} ?>"  id="wallet" name="wallet" placeholder="Wallet Amount" class="form-control">
-                                                </div>
-                                                <span class="error"><?php echo @$error_wallet; ?></span>
-                                            </div>
+                                            
                                             <div class="form-actions form-group">
                                                 <button type="submit" name="update_profile" class="btn btn-success btn-sm">Update</button>
                                             </div>

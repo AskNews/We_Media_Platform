@@ -165,33 +165,34 @@ if(isset($_GET['feedid']))
 //____________________________refill ad___________________________
 if(isset($_POST['btnAdAmount']))
 {
-  $e_qry=mysqli_query($con,"select wallet as e from tbl_ad_creator where ad_creator_id=".$creatorid);
-  $e=mysqli_fetch_array($e_qry);
-  $e=$e['e'];
-  $amt=$_POST['amount'];
-  if($e<100)
-  {
-    $err="your wallet amount is less than 100 <br/> click to ad wallet amount <a href='#'> add amount</a>";
-    mysqli_query($con,"insert into tbl_notification(sub,description,user_id,role) values('refill account','refill your wallet to refill ad',".$creatorid.",'1')");
-  }
-  else if($e>=100 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
-  {
-    $qry_u_ac=mysqli_query($con,"update tbl_ad_creator set wallet=wallet-".$amt.", spend_amount=spend_amount+".$amt." where ad_creator_id=".$creatorid);
-    $qry_u_ad=mysqli_query($con,"update tbl_adunit set amount=amount+".$amt." where seo_title='".$_GET['amount']."'");
-    if($qry_u_ac && $qry_u_ad)
-    {
-      echo "<script>alert('ad refill successfully...:)');</script>";
-      $amt=0;
-    }
-    else{
-      echo "<script>alert('ad refill unsuccessfully try again...:)');</script>";
-    }
+  // $e_qry=mysqli_query($con,"select wallet as e from tbl_ad_creator where ad_creator_id=".$creatorid);
+  // $e=mysqli_fetch_array($e_qry);
+  // $e=$e['e'];
+  // $amt=$_POST['amount'];
+  // if($e<100)
+  // {
+  //   $err="your wallet amount is less than 100 <br/> click to ad wallet amount <a href='#'> add amount</a>";
+  //   mysqli_query($con,"insert into tbl_notification(sub,description,user_id,role) values('refill account','refill your wallet to refill ad',".$creatorid.",'1')");
+  // }
+  // else if($e>=100 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
+  // {
+  //   $qry_u_ac=mysqli_query($con,"update tbl_ad_creator set wallet=wallet-".$amt.", spend_amount=spend_amount+".$amt." where ad_creator_id=".$creatorid);
+  //   $qry_u_ad=mysqli_query($con,"update tbl_adunit set amount=amount+".$amt." where seo_title='".$_GET['amount']."'");
+  //   if($qry_u_ac && $qry_u_ad)
+  //   {
+  //     echo "<script>alert('ad refill successfully...:)');</script>";
+  //     $amt=0;
+  //   }
+  //   else{
+  //     echo "<script>alert('ad refill unsuccessfully try again...:)');</script>";
+  //   }
     
-  }
-  else
-  {
-    $err="please insert valid amount";
-  }
+  // }
+  // else
+  // {
+  //   $err="please insert valid amount";
+  // }
+  echo "<script>alert('hello');</script>";
 }
 
 

@@ -11,6 +11,8 @@ $wal_amt=0;
 $cvv=0;
 $card=0;
 $approve=0;
+$lifetime_amt=0;
+$spend_amt=0;
 include "../Super_Admin/includes/dbconfig.php";
 
 $sql="SELECT * from tbl_ad_creator WHERE username='$_SESSION[ad_creator_uname]' and status=1";
@@ -25,6 +27,8 @@ if(isset($_SESSION['ad_creator_uname']))
         $_SESSION['ad_creator_profile']=$data["profile_image"];
         $creatorid=$data["ad_creator_id"];
         $wal_amt=$data['wallet'];
+        $lifetime_amt=$data['lifetime_amount'];
+        $spend_amt=$data['spend_amount'];
         $cvv=$data['cvv_number'];
         $card=$data['card_number'];
         $approve=$data['approval'];
@@ -38,16 +42,9 @@ else
 $noti=mysqli_query($con,"select count(id) as c from tbl_notification where role=1 and user_id=".$creatorid." and is_seen=0");
 $noti_count=mysqli_fetch_array($noti);
 $noti_count=$noti_count['c'];
-
-//count total ads
-$n_count=mysqli_query($con,"select count(id) as ads from tbl_adunit where ad_creator_id=".$creatorid);
-$ads=mysqli_fetch_array($n_count);
-$ads=$ads['ads'];
 include "engine/engine.php";
 ?>
-
 <html lang="en">
-
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -58,9 +55,7 @@ include "engine/engine.php";
 
     <!-- Title Page-->
     <title>Welcome To Asknews</title>
-    <!-- Favicon-->
-    <link rel="images" href="images/icon.png" type="image/x-icon">
-
+    <link rel="icon" href="../icon.png" type="image/x-icon">
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -117,16 +112,16 @@ include "engine/engine.php";
         <aside class="menu-sidebar2">
         <div class="logo">
                     <a href="#">
-                       <p style="Color:White;font-size:150%;">Ad Creator</p>
+                        <img src="../logo.png" style="height:100%;width:140%;border:3px solid black;" />
                     </a>
                 </div>
         <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">
-                    <div class="image img-cir img-100">
+                    <div class="image img-cir img-120">
                         <img src="img/<?php echo $_SESSION['ad_creator_profile']?>" alt="no image" />
                     </div>
                     <h4 class="name"><?php echo $_SESSION['ad_creator_uname']?></h4>
-                  
+                    <a href="logout.php">Sign out</a>
                 </div>
                 <nav class="navbar-sidebar2">
                     
@@ -157,6 +152,10 @@ include "engine/engine.php";
                             </ul>
                         </li>
 
+                        <li <?php echo $type == "wallet"?'class="active"':'';?>>
+                            <a href="wallet.php?wallet">
+                                <i class="fas fa-rupee"></i>Wallet</a>
+                        </li>
 
                         <li <?php echo $type == "feedback"?'class="active"':'';?>>
                             <a  href="feedback.php?feedback">
