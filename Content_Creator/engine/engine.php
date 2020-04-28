@@ -48,7 +48,7 @@ else
     @$page1=($page*5)-5;
 } 
 
-$comment_qry=mysqli_query($con,"select count(c.comment_id) as comment from tbl_comment c,tbl_news n,tbl_content_creator cc where n.id=c.news_id and cc.id=n.CreatorID and cc.id=".$creatorid );
+$comment_qry=mysqli_query($con,"select count(c.id) as comment from tbl_comment c,tbl_news n,tbl_content_creator cc where n.id=c.news_id and cc.id=n.CreatorID and cc.id=".$creatorid );
 $comment_count=mysqli_fetch_array($comment_qry);
 $comment=$comment_count['comment'];
 
@@ -77,6 +77,7 @@ $select_transaction="select * from tbl_transaction where content_creator_id=".$c
 $result_transaction=mysqli_query($con,$select_transaction);
 
 //---------------paging news ------------------
+
 $sql1=mysqli_query($con,"select * from tbl_$type ");
 @$total_news_rec=mysqli_num_rows($sql1);
 $total_news_pages=ceil($total_news_rec/5);  
@@ -84,36 +85,40 @@ $last_news=$total_news_pages-1;
 
 
 //---------------paging transaction ------------------
+
 $sql_transaction=mysqli_query($con,"select * from tbl_$type ");
 @$total_transaction_rec=mysqli_num_rows($sql_transaction);
 $total_transaction_pages=ceil($total_transaction_rec/5);  
 $last_transaction=$total_transaction_pages-1;
 
 //---------------paging notification ------------------
+
 $sql_noti=mysqli_query($con,"select * from tbl_$type ");
 @$total_rec=mysqli_num_rows($sql_noti);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;
 
 //---------------paging feedback ------------------
-$sql_feed=mysqli_query($con,"select * from tbl_$type ");
-@$total_rec=mysqli_num_rows($sql_feed);
-$total_pages=ceil($total_rec/5);  
-$last=$total_pages-1;
+
+$sql_feed=mysqli_query($con,"select * from tbl_$type where role=0");
+@$total_rec_feed=mysqli_num_rows($sql_feed);
+$total_pages_feed=ceil($total_rec_feed/5);  
+$last_feed=$total_pages_feed-1;
 
 
 //-------paging for comment-----
-$sql_app_com=mysqli_query($con,"select count(*) from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=1 and  and n.CreatorID=$creatorid");
+
+$sql_app_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=1 and n.CreatorID=$creatorid");
 @$total_rec_app_com=mysqli_num_rows($sql_app_com);
 $total_pages_app_com=ceil($total_rec_app_com/5);  
 $last_app_com=$total_pages_app_com-1;
 
-$sql_pens_com=mysqli_query($con,"select count(*) from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid");
+$sql_pens_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid");
 @$total_rec_pen_com=mysqli_num_rows($sql_pen_com);
 $total_pages_pen_com=ceil($total_rec_pen_com/5);  
 $last_app_com=$total_pages_pen_com-1;
 
-$sql_spam_com=mysqli_query($con,"select count(*) from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=2  and n.CreatorID=$creatorid");
+$sql_spam_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=2  and n.CreatorID=$creatorid");
 @$total_rec_spam_com=mysqli_num_rows($sql_spam_com);
 $total_pages_spam_com=ceil($total_rec_spam_com/5);  
 $last_spam_com=$total_pages_spam_com-1;
@@ -214,7 +219,7 @@ if(isset($_POST["update_profile"]))
   @$username=$_POST["txtuname"];
   @$email=$_POST["email"];
   @$mobile=$_POST["txtmobile"];
-  @$bankname=$_POST["txtbname"];
+  @$bankname=$_POST["bank"];
   @$holdername=$_POST["txtaccountHname"];
   @$account=$_POST["txtaccountno"];
   @$ifsc=$_POST["txtIfsc"];
@@ -278,13 +283,12 @@ if(isset($_POST["update_profile"]))
           $error_email="Invalid email";
           $flag=false;
       }
-      if(empty($bankname))
+      if($bankname=="--Select Bank--")
       {
         $error_bname="Invalid bank name";
         $flag=false;
-
       }
-      if(empty($ifsc) || !preg_match('^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$',$ifsc))
+      if( empty($ifsc) || !preg_match('/^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/',$ifsc))
       {
         $flag=false;
         $error_ifsc="Invalid IFSC code";
@@ -505,11 +509,12 @@ if(isset($_GET['approve']))
 if(isset($_GET['spam']))
 {
   $commentid=$_GET['spam'];
-  CommentSpam($commentid);
+  echo $commentid." comment id";
+  //CommentSpam($commentid);
 }
 if(isset($_GET['deleteComment']))
 {
-  $id=$_GET['delete'];
+  $id=$_GET['deleteComment'];
   $sql="delete from tbl_comment where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)

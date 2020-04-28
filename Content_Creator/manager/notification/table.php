@@ -48,7 +48,7 @@ mysqli_query($con,"update tbl_notification set is_seen=1 where role=0 and user_i
                         <tr>
                         <td><?php echo $row['sub'] ?></td>
                         <td><?php echo $row['description'] ?></td>
-                        <td><?php echo $row['c_date'] ?></td>                        
+                        <td><?php echo substr($row['c_date'],0,10) ?></td>                        
                         </tr>
                     <?php } ?>
                     </tbody>

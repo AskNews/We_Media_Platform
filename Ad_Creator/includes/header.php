@@ -42,12 +42,9 @@ else
 $noti=mysqli_query($con,"select count(id) as c from tbl_notification where role=1 and user_id=".$creatorid." and is_seen=0");
 $noti_count=mysqli_fetch_array($noti);
 $noti_count=$noti_count['c'];
-
 include "engine/engine.php";
 ?>
-
 <html lang="en">
-
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
