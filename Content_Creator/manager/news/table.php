@@ -37,7 +37,7 @@
                                 </div>
                                 </div>
                                 </div>
-                                <div class="row"><div class="col-sm-12"><table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                <div class="row"><div class="col-sm-12"><table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="news" role="grid" aria-describedby="DataTables_Table_0_info">
                                     <thead>
                                         <tr role="row">
                                         <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 250px;">Headline</th>
@@ -62,18 +62,17 @@
                                             <?php } elseif($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3){ ?> 
                                             <td colspan='3'> Your News is offline due to <?php echo $row["RejectionMsg"]; ?></td>
                                             <?php }
-                                            elseif($row["Approved"]==0 && $row["Offline"]==0 && $row["Rejected"]==1){ ?>
+                                            elseif($row["Approved"]==0 && $row["Offline"]==0 && $row["Rejected"]==1 ){ ?>
                                             <td colspan='3'>Pending</td>
-                                            <?php } elseif($row["Approved"]==0 && $row["Rejected"]==2){ ?>
+                                            <?php } elseif($row["Approved"]==0 && $row["Rejected"]==2 && $row['Offline']==0){ ?>
                                                 <td colspan='3'>News is Rejected due to <?php echo $row["RejectionMsg"]; ?><br/> <a href="?newsid=<?php echo $row["id"]; ?>">click to modify</a> </td>
                                             <?php } ?>          
                                             <td>
                                             <a  href="?status=<?php echo $row["id"];?>">
-                                            <button <?php if($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3 || $row["Rejected"]==2){ echo "disabled";} ?>  class="btn <?php echo $row['Status']?'btn-primary waves-effect':'btn-warning waves-effect'?>"><?php if($row['Status']){ echo "Active";}else{ echo "In-Active";} ?></button>
+                                            <button <?php if($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3 ){ echo "disabled";} ?>  class="btn <?php echo $row['Status']?'btn-primary waves-effect':'btn-warning waves-effect'?>"><?php if($row['Status']){ echo "Active";}else{ echo "In-Active";} ?></button>
                                             
                                             </a>        
                                             </td>
-                                            <!--<td><small><a role="button" href="?newsid=<?php //echo $row["NewsID"]; ?>"><button class="btn btn-primary waves-effect">click to view news</button></a></small>--->
                                             <td><small><a role="button" data-toggle="tooltip" data-placement="bottom" title="click to view news" href="?newsid=<?php echo $row["id"]; ?>"><i class="material-icons"><big>remove_red_eye</big></a></i></a></small>
                                            </td>
                                            </tr>    

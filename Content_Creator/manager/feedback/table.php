@@ -46,14 +46,13 @@
                     <?php while($row=mysqli_fetch_assoc($result_feedback)) {?>
                         <tr>
                         <td><?php echo $row['subject'] ?></td>
-                        <td><?php echo $row['c_date'] ?></td>
-                        <td><img src="<?php echo "img/".$row['file'];?>" height="100px" widht="100px" ></td>
-                        <!--<td></td>-->
+                        <td><?php echo substr($row['c_date'],0,10) ?></td>
+                        <?php if($row['file']!=null) { ?><td><img src="<?php echo "img/".$row['file'];?>" height="100px" widht="100px" > </td><?php }  else{ ?> <td>no files</td><?php } ?>
                         <td>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="body">
                                 
-                                <a class="btn bg-cyan waves-effect m-b-15" data-toggle="collapse" data-target="#subject<?php echo $row['id']?>" aria-expanded="false" aria-controls="collapseExample">
+                                <a class="btn bg-cyan waves-effect m-b-15" data-toggle="collapse" title="view feedback" data-target="#subject<?php echo $row['id']?>" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="material-icons"><big>remove_red_eye</big></i>
                                 </a>
                                 
@@ -81,17 +80,17 @@
 					<div class="col-sm-6">  
 						<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
 						<ul class="pagination">
-						<li class="paginate_button previous <?php if(/*$page*/$_GET['page']>$total_pages || $_GET['page']==1){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+						<li class="paginate_button previous <?php if(/*$page*/$_GET['page']>$total_pages_feed || $_GET['page']==1){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
 						<a href="feedback.php?page=<?php echo $_GET['page']-1;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li>
 						<?php
-						for($i=1;$i<=$total_pages;$i++)
+						for($i=1;$i<=$total_pages_feed;$i++)
 						{
 							?>
 							<li class="paginate_button <?php echo ($i==$_GET['page'])?'active':'';?>"><a href="feedback.php?page=<?php echo $i;?>" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"><?php echo $i;?></a></li>        
 							&nbsp;
 						<?php }
 						?>
-						<li class="paginate_button previous <?php if($page>=$total_pages){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
+						<li class="paginate_button previous <?php if($page>=$total_pages_feed){ echo "disabled";} ?>" id="DataTables_Table_0_previous">
 						<a href="feedback.php?page=<?php echo $_GET['page']+1;//$total_pages;?>" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Next</a></li>
 						
 						</ul>

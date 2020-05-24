@@ -76,7 +76,7 @@ include 'includes/header.php';
               <?php
             $sql="select * from tbl_news where Status='1' and Approved='1' and TopNews='1' order by id DESC LIMIT 5";
       $query=mysqli_query($con,$sql);
-      print_r(mysqli_fetch_array($query));
+      //print_r(mysqli_fetch_array($query));
 			while($row=mysqli_fetch_array($query)){
 			?>       <article class="clear push20">
               <?php
@@ -124,7 +124,7 @@ include 'includes/header.php';
             ?>
             <div class="imgl"><img src="../Content_Creator/img/<?php echo $row['FileAttach'];?>" style="width:50px; height:50px;" alt=""></div>
               <h4><?php echo $row['HeadLine'] ?></h4>
-              <p><a href="news.php?news=<?php echo $row['Url'];?>"><?php echo substr($row['Details'],0,40)?></a></p>
+              <p><a href="news.php?news=<?php echo $row['Url'];?>"><?php //echo substr($row['Details'],0,30)?></a></p>
             <?php } ?>
             </div>
           </div>

@@ -48,11 +48,11 @@ else
     @$page1=($page*5)-5;
 } 
 
-$comment_qry=mysqli_query($con,"select count(c.comment_id) as comment from tbl_comment c,tbl_news n,tbl_content_creator cc where n.id=c.news_id and cc.id=n.CreatorID and cc.id=".$creatorid );
+$comment_qry=mysqli_query($con,"select count(c.id) as comment from tbl_comment c,tbl_news n,tbl_content_creator cc where n.id=c.news_id and cc.id=n.CreatorID and cc.id=".$creatorid );
 $comment_count=mysqli_fetch_array($comment_qry);
 $comment=$comment_count['comment'];
 
-$select_news="select * from tbl_news where CreatorID=".$creatorid."  order by PublishDate desc limit $page1,5";
+$select_news="select * from tbl_news where CreatorID=".$creatorid." order by PublishDate limit $page1,5";
 $result_news=mysqli_query($con,$select_news);
 
 $select_comment="select n.headLine,c.* from tbl_news n,tbl_comment as c where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid order by postdate desc limit $page1,5 ";
@@ -77,48 +77,55 @@ $select_transaction="select * from tbl_transaction where content_creator_id=".$c
 $result_transaction=mysqli_query($con,$select_transaction);
 
 //---------------paging news ------------------
-$sql1=mysqli_query($con,"select * from tbl_$type ");
+
+$sql1=mysqli_query($con,"select * from tbl_$type where approved=1 and CreatorID=$creatorid");
 @$total_news_rec=mysqli_num_rows($sql1);
 $total_news_pages=ceil($total_news_rec/5);  
 $last_news=$total_news_pages-1;
 
 
 //---------------paging transaction ------------------
-$sql_transaction=mysqli_query($con,"select * from tbl_$type ");
+
+
+$sql_transaction=mysqli_query($con,"select * from tbl_$type where content_creator_id=$creatorid ");
 @$total_transaction_rec=mysqli_num_rows($sql_transaction);
 $total_transaction_pages=ceil($total_transaction_rec/5);  
 $last_transaction=$total_transaction_pages-1;
 
 //---------------paging notification ------------------
-$sql_noti=mysqli_query($con,"select * from tbl_$type ");
+
+$sql_noti=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=$creatorid ");
 @$total_rec=mysqli_num_rows($sql_noti);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;
 
 //---------------paging feedback ------------------
-$sql_feed=mysqli_query($con,"select * from tbl_$type ");
-@$total_rec=mysqli_num_rows($sql_feed);
-$total_pages=ceil($total_rec/5);  
-$last=$total_pages-1;
+
+$sql_feed=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=$creatorid");
+@$total_rec_feed=mysqli_num_rows($sql_feed);
+$total_pages_feed=ceil($total_rec_feed/5);  
+$last_feed=$total_pages_feed-1;
 
 
 //-------paging for comment-----
-$sql_app_com=mysqli_query($con,"select count(*) from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=1 and  and n.CreatorID=$creatorid");
+
+$sql_app_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=1 and n.CreatorID=$creatorid");
 @$total_rec_app_com=mysqli_num_rows($sql_app_com);
 $total_pages_app_com=ceil($total_rec_app_com/5);  
 $last_app_com=$total_pages_app_com-1;
 
-$sql_pens_com=mysqli_query($con,"select count(*) from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid");
+$sql_pens_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=0 and n.CreatorID=$creatorid");
 @$total_rec_pen_com=mysqli_num_rows($sql_pen_com);
 $total_pages_pen_com=ceil($total_rec_pen_com/5);  
 $last_app_com=$total_pages_pen_com-1;
 
-$sql_spam_com=mysqli_query($con,"select count(*) from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=2  and n.CreatorID=$creatorid");
+$sql_spam_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=2  and n.CreatorID=$creatorid");
 @$total_rec_spam_com=mysqli_num_rows($sql_spam_com);
 $total_pages_spam_com=ceil($total_rec_spam_com/5);  
 $last_spam_com=$total_pages_spam_com-1;
 
 @$headLine=$_POST["newsheadline"];
+@$cat=$_POST['category'];
 @$url=$_POST["url"];
 @$seoTitle=$_POST["seotitle"];
 @$seoDes=$_POST["seodes"];
@@ -183,6 +190,7 @@ if(isset($_POST['add_'.$type.'']))
       //echo $sql;
       if($qry){
         $success=ucfirst($type). " Created Success";
+        echo "<script>alert('news inserted..:)');</script>";
       move_uploaded_file($_FILES['file']['tmp_name'],$imgPath."/".$newfilename);
       cleardata();
       }else{
@@ -214,7 +222,7 @@ if(isset($_POST["update_profile"]))
   @$username=$_POST["txtuname"];
   @$email=$_POST["email"];
   @$mobile=$_POST["txtmobile"];
-  @$bankname=$_POST["txtbname"];
+  @$bankname=$_POST["bank"];
   @$holdername=$_POST["txtaccountHname"];
   @$account=$_POST["txtaccountno"];
   @$ifsc=$_POST["txtIfsc"];
@@ -278,13 +286,12 @@ if(isset($_POST["update_profile"]))
           $error_email="Invalid email";
           $flag=false;
       }
-      if(empty($bankname))
+      if($bankname=="--Select Bank--")
       {
         $error_bname="Invalid bank name";
         $flag=false;
-
       }
-      if(empty($ifsc) || !preg_match('^[A-Za-z]{4}[0]{1}[0-9a-zA-Z]{6}$',$ifsc))
+      if( empty($ifsc) || !preg_match('/^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/',$ifsc))
       {
         $flag=false;
         $error_ifsc="Invalid IFSC code";
@@ -426,11 +433,13 @@ function Updatestatus($id)
   $query=mysqli_query($con,$sql);
   if($query)
   {
-   echo "<script>alert('status updated..:)');</script>";
+    header("location:news.php");
+   //echo "<script>alert('status updated..:)');</script>";
    cleardata();
   }
   else
   {
+    //header("location:news.php");
     echo "<script>alert('status not updated..:)');</script>";
     cleardata();
   }
@@ -505,11 +514,12 @@ if(isset($_GET['approve']))
 if(isset($_GET['spam']))
 {
   $commentid=$_GET['spam'];
-  CommentSpam($commentid);
+  echo $commentid." comment id";
+  //CommentSpam($commentid);
 }
 if(isset($_GET['deleteComment']))
 {
-  $id=$_GET['delete'];
+  $id=$_GET['deleteComment'];
   $sql="delete from tbl_comment where id=$id";
   $query=mysqli_query($con,$sql);
   if($query)
@@ -630,19 +640,21 @@ if(isset($_POST['btn_send']))
     }
     $topic=$_POST['category'];
     $message=$_POST['message'];
-    $sql="insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+    $sql="insert into tbl_feedback(user_id,subject,message,role,file) values('$creatorid','$topic','$message','0','$newfilename')";
     //echo $sql;
 
-	echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
+	//echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',1,'$newfilename')";
 
-  echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
+  //echo "insert into tbl_feedback(user_id,subject,message,c_date,role,file) values('$creatorid','$topic','$message','$date',0,'$newfilename')";
   if(!empty($message))
   {
     $qry=mysqli_query($con,$sql);
     if($qry){
       $success=ucfirst($type). " Created Success";
+      echo "<script>alert('feedback send..:)')</script>";
     cleardata();
     }else{
+      echo "<script>alert('feedback not send..:(')</script>";
         $warning=ucfirst($type). " Not Created".mysqli_error($con);
     }
   }
@@ -658,14 +670,14 @@ if(isset($_POST['transaction']))
 	$e_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 	$e=mysqli_fetch_array($e_qry);
 	$e=$e['e'];
-	if($e>=500 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
+	if($e>=300 && $_POST['amount']<$e && !empty($_POST['amount']) && preg_match('/^[0-9]*$/',$_POST['amount']))
 	{
 		$u_qry=mysqli_query($con,"update tbl_content_creator set earnings=earnings-".$_POST['amount'].", 
 		life_time_withdraw_amt=life_time_withdraw_amt+".$_POST['amount']." where id=".$creatorid."");
 		$bal_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 		$bal=mysqli_fetch_array($bal_qry);
 		$bal=$bal['e'];
-		$t_qry=mysqli_query($con,"insert into tbl_transaction(content_creator_id ,withdraw_amt,c_date,balance) values(".$creatorid.",'".$_POST['amount']."','".$date."','".$bal."')");
+		$t_qry=mysqli_query($con,"insert into tbl_transaction(content_creator_id ,withdraw_amt,balance) values(".$creatorid.",'".$_POST['amount']."','".$bal."')");
 		if($u_qry && $t_qry)
 		{
 			echo "<script>alert('amount transfer successfully...:)');</script>";

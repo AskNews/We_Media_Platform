@@ -7,34 +7,35 @@
 	}
 	include "../Super_Admin/Includes/dbconfig.php";
 	if(isset($_POST['login']))
-	{
-		$username = mysqli_real_escape_string($con,$_POST['username']);
-		$password = mysqli_real_escape_string($con,$_POST['password']);
-        $sql="SELECT * from tbl_ad_creator where (username='".$username."' or email='".$username."') and password='".md5($password)."'";
+    {
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+        $sql="select * from tbl_ad_creator where username='".$username."' or email='".$username."' and password='".md5($password)."'";
+        echo $sql;
         $query=mysqli_query($con,$sql);
-        while($data=mysqli_fetch_assoc($query))
-		//if($data)
-		{
-			if(!empty($_POST['remember']))
-			{
-				$time = time()+60*60; // for one hour
-				setcookie("ad_cookie",$username,$time);
-			}
+        $data=mysqli_fetch_array($query);
+        if(!empty($_POST['remember']))
+        {
+            $time = time()+60*60; // for one hour
+            setcookie("ad_cookie",$username,$time);
+        }
+        if($data)
+        {
             $_SESSION['ad_creator_uname']=$username;
-           // $_SESSION['content_creator_profile']=$data["channel_logo"];
-            //echo "image= ".$_SESSION['content_creator_profile'];
+            $_SESSION['ad_creator_profile']=$data["profile_image"];
             header ("location: index.php");
-            //echo $_COOKIE['c_cookie'];
-		}
-		// else
-		// {
-		// 	$error = "invalid username and password. please try later";
-		// }
-	}
+        }
+        else
+        {
+            echo '<script>alert("error: Invalide Creditials'.mysqli_error($con).'")</script>';
+        }
+        
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -42,15 +43,19 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
+
     <!-- Title Page-->
     <title>Login</title>
+
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
@@ -59,9 +64,12 @@
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+
 </head>
+
 <body class="animsition">
     <div class="page-wrapper">
         <div class="page-content--bge5">

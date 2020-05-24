@@ -137,14 +137,14 @@
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <!--<input type="text" class="form-control" pattern="[a-zA-Z]+" id="txtbname"  value="<?php //if(isset($_POST['update_profile'])){echo $_POST['txtbname'];}else{echo $row["bank_name"];} ?>"  name="txtbname" placeholder="Bank Name">-->
-                                                        <select class="form-control show-tick" value="" name='status'  id='status'>
+                                                        <select class="form-control show-tick" value="" name='bank'  id='status'>
                                         <option>--Select Bank--</option>
-                                        <option value="axis">Axis Bank</option>
-                                        <option value="bob">Bank of Baroda</option>
-                                        <option value="sbi">State Bank of India</option>
-                                        <option value="kotak">Kotak Bank</option>
-                                        <option value="union">Union Bank</option>
-                                        <option value="pnb">Punjab Nation Bank</option>
+                                        <option value="axis" <?php if($row['bank_name']=="axis"){ echo "selected"; } ?> >Axis Bank</option>
+                                        <option value="bob" <?php if($row['bank_name']=="bob"){ echo "selected"; } ?>>Bank of Baroda</option>
+                                        <option value="sbi" <?php if($row['bank_name']=="sbi"){ echo "selected"; } ?>>State Bank of India</option>
+                                        <option value="kotak" <?php if($row['bank_name']=="kotak"){ echo "selected"; } ?>>Kotak Bank</option>
+                                        <option value="union" <?php if($row['bank_name']=="union"){ echo "selected"; } ?> >Union Bank</option>
+                                        <option value="pnb" <?php if($row['bank_name']=="pnb"){ echo "selected"; } ?>>Punjab Nation Bank</option>
                                         </select> 
                                                     </div>
                                                     <span class="error"><?php echo @$error_bname; ?></span>
@@ -178,7 +178,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" pattern="" class="form-control"  id="txtIfsc" name="txtIfsc"   value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtIfsc'];}else{echo $row["ifsc_code"];} ?>" placeholder="IFSC Code">
+                                                        <input type="text"  class="form-control"  id="txtIfsc" name="txtIfsc"   value="<?php if(isset($_POST['update_profile'])){echo $_POST['txtIfsc'];}else{echo $row["ifsc_code"];} ?>" placeholder="IFSC Code">
                                                     </div>
                                                     <span class="error"><?php echo @$error_ifsc; ?></span>
                                                 </div>
