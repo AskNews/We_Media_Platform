@@ -3,7 +3,7 @@ $type="content_creator";
 $t="";
 include "Includes/header.php";
 include_once "engine/engine.php";
-
+ 
 
 ?>
 
@@ -16,7 +16,7 @@ include_once "engine/engine.php";
 					<div class="panel panel-headline">
 						<div class="panel-heading">
 							<h3 class="panel-title"><?php echo ucfirst($type);?></h3>
-							<p class="panel-subtitle">Period: Oct 14, 2019 - Oct 21, 2019</p>
+							<p class="panel-subtitle"><?php period()?> </p>
 						</div>
 						<div class="panel-body">
 						<?php

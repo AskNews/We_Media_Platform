@@ -11,13 +11,20 @@ $query="";
       @$page1=($page*5)-5;
   }
   if($type=="news"){
-    $select="SELECT * FROM `tbl_$type` limit $page1,5";
+    $select="SELECT * FROM `tbl_$type` where Approved=0 limit $page1,5";
+    $Pagination="SELECT * FROM `tbl_$type` where Approved=0 ";
   
-  }else{
-  $select="SELECT * FROM `tbl_$type` limit $page1,5";
+  }else if($type=="content_creator"){
+    $select="SELECT * FROM `tbl_$type` where Monetization=1 limit $page1,5";
+    $Pagination="SELECT * FROM `tbl_$type` where Monetization=1 ";
+  
+  }
+  else{
+    $select="SELECT * FROM `tbl_$type` limit $page1,5";
+    $Pagination="SELECT * FROM `tbl_$type` ";
   }
   $result_news=mysqli_query($con,$select);
-$sql1=mysqli_query($con,"select * from tbl_$type");
+$sql1=mysqli_query($con,$Pagination);
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;    
@@ -134,24 +141,23 @@ function update($b){
      $sql=$select;
   }
       return 0;
+
+     // $success=$sql;
   }
-//###################APPROVE ENGINE############################
-function approve(){
-  global $con,$error,$select,$type,$success;
-  $id1=$_GET['AccountApproval'];
-	$sql="update tbl_$type set AccountApproval=!AccountApproval WHERE id='$id1'";
-	$query=mysqli_query($con,$sql);
-	if($query){
-  $success=ucfirst($type)." Account has been Approved successfully.";
-  $sql=$select;
-	}
-  else{
-    $error=ucfirst($type) ." is not Approved". Mysqli_error($con);
-    $sql=$select;
+//###############DATA EXTRACTOR Engine################## 
+  function fetch_detail($op,$table,$field,$value){
+    global $con;  
+    $select="select $op from tbl_$table where $field='$value'";
+    $res=mysqli_query($con,$select);
+    if($res){
+    $f=mysqli_fetch_array($res);
+    return $f[0];
+    
+    }else{
+      return mysqli_error($con);
     }
-
-}  
-
+    }
+    
 
   $User_email=$ses;
   $sql="SELECT * FROM `tbl_module_user` WHERE `user_name`='$ses' ";
@@ -207,10 +213,7 @@ if(isset($_GET['status'])){
 status();
 }
 
-//apprvoe the account
-if(isset($_GET['AccountApproval'])){
-  approve();
-  }
+
   
 //to editable  record
 if(isset($_GET['edit'])){
@@ -238,8 +241,69 @@ if(isset($_GET['edit'])){
        update(2);
      
       }
-   
-  
+      if($type=="content_creator"){
+        $a=array(
+          array('AccountApproval',$_POST['status']),
+          array('Monetization',0)
+        );
+        update(2);
+        $type="notification";
+        if($_POST['status']==1){
+          $sub="Your Account has been Rejected";
+        }else{
+          $sub="Congratulations! Your Account has been Approved";
+        }
+        $a=array( 
+          array('sub',$sub),
+          array('description',$_POST['rejDesc']),
+          array('user_id',$_POST['id']),
+          array('role',2)
+        );
+        insert(4);
+        header("Location:content_creator.php");
+      }
+  if($type=="news"){
+    if($_POST['Approved']==1){
+      $a=array(
+        array('RejectionMsg',""),
+        array('PublishDate',date('m/d/Y ', time())),
+        array('Approved',$_POST['Approved'])
+      );
+      update(3);
+      $type="notification";
+       $sub="Congratulations! Your News has been Approved";
+       $a=array( 
+        array('sub',$sub),
+        array('description',$_POST['HeadLine']),
+        array('user_id',$_POST['CreatorID']),
+        array('role',2),
+        array('c_date',date('Y-m-d ', time()))
+      );
+      insert(5);
+      header("Location:news.php");
+    }else{
+      $c=$_POST['Rejected']+1;
+      $a=array(
+        array('RejectionMsg',$_POST['rejectionmsg']),
+        array('PublishDate',date('m/d/Y ', time())),
+        array('Approved',$_POST['Approved']),
+        array('Rejected',$c)
+      );
+      update(4);
+      $type="notification";
+       $sub="Your News has been Rejected";
+       $a=array( 
+        array('sub',$sub),
+        array('description',$_POST['HeadLine']),
+        array('user_id',$_POST['CreatorID']),
+        array('role',2),
+        array('c_date',date('Y-m-d ', time()))
+      );
+      insert(5);
+      header("Location:news.php");
+    }
+    
+  }
   
 }
 //to search records

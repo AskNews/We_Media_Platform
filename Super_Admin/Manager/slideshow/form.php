@@ -14,21 +14,21 @@
 													 <div class="control-group">											
 											<label class="control-label" for="caption">caption</label>
 											<div class="controls">
-												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?><?php if(isset($vscaption)){ echo $vscaption;}?>">
+												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?><?php if(isset($vscaption)){ echo $vscaption;}?>" required>
 												<input type="hidden" name="vscaption">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
 											<label class="control-label" for="orderby">Order By</label>
 											<div class="controls">
-												<input type="text" class="span6" id="orderby" name="orderby" value="<?php echo isset($editData)?$editData['orderby']:"";?><?php if(isset($vsorderby)){ echo $vsorderby;}?>">
+												<input type="text" class="span6" id="orderby" name="orderby" value="<?php echo isset($editData)?$editData['orderby']:"";?><?php if(isset($vsorderby)){ echo $vsorderby;}?>" required>
 											    <input type="hidden" name="vsorderby">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
 											<label class="control-label" for="image"> Image</label>
 											<div class="controls">
-												<input type="file" class="span6" id="image" name="image">
+												<input type="file" class="span6" id="image" name="image" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<?php
@@ -50,7 +50,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="date">Date</label>
 											<div class="controls">
-												<input type="date" class="span6" id="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>">
+												<input type="date" class="span6" id="date" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 								<?php

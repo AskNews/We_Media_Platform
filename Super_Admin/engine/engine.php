@@ -201,7 +201,22 @@ function update($b){
         return $res[0];
     }
 
+//##################DATA EXTRACTION Engine##################
+function fetch_detail($op,$table,$field,$value){
+    global $con;  
+    $select="select $op from tbl_$table where $field='$value'";
+    $res=mysqli_query($con,$select);
+    if($res){
+    $f=mysqli_fetch_array($res);
+    return $f[0];
+    
+    }else{
+        return mysqli_error($con);
+    }
+    }
 
+    
+    
 if(isset($_POST['c_'.$type])){
     if($type=="user"){
     @$image=$_FILES['image'];

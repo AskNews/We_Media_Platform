@@ -11,7 +11,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="image">Profile Image</label>
 											<div class="controls">
-												<input type="file" class="span6" id="image" name="image" value="<?php if(isset($vsimage)){ echo $vsimage;}?>">
+												<input type="file" class="span6" id="image" name="image" value="<?php if(isset($vsimage)){ echo $vsimage;}?>" required>
 												<input type="hidden" name="vsimage" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -31,7 +31,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="username">Username</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="uname" value="<?php echo isset($editData)?$editData['user_name']:"";?><?php if(isset($vsuname)){ echo $vsuname;}?>">
+												<input type="text" class="span6" id="firstname" name="uname" value="<?php echo isset($editData)?$editData['user_name']:"";?><?php if(isset($vsuname)){ echo $vsuname;}?>" required>
 											    <input type="hidden" name="vsuname" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -40,7 +40,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="firstname" name="fname" value="<?php echo isset($editData)?$editData['first_name']:"";?><?php if(isset($vsfname)){ echo $vsfname;}?>">
+												<input type="text" class="span6" id="firstname" name="fname" value="<?php echo isset($editData)?$editData['first_name']:"";?><?php if(isset($vsfname)){ echo $vsfname;}?>" required>
 											    <input type="hidden" name="vsfname" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -49,7 +49,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="span6" id="lastname" name="lname" value="<?php echo isset($editData)?$editData['last_name']:"";?><?php if(isset($vslname)){ echo $vslname;}?>">
+												<input type="text" class="span6" id="lastname" name="lname" value="<?php echo isset($editData)?$editData['last_name']:"";?><?php if(isset($vslname)){ echo $vslname;}?>" required>
 											    <input type="hidden" name="vslname" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -58,7 +58,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="email">Email Address</label>
 											<div class="controls">
-												<input type="text" class="span4" id="email" name="email" value="<?php echo isset($editData)?$editData['email']:"";?><?php if(isset($vsemail)){ echo $vsemail;}?>">
+												<input type="text" class="span4" id="email" name="email" value="<?php echo isset($editData)?$editData['email']:"";?><?php if(isset($vsemail)){ echo $vsemail;}?>" required>
 												<input type="hidden" name="vsemail" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -68,7 +68,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password1">Password</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password1" name="pwd" >
+												<input type="password" class="span4" id="password1" name="pwd" required>
 												
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
@@ -77,7 +77,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="password2">Confirm</label>
 											<div class="controls">
-												<input type="password" class="span4" id="password2" name="pwd2">
+												<input type="password" class="span4" id="password2" name="pwd2" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 												

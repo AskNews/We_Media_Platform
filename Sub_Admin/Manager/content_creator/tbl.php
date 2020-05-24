@@ -12,7 +12,7 @@
 											<th>Email</th>
 											<th>Channel Name</th>
 											<th>Account Approval</th>
-											
+							 				
 											<th>Status</th>
 											<th>Operation</th>
 											</tr>

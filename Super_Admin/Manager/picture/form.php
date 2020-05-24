@@ -11,7 +11,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="image">Profile Image</label>
 											<div class="controls">
-												<input type="file" class="span6" id="image" name="image">
+												<input type="file" class="span6" id="image" name="image" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<?php
@@ -41,7 +41,7 @@
 					  }
 				  }
 		  ?>
-          <option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['title']; ?></option>
+          <option value="<?php echo $row['id']; ?>" <?php echo $selected; ?> ><?php echo $row['title']; ?></option>
           <?php
 		  }
 		  ?>
@@ -53,14 +53,14 @@
 										<div class="control-group">											
 											<label class="control-label" for="caption">Caption</label>
 											<div class="controls">
-												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?><?php if(isset($vscaption)){ echo $vscaption;}?>">
+												<input type="text" class="span6" id="caption" name="caption" value="<?php echo isset($editData)?$editData['caption']:"";?><?php if(isset($vscaption)){ echo $vscaption;}?>" required>
 												<input type="hidden" name="vscaption">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<div class="control-group">											
 											<label class="control-label" for="date">Date</label>
 											<div class="controls">
-												<input type="date" class="span6" id="caption" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>">
+												<input type="date" class="span6" id="caption" name="dat" value="<?php echo isset($editData)?$editData['c_date']:"";?>" required>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										

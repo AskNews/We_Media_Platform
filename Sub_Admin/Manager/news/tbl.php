@@ -9,11 +9,10 @@
 										<thead>
 											<tr>
 											<th>Id</th>
-											<th>User Name</th>
-											<th>Email</th>
+											<th>Head Line</th>
+											<th>Summery</th>
 											<th>Channel Name</th>
-											<th>Account Approval</th>
-											
+											<th>Category</th>
 											<th>Status</th>
 											<th>Operation</th>
 											</tr>
@@ -25,12 +24,12 @@
 	  ?>
 											<tr>
 											<td><?php echo $row['id']; ?></td>
-											<td><?php echo $row['username']; ?></td>
-											<td><?php echo $row['email']; ?></td>
-											<td><?php echo $row['ChannelName']; ?></td>
-											<td>
-		<a href="?AccountApproval=<?php echo $row['id']; ?>" style="color:<?php echo $row['AccountApproval']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
-		<?php echo $row['AccountApproval']?'Approved':'Pendding'; ?></td>
+											<td><?php echo $row['HeadLine']; ?></td>
+											<td><?php echo $row['Summary']; ?></td>
+											<td><?php echo fetch_detail("title","categories","id",$row['CategoryID']); ?></td>
+										
+											<td><?php echo fetch_detail("ChannelName","content_creator","id",$row['CreatorID']); ?></td>
+										
 											<td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['Status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
 		<?php echo $row['Status']?'Active':'in-active'; ?></td>

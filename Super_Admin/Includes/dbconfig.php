@@ -2,7 +2,7 @@
 //local and remote server connection
 if($_SERVER['REMOTE_ADDR'] == '127.0.0.1:3306' || $_SERVER['REMOTE_ADDR'] == '::1')
 {	
-	@define("hostname","127.0.0.1:3306");
+	@define("hostname","127.0.0.1:3307");
 	@define("username","root");
 	@define("password","");
 	@define("database","dbasknews");
@@ -21,5 +21,9 @@ $db = mysqli_select_db($con,database);
 if ($con->connect_error) 
 {
 	die("Connection failed: " . $con->connect_error);
+}
+function period(){
+echo "Period: ".  date("d-M-Y").", ".date("h:i:sa");
+
 }
 ?>
