@@ -17,11 +17,11 @@ $mon=0;
 include "../Super_Admin/includes/dbconfig.php";
 
 
-$sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
+$sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' or email='$_SESSION[content_creator_uname]' and Status=1";
 $query_details=mysqli_query($con,$sql);
 if(isset($_SESSION['content_creator_uname']))
 {
-    $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' and Status=1";
+    $sql="SELECT * from tbl_content_creator WHERE username='$_SESSION[content_creator_uname]' or email='$_SESSION[content_creator_uname]' and Status=1";
     $query=mysqli_query($con,$sql);
     while($data=mysqli_fetch_assoc($query_details))
     {
@@ -48,6 +48,7 @@ else
 {
     header ("location: login.php");
 }
+
 $noti=mysqli_query($con,"select count(id) as c from tbl_notification where role=0 and user_id=".$creatorid." and is_seen=0");
 $noti_count=mysqli_fetch_array($noti);
 $noti_count=$noti_count['c'];
@@ -55,7 +56,6 @@ $noti_count=$noti_count['c'];
 $fl_count=mysqli_query($con,"select count(f.id) as follower from tbl_follower f, tbl_content_creator c where f.content_creator_id=c.id and c.id=".$creatorid);
 $fl=mysqli_fetch_array($fl_count);
 $fl=$fl['follower'];
-
 
 $i_count=mysqli_query($con,"select index_point as ip from tbl_content_creator where id=".$creatorid);
 //echo "select index_point as ip from tbl_content_creator where id=".$creatorid;
@@ -88,7 +88,7 @@ $ttl_withdraw=$ttl_withdraw['lf'];
 
 $last_with=mysqli_query($con,"select withdraw_amt wa from tbl_transaction where content_creator_id=".$creatorid." order by c_date desc limit 1");
 $last_withdraw=mysqli_fetch_array($last_with);
-$last_withdraw=$last_withdraw['wa'];
+@$last_withdraw=$last_withdraw['wa'];
 
 include "engine/engine.php";
 ?>
@@ -128,52 +128,6 @@ include "engine/engine.php";
     .error{color:red;}
 </style>
 <script type="text/javascript">
-function convertToSlug( str ) {
-	
-  //replace all special characters | symbols with a space
-  str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
-	
-  // trim spaces at start and end of string
-  str = str.replace(/^\s+|\s+$/gm,'');
-	
-  // replace space with dash/hyphen
-  str = str.replace(/\s+/g, '-');	
-  
-  document.getElementById("url").value= str;
-  
-  //return str;
-}
-function convertToComa1( str2 ) {
-	
-	//replace all special characters | symbols with a space
-	str2 = str2.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
-	  
-	// trim spaces at start and end of string
-	str2 = str2.replace(/^\s+|\s+$/gm,'');
-	  
-	// replace space with dash/hyphen
-	str2 = str2.replace(/\s+/g, ', ');	
-	
-	document.getElementById("seodes").value= str2;
-  //return str;
-  }
-function convertToComa( str1 ) {
-	
-	//replace all special characters | symbols with a space
-	str1 = str1.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
-	  
-	// trim spaces at start and end of string
-	str1 = str1.replace(/^\s+|\s+$/gm,'');
-	  
-	// replace space with dash/hyphen
-	str1 = str1.replace(/\s+/g, ', ');	
-	
-	document.getElementById("seotitle").value= str1;
-  //return str;
-  }
-  
-	</script>
-    <script>
 
 </script>
 </head>

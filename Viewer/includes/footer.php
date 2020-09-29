@@ -29,6 +29,7 @@
 	  $query=mysqli_query($con,$sql);
 	  $index=1;
 	  while($row=mysqli_fetch_array($query)){
+      $url=createUrlSlug($row['title']);
 		  $gallery_id=$row['id'];
 		  $pictureSql="Select * from tbl_picture where status='1' and gallery_id='$gallery_id' ORDER BY RAND() LIMIT 1";
 		  $pictureQuery=mysqli_query($con,$pictureSql);
@@ -38,7 +39,7 @@
 		  if($count==0)
 		  continue;
 	  ?>
-        <li class="one_quarter <?php echo ($index==1 || $index%4==0)?'first':''; ?>"><a href="pictures.php?gallery=<?php echo $row['url']; ?>">
+        <li class="one_quarter <?php echo ($index==1 || $index%4==0)?'first':''; ?>"><a href="pictures.php?gallery=<?php echo $url; ?>">
           <img src="../Super_Admin/image/gallery/<?php echo$gallery_id."/".$pictureData['image']; ?>" alt="" style="width:70px;height:70px; " ></a>
            
         </li>
@@ -104,7 +105,7 @@
 <script src="layout/scripts/jquery-mobilemenu.min.js"></script>
 <script src="layout/scripts/custom.js"></script>
 <script src="js/lightbox.js"></script>
-
+<script src="js/jquery.min.js"></script>
 </body>
 </html>
 

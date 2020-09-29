@@ -7,7 +7,7 @@
                             </h2>
                         </div>
                         <div class="body">
-                        <?php include "includes/msg.php";?>
+                      
                             <form id="form_advanced_validation" enctype="multipart/form-data" method="POST">            
                             <input type="hidden" name="HiddennewsId" value="<?php echo @$_GET['newsid'];?>" <?php //echo "<script>alert(newsid=$newsid);</script>";?> />
                             <div class="row clearfix">
@@ -43,20 +43,7 @@
                                     </div>
                                     <span id="error_headline" class="error"><?php if(isset($error_headline)){echo $error_headline;}?></span>
                             </div>
-                            <div class="form-group form-float">
-                                    <div class="form-line">
-                                    <label class="form-label">Url</label>
-                                        <input type="text" class="form-control" id="url" value="<?php echo @$update['Url']; echo @$_POST['url'] ?>" readonly="readonly"  name="url">
-                                    </div>
-                                    <span id="error_url" class="error"></span>
-                            </div>
-                            <div class="form-group form-float">
-                                    <div class="form-line">
-                                    <label class="form-label">SEO Title</label>
-                                        <input type="text" class="form-control"  name="seotitle" value="<?php echo @$update['SeoTitle']; echo @$_POST['seotitle']?>" readonly="readonly" id="seotitle">  
-                                    </div>
-                                    <span id="error_seo_title" class="error"></span>
-                            </div>
+                            
                             <div class="form-group form-float">
                                     <div class="form-line">
                                     <label class="form-label">Summary</label>
@@ -64,13 +51,7 @@
                                     </div>
                                     <span id="error_summary" class="error"><?php if(isset($error_summary)){echo $error_summary;}  ?></span>
                             </div>
-                            <div class="form-group form-float">
-                                    <div class="form-line">
-                                    <label class="form-label">SEO Description</label>
-                                        <input type="text" class="form-control" name="seodes" value="<?php echo @$update['SeoDescription']; echo @$_POST['seodes'] ?>"  readonly="readonly"  id="seodes" >    
-                                    </div>
-                                    <span id="error_seo_desc" class="error"></span>
-                            </div>
+                           
                             <div class="form-group form-float">
                             <label class="form-label" style="color:grey;">Attach File</label>
                                     <div class="form-line">

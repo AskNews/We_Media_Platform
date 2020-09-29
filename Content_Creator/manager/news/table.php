@@ -21,7 +21,7 @@
                                 <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==0)) {echo "selected";} ?> value="0">Pending</option>
                                 <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==1)) {echo "selected";} ?> value="1">Offline</option>
                                 <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==2)) {echo "selected";} ?> value="2">Rejected</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==3)) {echo "selected";} ?> value="3">Draft</option>
+                                <!--<option class="wmp-input" <?php //if(isset($_POST["newsType"])&& ($_POST['newsType']==3)) {echo "selected";} ?> value="3">Draft</option>-->
 								</select> 
                                 <button class="btn btn-primary waves-effect" name="btn_filter" id="submit" type="submit">FILTER</button>
                                 </label>
@@ -55,16 +55,18 @@
                                         <tr role="row">
                                             <td  style="width: 250px;"><?php echo wordwrap($row['HeadLine'],35,"<br>")?></td>
                                             <td  style="width: 80px;"><img src="<?php echo $imgPath."/".$row['FileAttach'];?>" height="100px" width="80px" ></td>
-                                            <?php if($row["Approved"]){ ?>
+                                            <?php if($row["Approved"]==1 ){ ?>
                                             <td><?php echo substr($row['ModifyDate'],0,10);?></td>
                                             <td><?php echo $row['PublishDate'];?></td>
                                             <td style="width: 10px;"><?php echo $row['Views'];?></td>
-                                            <?php } elseif($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3){ ?> 
+                                            <?php } 
+                                            elseif($row["Approved"]==0 && $row["Offline"]==1 && $row["Rejected"]==3){ ?> 
                                             <td colspan='3'> Your News is offline due to <?php echo $row["RejectionMsg"]; ?></td>
                                             <?php }
-                                            elseif($row["Approved"]==0 && $row["Offline"]==0 && $row["Rejected"]==1 ){ ?>
+                                            elseif($row["Approved"]==0 && $row["Offline"]==0 && $row['Rejected']==0 ){ ?>
                                             <td colspan='3'>Pending</td>
-                                            <?php } elseif($row["Approved"]==0 && $row["Rejected"]==2 && $row['Offline']==0){ ?>
+                                            <?php } 
+                                            elseif($row["Approved"]==0 && $row['Offline']==0 && ($row["Rejected"]==1 || $row['Rejected']==2)){ ?>
                                                 <td colspan='3'>News is Rejected due to <?php echo $row["RejectionMsg"]; ?><br/> <a href="?newsid=<?php echo $row["id"]; ?>">click to modify</a> </td>
                                             <?php } ?>          
                                             <td>
@@ -111,4 +113,3 @@
                         </div>
                     </div>
                 </div>
-          

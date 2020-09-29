@@ -32,8 +32,8 @@ include "includes/header.php";
             <figcaption>
               <p class="team-name"><?php echo $row['title'];?></p>
               <p class="team-title">Location: <?php echo $row['location'];?><br />Date: <?php echo $row['date'];?></p>
-              
-              <p class="read-more"><a href="pictures.php?gallery=<?php echo $row['url']; ?>">View Pictures &raquo;</a></p>
+              <?php  $url=createUrlSlug($row['title']); ?>
+              <p class="read-more"><a href="pictures.php?gallery=<?php echo $url; ?>">View Pictures &raquo;</a></p>
             </figcaption>
           </figure>
         </li>

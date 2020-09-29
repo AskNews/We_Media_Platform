@@ -3,10 +3,13 @@ $type="news";
 include 'includes/header.php';
 $user=@$_SESSION['newViewerLogin'];
 $uid=@$_SESSION['id'];
-//mysqli_query($con,"insert into tbl_recent(user,news_id) values('".$user."','".$res_view['id']."')");
 
 @$uid=$_SESSION['id'];
-mysqli_query($con,"insert into tbl_recent(user,news_id) values('".$user."','".$res_view['id']."')");
+if(@$uid!=null)
+{
+  mysqli_query($con,"delete from tbl_recent where user='".$user."' and news_id='".$res_view['id']."'"); 
+  mysqli_query($con,"insert into tbl_recent(user,news_id) values('".$user."','".$res_view['id']."')");
+}
 
 $sql_ad=mysqli_query($con,"SELECT * FROM tbl_adunit where status='1' ORDER BY RAND ( )  LIMIT 1");
 $row=mysqli_fetch_array($sql_ad);
@@ -15,14 +18,38 @@ $row=mysqli_fetch_array($sql_ad);
   <div id="container">
   <div class="two_quarter first">
       <section class="clear">
-      <h1><?php echo $res_view['HeadLine'];?></h1><br/>
-      <div class="imgl">
-        <img src="../Content_Creator/img/<?php echo $res_view['FileAttach'];?>" style=" padding:15px;width:160px; height:160px;" alt="">
+      
+
+      <div id="player"></div>
+      <form method='post'>
+     
+     <h1 id='read-1'><?php echo $res_view['HeadLine'];?></h1>
+  
+      <br/>
+     
+      <div class="polaroid">
+        <img src="../Content_Creator/img/<?php echo $res_view['FileAttach'];?>" alt="news image" style="width:100%; height:160px;">
+        <div class="container">
+             <p><b><font size='5' style="text-align:center" >News</font></b></p>
+        </div>
       </div>
-      <div style="width:50%;display:inline-block"><p><?php  echo substr($res_view['Details'],0,100); ?></p></div>
-      <div><a href="<?php echo $row['url']?>" ><img src="../Ad_Creator/img/<?php echo $row['file_attach'];?>" style=" padding:15px;width:160px; height:160px;" alt=""></a>
+      <span class='icon-volume-up icon-4x'  id='texttospeechh'></span><br/><br/>
+      <div id='read-2'><?php  echo substr($res_view['Details'],0,100); ?></div> <br/><br/>
+
+      <div class="polaroid">
+      <a href="<?php echo $row['url']?>" ><img src="../Ad_Creator/img/<?php echo $row['file_attach'];?>" alt="ad image" style="width:100% height:160px">
+        </a>
+        <div class="container">
+        <p ><b><font size='5' style="text-align:center" >Ad</font></b></p>
+        </div>
       </div>
-      <p><?php  echo substr($res_view['Details'],101); ?></p><br/>
+      
+     
+      <p id='read-3'><?php  echo substr($res_view['Details'],101); ?></p><br/>
+
+      </form>
+    
+      <div class="sharethis-inline-share-buttons"></div>
       </section>
        <div id="respond">
         <h2>Comment</h2>
@@ -94,14 +121,51 @@ $row=mysqli_fetch_array($sql_ad);
           </div>
           </ul><br/><br/>
         <h2>Comments</h2><br/><br/>
+        <form method='post'>
         <ul class="list underline list arrow">
-        <?php $qry=mysqli_query($con,"select * from tbl_comment where status=1 and news_id=".$res_view['id']);  
-        while ($row=mysqli_fetch_array($qry)) { ?>
+        <?php $qry=mysqli_query($con,"select * from tbl_comment where status=1 and to_comment='' and news_id=".$res_view['id']);  
+        while ($r=mysqli_fetch_array($qry)) { ?>
           <li ><b>
-          <?php echo $row['user_name'] ?><br/>
-          </b><?php echo $row['comment']?></li>
-        <?php } ?>
+          <?php echo $r['user_name'] ?><br/>
+          </b><?php echo $r['comment']?></li>
+          <?php
+    
+            echo "<input data-id=".$r['id']." class='jsText' type='text' placeholder='replay to ".$r['user_name']."' name='replay'>";
+            echo "<input data-id=".$r['id']." class='jsButton button small orange' type='button'  value='send'><br/>";
+            echo "<input data-id=".$r['id']." class='jsHidden' type='hidden'  value='".$r['id']."'>";
+            echo "<input data-id=".$r['id']." class='jsHiddenname' type='hidden'  value='".$r['user_name']."'><br/>";
+            show_comment($r['id']);
+          ?>
+        <?php }
+        
+        function show_comment($id) {
+          $margin=20;
+          $con=mysqli_connect('localhost','root','','dbasknews');
+          if(mysqli_query($con,'select id,comment,user_name from tbl_comment where to_comment='.$id))
+          {
+            $recom=mysqli_query($con,'select id,comment,user_name from tbl_comment where to_comment='.$id);
+            $user=mysqli_query($con,'select user_name as user from tbl_comment where id='.$id);
+            $uname=mysqli_fetch_array($user);
+            $uname=$uname['user'];
+            while($r1=mysqli_fetch_assoc($recom))
+            {
+              echo "<div style='margin-left:".$margin."px'>";
+              echo "<b>".$r1['user_name']."</b> <span class='icon-circle-arrow-right '></span> ";
+              echo "<b>@".$uname."</b> ".$r1['comment']."<br/>";
+              echo "<input data-id=".$r1['id']." class='jsText' type='text' placeholder='replay to ".$r1['user_name']."' name='replay'>";
+              echo "<input data-id=".$r1['id']." class='jsButton button small orange' type='button'  value='send'><br/>";
+              echo "<input data-id=".$r1['id']." class='jsHidden' type='hidden'  value='".$r1['id']."'>";
+              echo "<input data-id=".$r1['id']." class='jsHiddenname' type='hidden'  value='".$r1['user_name']."'><br/>";
+              $margin=$margin+20;
+              show_comment($r1['id']);
+              echo "</div>";
+            }
+          }
+        }	
+        
+        ?>
         </ul>
+        </form>
       </li>    
           </ul>
         </nav>
@@ -206,7 +270,46 @@ $(document).ready(function(){
       alert("please login...");
     }
   })
-
+  $('#texttospeechh').click(function(){
+		var txt=$('#read-1').text()+" "+$('#read-2').text()+" "+$('#read-3').text();
+		console.log(txt);
+		$.ajax({
+			url:'engine/engine.php',
+			type:'post',
+			data:'txt='+txt,
+			success:function(result){
+				$('#player').html(result);
+			}
+		});
+	});
+  let currentComment=null;
+		$(".jsButton").click(function(){
+			currentComment=$(this).data('id');
+			var tocom=$(`.jsHidden[data-id='${currentComment}']`).val();
+			var comm=$(`.jsText[data-id='${currentComment}']`).val();
+			var user=$(`.jsHiddenname[data-id='${currentComment}']`).val();
+      var newsid=$('#newsid').val();
+			console.log('comm =>'+ comm);				
+			console.log('to  comment id =>'+ tocom);	
+			console.log('to user =>'+ user);	
+      console.log('new id =>'+ newsid);
+			$.ajax({
+				url:'comment_chat.php',
+				type:'POST',
+				data:{
+          comment:$(`.jsText[data-id='${currentComment}']`).val(),
+          to_com:$(`.jsHidden[data-id='${currentComment}']`).val(),
+          news_id:$('#newsid').val(),
+          user_name:$('#user_name ').val()
+        },
+				success:function(result)
+				{
+          alert(result+$(`.jsHiddenname[data-id='${currentComment}']`).val());
+          location.reaload();
+					
+				}
+		 });
+		});
 });
 </script>
 <?php

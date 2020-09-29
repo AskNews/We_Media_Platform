@@ -101,7 +101,7 @@
                             <a href="sign-up.php">Register Now!</a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
+                           <!-- <a href="forgot-password.html">Forgot Password?</a>-->
                         </div>
                     </div>
                 </form>

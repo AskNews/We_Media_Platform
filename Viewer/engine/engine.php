@@ -1,9 +1,9 @@
 <?php
 $query="";
-@$select="SELECT * FROM `tbl_$type` where `deletion`='1'";
-@$select1="SELECT * FROM `tbl_$type` where `deletion`='1' limit $page1,4";
+@$select="SELECT * FROM `tbl_$type`";
+@$select1="SELECT * FROM `tbl_$type` limit $page1,4";
 @$result_news=mysqli_query($con,$select1);
-@$sql1=mysqli_query($con,"select * from tbl_$type where `deletion`='1' limit $page1,5");
+@$sql1=mysqli_query($con,"select * from tbl_$type  limit $page1,5");
 @$total_rec=mysqli_num_rows($sql1);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;    
@@ -154,8 +154,8 @@ if($data){
   $_SESSION['newViewerLogin']=$data['user_name'];
   $_SESSION['newVieweremail']=$data['email'];
   $_SESSION['id']=$data['id'];
-  //header ("location: index.php");
-  echo '<script>alert("'.$_SESSION['newViewerLogin'].'")</script>';
+  header ("location: index.php");
+  //echo '<script>alert("'.$_SESSION['newViewerLogin'].'")</script>';
   }
   else{
       echo '<script>alert("error'.mysqli_error($con).'")</script>';
@@ -166,22 +166,23 @@ if($data){
   $url="";
   $data1;
   if(isset($_GET['cat'])){
+    
     global $url,$data;
-    $url=$_GET['cat'];
-  $sql="select * from tbl_$type where status='1' and url='$url'";
+    $url=str_replace('-', ' ', $_GET['cat']);
+    $type=$url;
+  $sql="select * from tbl_categories where status='1' and title='".$url."'";
 	$query1=mysqli_query($con,$sql);
 	$data=mysqli_fetch_array($query1);
 	if($data){
-		$title=$data['seo_desc'];
-		$desc=$data['seo_desc'];
+		
     $data1=$data['id'];
-    $keyword=$data['seo_title'];
+    
 		}
 	}
   
   if(isset($_GET['news'])){
-    $gen_news=$_GET['news'];
-    $fqry=mysqli_query($con,"select * from tbl_news where Url='$gen_news' and Status=1 and Offline=0");
+    $url=str_replace('-',' ',$_GET['news']);
+    $fqry=mysqli_query($con,"select * from tbl_news where HeadLine='".$url."' and Status=1 and Offline=0");
     $res_view=mysqli_fetch_array($fqry);
     $resv=$res_view['CategoryID'];
     $data1=$res_view['CategoryID'];
@@ -422,6 +423,7 @@ if(isset($_POST['user_id']) && isset($_POST['ad_id']) && isset($_POST['news_id']
   //echo "select * from tbl_adunit_report where user_id='".$_POST['user_id']."' and news_id='".$_POST['news_id']."' and ad_id='".$_POST['ad_id']."'";
   if(mysqli_num_rows($qry_select_exists_click)==0)
   {
+    $qry_insert_views=mysqli_query($con,"update tbl_news set Views=Views+1 where id=".$_POST['news_id']);
     $qry=mysqli_query($con,"insert into tbl_adunit_report(ad_id,news_id,user_id,company_earning,creator_earning) values('".$_POST['ad_id']."','".$_POST['news_id']."','".$_POST['user_id']."','".$com_ear."','".$creator_ear."')");
     $qry_creator_update=mysqli_query($con,"update tbl_content_creator set earnings=earnings+".$creator_ear." where id in(select CreatorID from tbl_news where id='".$_POST['news_id']."')");
     $qry_ad_creator_update=mysqli_query($con,"update tbl_adunit set amount=amount-".$_POST['cpc']." where ad_id=".$_POST['ad_id']);
@@ -434,5 +436,18 @@ if(isset($_POST['user_id']) && isset($_POST['ad_id']) && isset($_POST['news_id']
     // } 
   }
 }
+
+//-------------------------text to speech-----------------------
+
+if(isset($_POST['txt'])){
+	$txt=$_POST['txt'];
+	$txt=htmlspecialchars($txt);
+	$txt=rawurlencode($txt);
+	$html=file_get_contents('https://translate.google.com/translate_tts?ie=UTF-8&client=gtx&q='.$txt.'&tl=en-IN');
+	$player="<audio controls='controls' autoplay><source src='data:audio/mpeg;base64,".base64_encode($html)."'></audio>";
+	echo $player;
+}
+
+
 
 ?>
