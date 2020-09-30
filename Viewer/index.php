@@ -7,22 +7,7 @@ include 'includes/header.php';
   <div id="container">
     <div id="homepage" class="clear">
       <div class="two_third first">
-        <section class="main_slider">
-          <div class="rslides_container clear">
-            <ul class="rslides clear" id="rslides">
-            <?php
-            $sql="select * from tbl_slideshow where status='1' ORDER BY orderby ASC";
-            $query=mysqli_query($con,$sql);
-            while($slideshow=mysqli_fetch_array($query)):
-            ?> 
-              <li><img src="../Super_Admin/image/slideshow/<?php echo $slideshow['image'];?>" style="width:600; height:300px;" alt=""></li>  
-            <?php
-            endwhile;
-            ?>
-            </ul>
-          </div>
-        </section>    
-        <div class="divider2"></div>
+        
         <?php
         $sql="select * from tbl_categories where status='1'";
 		$query=mysqli_query($con,$sql);

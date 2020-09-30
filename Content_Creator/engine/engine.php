@@ -560,7 +560,7 @@ if(isset($_GET['feedid']))
 if(isset($_POST["btn_search"]))
 {
   $a=$_POST["keyword"];
-  $select_news="select * from tbl_news where CreatorID=".$creatorid." and HeadLine like '%$a%' or ModifyDate='".$a."' or PublishDate='".$a."' or Views='".$a."' or Status='".$a."'";
+  $select_news="select * from tbl_news where CreatorID=".$creatorid." and (HeadLine like '%$a%' or ModifyDate='".$a."' or PublishDate='".$a."' or Views='".$a."' or Status='".$a."')";
   $result_news=mysqli_query($con,$select_news);
 }
 //___________________________fill data in controls by querystring_________________________
@@ -701,7 +701,7 @@ if(isset($_POST['transaction']))
 //_____________________________search transaction______________________________
 if(isset($_POST['search_transaction']))
 {
-	$result_transaction=mysqli_query($con,"select * from tbl_transaction where content_creator_id=1 and withdraw_amt='".$_POST['keyword']."' or c_date='".$_POST['keyword']."' or balance='".$_POST['keyword']."'");
+	$result_transaction=mysqli_query($con,"select * from tbl_transaction where content_creator_id=1 and (withdraw_amt='".$_POST['keyword']."' or c_date='".$_POST['keyword']."' or balance='".$_POST['keyword']."')");
 }
 
 //___________________________________filter transaction__________________________
@@ -717,7 +717,7 @@ if(isset($_POST['btn_transaction_filter']))
 //_____________________________search notification___________________
 if(isset($_POST['search_noti']))
 {
-	$result_noti=mysqli_query($con,"select * from tbl_notification where user_id=$creatorid and role=0 and sub like '%".$_POST['keyword']."%' or c_date='".$_POST['keyword']."' or description like '%".$_POST['keyword']."%'");
+	$result_noti=mysqli_query($con,"select * from tbl_notification where user_id=$creatorid and role=0 and (sub like '%".$_POST['keyword']."%' or c_date='".$_POST['keyword']."' or description like '%".$_POST['keyword']."%')");
 }
 
 //___________________filter notification____________________
