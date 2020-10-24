@@ -14,22 +14,22 @@ if($index>100)
 //follower
 $f_qry=mysqli_query($con,"select count(f.id) as follower from tbl_follower f, tbl_content_creator c where f.content_creator_id=c.id and c.id=$creatorid and datediff(f.date,date(now()))<=30 having count(f.id)>=40");
 $f=mysqli_fetch_array($f_qry);
-$f=$f['follower'];
+@$f=$f['follower'];
 
 //like
 $l_qry=mysqli_query($con,"select count(l.id) as l  from tbl_like l,tbl_news n,tbl_content_creator c where n.id=l.news_id and n.CreatorID=c.id and c.id=".$creatorid." and datediff(n.PostDate,date(now()))<=30 and datediff(l.c_date,date(now()))<=30  having count(l.id)>=100");
 $l=mysqli_fetch_array($l_qry);
-$l=$l['l'];
+@$l=$l['l'];
 
 // 3 news publish 
 $p_qry=mysqli_query($con,"select count(id) p from tbl_news where CreatorID =".$creatorid." and datediff(PostDate,date(now())) having count(id)>=3;");
 $p=mysqli_fetch_array($p_qry);
-$p=$p['p'];
+@$p=$p['p'];
 
 // 100 views
 $v_qry=mysqli_query($con,"select count(Views) as v from tbl_news where CreatorID=".$creatorid."  and Views>=100 and datediff(PublishDate,date(now()))<=30;");
 $v=mysqli_fetch_array($v_qry);
-$v=$v['v'];
+@$v=$v['v'];
 if(!empty($f) && !empty($l) && !empty($p) && !empty($v) )
 {
 	mysqli_query($con,"update tbl_content_creator set index_point=index_point+5 where id=".$creatorid);
@@ -37,7 +37,7 @@ if(!empty($f) && !empty($l) && !empty($p) && !empty($v) )
 
 //_________________________________________variable declration________________________________________________
 
-$cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=null;
+$cat=$headLine=$newfilename=$fileName=$attachFile=$details=$summary=$status=null;
 @$page=$_GET["page"];
 if($page=="" || $page==1)
 {
@@ -84,7 +84,7 @@ $total_news_pages=ceil($total_news_rec/5);
 $last_news=$total_news_pages-1;
 
 
-//---------------paging transaction ------------------
+//--------------- paging transaction ------------------
 
 
 $sql_transaction=mysqli_query($con,"select * from tbl_$type where content_creator_id=$creatorid ");
@@ -92,14 +92,14 @@ $sql_transaction=mysqli_query($con,"select * from tbl_$type where content_creato
 $total_transaction_pages=ceil($total_transaction_rec/5);  
 $last_transaction=$total_transaction_pages-1;
 
-//---------------paging notification ------------------
+//--------------- paging notification ------------------
 
-$sql_noti=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=$creatorid ");
+$sql_noti=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=".$creatorid);
 @$total_rec=mysqli_num_rows($sql_noti);
 $total_pages=ceil($total_rec/5);  
 $last=$total_pages-1;
 
-//---------------paging feedback ------------------
+//--------------- paging feedback ------------------
 
 $sql_feed=mysqli_query($con,"select * from tbl_$type where role=0 and user_id=$creatorid");
 @$total_rec_feed=mysqli_num_rows($sql_feed);
@@ -107,7 +107,7 @@ $total_pages_feed=ceil($total_rec_feed/5);
 $last_feed=$total_pages_feed-1;
 
 
-//-------paging for comment-----
+//------- paging for comment-----
 
 $sql_app_com=mysqli_query($con,"select * from tbl_$type as c,tbl_news as n where c.news_id=n.id and c.status=1 and n.CreatorID=$creatorid");
 @$total_rec_app_com=mysqli_num_rows($sql_app_com);
@@ -126,9 +126,6 @@ $last_spam_com=$total_pages_spam_com-1;
 
 @$headLine=$_POST["newsheadline"];
 @$cat=$_POST['category'];
-@$url=$_POST["url"];
-@$seoTitle=$_POST["seotitle"];
-@$seoDes=$_POST["seodes"];
 @$attachFile=$_FILES["file"]["name"];
 @$details=$_POST["editor1"];
 @$summary=$_POST["summary"];
@@ -185,7 +182,7 @@ if(isset($_POST['add_'.$type.'']))
     }
     if($flag==true)
     {
-      $sql="insert into tbl_$type(CategoryID,CreatorID,HeadLine,Url,SeoTitle,SeoDescription,FileAttach,Summary,Details,Status,PostDate) values('$cat','$creatorid','$headLine','$url','$seoTitle','$seoDes','$newfilename','$summary','$details','$status','$date')";
+      $sql="insert into tbl_$type(CategoryID,CreatorID,HeadLine,FileAttach,Summary,Details,Status,PostDate) values('$cat','$creatorid','$headLine','$newfilename','$summary','$details','$status','$date')";
       $qry=mysqli_query($con,$sql);
       //echo $sql;
       if($qry){
@@ -286,27 +283,33 @@ if(isset($_POST["update_profile"]))
           $error_email="Invalid email";
           $flag=false;
       }
-      if($bankname=="--Select Bank--")
+      $get_mon=mysqli_query($con,"select Monetization from tbl_content_creator where id=".$creatorid);
+      $get_monn=mysqli_fetch_array($get_mon);
+      $get_monn=$get_monn['Monetization'];
+      if($get_monn==1)
       {
-        $error_bname="Invalid bank name";
-        $flag=false;
-      }
-      if( empty($ifsc) || !preg_match('/^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/',$ifsc))
-      {
-        $flag=false;
-        $error_ifsc="Invalid IFSC code";
-      }
-      if(empty($account) || !preg_match('/^[0-9]*$/',$account))
-      {
-        $error_accountNum="Invalid Account number";
-        $flag=false;
-        
-      }
-      if(empty($holdername) || !preg_match('/^[A-Za-z]*$/',$holdername))
-      {
-        $error_holderName="Invalid bank name";
-        $flag=false;
-        
+        if($bankname=="--Select Bank--")
+        {
+          $error_bname="Invalid bank name";
+          $flag=false;
+        }
+        if( empty($ifsc) || !preg_match('/^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/',$ifsc))
+        {
+          $flag=false;
+          $error_ifsc="Invalid IFSC code";
+        }
+        if(empty($account) || !preg_match('/^[0-9]*$/',$account))
+        {
+          $error_accountNum="Invalid Account number";
+          $flag=false;
+          
+        }
+        if(empty($holdername) || !preg_match('/^[A-Za-z]*$/',$holdername))
+        {
+          $error_holderName="Invalid bank name";
+          $flag=false;
+          
+        }
       }
     }  
     if($flag==true)
@@ -407,15 +410,17 @@ if(isset($_POST["add_u"]))
     }
     if($flag==true)
     {
-      $sql="update tbl_$type set CategoryID='$cat', CreatorID='$creatorid',HeadLine='$headLine',Url='$url',SeoTitle='$seoTitle',SeoDescription='$seoDes',FileAttach='$newfilename',Summary='$summary',Status='$status',Details='$details',PostDate='$date' where id=".$_GET["newsid"];
+      $sql="update tbl_$type set CategoryID='$cat', CreatorID='$creatorid',HeadLine='$headLine',FileAttach='$newfilename',Summary='$summary',Status='$status',Details='$details',PostDate='$date' where id=".$_GET["newsid"];
       $qry=mysqli_query($con,$sql);
-      echo $sql;
+     // echo $sql;
       if($qry){
-        $success=ucfirst($type). " Created Success";
+          echo "<script>alert('news update..:)');</script>";
+        //$success=ucfirst($type). " Created Success";
       move_uploaded_file($_FILES['file']['tmp_name'],$imgPath."/".$newfilename);
       cleardata();
       }else{
-          $warning=ucfirst($type). " Not Created".mysqli_error($con);
+        echo "<script>alert('news not update..:)');</script>";
+          //$warning=ucfirst($type). " Not Created".mysqli_error($con);
           //$sql=$select;
       }
     }
@@ -423,7 +428,7 @@ if(isset($_POST["add_u"]))
 //____________________________cleardata___________________________________
 function cleardata()
 {
-  $cat=$headLine=$url=$seoTitle=$seoDes=$newfilename=$fileName=$attachFile=$details=$summary=$status=$_GET['status']=$_GET['feedid']=null;
+  $cat=$headLine=$newfilename=$fileName=$attachFile=$details=$summary=$status=$_GET['status']=$_GET['feedid']=null;
 }
 // _________________________change status_________________________________
 function Updatestatus($id)
@@ -514,8 +519,8 @@ if(isset($_GET['approve']))
 if(isset($_GET['spam']))
 {
   $commentid=$_GET['spam'];
-  echo $commentid." comment id";
-  //CommentSpam($commentid);
+  //  echo $commentid." comment id";
+  CommentSpam($commentid);
 }
 if(isset($_GET['deleteComment']))
 {
@@ -555,7 +560,7 @@ if(isset($_GET['feedid']))
 if(isset($_POST["btn_search"]))
 {
   $a=$_POST["keyword"];
-  $select_news="select * from tbl_news where CreatorID=".$creatorid." and HeadLine like '%$a%' or ModifyDate='".$a."' or PublishDate='".$a."' or Views='".$a."' or Status='".$a."'";
+  $select_news="select * from tbl_news where CreatorID=".$creatorid." and (HeadLine like '%$a%' or ModifyDate='".$a."' or PublishDate='".$a."' or Views='".$a."' or Status='".$a."')";
   $result_news=mysqli_query($con,$select_news);
 }
 //___________________________fill data in controls by querystring_________________________
@@ -582,24 +587,24 @@ if(isset($_POST["btn_filter"]))
   @$a=$_POST["newsType"];
   //echo "<script>alert($a);</script>";
   if($a==0)
-  {
-      $select_news="select * from tbl_news where CreatorID=".$creatorid." and Approved=0 ";
+  {   //pending
+      $select_news="select * from tbl_news where CreatorID=".$creatorid." and Approved=0 and Offline=0 and Rejected=0 ";
   }
   elseif($a==1)
-  {
+  {  //offline
     $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=0 and Rejected=3 and Offline=1";
   }
   elseif($a==2)
-  {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=0 and Rejected=2";
+  { //rejected
+    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=0 and Offline=0 and (Rejected=1 or Rejected=2) ";
   }
   elseif($a==3)
-  {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid." and Status=2";
+  { //draft
+    $select_news="select * from  tbl_news where CreatorID=".$creatorid." and Status=2";
   }
   elseif($a==4)
-  {
-    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=1";
+  { //approve
+    $select_news="select * from tbl_news where CreatorID=".$creatorid."  and Approved=1 and Offline=0 or (Rejected=0 or Rejected=1  or Rejected=2)";
   }
   else
   {
@@ -677,7 +682,7 @@ if(isset($_POST['transaction']))
 		$bal_qry=mysqli_query($con,"select earnings as e from tbl_content_creator where id=".$creatorid);
 		$bal=mysqli_fetch_array($bal_qry);
 		$bal=$bal['e'];
-		$t_qry=mysqli_query($con,"insert into tbl_transaction(content_creator_id ,withdraw_amt,balance) values(".$creatorid.",'".$_POST['amount']."','".$bal."')");
+		$t_qry=mysqli_query($con,"insert into tbl_transaction(content_creator_id ,withdraw_amt,balance,c_date) values(".$creatorid.",'".$_POST['amount']."','".$bal."','".$date."')");
 		if($u_qry && $t_qry)
 		{
 			echo "<script>alert('amount transfer successfully...:)');</script>";
@@ -696,7 +701,7 @@ if(isset($_POST['transaction']))
 //_____________________________search transaction______________________________
 if(isset($_POST['search_transaction']))
 {
-	$result_transaction=mysqli_query($con,"select * from tbl_transaction where content_creator_id=1 and withdraw_amt='".$_POST['keyword']."' or c_date='".$_POST['keyword']."' or balance='".$_POST['keyword']."'");
+	$result_transaction=mysqli_query($con,"select * from tbl_transaction where content_creator_id=1 and (withdraw_amt='".$_POST['keyword']."' or c_date='".$_POST['keyword']."' or balance='".$_POST['keyword']."')");
 }
 
 //___________________________________filter transaction__________________________
@@ -712,7 +717,7 @@ if(isset($_POST['btn_transaction_filter']))
 //_____________________________search notification___________________
 if(isset($_POST['search_noti']))
 {
-	$result_noti=mysqli_query($con,"select * from tbl_notification where user_id=$creatorid and role=0 and sub like '%".$_POST['keyword']."%' or c_date='".$_POST['keyword']."' or description like '%".$_POST['keyword']."%'");
+	$result_noti=mysqli_query($con,"select * from tbl_notification where user_id=$creatorid and role=0 and (sub like '%".$_POST['keyword']."%' or c_date='".$_POST['keyword']."' or description like '%".$_POST['keyword']."%')");
 }
 
 //___________________filter notification____________________
@@ -728,7 +733,7 @@ if(isset($_POST['btn_noti_filter']))
 //_________________Search feedback_______________________
 if(isset($_POST['search_feed']))
 {
-	$result_feedback=mysqli_query($con,"select * from tbl_feedback where user_id=".$creatorid." and role=0 and subject like '%".$_POST['keyword']."%' or c_date='".$_POST['keyword']."' or message like '%".$_POST['keyword']."%'");
+	$result_feedback=mysqli_query($con,"select * from tbl_feedback where user_id=".$creatorid." and role=0 and ( c_date='".$_POST['keyword']."' or message like '%".$_POST['keyword']."%')");
 }
 
 //___________________filter feedback_______________________

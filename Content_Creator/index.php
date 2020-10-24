@@ -120,8 +120,8 @@ $type="index";
                         $i=0;
                         while($row=mysqli_fetch_assoc($chart_qry))
                         {
-                            $arr[]=$row;
-                            
+                            if($row['Month']!=null)
+                                $arr[]=$row;
                         }
                         ?>
                         <script src='js/jquery.min.js'></script>

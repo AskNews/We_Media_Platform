@@ -3,15 +3,13 @@
 $type="gallery";
 include "includes/header.php";
 if(isset($_GET['gallery'])){
-	$url=$_GET['gallery'];
-	$sql="select * from tbl_gallery where status='1' and url='$url'";
+  $url=$_GET['gallery'];
+  $url=str_replace('-', ' ', $url);
+  $sql="select * from tbl_gallery where status='1' and title='$url'";
 	$query=mysqli_query($con,$sql);
 	$result1=mysqli_fetch_array($query);
 	if($result1){
 		$gallery_id=$result1['id'];
-		
-		$title=$result1['seo_title'];
-		$description=$result1['seo_desc'];
 		
 		}
 	}

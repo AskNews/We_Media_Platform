@@ -22,8 +22,8 @@ if ($con->connect_error)
 {
 	die("Connection failed: " . $con->connect_error);
 }
-function period(){
+/*function period(){
 echo "Period: ".  date("d-M-Y").", ".date("h:i:sa");
 
-}
+}*/
 ?>

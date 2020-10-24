@@ -4,10 +4,11 @@ include "../Super_Admin/includes/dbconfig.php";
 
 
 include "includes/header.php";
-if(isset($_SESSION['newViewerLogin']))
-{
-  header("location: index.php");//content type defer function, where we redirect the page to the login page
-}
+// if(isset($_SESSION['newViewerLogin']))
+// {
+//   //header("location:index.php");//content type defer function, where we redirect the page to the login page
+//   header("location:gallery.php");
+// }
 ?>
 
 
@@ -43,7 +44,7 @@ if(isset($_SESSION['newViewerLogin']))
           </form><br/><br/>
           <a href="register.php">Haven't account...?</a>
           <br/><br/>
-          <a href="register.php">Forget Password...?</a>
+          <!--<a href="register.php">Forget Password...?</a>-->
         </div>
       </div>    
          

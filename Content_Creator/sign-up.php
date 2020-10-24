@@ -138,6 +138,10 @@ if(isset($_POST['submit']))
                move_uploaded_file($_FILES["file"]["tmp_name"],"img/".$newfilename);
                header("location:login.php");
             }
+            else{
+                echo "<script>try again...:((</script>";
+            }
+            //echo $query.".......................";
         }
     }
     else
