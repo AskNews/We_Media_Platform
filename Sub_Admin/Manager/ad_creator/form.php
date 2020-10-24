@@ -1,26 +1,26 @@
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <div class="panel-heading">
-	<h3 class="panel-title">Title</h3>
-	<input type="text" class="form-control" id="title" name="title" placeholder="Text field" onkeyup="convertToSlug(this.value);convertToComa(this.value);" value="<?php echo isset($editData)?$editData['title']:"";?>" required>
+	<h3 class="panel-title">User Name</h3>
+	<input type="text" class="form-control" id="title" name="title" placeholder="Text field" value="<?php echo isset($editData)?$editData['username']:"";?>" disabled>
 
 </div>
 
 <div class="panel-heading">
-	<h3 class="panel-title">URL</h3>
-	<input type="text" class="form-control" id="url" name="url" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['url']:"";?>">
+	<h3 class="panel-title">Company name</h3>
+	<input type="text" class="form-control" id="url" name="url" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['company_name']:"";?>" disabled>
 </div>
 <div class="panel-heading">
-	<h3 class="panel-title">SEO Title</h3>
-	<input type="text" class="form-control" id="seo_title" name="seo_title" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['seo_title']:"";?>">
+	<h3 class="panel-title">About</h3>
+	<input type="text" class="form-control" id="seo_title" name="seo_title" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['about']:"";?>" disabled>
 </div>
 <div class="panel-heading">
-	<h3 class="panel-title">Seo Description</h3>
-	<input type="text" class="form-control" id="slug-text" name="seo_desc" placeholder="Text field" value="<?php echo isset($editData)?$editData['seo_desc']:"";?>"> 
+	<h3 class="panel-title">Phone</h3>
+	<input type="text" class="form-control" id="slug-text" name="seo_desc" placeholder="Text field" value="<?php echo isset($editData)?$editData['phone']:"";?>" disabled> 
 </div>
 
 <div class="panel-heading">
 	<h3 class="panel-title">Date</h3>
-	<input type="date" class="form-control" id="date" name="dat" placeholder="Text field" value="<?php echo isset($editData)?$editData['c_date']:"";?>">
+	<input type="date" class="form-control" id="date" name="dat" placeholder="Text field" value="<?php echo isset($editData)?$editData['c_date']:"";?>" disabled>
 </div>
 
 <div class="panel-heading">

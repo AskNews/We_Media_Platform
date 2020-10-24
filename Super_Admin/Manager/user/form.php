@@ -11,7 +11,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="image">Profile Image</label>
 											<div class="controls">
-												<input type="file" class="span6" id="image" name="image" value="<?php if(isset($vsimage)){ echo $vsimage;}?>" required>
+												<input type="file" class="span6" id="image" name="image" accept="image/png, .jpeg, .jpg, image/gif" value="<?php if(isset($vsimage)){ echo $vsimage;}?>" <?php echo (isset($_GET['edit']))?'':'required';?>>
 												<input type="hidden" name="vsimage" >
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->

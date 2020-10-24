@@ -29,7 +29,7 @@ if(isset($_POST['login'])){
 			header ("location: index.php");
 			}else
 			{
-				$error = "invalid username and password. please try later";
+				echo "<script>alert('invalid username and password. please try later')</script>";
 				}
 	
 	}

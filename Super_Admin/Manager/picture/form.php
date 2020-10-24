@@ -11,7 +11,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="image">Profile Image</label>
 											<div class="controls">
-												<input type="file" class="span6" id="image" name="image" required>
+												<input type="file" class="span6" id="image" name="image" accept="image/png, .jpeg, .jpg, image/gif" <?php echo (isset($_GET['edit']))?'':'required';?>>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										<?php

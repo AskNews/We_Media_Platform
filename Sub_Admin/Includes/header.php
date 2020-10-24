@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../Super_Admin/includes/dbconfig.php";
+$imgPath="../Super_Admin/image/module_user";
 $ses="";
 	if(isset($_SESSION['newAdSub-AdminLogin'])||isset($_SESSION['newNewsSub-AdminLogin'])){
 	if(isset($_SESSION['newAdSub-AdminLogin'])){
@@ -78,7 +79,7 @@ function convertToComa( str1 ) {
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand" >
-				<a href="index.html"><img src="assets/img/logo-dark.png" style="height:21px;width:90px;"  ></a>
+				<a href="index.php"><img src="assets/img/logo-dark.png" style="height:21px;width:90px;"  ></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -88,7 +89,7 @@ function convertToComa( str1 ) {
 				
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
+						<!--<li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
 								<span class="badge bg-danger">5</span>
@@ -110,9 +111,9 @@ function convertToComa( str1 ) {
 								<li><a href="#">Security</a></li>
 								<li><a href="#">Troubleshooting</a></li>
 							</ul>
-						</li>
+						</li>-->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><?php echo $data['user_name'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $imgPath."/".$data['image']; ?>" class="img-circle" alt="Avatar"> <span><?php echo $data['user_name'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="profile.php"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>

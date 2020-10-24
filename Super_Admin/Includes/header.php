@@ -8,7 +8,11 @@ include "engine/engine.php";
     else{
         header ("location: login.php");
     }
-    
+    if(isset($_GET['info'])){
+      $info=$_GET['info'];
+    }else if(isset($_GET['success'])){
+      $success=$_GET['success'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

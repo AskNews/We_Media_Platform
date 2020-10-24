@@ -1,7 +1,7 @@
 <?php
 $type="profile";
 $t="";
-$imgPath="../Super_Admin/image/module_user";
+
 include "Includes/header.php";
 include_once "engine/engine.php";
 

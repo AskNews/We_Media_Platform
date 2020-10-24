@@ -19,6 +19,11 @@ $query="";
     $Pagination="SELECT * FROM `tbl_$type` where Monetization=1 ";
   
   }
+  else if($type=="ad_creator"){
+    $select="SELECT * FROM `tbl_$type` where approval=1 limit $page1,5";
+    $Pagination="SELECT * FROM `tbl_$type` where approval=1 ";
+  
+  }
   else{
     $select="SELECT * FROM `tbl_$type` limit $page1,5";
     $Pagination="SELECT * FROM `tbl_$type` ";
@@ -58,6 +63,21 @@ function compressImage($source, $destination, $quality) {
   imagejpeg($image, $destination, $quality);
 
 }
+
+  //####################Dashboard Create stuff#############################
+  function showcount($tblName,$field,$value){
+    global $con;
+    if(empty($field) && empty($value)){
+      $ds_query=mysqli_query($con,"select count(*) from $tblName ");
+    
+    }else{
+      $ds_query=mysqli_query($con,"select count(*) from $tblName where $field='$value'");
+    
+    }
+    $ds_result=mysqli_fetch_array($ds_query);
+return $ds_result[0];
+}
+
 //#####################INSERT ENGINE######################## 
 @$a;
 function insert($b){
@@ -218,7 +238,12 @@ status();
 //to editable  record
 if(isset($_GET['edit'])){
 	$id1=$_GET['edit'];
-	$sql="SELECT * FROM tbl_$type WHERE id='$id1'";
+  if($type="ad_creator"){
+    $sql="SELECT * FROM tbl_$type WHERE ad_creator_id='$id1'";
+  
+  }else{
+  $sql="SELECT * FROM tbl_$type WHERE id='$id1'";
+  }
 	$query=mysqli_query($con,$sql);
   $editData=mysqli_fetch_assoc($query);
   

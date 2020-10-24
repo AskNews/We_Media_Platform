@@ -19,7 +19,7 @@
 </div>
 <div class="panel-heading">
 	<h3 class="panel-title">Role</h3>
-	<input type="text" class="form-control" id="slug-text" name="ans" placeholder="Text field" value="<?php echo isset($data['role'])==1?"Content Creator":"Ad Creator";?>" disabled> 
+	<input type="text" class="form-control" id="slug-text" name="ans" placeholder="Text field" value="<?php echo isset($data['role'])==0?"Content Creator":"Ad Creator";?>" disabled> 
 </div>
 
 						

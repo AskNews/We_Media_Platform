@@ -124,9 +124,10 @@ function del(){
          }  
           $query=mysqli_query($con,$sql);
       if($query){
-      $info=ucfirst($type) . "Deleted Success";
-    $sql=$select;
-    
+     
+    header("Location:$type.php?info=".ucfirst($type) ." Deleted Success");
+    $info=ucfirst($type) . "Deleted Success";
+   // $sql=$select;
     }
     else{
     $error=ucfirst($type) ." is not deleted". Mysqli_error($con);
@@ -176,9 +177,8 @@ function update($b){
     $sql= $p.";";
     $qry=mysqli_query($con,$sql);
     if($qry){
-      $success=ucfirst($type). " Details Updated Success";
-      
-      $sql=$select;
+      header("Location:$type.php?success=".ucfirst($type) ." Updated Success");
+   
   
    //$p="c_".$type;
     }else{
@@ -405,6 +405,9 @@ if(isset($_POST['u_'.$type])){
                 @unlink($imgPath.$imageName);
           
         }  
+      }else{
+        compressImage($_FILES['oldImage']['tmp_name'],$imgPath.$newfilename,60);
+        
       }$a=array(
       array('image',$newfilename),   
       array('user_name',$_POST["uname"]),
