@@ -266,19 +266,13 @@ if(isset($_POST['c_'.$type])){
     $a=array(
      
      array('title',$_POST['title']),
-     array('url',$_POST['url']),
-     array('seo_title',$_POST['seo_title']),
-     array('seo_desc',$_POST['seo_desc']),
      array('c_date',$_POST['dat']));
      if($_POST['title']==chk("title",$_POST['title'])){
         $error="title is already used";
         $decide=true;
-    }else if($_POST['url']==chk("url",$_POST['url'])){
-        $error="url is already used";
-        $decide=true;
     }
     else{
- insert(5);
+ insert(2);
     }
      
    
@@ -286,22 +280,15 @@ if(isset($_POST['c_'.$type])){
    if($type=="gallery"){
     $a=array(
         array('title',$_POST['title']),
-        array('url',$_POST['title']),
-        array('seo_title',$_POST['seo_title']),
-        array('seo_desc',$_POST['seo_desc']),
-        array('location',$_POST['location']),
         array('c_date',$_POST['dat'])
     
     );
     if($_POST['title']==chk("title",$_POST['title'])){
             $error="title is already used";
             $decide=true;
-        }else if($_POST['url']==chk("url",$_POST['url'])){
-            $error="url is already used";
-            $decide=true;
         }
         else{
-     insert(6);
+     insert(2);
         }
    
  
