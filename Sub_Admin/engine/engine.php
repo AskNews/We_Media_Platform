@@ -14,18 +14,49 @@ $query="";
       @$page1=($page*5)-5;
   }
   if($type=="news"){
-    $select="SELECT * FROM `tbl_$type` where Approved=0 limit $page1,5";
+    if(isset($_GET['approved'])){
+
+      $select="SELECT * FROM `tbl_$type` where Approved=1 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where Approved=1";
+    }else if(@$_GET['reported']){
+      $select="SELECT news_id from tbl_report limit $page1,5";
+      $Pagination="SELECT news_id from tbl_report";
+      
+    }else{
+      $select="SELECT * FROM `tbl_$type` where Approved=0 limit $page1,5";
     $Pagination="SELECT * FROM `tbl_$type` where Approved=0 ";
+   
+    }
   
   }else if($type=="content_creator"){
-    $select="SELECT * FROM `tbl_$type` where Monetization=1 limit $page1,5";
-    $Pagination="SELECT * FROM `tbl_$type` where Monetization=1 ";
-  
+    if(@$_GET['aka']==2){
+      $select="SELECT * FROM `tbl_$type` where Monetization=0 and AccountApproval=1 and index_point>30 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where Monetization=0 and AccountApproval=1 and index_point>30";
+    
+    }else if(@$_GET['aka']==3){
+      $select="SELECT * FROM `tbl_$type` where status=0 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where status=0 ";
+        
+    }else{
+    $select="SELECT * FROM `tbl_$type` where AccountApproval=0 limit $page1,5";
+    $Pagination="SELECT * FROM `tbl_$type` where AccountApproval=0 ";
+    }
   }
   else if($type=="ad_creator"){
     $select="SELECT * FROM `tbl_$type` where approval=0 limit $page1,5";
     $Pagination="SELECT * FROM `tbl_$type` where approval=0 ";
   
+  }else if($type=="qna"){
+    if($_SESSION['role']==1){
+      $select="SELECT * FROM `tbl_$type` where role=0 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where role=0 ";
+    
+    }else{
+      
+      $select="SELECT * FROM `tbl_$type` where role=1 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where role=1 ";
+    
+    }
   }
   else{
     $select="SELECT * FROM `tbl_$type` limit $page1,5";
@@ -212,7 +243,7 @@ if(isset($_POST['c_'.$type.''])){
      array('status',$_POST['status']),
       array('role',$data['role'])
     );
-      insert(5);
+      insert(6);
    
    }
    
@@ -241,12 +272,10 @@ status();
 //to editable  record
 if(isset($_GET['edit'])){
 	$id1=$_GET['edit'];
-  if($type="ad_creator"){
-    $sql="SELECT * FROM tbl_$type WHERE id='$id1'";
-  
-  }else{ 
+
+
   $sql="SELECT * FROM tbl_$type WHERE id='$id1'";
-  }
+  
 	$query=mysqli_query($con,$sql);
   $editData=mysqli_fetch_assoc($query);
    

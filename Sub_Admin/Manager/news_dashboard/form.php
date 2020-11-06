@@ -52,7 +52,7 @@
 									 <a href="#"><div class="metric">
 										<span class="icon"><i class="fa fa-question-circle-o"></i></span>
 										<p>
-											<span class="number"><?php echo showcount("tbl_qna","role","2");?></span>
+											<span class="number"><?php echo showcount("tbl_qna","role","1");?></span>
 											<span class="title">Total Q&A </span>
 										</p>
 									</div></a>
@@ -61,7 +61,8 @@
 									 <a href="#"><div class="metric">
 										<span class="icon"><i class="fa fa-newspaper-o"></i></span>
 										<p>
-											<span class="number">274,678</span>
+										<span class="number"><?php echo showcount("tbl_report",null,null);?></span>
+											
 											<span class="title">Reported News</span>
 										</p>
 									</div></a>

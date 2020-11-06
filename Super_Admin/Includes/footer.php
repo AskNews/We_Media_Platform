@@ -27,15 +27,7 @@
 <script>    
 
 var pieData = [
-				{
-				    value: <?php echo getco('tbl_ad_creator','approval=1');?>,
-				    color: "#F38630"
-        },
-        {
-				    value: <?php echo getco('tbl_ad_creator','approval=0');?>,
-				    color: "#E0E4CC"
-				},
-			
+		
 				{
           value: <?php echo getco('tbl_content_creator','AccountApproval=0');?>,
 				    color: "#69D2E7"
@@ -47,33 +39,59 @@ var pieData = [
 
 			];
 
-				var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
+      var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
+      var pieData1 = [
+				{
+				    value: <?php echo getco('tbl_ad_creator','approval=1');?>,
+				    color: "#F38630"
+        },
+        {
+				    value: <?php echo getco('tbl_ad_creator','approval=0');?>,
+				    color: "#E0E4CC"
+				}];
+			
+      var myPie = new Chart(document.getElementById("pie-chart1").getContext("2d")).Pie(pieData1);
 
   var doughnutData = [
 				{
-				    value: 30,
+				    value: <?php echo getco('tbl_news','approved=1'); //Approved?>,
 				    color: "#F7464A"
 				},
 				{
-				    value: 50,
+				    value: <?php echo getco('tbl_news','approved=0'); //Rejected?>,
 				    color: "#46BFBD"
 				},
 				{
-				    value: 100,
+				    value: <?php echo getco('tbl_news','Offline=1'); //offline?>,
 				    color: "#FDB45C"
 				},
 				{
-				    value: 40,
+				    value: <?php echo getco('tbl_news','Rejected=1'); //Rejected first time?>,
 				    color: "#949FB1"
 				},
 				{
-				    value: 120,
+				    value: <?php echo getco('tbl_news','status=0'); //In active news?>,
 				    color: "#4D5360"
 				}
 
 			];
 
-        var myDoughnut = new Chart(document.getElementById("donut-chart").getContext("2d")).Doughnut(doughnutData);
+      var myDoughnut = new Chart(document.getElementById("donut-chart").getContext("2d")).Doughnut(doughnutData);
+      var doughnutData1 = [
+				{
+				    value: <?php echo getco('tbl_adunit','approve=1'); //Approved Ads?>,
+				    color: "#F7464A"
+				},
+				{
+				    value: <?php echo getco('tbl_adunit','offline=1'); //Offline Ads?>,
+				    color: "#46BFBD"
+				},
+				{
+				    value: <?php echo getco('tbl_adunit','status=0'); //In active Ads?>,
+				    color: "#4D5360"
+				}];
+	
+      var myDoughnut = new Chart(document.getElementById("donut-chart1").getContext("2d")).Doughnut(doughnutData1);
 
 
         var lineChartData = {

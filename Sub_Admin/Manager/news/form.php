@@ -8,17 +8,14 @@
 	 echo "<b>Channel Name :- </b>". fetch_detail("ChannelName","content_creator","id",$editData['CreatorID'])."<br>";
 	 echo "<b>Channel Description :- </b>". fetch_detail("ChannelDescription","content_creator","id",$editData['CreatorID'])."<br>";
 	 echo  (fetch_detail("Monetization","content_creator","id",$editData['CreatorID']))?'<b>Monitization is :-</b><b style="color:red;"> Off</b>':'<b>Monitization is :-</b> <b style="color:green;">on</b>'."<br>";
-	
+	 
 	 ?>
 	  <input type="hidden" name="CreatorID" value="<?php echo $editData['CreatorID'];?>" />
 </div>
 <div class="panel-heading">
 	<h3 class="panel-title">News Related Details</h3>
 	<?php
-	 echo isset($editData)?"<b>URL :- </b>".$editData['Url']."<br>":"";
 	 echo isset($editData)?"<b>Category ID :- </b>".$editData['CategoryID']."<br>":"";
-	 echo isset($editData)?"<b>Seo Title :- </b>".$editData['SeoTitle']."<br>":"";
-	 echo isset($editData)?"<b>Seo Description :- </b>".$editData['SeoDescription']."<br>":"";
 	 echo isset($editData)?"<b>Rejection Count :- </b>".$editData['Rejected']."<br>":"";
 	
 	 
@@ -64,7 +61,7 @@
 </div>
 
 <div class="panel-heading">
-	<h3 class="panel-title">Status</h3>
+	<h3 class="panel-title">Is Approved</h3>
 	<select class="form-control" name="Approved">
 	<?php
         $active='selected="selected"';

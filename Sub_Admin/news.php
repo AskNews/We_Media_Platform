@@ -15,7 +15,18 @@ include_once "engine/engine.php";
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title"><?php echo ucfirst($type);?></h3>
+							<h3 class="panel-title"><?php 
+							 if(isset($_GET['approved'])){
+								echo "Approved ".ucfirst($type);
+							
+							 }else  if(isset($_GET['reported'])){
+								echo "Reported ".ucfirst($type);
+							
+							 }
+							else{
+								echo "Pendding".ucfirst($type);
+							
+							}?></h3>
 							<p class="panel-subtitle"><?php period()?> </p>
 						</div>
 						<div class="panel-body">
@@ -25,9 +36,18 @@ include_once "engine/engine.php";
 						<?php
 						if(isset($_POST['create']) || isset($p) || isset($_GET['edit'])){
 							
-							include "Manager/$type/form.php";
+							include "Manager/news/form.php";
 							
-							}else
+							}else if(isset($_GET['approved'])){
+							
+								include "Manager/$type/approved-news.php";
+							 
+
+							}else if(isset($_GET['reported'])){
+								include "Manager/$type/reported-news.php";
+
+							}
+							else
 							{
 									if(isset($_POST['m_table'])){
 									include "Manager/$type/tbl.php";

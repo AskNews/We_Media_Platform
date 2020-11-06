@@ -1,5 +1,6 @@
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <br><br>             <div class="input-group">
+
+           <br><br>             <div class="input-group">
 							<input class="form-control" type="text" name="keyword">
 							<span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search">Search!</button></span>
 						</div>
@@ -18,8 +19,14 @@
 										</thead>
 										<tbody>
 										<?php
-      $sn=1;
-	  while($row=mysqli_fetch_array($query)):
+	  $sn=1;
+	  
+
+	  while($row1=mysqli_fetch_array($query)):
+		$g=$row1['news_id'];
+		$tt="select * from tbl_news where id=$g";
+		$j=mysqli_query($con,$tt);
+		while($row=mysqli_fetch_array($j)):
 	  ?>
 											<tr>
 											<td><?php echo $row['id']; ?></td>
@@ -38,6 +45,7 @@
         
 											</tr>
 											<?php
+											endwhile;
 											endwhile;
 											?>
 										</tbody>

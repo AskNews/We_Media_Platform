@@ -41,7 +41,7 @@ include "includes/header.php";
                             <div class="widget-header">
                                 <i class="icon-bar-chart"></i>
                                 <h3>
-                                    Donut Chart</h3>
+                                    News Statistics</h3>
                             </div>
                             <!-- /widget-header -->
                             <div class="widget-content">
@@ -60,7 +60,7 @@ include "includes/header.php";
                             <div class="widget-header">
                                 <i class="icon-bar-chart"></i>
                                 <h3>
-                                    Content Creator Account Ad Creator Account</h3>
+                                    Content Creator Account</h3>
                             </div>
                             <!-- /widget-header -->
                             <div class="widget-content">
@@ -69,9 +69,46 @@ include "includes/header.php";
                                 <!-- /pie-chart -->
                             </div>
                             <!-- /widget-content -->
-                        </div>
+                        </div> 
                         <!-- /widget -->
 </div>
+<div class="span6">
+          <div class="widget">
+                            <div class="widget-header">
+                                <i class="icon-bar-chart"></i>
+                                <h3>
+                                    Ads Statisitcs</h3>
+                            </div>
+                            <!-- /widget-header -->
+                            <div class="widget-content">
+                                <canvas id="donut-chart1" class="chart-holder" width="538" height="250">
+                                </canvas>
+                                <!-- /bar-chart -->
+                            </div>
+                            <!-- /widget-content -->
+                        </div>
+                        
+                        </div>
+                        <div class="span6">
+
+                          <!-- /widget -->
+                          <div class="widget">
+                            <div class="widget-header">
+                                <i class="icon-bar-chart"></i>
+                                <h3>
+                                     Ad Creator Account</h3>
+                            </div>
+                            <!-- /widget-header -->
+                            <div class="widget-content">
+                                <canvas id="pie-chart1" class="chart-holder" width="538" height="250">
+                                </canvas>
+                                <!-- /pie-chart -->
+                            </div>
+                            <!-- /widget-content -->
+                        </div> 
+                        <!-- /widget -->
+</div>
+
 
 <div class="span12">
           <div class="widget">

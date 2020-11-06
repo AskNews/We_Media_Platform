@@ -140,9 +140,22 @@ function convertToComa( str1 ) {
 					
 					<?php
 					if($_SESSION['role']==0){
+						@$a=$_GET['aka'];
 					?>
-					<li><a href="content_creator.php" <?php echo $type == "content_creator"?'class="active"':'';?>><i class="fa fa-users"></i> <span>Content Creator</span></a></li>
-					<li><a href="news.php" <?php echo $type == "news"?'class="active"':'';?>><i class="fa fa-newspaper-o"></i> <span> News</span></a></li>
+					<li><a href="content_creator.php?aka=1" <?php echo $a == "1"?'class="active"':'';?>><i class="fa fa-users"></i> <span>Content Creator</span></a></li>
+					<li><a href="content_creator.php?aka=2" <?php echo $a == "2"?'class="active"':'';?>><i class="fa fa-users"></i> <span>For Monitization</span></a></li>
+					<li><a href="content_creator.php?aka=3" <?php echo $a == "3"?'class="active"':'';?>><i class="fa fa-users"></i> <span>Inactive Content Creator</span></a></li>
+
+					<li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-newspaper-o"></i> <span>News</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="news.php" <?php echo $type == "news"?'class="active"':'';?>>Pendding News</a></li>
+									<li><a href="news.php?inactive=''" <?php echo $type == "news"?'class="active"':'';?>>Approved News</a></li>
+									<li><a href="news.php?reported=''" <?php echo $type == "news"?'class="active"':'';?>>Reported News</a></li>
+									</ul>
+							</div>
+						</li>
 					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="fa fa-commenting"></i> <span>Feedback</span></a></li>
 					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="fa fa-question-circle-o"></i> <span>QNA</span></a></li>
 					

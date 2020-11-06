@@ -27,7 +27,7 @@
 
 <div class="panel-heading">
 	<h3 class="panel-title">Join Date</h3>
-	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['join_date']:"";?>" disabled>
+	<input type="text" class="form-control" id="title" name="not" placeholder="Text field" value="<?php echo isset($editData)?$editData['c_date']:"";?>" disabled>
 </div>
 <div class="panel-heading">
 	<h3 class="panel-title">Bank Name</h3>
@@ -53,7 +53,7 @@
 </div>
 
 <div class="panel-heading">
-	<h3 class="panel-title">Status</h3>
+	<h3 class="panel-title">Is Approved</h3>
 	<select class="form-control" name="status">
 	<?php
         $active='selected="selected"';
@@ -66,8 +66,8 @@
 			}
 		?>
 										
-										<option value="0" <?php echo $inactive; ?>>Approved</option>
-										<option value="1" <?php echo $active; ?>>Reject</option>
+										<option value="0" <?php echo $inactive; ?>>Reject</option>
+										<option value="1" <?php echo $active; ?>>Approve</option>
 									</select>
 </div>
 <div class="panel-heading">

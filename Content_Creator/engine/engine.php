@@ -143,6 +143,7 @@ if(isset($_POST['add_'.$type.'']))
     $error_headline="please insert headline";
     $flag=false;
   }
+  $url=str_replace(" ","-",$_POST['newsheadline']);
   if(empty($_POST["summary"]))
   {
     $error_summary="please insert Summary";
@@ -183,7 +184,7 @@ if(isset($_POST['add_'.$type.'']))
   if($flag==true)
   {
     $qry="";
-    $sql='insert into tbl_news(CategoryID,CreatorID,HeadLine,FileAttach,Summary,Details,Status,PostDate) values("'.$cat.'","'.$creatorid.'","'.$headLine.'","'.$newfilename.'","'.$summary.'","'.$details.'","'.$status.'","'.$date.'")';
+    $sql='insert into tbl_news(CategoryID,CreatorID,HeadLine,FileAttach,Summary,Details,Status,PostDate,slug) values("'.$cat.'","'.$creatorid.'","'.$headLine.'","'.$newfilename.'","'.$summary.'","'.$details.'","'.$status.'","'.$date.'","'.$url.'")';
     //$sql='insert into tbl_news(CategoryID,CreatorID,HeadLine,FileAttach,Summary,Details,Status,PostDate) values("'.$cat.'","'.$creatorid.'","'.$headLine.'","'.$newfilename.'","'.$summary.'","'.$details.'")';
     //echo $sql;
     $count_news=mysqli_query($con,"select PostDate from tbl_news where CreatorID=".$creatorid);
@@ -194,6 +195,7 @@ if(isset($_POST['add_'.$type.'']))
       {
         $new_can_insert++;
       }
+     
     }
     if($mon==1 && $new_can_insert<3 || $mon==0 && $new_can_insert==0)
     {
