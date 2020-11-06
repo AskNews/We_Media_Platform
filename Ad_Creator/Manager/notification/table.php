@@ -3,6 +3,7 @@ mysqli_query($con,"update tbl_notification set is_seen=1 where role=1 and user_i
 ?>
 <div class="container-fluid">
             <div class="row">
+			 <div class="col-lg-10">
                 <form name="f1" action="notification.php?noti" method="post">
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
@@ -17,8 +18,18 @@ mysqli_query($con,"update tbl_notification set is_seen=1 where role=1 and user_i
                             <button class="au-btn-filter" name="btn_noti_filter" id="submit" type="submit">
                                 <i class="zmdi zmdi-filter-list"></i>filters</button>
                         </div>
+						<div class="header-wrap">
+                                     <div class="table-data__tool-right form-header">
+                                     <input class="au-input au-input" type="text" name="keyword" value="<?php if(isset($_POST['search_noti'])){ echo $_POST['keyword']; } ?>" placeholder="Search for Feedback. . . . . . " aria-controls="DataTables_Table_0" />
+                                     <button class="au-btn--submit"   name="search_noti" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                       </button>
+                                    </div>
+                         </div>
                     </div>
+					
                 </form>
+			 </div>
             </div>
 
 			<div class="col-lg-12">

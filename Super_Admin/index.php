@@ -22,8 +22,6 @@ include "includes/header.php";
                    <span class="shortcut-label">Picture<br><?php echo showcount('tbl_picture');?></span> </a>
                    <a href="categories.php?c_categories" class="shortcut"> <i class="shortcut-icon icon-tag"></i>
                    <span class="shortcut-label">Category<br><?php echo showcount('tbl_categories');?></span> </a>
-                   <a href="slideshow.php?c_slideshow" class="shortcut"><i class="shortcut-icon icon-play"></i>
-                   <span class="shortcut-label">Slide Show<br><?php echo showcount('tbl_slideshow');?></span> </a>
                    <a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-play"></i>
                    <span class="shortcut-label">Comming Soon</span> </a>
                    <a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-picture"></i>
@@ -35,7 +33,46 @@ include "includes/header.php";
             </div>
             <!-- /widget-content --> 
           </div>
+         
+                        
 </div>
+<div class="span6">
+          <div class="widget">
+                            <div class="widget-header">
+                                <i class="icon-bar-chart"></i>
+                                <h3>
+                                    Donut Chart</h3>
+                            </div>
+                            <!-- /widget-header -->
+                            <div class="widget-content">
+                                <canvas id="donut-chart" class="chart-holder" width="538" height="250">
+                                </canvas>
+                                <!-- /bar-chart -->
+                            </div>
+                            <!-- /widget-content -->
+                        </div>
+                        
+                        </div>
+                        <div class="span6">
+
+                          <!-- /widget -->
+                          <div class="widget">
+                            <div class="widget-header">
+                                <i class="icon-bar-chart"></i>
+                                <h3>
+                                    Content Creator Account Ad Creator Account</h3>
+                            </div>
+                            <!-- /widget-header -->
+                            <div class="widget-content">
+                                <canvas id="pie-chart" class="chart-holder" width="538" height="250">
+                                </canvas>
+                                <!-- /pie-chart -->
+                            </div>
+                            <!-- /widget-content -->
+                        </div>
+                        <!-- /widget -->
+</div>
+
 <div class="span12">
           <div class="widget">
             <div class="widget-header"> <i class="icon-edit"></i>
@@ -53,9 +90,7 @@ include "includes/header.php";
                    <a href="categories.php" class="shortcut"> <i class="shortcut-icon icon-tag"></i>
                    <span class="shortcut-label">Category<br><?php echo showActivecount('tbl_categories');?></span> </a>
                    <a href="slideshow.php" class="shortcut"><i class="shortcut-icon icon-play"></i>
-                   <span class="shortcut-label">Slide Show<br><?php echo showActivecount('tbl_slideshow');?></span> </a>
-                   <a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-play"></i>
-                   <span class="shortcut-label">Comming Soon</span> </a>
+                  <span class="shortcut-label">Comming Soon</span> </a>
                    <a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-picture"></i>
                     <span class="shortcut-label">Comming Soon</span> </a>
                     <a href="javascript:;" class="shortcut"> <i class="shortcut-icon icon-tag"></i>
@@ -65,6 +100,7 @@ include "includes/header.php";
             </div>
             <!-- /widget-content --> 
           </div>
+        
 </div>
 </div>
 </div>

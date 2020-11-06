@@ -18,20 +18,22 @@ if(isset($_POST['login'])){
 		$ms = mysqli_real_escape_string($con,$_POST['password']);
 		//login from database
 		$a=login("tbl_module_user",$username,$ms,3);
-		if($a==1){
-			 
-			//for rember me
-			if(isset($_POST['rem'])){
-				$time = time()+60*60; // for one hour
-				setcookie("Account-adminCookie",$username,$time);
-				}
-			$_SESSION['newAccount-AdminLogin']=$username;
-			header ("location: index.php");
-			}else
-			{
-				echo "<script>alert('invalid username and password. please try later')</script>";
-				}
+		switch($a){
+			case 1: 
+		//for rember me
+		if(isset($_POST['rem'])){
+			$time = time()+60*60; // for one hour
+			setcookie("Account-adminCookie",$username,$time);
+			}
+		$_SESSION['newAccount-AdminLogin']=$username;
+		header ("location: index.php");
+		break;
+			default:
+			echo "<script>alert('invalid username and password. please try later')</script>";
+		
 	
+
+		}
 	}
 
 ?>
@@ -40,7 +42,7 @@ if(isset($_POST['login'])){
   
 <head>
     <meta charset="utf-8">
-    <title>We Media (Super Admin)</title>
+    <title>We Media (Admin)</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
@@ -105,7 +107,7 @@ if(isset($_POST['login'])){
 		
 		<form action="login.php" method="post">
 		
-			<h1>Super Admin Login</h1>		
+			<h1>Admin Login</h1>		
 			
 			<div class="login-fields">
 				
@@ -142,11 +144,11 @@ if(isset($_POST['login'])){
 	
 </div> <!-- /account-container -->
 
-
+<!--
 
 <div class="login-extra">
 	<a href="#">Reset Password</a>
-</div> <!-- /login-extra -->
+</div>--> <!-- /login-extra -->
 
 
 <script src="js/jquery-1.7.2.min.js"></script>

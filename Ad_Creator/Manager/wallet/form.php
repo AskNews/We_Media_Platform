@@ -1,5 +1,6 @@
+ 
   
-<section class="statistic statistic2">                
+  <section class="statistic statistic2">                
     <div class="row">
         <div class="col-md-6 col-lg-3">
             <div class="statistic__item statistic__item--green">
@@ -30,27 +31,28 @@
         </div>
     </div>
 </section>
-<form method="post"  enctype="multipart/form-data" >
+<form method="post" action="paytm/pgRedirect.php"  >
 <div class="col-lg-8">
 <div class="card">
     <div class="card-header">
         <strong>MY WALLET</strong>
     </div>
     <div class="card-body card-block">
-        
-                <div class="form-group">
+         
+            
+            <div class="form-group">
                 <span>Ad Amount to refill your wallet</span>
-                    <input type="text" name="wallet_amt" value=<?php if(isset($_POST['wallet_amt'])) { echo $_POST['wallet_amt']; } else { echo $wal_amt; } ?> class="form-control">
+                    <input type="text" name="TXN_AMOUNT" value=<?php if(isset($_POST['wallet_amt'])) { echo $_POST['wallet_amt']; } else { echo $wal_amt; } ?> class="form-control">
             </div>
-        
                 <span class="error" ><?php echo @$error_wallet; ?></span>
-        </form>
+       
     </div>
     <div class="card-footer">
     <div class="form-actions form-group">
-                <button type="submit" name="updt_wallet" class="btn btn-success btn-sm">Refill Wallet</button>
+                <button type="submit" name="pay" class="btn btn-success">Refill Wallet</button>
             </div>
     </div>
 </div>
 </div>
+</form>
 

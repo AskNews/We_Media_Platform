@@ -1,3 +1,5 @@
+
+<?php  //print_r($update);?>
 <div class="container">
                     <div class="au-card">
                         <div class="login-wra">
@@ -25,12 +27,12 @@
                                                              {
                                                                $selected=null;
                                                              if(isset($update))
-                                                             {if($update['CategoryID']==$row['id']){
+                                                             {if($update['category_id']==$row['id']){
                                                                 $selected='selected';
                                                              }
                                                              }
                                                         ?>
-                                                             <option value="<?php echo $row['id'];  ?>" <?php if(@$update["CategoryID"]==$row["id"]){ echo "selected";}?> ><?php echo $row['title'];?></option>
+                                                             <option value="<?php echo $row['id'];  ?>" <?php if(@$update["category_id"]==$row["id"]){ echo "selected";}?> ><?php echo $row['title'];?></option>
                                                          <?php
                                                           }
                                             
@@ -41,23 +43,15 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Ad Unit Name</label>
-                                                    <input class="au-input au-input--full" type="text" name="unit_name" value="<?php echo @$update['unit_name']; ?>" id="unit_name" onkeyup="convertToSlug(this.value);convertToComa(this.value);" placeholder="Unit Name">
+                                                    <input class="au-input au-input--full" type="text" name="unit_name"  value="<?php echo @$update['unit_name']; echo @$_POST['unit_name']; ?>" id="unit_name" onkeyup="convertToSlug(this.value);convertToComa(this.value);" placeholder="Unit Name">
                                                 </div>
                                                 <span style="color:red" id="error_unitname" class="error"><?php if(isset($error_unitname)){echo $error_unitname;}?></span>
                                                 <div class="form-group">
-                                                    <label>URL</label>
-                                                    <input class="au-input au-input--full" name="url" id="url" value="<?php echo @$update['url']; ?>" readonly="readonly" placeholder="URL">
+                                                    <label>Ad Url</label>
+                                                    <input class="au-input au-input--full" type="text" name="url" value="<?php echo @$update['url']; echo @$_POST['url'];?>" id="unit_name"  placeholder="Ad url">
                                                 </div>
-                                                <span id="error_url" class="error"></span>
-                                                <div class="form-group">
-                                                    <label>Seo_title</label>
-                                                    <input class="au-input au-input--full" type="text" name="seo_title" value="<?php echo @$update['seo_title']; ?>" readonly="readonly" id="seotitle" placeholder="Seo_Title">
-                                                </div>
-                                                <span id="error_seo_title" class="error"></span>
-                                                <div class="form-group">
-                                                    <label>Seo_Description</label>
-                                                    <input class="au-input au-input--full" type="text" name="seo_desc" value="<?php echo @$update['seo_desc']; ?>"  readonly="readonly"  id="seodes"placeholder="Seo_Description">
-                                                </div>
+                                                <span style="color:red" id="error_unitname" class="error"><?php if(isset($error_url)){echo $error_url;}?></span>
+                                            
                                                 <div class="form-group">
                                                     <label>Ad Unit Image</label>
                                                     <input type="file" id="file-input" name="file"  value="<?php echo @$update['file_attach']; ?>" class="form-control-file">
@@ -68,49 +62,64 @@
                                             <div class="col-6">
                                             <div class="form-group">
                                             <div class="form-group">
-                                                    <label>Amount</label>
-                                                    <input class="au-input au-input--full" type="amount" name="amount" placeholder="Amount">
+                                                    <label>Amount (in rupees)</label>
+                                                    <select name="amount" class="au-input au-input--full" <?php if(@$update!=null) { echo "disabled"; } ?> >
+                                                    <option <?php if(@$update['amount']=="100"){ echo "selected";  } ?> value="100">100</option>
+                                                    <option <?php if(@$update['amount']=="200"){ echo "selected"; } ?> value="200">200</option>
+                                                    <option <?php if(@$update['amount']=="300"){ echo "selected"; } ?> value="300">300</option>
+                                                    <option <?php if(@$update['amount']=="400"){ echo "selected"; } ?> value="400">400</option>
+                                                    </select>
+                                                    <!-- <input class="au-input au-input--full" type="number" name="amount"  value="<?php //echo @$update['amount']; ?>" placeholder="Amount"> -->
                                                 </div>
-                                                <span style="color:red" id="error_amount" class="error"></span>
-                                                    <label>Summary</label>
-                                                    <input class="au-input au-input--full" type="text" name="summary"value="<?php echo @$update['summary']; ?>" onkeyup="convertToComa1(this.value);" id="summary" placeholder="Summary">
-                                                </div>
-                                                <span  style="color:red" id="error_summary" class="error"><?php if(isset($error_summary)){echo $error_summary;}  ?></span>
+                                                <span class="error" ><?php echo @$error_amount; ?></span>
+                                                
                                                 <div class="form-group">
                                                     <label>CPC</label>
-                                                    <input class="au-input au-input--full" type="cpc" name="cpc" placeholder="CPC">
-                        
+                                                    <!-- <input class="au-input au-input--full" type="number" name="cpc" value="<?php //echo @$update['cpc']; ?>" placeholder="CPC"> -->
+                                                    <select name="cpc" class="au-input au-input--full" <?php if(@$update!=null) { echo "disabled"; } ?> >
+                                                    <option <?php if(@$update['cpc']=="1"){ echo "selected"; } ?> value="1">1</option>
+                                                    <option <?php if(@$update['cpc']=="2"){ echo "selected"; } ?> value="2">2</option>
+                                                    <option <?php if(@$update['cpc']=="4"){ echo "selected"; } ?> value="4">4</option>
+                                                    </select>
                                                 </div>
-                                                <span style="color:red" id="error_amount" class="error"></span>
-                                                <div class="form-group">
-                                                    <label for="textarea-input" class=" form-control-label">Details</label>
-                                                    <textarea name="details" id="details" rows="5" placeholder="Content..." class="form-control">
-                                                    <?php echo @$update['details']; ?></textarea>
-                                             </div>
-                                             <span id="error_details" class="error"></span>
+                                                <span class="error" ><?php echo @$error_cpc; ?></span>
+                                                
                                                 <div class="form-group">
                                                     <label>Status</label>
                                                     <div class="form-group">
                                                         <select value="<?php echo @$update['status']; ?>" name='status'  id='status' class="form-control">
-                                                            <option value="1">Active</option>
-                                                            <option value="0">In-Active</option>
-                                                            <option value="2">Draft</option>
+                                                            <option value="1" <?php if(@$update['status']==1) echo 'selected'; ?>>Active</option>
+                                                            <option value="0" <?php if(@$update['status']==0) echo 'selected'; ?> >In-Active</option>
                                                         </select>
                                                     </div>
                                                     <span id="error_status" class="error"></span>
                                                 </div>
-                                                <?php
-                            if(isset($_GET['adid'])){
-                            $query_status="select * from tbl_adunit where ad_id=".$_GET['adid'];
-                            $data1=mysqli_query($con,$query_status);
-                            $row1=mysqli_fetch_assoc($data1);
-                            {
-                            ?>
-                                            <div style="margin-left:43%;">
-                                                <button <?php if(isset($_GET['adid'])){ if($row1["approve"]==0 && $row1["offline"]==1 && $row1["rejected"]==3){ echo "disabled";}elseif($row1["rejected"]==2 && $row1["approve"]==0){echo "enabled";}elseif($row1["approve"]==0 && $row1["rejected"]==1 && $row1["offline"]==0 ){echo "disabled";} elseif($row1["approve"]==1 && $row1["rejected"]==1 && $row1["offline"]==0 ){echo "disabled";}else{ echo "enabled";}}?>class="au-btn au-btn--block au-btn--green" name="add_<?php echo (isset($_GET["adid"]))?'u':$type;?>" id="submit" type="submit">Submit</button>
-                                                <?php }}else{?>
-                                                 <button class="au-btn au-btn--block au-btn--green" name="add_<?php echo (isset($_GET["adid"]))?'u':$type;?>" id="submit" type="submit">SUBMIT</button>
-                                                 <?php } ?>
+                                               
+                                            <div style="margin-left:1%;">
+                                                
+                                                 <?php if(@$update['id']==null) { ?>
+                                                    <button class="au-btn au-btn--block au-btn--green" name="add_<?php echo (isset($_GET["adid"]))?'u':$type;?>" id="submit" type="submit">SUBMIT</button>
+  
+                                               <?php }
+                                               elseif(@$update["approve"]==0 && @$update["offline"]==1 && @$update["rejected"]==3){ ?>
+                                                 <button type="button" class="au-btn au-btn--block au-btn--green" disabled>Not Modify!</button>
+                                                 <span class="error" >your ad is dis-approved by platform</span>
+                                               <?php } 
+                                               elseif(@$update["approve"]==0 && @$update["offline"]==0 && @$update['rejected']==1) {?>
+                                                <button type="button" class="au-btn au-btn--block au-btn--green" disabled>Pending</button>
+                                                <span class="error" >your ad is in process</span>
+                                                <?php }
+                                                elseif(@$update["approve"]==1 && @$update['offline']==0 && (@$update['rejected']==1 || @$update['rejected']==2)) { ?> 
+                                                 <button type="button" class="au-btn au-btn--block au-btn--green" disabled>Not Modify!</button>
+                                                 <span class="error" >your ad is approved..you can't modify it</span>
+                                                <?php }
+                                                elseif(@$update["approve"]==0 && @$update["rejected"]==2 && @$update["offline"]==0) { ?> 
+                                                     <!-- <button type="submit" name="update_add" class="au-btn au-btn--block au-btn--green" >Update</button> -->
+                                                     <input type='submit' name='update_ad' value='Update Ad' class='au-btn au-btn--block au-btn--green'>
+                                                    <span class="error" >your ad is rejected...please modify it</span>
+                                                <?php }
+                                               else { } 
+                                               ?>
                                             </div>
                                     </form>
                                 </div>

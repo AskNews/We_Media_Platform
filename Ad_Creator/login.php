@@ -10,7 +10,7 @@
     {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $sql="select * from tbl_ad_creator where username='".$username."' or email='".$username."' and password='".md5($password)."'";
+        $sql="select * from tbl_ad_creator where (username='".$username."' or email='".$username."') and password='".md5($password)."' and status=1";
         echo $sql;
         $query=mysqli_query($con,$sql);
         $data=mysqli_fetch_array($query);
@@ -94,9 +94,6 @@
                                 <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="remember">Remember Me
-                                    </label>
-                                    <label>
-                                        <a href="#">Forgotten Password?</a>
                                     </label>
                                 </div>
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" name="login" >sign in</button>

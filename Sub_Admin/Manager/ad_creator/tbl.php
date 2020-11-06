@@ -11,7 +11,7 @@
 											<th>Id</th>
 											<th>User Name</th>
 											<th>Company Name</th>
-											<th>About</th>
+										
 											<th>Date</th>
 											<th>Status</th>
 											<th>Operation</th>
@@ -24,17 +24,17 @@
 		  
 	  ?>
 											<tr>
-											<td><?php echo $row['ad_creator_id']; ?></td>
+											<td><?php echo $row['id']; ?></td>
 											<td><?php echo $row['username']; ?></td>
 											<td><?php echo $row['company_name']; ?></td>
-											<td><?php echo $row['about']; ?></td>
+										
 											
 											<td><?php echo $row['c_date']; ?></td>
 											<td>
-		<a href="?status=<?php echo $row['ad_creator_id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
+		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
 		<?php echo $row['status']?'Active':'in-active'; ?></td>
-        <td><a href="?del=<?php echo $row['ad_creator_id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
-        <a href="?edit=<?php echo $row['ad_creator_id']; ?>" class="ico edit">Preview</a></td>
+        <td><a href="?del=<?php echo $row['id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
+        <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Preview</a></td>
       
         
 											</tr>

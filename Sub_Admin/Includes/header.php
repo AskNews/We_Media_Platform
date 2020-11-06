@@ -28,6 +28,8 @@ $ses="";
 	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">
+	
 	<!--<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">-->
 	<link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
 	<!-- MAIN CSS -->

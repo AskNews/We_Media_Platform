@@ -18,8 +18,16 @@
                                 <i class="zmdi zmdi-filter-list"></i>filters</button>
                         </div>
                     </div>
+                    <div class="header-wrap">
+                                     <div class="table-data__tool-right form-header">
+                                     <input class="au-input au-input--xl" type="text" name="keyword" value="<?php if(isset($_POST['search_feed'])){ echo $_POST['keyword']; } ?>" placeholder="Search for Feedback. . . . . . " />
+                                     <button class="au-btn--submit"  name="search_feed" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                       </button>
+                                    </div>
+                                    </div>
                 </form>
-            
+               
                             <div class="col-lg-12">
                                 <div class="table-responsive table-responsive-data2">
                                     <table class="table table-borderless table-striped table-earning">
@@ -36,7 +44,7 @@
                                         <tr>
                                                 <td><?php echo $row['subject'] ?></td>
                                                 <td><?php echo $row['c_date'] ?></td>
-                                                <?php if($row['file']!=null) { ?><td><img src="<?php echo "img/".$row['file'];?>" height="50px" widht="50px" > </td><?php }  else{ ?> <td>no files</td><?php } ?>
+                                                <?php if($row['file']!=null) { ?><td><a href='img/<?php echo $row['file']?>'><img src="<?php echo "img/".$row['file'];?>" height="100px" width="100px" ></a> </td><?php }  else{ ?> <td>no files</td><?php } ?>
                                                 <td>
                                                     <div class="table-data-feature">
                                                     <a class="btn bg-cyan waves-effect m-b-15" data-toggle="collapse" data-target="#subject<?php echo $row['id']?>" aria-expanded="false" aria-controls="collapseExample">
@@ -48,7 +56,7 @@
                                                      <?php echo $row['message'] ?>
                                                      </div>
                                                      </div>
-                                                        <a class="btn bg-cyan waves-effect m-b-15" href="?feedid=<?php echo $row["id"]; ?>" data-toggle="tooltip" title="click to delete"  aria-expanded="false" aria-controls="collapseExample">
+                                                        <a data-balloon="size: 3x" class="btn bg-cyan waves-effect m-b-15" href="?feedid=<?php echo $row["id"]; ?>" data-toggle="tooltip" title="click to delete"  aria-expanded="false" aria-controls="collapseExample">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                 </td>

@@ -21,7 +21,7 @@
 											 <!-- /widget -->
          								 <div class="widget widget-table action-table">
             								<div class="widget-header"> <i class="icon-th-list"></i>
-             								 <h3>A Table Example</h3>
+                            <h3>List of <?php echo ucfirst($type);?></h3>
            									 </div>
            									 <!-- /widget-header -->
             									<div class="widget-content">
@@ -45,7 +45,7 @@
                     <td> <?php echo $row['id'];?> </td>
                   
                     <td> <?php echo $row['title'];?> </td>
-                    <td> <?php echo $row['location'];?> </td>
+                   
                     <td> <?php echo $row['c_date'];?> </td>
                     <td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">

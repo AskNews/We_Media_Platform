@@ -77,7 +77,6 @@ include "engine/engine.php";
         <li <?php echo $type == "gallery"?'class="active"':'';?>><a href="gallery.php"><i class="icon-play-circle"></i><span>Gallery</span> </a> </li>
         <li <?php echo $type == "picture"?'class="active"':'';?>><a href="picture.php"><i class="icon-picture"></i><span>Picture</span> </a> </li>
         <li <?php echo $type == "categories"?'class="active"':'';?>><a href="categories.php"><i class="icon-tag"></i><span>Categories</span> </a> </li>
-        <li <?php echo $type == "slideshow"?'class="active"':'';?>><a href="slideshow.php"><i class="icon-play"></i><span>Slideshow</span> </a> </li>
         
         </ul>
     </div>

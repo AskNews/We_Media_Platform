@@ -9,12 +9,12 @@
                                         <div class="rs-select2--light rs-select2--md">
                                         <label>Show </label>
                                         <select name="adType" aria-controls="DataTables_Table_0" class="form-control show-tick">
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"]) && ($_POST['newsType']=="")) {echo "selected";} ?> value="">--Select--</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"]) && ($_POST['newsType']==4)) {echo "selected";} ?> value="4">Approved</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==0)) {echo "selected";} ?> value="0">Pending</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==1)) {echo "selected";} ?> value="1">Offline</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==2)) {echo "selected";} ?> value="2">Rejected</option>
-                                <option class="wmp-input" <?php if(isset($_POST["newsType"])&& ($_POST['newsType']==3)) {echo "selected";} ?> value="3">Draft</option>
+                                <option class="wmp-input" <?php if(isset($_POST["adType"]) && ($_POST['adType']=="")) {echo "selected";} ?> value="">--Select--</option>
+                                <option class="wmp-input" <?php if(isset($_POST["adType"]) && ($_POST['adType']==4)) {echo "selected";} ?> value="4">Approved</option>
+                                <option class="wmp-input" <?php if(isset($_POST["adType"])&& ($_POST['adType']==0)) {echo "selected";} ?> value="0">Pending</option>
+                                <option class="wmp-input" <?php if(isset($_POST["adType"])&& ($_POST['adType']==1)) {echo "selected";} ?> value="1">Dis-Approve</option>
+                                <option class="wmp-input" <?php if(isset($_POST["adType"])&& ($_POST['adType']==2)) {echo "selected";} ?> value="2">Rejected</option>
+                                <option class="wmp-input" <?php if(isset($_POST["adType"])&& ($_POST['adType']==3)) {echo "selected";} ?> value="3">Draft</option>
 								</select> 
                                             <div class="dropDownSelect2"></div>
                                         </div>
@@ -44,15 +44,15 @@
                                             <td style="width: 250px;"><?php echo wordwrap($row['unit_name'],35,"<br>")?></td>
                                 <td style="width: 80px;"><img src="<?php echo "img/".$row['file_attach'];?>" height="100px" width="80px" > </td>
                                 <td><?php echo substr($row['u_date'],0,10)?></td>
-                                <?php if($row["approve"]==1 && $row['offline']==0 && ($row['rejected']==0 || $row['rejected']==1)){ ?>
+                                <?php if($row["approve"]==1 && $row['offline']==0 && ($row['rejected']==1 || $row['rejected']==2)){ ?>
                                             <td><?php echo $row['publish_date'];?></td>
                                             <td style="width: 10px;"><?php echo $row['view'];?></td>
-                                            <?php } elseif($row["approve"]==0 && $row["offline"]==1 && $row["rejected"]==2){ ?> 
-                                            <td colspan='2' style="text-align:center"> Your Ad is offline due to <?php echo $row["rejection_msg"]; ?></td>
+                                            <?php } elseif($row["approve"]==0 && $row["offline"]==1 && $row["rejected"]==3){ ?> 
+                                            <td colspan='2' style="text-align:center"> Your Ad is Dis-Approve due to <?php echo $row["rejection_msg"]; ?></td>
                                             <?php }
-                                            elseif($row["approve"]==0 && $row["offline"]==0 && $row['rejected']==0){ ?>
+                                            elseif($row["approve"]==0 && $row["offline"]==0 && $row['rejected']==1){ ?>
                                             <td colspan='2' style="text-align:center">Pending</td>
-                                            <?php } elseif($row["approve"]==0 && $row["rejected"]==1 && $row["offline"]==0){ ?>
+                                            <?php } elseif($row["approve"]==0 && $row["rejected"]==2 && $row["offline"]==0){ ?>
                                                 <td colspan='2' style="text-align:center">News is Rejected due to <?php echo $row["rejection_msg"]; ?><a href="?adid=<?php echo $row["id"]; ?>">click to modify</a> </td>
                                             <?php } ?>           
                                 <td>

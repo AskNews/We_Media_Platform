@@ -68,7 +68,7 @@
         }
         else
         {
-            if(($_FILES["file"]["type"]=="img/png") || ($_FILES["file"]["type"]=="img/jpg") || ($_FILES["file"]["type"]=="img/jpeg"))
+            if(($_FILES["file"]["type"]=="image/png") || ($_FILES["file"]["type"]=="image/jpg") || ($_FILES["file"]["type"]=="image/jpeg"))
             {
                 $temp = explode(".", $_FILES["file"]["name"]);
                 $extension = strtolower(end($temp));
@@ -118,6 +118,7 @@
                $err_mob="Invaid Mobile number ";
            }
            $data=mysqli_query($con,"select username as uname,email from tbl_ad_creator");
+           //echo $data;
            while($r=mysqli_fetch_array($data))
            {
                if($r['uname']==$_POST['username'])
@@ -160,6 +161,10 @@
            {
                $err_mob="please enter mobile";
            }
+           if(strlen($_POST["mobile"])!==10) 
+           {
+               $err_mob="please enter valide mobile number";
+           }
            if(strlen($_POST["password"])==0) 
            {
                $err_pass="please enter password";
@@ -171,7 +176,6 @@
        }
    }
    ?>
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -236,7 +240,7 @@
                                 <span style="color:red" id="email-error" class="error" ><?php echo @$err_email;?></span>
                                 <div class="form-group">
                                     <label>Phone No</label>
-                                    <input class="au-input au-input--full" type="number" name="mobile" id="phone" value="<?php if(isset($viewstateMobile)){ echo $viewstateMobile;}?>" placeholder="Phone No">
+                                    <input class="au-input au-input--full" type="text" name="mobile" id="phone" value="<?php if(isset($viewstateMobile)){ echo $viewstateMobile;}?>" placeholder="Phone No">
                                     <input type="hidden"  name="viewstateMobile" />
                                 </div>
                                 <span style="color:red" id="mobile-error" class="error" ><?php echo @$err_mob;?></span>
@@ -262,11 +266,7 @@
                                                 </div>
                                             </div>
                                             <span style="color:red" id="file-error" class="error" ><?php if(isset($errorForFile)){ echo $errorForFile;}?></span>
-                                <div class="login-checkbox">
-                                    <label>
-                                        <input type="checkbox" name="aggree">Agree the terms and policy
-                                    </label>
-                                </div>
+
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" id="reg" name="reg">Register</button>
                                
                             

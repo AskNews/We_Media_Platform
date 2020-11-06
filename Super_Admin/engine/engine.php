@@ -142,6 +142,13 @@ function showcount($tblName){
     $ds_result=mysqli_fetch_array($ds_query);
 return "Total ".ucfirst(substr($tblName,4))." (".$ds_result[0].")";
 }
+//########################Ad Creator Chart#######################
+function getco($tblName,$cond){
+    global $con;
+    $query=mysqli_query($con,"select count(*) from $tblName where $cond");
+    $result=mysqli_fetch_array($query);
+    return $result[0];
+}
  //####################Dashboard Manage stuff#############################
  function showActivecount($tblName){
     global $con;

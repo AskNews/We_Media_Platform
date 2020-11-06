@@ -18,27 +18,7 @@
 												<input type="hidden"  name="viewstateTitle" />
 											</div> <!-- /controls -->		
 										</div> <!-- /control-group -->
-										<div class="control-group">											
-											<label class="control-label" for="url">URL</label>
-											<div class="controls">
-												<input type="text" class="span6" id="url" name="url" value="<?php echo isset($editData)?$editData['url']:"";?><?php if(isset($vsUrl)){ echo $vsUrl;}?>" required>
-										<input type="hidden"  name="vsUrl" />
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										<div class="control-group">											
-											<label class="control-label" for="seo_title">SEO Title</label>
-											<div class="controls">
-												<input type="text" class="span6" id="seo_title" name="seo_title" value="<?php echo isset($editData)?$editData['seo_title']:"";?><?php if(isset($vsSeoTitle)){ echo $vsSeoTitle;}?>" required>
-											<input type="hidden"  name="vsSeoTitle" />
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										<div class="control-group">											
-											<label class="control-label" for="seo_desc">SEO Description</label>
-											<div class="controls">
-												<input type="text" class="span6" id="seo_desc" name="seo_desc" value="<?php echo isset($editData)?$editData['seo_desc']:"";?><?php if(isset($vsSeoDesc)){ echo $vsSeoDesc;}?>" required>
-											<input type="hidden"  name="vsSeoDesc" />
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										
 									
 										<div class="control-group">											
 											<label class="control-label" for="date">Date</label>

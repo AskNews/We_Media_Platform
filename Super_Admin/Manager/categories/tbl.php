@@ -21,7 +21,7 @@
 											 <!-- /widget -->
          								 <div class="widget widget-table action-table">
             								<div class="widget-header"> <i class="icon-th-list"></i>
-             								 <h3>A Table Example</h3>
+             								 <h3>List of <?php echo ucfirst($type);?></h3>
            									 </div>
            									 <!-- /widget-header -->
             									<div class="widget-content">
@@ -31,9 +31,6 @@
                   <tr>
                     <th style="width: 100px;"> Id </th>
                     <th> Title</th>
-                    <th> URL</th>
-                    <th>SEO title</th>
-                    <th>SEO Desc</th>
                     <th> Date</th>
                     <th>Status</th>
                     <th class="td-actions"> Action</th>
@@ -47,10 +44,6 @@
                     <td> <?php echo $row['id'];?> </td>
                   
                     <td> <?php echo $row['title'];?> </td>
-                    <td> <?php echo $row['url'];?> </td>
-                    <td> <?php echo $row['seo_title'];?> </td>
-                    <td> <?php echo $row['seo_desc'];?> </td>
-                    
                     <td> <?php echo $row['c_date'];?> </td>
                     <td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">

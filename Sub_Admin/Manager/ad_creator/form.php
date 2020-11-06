@@ -9,10 +9,7 @@
 	<h3 class="panel-title">Company name</h3>
 	<input type="text" class="form-control" id="url" name="url" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['company_name']:"";?>" disabled>
 </div>
-<div class="panel-heading">
-	<h3 class="panel-title">About</h3>
-	<input type="text" class="form-control" id="seo_title" name="seo_title" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['about']:"";?>" disabled>
-</div>
+
 <div class="panel-heading">
 	<h3 class="panel-title">Phone</h3>
 	<input type="text" class="form-control" id="slug-text" name="seo_desc" placeholder="Text field" value="<?php echo isset($editData)?$editData['phone']:"";?>" disabled> 
@@ -24,21 +21,21 @@
 </div>
 
 <div class="panel-heading">
-	<h3 class="panel-title">Status</h3>
+	<h3 class="panel-title">Is Approval</h3>
 	<select class="form-control" name="status">
 	<?php
         $active='selected="selected"';
 		$inactive='';
 		if(isset($editData)){
-			if(!$editData['status']){
+			if(!$editData['approval']){
 				 $active='';
 		$inactive='selected="selected"';
 				}
 			}
 		?>
 										
-										<option value="0" <?php echo $inactive; ?>>In-Active</option>
-										<option value="1" <?php echo $active; ?>>Active</option>
+										<option value="0" <?php echo $inactive; ?>>Pendding</option>
+										<option value="1" <?php echo $active; ?>>Approva</option>
 									</select>
 </div>
 

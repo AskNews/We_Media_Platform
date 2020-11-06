@@ -2,7 +2,7 @@
         <div class="container-fluid">
             <div class="row">
                 
-                <?php  $data="select * from tbl_ad_creator where ad_creator_id=".$creatorid;
+                <?php  $data="select * from tbl_ad_creator where id=".$creatorid;
                          $result=mysqli_query($con,$data);
                             while($row=mysqli_fetch_assoc($result)){ ?>
                     
@@ -24,7 +24,7 @@
 											</nav>
 											<div class="tab-content pl-3 pt-2" id="nav-tabContent">
 												<div class="tab-pane fade show active" id="profile_settings" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <form action="" method="post" class="">
+                                                <form action="" method="post" enctype="multipart/form-data" class="">
                                             <div class="form-group">
                                             <br/><span>User Name</span>
                                                 <div class="input-group">
@@ -65,26 +65,7 @@
                                                 </div>
                                                 <span class="error"><?php echo @$errorForFile; ?></span>
                                              </div>
-                                             <div class="form-group">
-                                             <span>CVV Number</span>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-phone-square"></i>
-                                                    </div>
-                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['cvv'];}else{echo $row["cvv_number"];} ?>"  id="cvv" name="cvv" placeholder="CVV  Number" class="form-control">
-                                                </div>
-                                                <span class="error"><?php echo @$error_cvv; ?></span>
-                                            </div>
-                                             <div class="form-group">
-                                             <span>Card Number</span>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-phone-square"></i>
-                                                    </div>
-                                                    <input type="text" value="<?php if(isset($_POST['update_profile'])){echo $_POST['card'];}else{echo $row["card_number"];} ?>"  id="card" name="card" placeholder="Card  Number" class="form-control">
-                                                </div>
-                                                <span class="error"><?php echo @$error_card; ?></span>
-                                            </div>
+                                             
                                             
                                             <div class="form-actions form-group">
                                                 <button type="submit" name="update_profile" class="btn btn-success btn-sm">Update</button>

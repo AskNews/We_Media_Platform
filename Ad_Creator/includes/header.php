@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $creatorid=0;
 $info=null;
@@ -25,12 +26,10 @@ if(isset($_SESSION['ad_creator_uname']))
     {
         $email=$data["email"];
         $_SESSION['ad_creator_profile']=$data["profile_image"];
-        $creatorid=$data["ad_creator_id"];
+        $creatorid=$data["id"];
         $wal_amt=$data['wallet'];
         $lifetime_amt=$data['lifetime_amount'];
         $spend_amt=$data['spend_amount'];
-        $cvv=$data['cvv_number'];
-        $card=$data['card_number'];
         $approve=$data['approval'];
     }
 }
@@ -77,6 +76,7 @@ include "engine/engine.php";
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
+
     <style type="text/css">
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
@@ -121,7 +121,7 @@ include "engine/engine.php";
                         <img src="img/<?php echo $_SESSION['ad_creator_profile']?>" alt="no image" />
                     </div>
                     <h4 class="name"><?php echo $_SESSION['ad_creator_uname']?></h4>
-                    <a href="logout.php">Sign out</a>
+                    <a href="#">Ad Creator</a>
                 </div>
                 <nav class="navbar-sidebar2">
                     
@@ -132,7 +132,8 @@ include "engine/engine.php";
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
 
-
+                        <?php if($approve==1)
+                        { ?>
                         <li <?php echo $type == "adunit"?'class="active"':'';?>>
                             <a class="js-arrow" href="#">
                                 <i class="fas fas fa-plus-square"></i>Ads 
@@ -156,6 +157,7 @@ include "engine/engine.php";
                             <a href="wallet.php?wallet">
                                 <i class="fas fa-rupee"></i>Wallet</a>
                         </li>
+                        <?php } ?>
 
                         <li <?php echo $type == "feedback"?'class="active"':'';?>>
                             <a  href="feedback.php?feedback">
@@ -165,9 +167,6 @@ include "engine/engine.php";
                             <a href="qna.php">
                                 <i class="fas fa fa-comments"></i>QNA</a>
                         </li>
-                        <li <?php echo $type == "notification"?'class="active"':'';?>>
-                            <a  href="notification.php?noti">
-                                <i class="fas fa fa-bell"></i>Notification</a>
                         </li>
                         <li <?php echo $type == "rules"?'class="active"':'';?>>
                             <a  href="rules.php?rules">

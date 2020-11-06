@@ -1,4 +1,7 @@
 <?php 
+function period(){
+
+}
 $query="";
 //##################PAGINATION ##############################
 @$page=$_GET["page"];
@@ -20,8 +23,8 @@ $query="";
   
   }
   else if($type=="ad_creator"){
-    $select="SELECT * FROM `tbl_$type` where approval=1 limit $page1,5";
-    $Pagination="SELECT * FROM `tbl_$type` where approval=1 ";
+    $select="SELECT * FROM `tbl_$type` where approval=0 limit $page1,5";
+    $Pagination="SELECT * FROM `tbl_$type` where approval=0 ";
   
   }
   else{
@@ -239,14 +242,14 @@ status();
 if(isset($_GET['edit'])){
 	$id1=$_GET['edit'];
   if($type="ad_creator"){
-    $sql="SELECT * FROM tbl_$type WHERE ad_creator_id='$id1'";
+    $sql="SELECT * FROM tbl_$type WHERE id='$id1'";
   
-  }else{
+  }else{ 
   $sql="SELECT * FROM tbl_$type WHERE id='$id1'";
   }
 	$query=mysqli_query($con,$sql);
   $editData=mysqli_fetch_assoc($query);
-  
+   
   }
   //update query
   if(isset($_POST['u_'.$type.''])){

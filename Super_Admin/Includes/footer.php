@@ -24,7 +24,57 @@
 <script language="javascript" type="text/javascript" src="../js/full-calendar/fullcalendar.min.js"></script>
  
 <script src="js/base.js"></script> 
-<script>     
+<script>    
+
+var pieData = [
+				{
+				    value: <?php echo getco('tbl_ad_creator','approval=1');?>,
+				    color: "#F38630"
+        },
+        {
+				    value: <?php echo getco('tbl_ad_creator','approval=0');?>,
+				    color: "#E0E4CC"
+				},
+			
+				{
+          value: <?php echo getco('tbl_content_creator','AccountApproval=0');?>,
+				    color: "#69D2E7"
+        },
+        {
+          value: <?php echo getco('tbl_content_creator','AccountApproval=1');?>,
+				    color: "#008000"
+				}
+
+			];
+
+				var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
+
+  var doughnutData = [
+				{
+				    value: 30,
+				    color: "#F7464A"
+				},
+				{
+				    value: 50,
+				    color: "#46BFBD"
+				},
+				{
+				    value: 100,
+				    color: "#FDB45C"
+				},
+				{
+				    value: 40,
+				    color: "#949FB1"
+				},
+				{
+				    value: 120,
+				    color: "#4D5360"
+				}
+
+			];
+
+        var myDoughnut = new Chart(document.getElementById("donut-chart").getContext("2d")).Doughnut(doughnutData);
+
 
         var lineChartData = {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -144,6 +194,7 @@
           ]
         });
       });
+      
     </script><!-- /Calendar -->
 </body>
 </html>

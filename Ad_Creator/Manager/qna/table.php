@@ -5,15 +5,13 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">QNA</div>
+                                    <?php
+                                     while ($row=mysqli_fetch_array($result_qna)){ ?>
                                     <div class="card-body">
-                                    <button style="text-align:left;" type="button" class="btn btn-outline-primary btn-lg active">How can i create news?</button>  
-                                    <input id="ans1" name="ans1" type="text" class="form-control btn-lg" aria-required="true" value="create account as a Content Creator">
+                                    <button style="text-align:left;" type="button" class="btn btn-outline-primary btn-lg active"><?php  echo $row['question']; ?></button>  
+                                    <input id="ans1" name="ans1" type="text" class="form-control btn-lg" aria-required="true" value="<?php echo $row['answer'];?>">
                                     </div>
-
-                                    <div class="card-body">
-                                    <button style="text-align:left;" type="button" class="btn btn-outline-primary btn-lg active">How can i create news? </button>  
-                                    <input id="ans1" name="ans1" type="text" class="form-control btn-lg" aria-required="true" value="create account as a Content Creator">
-                                    </div>  
+                                     <?php } ?>
                                 </div>
                              </div>
                         </div>
