@@ -164,7 +164,16 @@ function convertToComa( str1 ) {
 					?>	
 					
 					<li><a href="ad_creator.php" <?php echo $type == "ad_creator"?'class="active"':'';?>><i class="fa fa-users"></i> <span>Ad Creator</span></a></li>
-					<li><a href="ads.php" <?php echo $type == "ads"?'class="active"':'';?>><i class="fa fa-adn"></i> <span>Ads</span></a></li>
+					<li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-newspaper-o"></i> <span>Ads</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="ads.php" <?php echo $type == "adunit"?'class="active"':'';?>>Pendding Ads</a></li>
+									<li><a href="ads.php?aka=1" <?php echo $type == "adunit"?'class="active"':'';?>>Offline Ads</a></li>
+									<li><a href="ads.php?aka=2" <?php echo $type == "adunit"?'class="active"':'';?>>In Active Ads</a></li>
+									</ul>
+							</div>
+						</li>
 					
 					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="fa fa-commenting"></i> <span>Feedback</span></a></li>
 					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="fa fa-question-circle-o"></i> <span>QNA</span></a></li>

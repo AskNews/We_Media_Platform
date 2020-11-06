@@ -1,4 +1,5 @@
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+
 <div class="panel-heading">
 	<h3 class="panel-title">User Name</h3>
 	<input type="text" class="form-control" id="title" name="title" placeholder="Text field" value="<?php echo isset($editData)?$editData['username']:"";?>" disabled>
@@ -6,13 +7,13 @@
 </div>
 
 <div class="panel-heading">
-	<h3 class="panel-title">Company name</h3>
-	<input type="text" class="form-control" id="url" name="url" placeholder="Automatically Generated" value="<?php echo isset($editData)?$editData['company_name']:"";?>" disabled>
-</div>
-
-<div class="panel-heading">
 	<h3 class="panel-title">Phone</h3>
 	<input type="text" class="form-control" id="slug-text" name="seo_desc" placeholder="Text field" value="<?php echo isset($editData)?$editData['phone']:"";?>" disabled> 
+</div>
+<div class="panel-heading">
+	<h3 class="panel-title">Email</h3>
+	<input type="text" class="form-control" id="email" name="email" placeholder="Text field" value="<?php echo isset($editData)?$editData['email']:"";?>" disabled>
+
 </div>
 
 <div class="panel-heading">
@@ -34,8 +35,8 @@
 			}
 		?>
 										
-										<option value="0" <?php echo $inactive; ?>>Pendding</option>
-										<option value="1" <?php echo $active; ?>>Approva</option>
+										<option value="1" <?php echo $inactive; ?>>Pendding</option>
+										<option value="0" <?php echo $active; ?>>Approva</option>
 									</select>
 </div>
 

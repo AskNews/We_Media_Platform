@@ -158,7 +158,7 @@ if(isset($_POST['add_'.$type.'']))
 //_____________________________update ad_________________
 //add_update
 if(isset($_POST['update_ad']))
-{
+{ 
   $ad_id=$_POST['HiddennewsId'];
   $cat=$_POST['catagory'];
   $url=$_POST['url'];

@@ -43,9 +43,25 @@ $query="";
     }
   }
   else if($type=="ad_creator"){
+    
     $select="SELECT * FROM `tbl_$type` where approval=0 limit $page1,5";
     $Pagination="SELECT * FROM `tbl_$type` where approval=0 ";
   
+  }else if($type=="adunit"){
+    if(@$_GET['aka']==1){
+      $select="SELECT * FROM `tbl_$type` where offline=1 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where offline=1 ";
+    
+    }else if(@$_GET['aka']==2){
+      $select="SELECT * FROM `tbl_$type` where status=0 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where status=0 ";
+    
+      
+    }else{
+      $select="SELECT * FROM `tbl_$type` where approve=0 limit $page1,5";
+      $Pagination="SELECT * FROM `tbl_$type` where approve=0 ";
+    
+    }
   }else if($type=="qna"){
     if($_SESSION['role']==1){
       $select="SELECT * FROM `tbl_$type` where role=0 limit $page1,5";
@@ -261,7 +277,7 @@ if(isset($_GET['del'])){
 del();
 }
 //status
-
+ 
 //to change the status of a record
 if(isset($_GET['status'])){
 status();
@@ -318,6 +334,49 @@ if(isset($_GET['edit'])){
         );
         insert(4);
         header("Location:content_creator.php");
+      }
+      if($type=="ad_creator"){
+        $a=array(
+          array('approval',$_POST['status'])
+          
+        );
+        update(1);
+        $type="notification";
+        if($_POST['status']==1){
+          $sub="Your Account has been Rejected";
+        }else{
+          $sub="Congratulations! Your Account has been Approved";
+        }
+        $a=array( 
+          array('sub',$sub),
+          array('description',$_POST['rejDesc']),
+          array('user_id',$_POST['id']),
+          array('role',2)
+        );
+        insert(4);
+        header("Location:ad_creator.php");
+      }
+      
+      if($type=="adunit"){
+        $a=array(
+          array('approve',$_POST['status']),
+          array('description',$_POST['unit_name'])
+        );
+        update(2);
+        $type="notification";
+        if($_POST['status']==1){
+          $sub="Your Ad has been Rejected";
+        }else{
+          $sub="Congratulations! Your Ad has been Approved";
+        }
+        $a=array( 
+          array('sub',$sub),
+          array('description',$_POST['rejDesc']),
+          array('user_id',$_POST['id']),
+          array('role',2)
+        );
+        insert(4);
+        header("Location:ads.php");
       }
   if($type=="news"){
     if($_POST['Approved']==1){

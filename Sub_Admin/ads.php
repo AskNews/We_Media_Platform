@@ -1,10 +1,10 @@
 <?php
-$type="ad_creator";
+$type="adunit";
 $t="";
 include "Includes/header.php";
 include_once "engine/engine.php";
 
- 
+  
 ?>
 
 		<!-- MAIN -->

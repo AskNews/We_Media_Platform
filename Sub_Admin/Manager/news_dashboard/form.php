@@ -79,7 +79,7 @@
 								<div class="col-md-6">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Area Chart</h3>
+									<h3 class="panel-title">News Report</h3>
 								</div>
 								<div class="panel-body">
 									<div id="demo-area-chart" class="ct-chart"></div>
@@ -89,7 +89,7 @@
 						<div class="col-md-6">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Bar Chart</h3>
+									<h3 class="panel-title">Content Creator Report</h3>
 								</div>
 								<div class="panel-body">
 									<div id="demo-bar-chart" class="ct-chart"></div>

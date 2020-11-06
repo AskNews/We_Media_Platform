@@ -61,7 +61,7 @@
 									 <a href="#"><div class="metric">
 										<span class="icon"><i class="fa fa-newspaper-o"></i></span>
 										<p>
-											<span class="number">274,678</span>
+											<span class="number">---</span>
 											<span class="title">Reported Ads</span>
 										</p>
 									</div></a>
@@ -79,7 +79,7 @@
 						<div class="col-md-6">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Area Chart</h3>
+									<h3 class="panel-title">Ads Report</h3>
 								</div>
 								<div class="panel-body">
 									<div id="demo-area-chart" class="ct-chart"></div>
@@ -89,7 +89,7 @@
 						<div class="col-md-6">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Bar Chart</h3>
+									<h3 class="panel-title">Ad Creator Report</h3>
 								</div>
 								<div class="panel-body">
 									<div id="demo-bar-chart" class="ct-chart"></div>

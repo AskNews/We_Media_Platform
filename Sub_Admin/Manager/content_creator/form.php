@@ -66,8 +66,8 @@
 			}
 		?>
 										
-										<option value="0" <?php echo $inactive; ?>>Reject</option>
-										<option value="1" <?php echo $active; ?>>Approve</option>
+										<option value="1" <?php echo $inactive; ?>>Reject</option>
+										<option value="0" <?php echo $active; ?>>Approve</option>
 									</select>
 </div>
 <div class="panel-heading">
