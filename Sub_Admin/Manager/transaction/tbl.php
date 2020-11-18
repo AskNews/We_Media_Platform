@@ -1,5 +1,5 @@
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <br><br>             <div class="input-group">
+         <br><br>             <div class="input-group">
 							<input class="form-control" type="text" name="keyword">
 							<span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search">Search!</button></span>
 						</div>
@@ -8,11 +8,11 @@
 										<thead>
 											<tr>
 											<th>Id</th>
-											<th>Question</th>
-											<th>Answer</th>
+											<th>Content Creator</th>
+											<th>Withdraw Amount</th>
 											<th>Date</th>
-											<th>Status</th>
-											<th>Operation</th>
+										
+											<th>balance</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -23,12 +23,14 @@
 	  ?>
 											<tr>
 											<td><?php echo $row['id']; ?></td>
-											<td><?php echo $row['question']; ?></td>
-											<td><?php echo $row['answer']; ?></td>
+											<td><a href='<?php echo $row['content_creator_id']; ?>'><?php echo fetch_detail("ChannelName","content_creator","id",$row['content_creator_id']); ?></a></td>
+											<td><?php echo $row['withdraw_amt']; ?></td>
 											<td><?php echo $row['c_date']; ?></td>
+											<td><?php echo $row['balance']; ?></td>
+											
 											<td>
 		<a href="?status=<?php echo $row['id']; ?>" style="color:<?php echo $row['status']?'green':'red'; ?>" onclick="return confirm('Are you sure to change the status of item?')">
-		<?php echo $row['status']?'Active':'in-active'; ?></td>
+		<?php echo $row['status']?'Completed':'Pendding'; ?></td>
         <td><a href="?del=<?php echo $row['id']; ?>" class="ico del" onclick="return confirm('Are you sure to delete this item?')">Delete</a>
         <a href="?edit=<?php echo $row['id']; ?>" class="ico edit">Edit</a></td>
       

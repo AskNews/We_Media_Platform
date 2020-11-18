@@ -156,6 +156,8 @@ function convertToComa( str1 ) {
 									</ul>
 							</div>
 						</li>
+						<li><a href="transaction.php" <?php echo $type == "transaction"?'class="active"':'';?>><i class="fa fa-money"></i> <span>Transaction</span></a></li>
+					
 					<li><a href="feedback.php" <?php echo $type == "feedback"?'class="active"':'';?>><i class="fa fa-commenting"></i> <span>Feedback</span></a></li>
 					<li><a href="qna.php" <?php echo $type == "qna"?'class="active"':'';?>><i class="fa fa-question-circle-o"></i> <span>QNA</span></a></li>
 					
